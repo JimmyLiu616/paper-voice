@@ -2,7 +2,7 @@
 
 `scripts/train_document_lora.py` 將已核對的文件資料接到獨立 Ministral 3 3B 文字 QLoRA 實驗。它不變更紙聲通正式模型、不部署、不上傳權重。
 
-目前驗證到資料門檻、CPU optimizer 迴圈及生成輸入邊界；**完整 CUDA 任務訓練尚未執行**。既有 `smoke-001` 使用另一個單批程式，不能當成本入口已完整跑通的證據。12份實際草稿仍未人工核對，也缺少獨立 test。
+目前已驗證資料門檻、CPU optimizer 迴圈及生成輸入邊界，並以固定合成素材完成共用 CUDA 流程與獨立程序重載。**人工核對資料的正式任務訓練尚未執行**。這次 `cuda-smoke-document-001` 實際呼叫本入口的共用 runtime，與較早使用另一支單批程式的 `smoke-001` 不同。12份實際草稿仍未人工核對，也缺少獨立 test。
 
 ## 先確認資料
 
@@ -41,7 +41,7 @@
 
 對照每個 `source_id`／`task`，逐題檢查日期與上午／下午、金額、應備文件、否定、對象與例外，以及引文是否真正支持答案。輸出未以 EOS 結束可能截斷，不能當正確。不要只看平均 loss 或 JSON 是否能解析。
 
-訓練跑完只標示 `completed-awaiting-quality-review`，`task_quality_verified` 和 `deployed` 保持 false。新入口尚未有完整 CUDA 實跑與獨立程序重載驗證；取得資料後需補做。先依 dev 固定候選，再另執行保留 test；本程式不提供最終 test 推論，不會自動讀取 test 答案來挑選 adapter。未通過 `EXPERIMENT_PLAN.md` 的日期／金額／否定條件門檻，就保留正式原模型。
+正式資料訓練跑完只標示 `completed-awaiting-quality-review`，`task_quality_verified` 和 `deployed` 保持 false。合成流程雖已跑通，正式資料的長度／顯存及任務品質仍須另驗證。先依 dev 固定候選，再另執行保留 test；本程式不提供最終 test 推論，不會自動讀取 test 答案來挑選 adapter。未通過 `EXPERIMENT_PLAN.md` 的日期／金額／否定條件門檻，就保留正式原模型。
 
 ## 本輪驗證
 
@@ -52,3 +52,16 @@
 25項通過：實際12份未審核草稿從訓練入口被拒絕；隔離假聲明只用來驗證資料閘門，不作訓練素材；CPU toy model 驗證權重更新、尾批平均與非有限 loss 停止；受控生成器確認不將參考答案放進輸入。這些都不是 GPU 任務成效或人工審核完成的證據。
 
 另執行完整 Python 回歸91項通過，保留既有 Starlette／httpx 棄用警告。正式命令列再送入12份實際草稿，退出碼1，沒有建立訓練輸出目錄、沒有 optimizer step；摘要見 `evaluation/qa-completeness/document-trainer-v1.json`。
+
+## 共用 CUDA 流程與全新程序重載
+
+```powershell
+.\.venv-train\Scripts\python.exe -X utf8 scripts\validate_document_trainer_cuda.py --name cuda-smoke-document-001
+.\.venv-train\Scripts\python.exe -X utf8 scripts\verify_document_lora.py --name cuda-smoke-document-001
+```
+
+第一個命令僅接受原有 `training/smoke-fixture.json` 的固定內容雜湊，不接受任意資料檔或偽造的已核對狀態。它使用與正式入口相同的 tokenization、模型載入、生成、optimizer、保存與重載程式；train／dev 明確使用同一筆未審核合成通知，狀態為 `completed-synthetic-flow-only`，不走正式資料審核聲明，也不修改12份草稿。第二個命令在全新程序驗證模型／輸入／adapter雜湊，逐張量比對保存與載入的權重，再重現生成文字；也可用於後續正式實驗。
+
+2026-10-01 實跑：229 tokens、1步optimizer、52個adapter張量更新、顯存保留峰值4.02 GiB；原模型與adapter皆生成67 tokens並以EOS結束，答案完全相同。全新程序載入的104個張量逐一完全相符，生成文字及相關記錄也一致（時間除外）。兩個答案仍帶 Markdown JSON 圍欄，不能當成已符合所有格式要求。這是流程與序列化證據，沒有任務品質改善或泛化結論。229-token 顯存不代表1024-token或圖像訓練容量。
+
+追加後完整 Python 回歸97項通過。可公開的完整生成、執行報告及代理審閱位於 `evaluation/qa-completeness/cuda-smoke-document-001/`；其中程式快照只用來追溯版本，執行請使用專案 `scripts/` 的入口。新adapter僅留於本機 `.runtime/document-training/`，未替換正式模型或既有release權重。

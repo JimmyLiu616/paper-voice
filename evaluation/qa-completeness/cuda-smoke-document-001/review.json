@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-01",
+  "reviewer": "Codex (not independent human review)",
+  "scope": "Pinned unreviewed synthetic fixture through the shared document trainer CUDA runtime; not reviewed task training.",
+  "same_fixture_before_and_after": true,
+  "independent_test_examples": 0,
+  "optimizer_steps": 1,
+  "sequence_tokens": 229,
+  "changed_adapter_tensors": 52,
+  "reloaded_tensor_count": 104,
+  "peak_reserved_gib": 4.021,
+  "baseline_and_adapter_output_identical": true,
+  "both_ended_with_eos": true,
+  "observations": [
+    "Both outputs retain the renewal exception and quote the source.",
+    "Both outputs wrap JSON in Markdown fences despite the JSON-only instruction.",
+    "The optimizer changed weights, but this one generated answer did not change."
+  ],
+  "quality_improvement_demonstrated": false,
+  "formal_reviewed_task_training_completed": false,
+  "python_tests_passed": 97,
+  "deployed": false,
+  "new_adapter_published": false,
+  "warnings": [
+    "Transformers reports max_new_tokens takes precedence over model max_length.",
+    "Offline PEFT save/load assumes vocabulary unchanged; serialized tensors and fresh-process generation were verified.",
+    "Existing Starlette/httpx deprecation in Python regression tests."
+  ],
+  "limits": [
+    "Same single training fixture is used for before/after generation; no generalization claim.",
+    "229-token execution does not establish memory capacity for 1024-token or image training.",
+    "Review gates remain in the normal training CLI; no human review flags were changed."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "paper-voice-synthetic-smoke-v1",
+  "purpose": "synthetic-feasibility-only",
+  "source_id": "smoke-seed-library-locker-001",
+  "family": "synthetic-seed-library-locker",
+  "license": "MIT",
+  "human_reviewed": false,
+  "provenance": "Original fictional fixture authored by Codex solely for optimizer and adapter serialization checks. Not a real notice or an evaluation document.",
+  "document": "種子圖書館置物櫃通知：借用人請於116年6月17日前交回置物櫃鑰匙；已辦理續借者免交回。",
+  "question": "已辦理續借的人也要交回鑰匙嗎？",
+  "answer": "不用，已辦理續借者免交回。",
+  "evidence": "已辦理續借者免交回。"
+}

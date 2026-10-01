@@ -1,0 +1,78 @@
+{
+  "status": "completed-synthetic-flow-only",
+  "purpose": "synthetic-feasibility-only",
+  "same_fixture_train_and_dev": true,
+  "started_utc": "2026-10-01T15:23:11.530122+00:00",
+  "config": {
+    "name": "cuda-smoke-document-001",
+    "epochs": 1,
+    "accumulation": 4,
+    "learning_rate": 0.0001,
+    "seed": 42,
+    "max_tokens": 1024,
+    "max_new_tokens": 192
+  },
+  "optimizer_steps": 1,
+  "deployed": false,
+  "task_quality_verified": false,
+  "test_generation_performed": false,
+  "steps": [
+    {
+      "step": 1,
+      "epoch": 1,
+      "examples": 1,
+      "mean_example_loss": 0.7330529689788818,
+      "gradient_norm_before_clipping": 4.098944187164307
+    }
+  ],
+  "code_sha256": {
+    "train_document_lora.py": "7f9bc201ce858d5534c72a158ee9535c1159dab1586644ffa2196b0c47e38218",
+    "prepare_training_messages.py": "0b1a2cd6ba6d80d9758e9f95a0fc2807998a82344984fd42daf08d1e0b748b5d",
+    "validate_training_data.py": "31ba8debc2d99e998f57a8e6d5471991c5cd7f7f5fbdcce4e1e1a26654040b36",
+    "training_tokens.py": "d743a5afeb37e84d3c891bfb95b104555507b538663860415c4fc5239da549dd"
+  },
+  "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+  "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+  "download_manifest_sha256": "51312afbfc5919a6b228e07d2cb25c59bda5e454f1bdb139c475f494a148319d",
+  "stage": "complete",
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.18.0",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.15.0",
+    "mistral-common": "1.12.0"
+  },
+  "token_lengths": {
+    "train": [
+      229
+    ],
+    "dev": [
+      229
+    ]
+  },
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "gpu_free_at_start_bytes": 7385120768,
+  "quantization": {
+    "bits": 4,
+    "type": "nf4",
+    "double_quant": true,
+    "compute_dtype": "bfloat16"
+  },
+  "lora": {
+    "r": 4,
+    "alpha": 8,
+    "dropout": 0.0
+  },
+  "trainable_parameters": 1171456,
+  "changed_adapter_tensors": 52,
+  "artifacts_sha256": {
+    "baseline-dev.jsonl": "471c054f2298675f17148aeae43e9758147be822d0b683767bc9fa869fdd5653",
+    "adapter-dev.jsonl": "f2f3c0c7ac199826721cc769733a35a403d887107bf96d14c8eb0741bdd4a886",
+    "adapter/adapter_model.safetensors": "cc611f35bb2d483c27be72fb46776de67517714890809a57c56f16e0d8ff5177",
+    "adapter/adapter_config.json": "7ab4756cb2a4864e8cf162d77fdcacb9613513abd33a3093147a854abff112c3",
+    "inputs/manifest.json": "d8be692eb708ac6fda2b45cd5eb8279f8bd4cc8dd899853f4b8f996255c54e37"
+  },
+  "peak_allocated_bytes": 4204144128,
+  "peak_reserved_bytes": 4318035968
+}

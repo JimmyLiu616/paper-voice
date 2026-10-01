@@ -1,0 +1,17 @@
+{
+  "run": "cuda-smoke-document-001",
+  "purpose": "synthetic-feasibility-only",
+  "fresh_process": true,
+  "adapter_tensors_exactly_equal": true,
+  "tensor_count": 104,
+  "generation_exactly_equal_excluding_timing": true,
+  "records": 1,
+  "elapsed_after_checkpoint_check_seconds": 14.217,
+  "script_sha256": "04d68b8f159864e666acd7b076340ea3d963ff2ca27c3b03b5195895b5b15bfc",
+  "outputs_sha256": "9dabbc73b2da623399c08667d4175e00f363ece7605f525a727efbd162b8efd4",
+  "adapter_sha256": "cc611f35bb2d483c27be72fb46776de67517714890809a57c56f16e0d8ff5177",
+  "task_quality_verified": false,
+  "deployed": false,
+  "note": "Serialization and generation reproducibility only. Synthetic runs reuse their training fixture.",
+  "passed": true
+}
