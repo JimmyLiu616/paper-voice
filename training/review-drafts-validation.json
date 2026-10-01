@@ -1,0 +1,28 @@
+{
+  "version": "original-review-drafts-v1",
+  "rows": 12,
+  "questions": 36,
+  "splits": {
+    "train": 8,
+    "dev": 4,
+    "test": 0
+  },
+  "structural_errors": [],
+  "approval_errors": [
+    "row 1: rights and human review must be explicitly confirmed",
+    "row 2: rights and human review must be explicitly confirmed",
+    "row 3: rights and human review must be explicitly confirmed",
+    "row 4: rights and human review must be explicitly confirmed",
+    "row 5: rights and human review must be explicitly confirmed",
+    "row 6: rights and human review must be explicitly confirmed",
+    "row 7: rights and human review must be explicitly confirmed",
+    "row 8: rights and human review must be explicitly confirmed",
+    "row 9: rights and human review must be explicitly confirmed",
+    "row 10: rights and human review must be explicitly confirmed",
+    "row 11: rights and human review must be explicitly confirmed",
+    "row 12: rights and human review must be explicitly confirmed"
+  ],
+  "eligible_for_training": false,
+  "sha256": "1d0536aa4698a465f3fbe82957d8a6cb017ed64b940d96277e7f6c9583bf4b04",
+  "note": "Exact-span and reserved-source checks only; semantic correctness and template independence await human review."
+}

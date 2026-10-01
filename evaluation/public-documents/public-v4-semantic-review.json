@@ -1,0 +1,27 @@
+{
+  "run": "public-v4",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "scope": "Supplemental inspection of known critical failures, not a complete correctness audit.",
+  "issues": [
+    {
+      "id": "moi-police-form-109-p4",
+      "component": "fee_question",
+      "automated_check_passed": true,
+      "verdict": "needs_review",
+      "reason": "The answer includes both fee numbers and says the first copy costs 100, but its subsequent clause says each copy costs 20 when two or more are requested. It does not explicitly restrict the 20 fee to the second and later copies. Do not call this semantically verified."
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "component": "transcript_and_conditions",
+      "verdict": "needs_review",
+      "reason": "Chinese and English columns are interleaved in the transcript. Conditions contain unrelated English fragments, and the required-documents field is blank. Existing source matching does not resolve reading order."
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "component": "required_documents",
+      "verdict": "missing",
+      "reason": "The page explicitly mentions completing an application form, but the required-documents field remains blank."
+    }
+  ]
+}

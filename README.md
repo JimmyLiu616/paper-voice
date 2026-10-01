@@ -1,2 +1,150 @@
-# paper-voice
-紙聲通 Paper Voice：Windows 本機繁中文書識讀、語音問答與朗讀輔助原型。
+# 紙聲通 Paper Voice
+
+原始碼：[JimmyLiu616/paper-voice](https://github.com/JimmyLiu616/paper-voice)。這是需要在 Windows 安裝並執行的本機應用，GitHub 頁面提供程式與說明。
+
+在 Windows 本機運行的生活文書識讀原型：圖片 → 本機 OCR 輔助 → Google Gemma 3 VLM 核對 → 重要欄位 → 中文朗讀及文件問答。加入數產署 Taiwan Tongues ASR CE 語音提問；另提供人工翻譯後的 Meta MMS 閩南語白話字朗讀與自願修正語料匯出。
+
+目前主攻生活通知／公文的期限、應備文件、費用與例外條件。逐輪開發評測與失敗案例見 `ITERATION_LOG.md`，可執行的合成基準見 `evaluation/README.md`。獨立 Ministral 3 3B 合成單批 QLoRA 已通過權重更新及跨程序重載檢查，見 `training/LORA_SMOKE.md`；僅證明短文字配置能在本機訓練，尚無公文任務改善證據，未部署 adapter。
+
+## 開始使用
+
+首次使用請先完成下方「在另一台 Windows 重建」；已完成環境及模型安裝後，可依以下步驟操作。
+
+1. 雙擊 `Start.cmd`。
+2. 開啟 <http://127.0.0.1:8765>。
+3. 點「補件通知」或「社區活動」，再點「幫我讀懂」。這會真正呼叫本機模型，不是預先寫好的辨識結果。
+4. 查看每個欄位的原文依據，核對圖片，按「聽重點」。
+5. 試問「需要準備什麼？」及文件沒有提供的問題，例如「可以搭哪一路公車？」。
+6. 用「錄音提問」或選擇音檔，等 ASR 填入文字後核對，再按「提問」；答案下方可點「聽這個回答」。最長 30 秒、8 MB。
+7. 「台語聲音實驗室」可帶入文件片段，由台語使用者翻譯成白話字並確認後播放；也可單獨試聽 `lí hó`。不自動翻譯。
+8. 修正原文後，按「預覽這次辨識修正」，人工去識別化及授權確認後下載 JSONL；不會自動上傳。
+
+直接拍攝：在「上傳圖片」按「開啟攝影機拍文件」→「啟動預覽」，允許瀏覽器使用攝影機；對焦後按「拍照」，可重拍或「使用照片並辨識」。照片確認前只在瀏覽器記憶體，確認後交給同一個本機圖片辨識 API。拍照、關閉視窗、切換到其他頁面時會停止相機。支援切換瀏覽器提供的攝影機，不擷取麥克風聲音。
+
+攝影機需瀏覽器支援並取得相機權限。若內建瀏覽器無法使用，可在電腦的 Edge／Chrome 開啟同一個 `http://127.0.0.1:8765` 網址。此版仍僅綁定本機；手機無法透過自己的 `127.0.0.1` 連到電腦，手機遠端拍攝需要另行配置安全連線。
+
+停止服務：雙擊 `Stop.cmd`，只會停止由本專案啟動器啟動且 PID／啟動時間／程式路徑相符的服務。它不會停止 Ollama 或其他專案。
+
+服務僅綁定 `127.0.0.1`，目前只供本機瀏覽器使用，手機無法直接連入。不會自動修改防火牆或公開服務。
+
+## 已實作
+
+- JPG／PNG／WebP 單頁辨識，最大 12 MB、2,400 萬像素；EXIF 方向校正、縮圖及移除 EXIF。
+- 瀏覽器攝影機预覽、拍照、重拍、確認後辨識；JPEG 最長邊 2,400 像素，拍下後立即停止相機。
+- Google Gemma 3 4B 量化 VLM 真實讀圖，Windows OCR 提供額外文字線索；無 Windows OCR 時仍可用 VLM。
+- 行動、辦理期限、地點、應備文件、聯絡資訊、費用及適用條件／例外。
+- 有明示標題的公文跨行段落／編號清單保留來源，期限帶回郵戳或適用條件；隨函附件不直接當成應備文件。多欄、掃描錯字仍可能影響語意，詳見公開公文測試報告。
+- 獨立「應備文件」標題後可保留編號清單；遇到獨立的「※說明／備註」會結束前段，避免費用卡混入下一節標題。仍須核對 OCR 字詞及不同身分的適用條件。
+- 值與引文皆需對應辨識原文，否則顯示待確認。這項檢查不能證明原圖讀對，也不能證明回答語意完全正確。
+- 保留 Gemma 與 Windows OCR 文字；可手動修正並重新整理。
+- Taiwan Tongues ASR CE v1.0 本機語音辨識，文字確認後送入文件問答，答案可用中文朗讀。
+- 基於目前文件的文字問答與原文引文。無有效引文時回覆無法從文件確認。
+- Windows 台灣華語離線 WAV、播放／停止／重播／速度調整。
+- Meta `facebook/mms-tts-nan` 離線閩南語白話字 TTS（實驗）。
+- 自願文字修正語料預覽、規則初篩個資、人工確認、JSONL 本機匯出。詳見 `CONTRIBUTING_DATA.md`。
+- 大字模式、窄螢幕排版、JSON 匯出、兩份原創虛構示範文件。
+
+## 目前沒有宣稱完成
+
+- 中文自動翻譯成台語、台語口音品質驗證、真人麥克風／台語／客語辨識品質驗證。
+- 競賽加分認定、已對外發布語料集。指定 ASR 已實質介接，是否獲加分仍由評審決定。
+- 專門微調、手寫帳單可靠辨識、PDF 多頁、跨文件 RAG、逐字影像框選。
+- 醫療用法判斷、法律效力判斷、未明示日期的自動推算。
+- 目標族群使用者研究、整體準確率或效益提升數據。
+
+## 本機設備與資源
+
+本專案測試設備為 NVIDIA RTX 5060 Laptop GPU 8GB、約 16GB 系統記憶體。
+
+- Gemma：Ollama `gemma3:4b`，約 3.3GB 下載，量化格式 Q4_K_M。模型位於既有 Ollama 模型儲存區。
+- TTS：Meta MMS 約 36.3M 參數，放在 `.runtime/mms-tts-nan`，CPU 推論，避免與 VLM 爭用 GPU。
+- ASR：指定 v1.0 權重約 3.1GB，`.runtime/taiwan-tongues-asr`；CPU int8、4 執行緒，每次完成後卸載程序，避免占用顯卡。短句約十多秒，並非即時串流。
+- 中文語音：已確認 `Microsoft Hanhan Desktop`／`zh-TW` 可用。此為 Windows 聲音，不是開源 TTS 權重。
+- 後端：FastAPI + Python；前端：原生 HTML/CSS/JavaScript，無外部 CDN。
+
+其他 GPU 工作占滿顯存時，Ollama 可能變慢。先結束不需要的模型工作；不要任意停止他人的服務。
+
+## 在另一台 Windows 重建
+
+需要 Python 3.11 以上、Ollama、Windows 繁中語音／OCR 語言元件。先從 GitHub 的 Code → Download ZIP 下載並解壓，或使用下列 Git 指令；接著在專案目錄執行安裝。
+
+```powershell
+git clone https://github.com/JimmyLiu616/paper-voice.git
+cd paper-voice
+```
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+ollama pull gemma3:4b
+.\.venv\Scripts\python.exe scripts\download_taigi.py
+.\.venv\Scripts\python.exe scripts\download_asr.py
+.\.venv\Scripts\python.exe scripts\make_samples.py
+.\Start.cmd
+```
+
+若要使用 CPU 版 PyTorch，可改從 PyTorch 官方 CPU index 安裝；本機實際套件版本記錄於 `requirements-lock.txt`。重建時請以對應平台套件及 `requirements.txt` 為準，`+cpu` 版本需對應的官方 index。
+
+首次下載模型需要網路。下載完成後，核心辨識、Windows 華語及 MMS 閩南語推論均在本機執行，不需付費雲端 API。選擇「瀏覽器語音」時，是否離線取決於瀏覽器提供的聲音，不能等同 Windows 離線模式。
+
+MMS 與指定 ASR 的下載程式固定使用 `MODEL_SOURCES.json` 所記錄的 revision。Ollama 的 `gemma3:4b` 標籤可能更新；重建後請比對該檔的 digest，新版本應重新測試，不能直接沿用本機既有評測結果。
+
+## API 與程式結構
+
+```text
+app.py                    本機 API、模型呼叫、引文驗證、工作佇列、TTS
+static/                   前端頁面與樣式
+scripts/speech.ps1        Windows 台灣華語聲音與 WAV
+scripts/ocr.ps1           Windows OCR 文字及位置
+scripts/download_taigi.py 固定 revision 下載 Meta MMS
+scripts/make_samples.py   建立原創測試文件
+scripts/smoke_test.py     實際模型端到端驗證
+tests/test_app.py         資料邊界及引文處理測試
+samples/                 原創虛構文件，沒有真實個資
+.runtime/                忽略於版本控制的模型、快取與執行紀錄
+```
+
+API 文件：<http://127.0.0.1:8765/api/docs>。POST／DELETE 需帶 `X-PaperVoice: local-ui`，前端已處理。Swagger 內執行請另提供此標頭；此標頭是本機跨來源請求防護，不是使用者身分驗證。
+
+```text
+GET    /api/health          Ollama、模型與台語權重狀態
+GET    /api/voices          實際 Windows 聲音清單
+POST   /api/analyze         上傳圖片，回傳工作 ID
+POST   /api/analyze-text    整理人工確認文字
+GET    /api/jobs/{id}       查看階段、結果或錯誤
+DELETE /api/jobs/{id}       清除記憶體內工作
+POST   /api/ask             文件問答
+POST   /api/speech          產生 Windows 華語／MMS 閩南語 WAV
+POST   /api/transcribe      音檔 -> 指定 ASR -> 待人工確認的問題
+POST   /api/document-taigi  文件原文片段 + 人工確認 POJ -> WAV
+POST   /api/corpus/preview  修正文字對與初步個資遮蔽
+POST   /api/corpus/export   人工確認後下載語料，不上傳
+```
+
+## 資料處理
+
+準備微調資料可使用 [訓練資料核對頁](http://127.0.0.1:8765/static/training-review.html)：提供 12 份原創虛構通知、36 題問答草稿，供你或老師逐份核對與匯出。未確認的草稿不能當人工標註；目前沒有最終測試集，也不會自動訓練。操作及暫存／下載限制見 [核對流程](training/REVIEW_WORKFLOW.md)。
+
+文件不送第三方雲端 AI API，不寫入資料庫。ASR 音檔及轉寫結果只在系統暫存目錄短暫保存，完成或逾時後刪除。Windows OCR 必須使用短暫圖片檔，Windows TTS 必須使用短暫文字／WAV；放於作業系統暫存目錄（預設 `%TEMP%`）的 `paper-voice-ocr-*` 或 `paper-voice-speech-*` 隨機資料夾，處理完成後刪除。上傳文件不寫入專案目錄，避免專案位於雲端同步資料夾時被一併同步。程式遭強制終止時可能留下暫存檔，請依上述前綴檢查系統暫存目錄。
+
+結果在程序記憶體最多保存 30 分鐘，最多保留 20 個工作，可手動清除。關頁時嘗試刪除，但瀏覽器不保證送達。匯出 JSON 是使用者主動保存，可能含原文，請自行管理。測試紀錄只含自製範例。
+
+## 測試
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q
+# 先啟動本機服務，再執行真正呼叫模型的驗證：
+.\.venv\Scripts\python.exe -X utf8 scripts\smoke_test.py
+.\.venv\Scripts\python.exe -X utf8 scripts\validate_asr.py
+.\.venv\Scripts\python.exe -X utf8 scripts\validate_extensions.py
+# 若有 Node.js，可驗證相機生命週期（使用合成串流，不會開啟實體相機）
+node --test tests\camera.test.cjs
+```
+
+測試結果限於自製範例，不能當成未見文件或目標族群的準確率。MMS 產生有效 WAV 不等於已驗證台灣台語發音品質。
+
+## 授權與參賽
+
+原創程式碼與虛構文件圖片採 MIT；修正語料格式示例與自願匯出資料採 CC BY 4.0，詳見 `CONTRIBUTING_DATA.md`。Gemma、Meta MMS、Taiwan Tongues ASR CE（TRAIL）、Windows 語音及套件各自保留原授權，不能用本專案 MIT 重新授權它們。
+
+完整模型來源見 `MODEL_SOURCES.json`；企畫及展示流程見 `SUBMISSION.md`。原始碼公開於 [GitHub](https://github.com/JimmyLiu616/paper-voice)，模型權重與使用者文件不隨儲存庫發布。公開原始碼不等於已提交競賽報名，也不代表主辦已確認參賽資格或加分。

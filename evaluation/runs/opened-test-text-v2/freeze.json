@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-01T11:38:00.531554+00:00",
+  "candidate": "candidate-v10-deadline-boundary",
+  "files": {
+    "app.py": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823",
+    "corpus.py": "4c63f060ca80adf023dfeb9c23e364502facdeb7fa6083f583c1f56d64cb4f62",
+    "scripts/ocr.ps1": "f99bcc4858376062b125772ab5f1eea127a39c70d3696217db5706b3d3a2d3c1",
+    "scripts/evaluate_documents.py": "21625fa8e1da22fe721461a2b1eb1e29215efd4c7ce77c5be672e59fda619923",
+    "evaluation/cases.json": "f7408767f61537ac322e87c07b8cdf8e3cefc3b9bd6537e78ac93ff9f88c787c",
+    "evaluation/manifest.json": "61652fa4d7e0471f917553025af105f04cb6b62d96b4b7155df9bf5c7bd422e5"
+  },
+  "model": "gemma3:4b",
+  "model_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "purpose": "Regression after a deadline-boundary correction. The original test families are already opened, not a fresh held-out evaluation.",
+  "planned_runs": [
+    "candidate-text-v10",
+    "opened-test-text-v2",
+    "public-v7"
+  ],
+  "semantic_verifier_deployed": false,
+  "fine_tuning": false
+}

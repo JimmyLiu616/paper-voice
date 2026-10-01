@@ -1,0 +1,336 @@
+{
+  "cases": 16,
+  "errors": 0,
+  "field_checks_passed": 82,
+  "field_checks_total": 102,
+  "qa_checks_passed": 28,
+  "qa_checks_total": 32,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-registration",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "location",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "一樓櫃台"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "本通知未設定申請截止日"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "conditions",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "低收入戶",
+            "免收"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "本通知未設定申請截止日"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "clean",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "我沒有提供收到的日期，你能確定是哪天截止嗎？",
+            "found": false,
+            "contains": []
+          },
+          "answer": {
+            "answer": "補正期限：收受本通知次日起七日內。",
+            "evidence": "補正期限：收受本通知次日起七日內\n",
+            "found": true
+          },
+          "passed": false
+        },
+        {
+          "question": {
+            "text": "要補哪兩份資料？",
+            "found": true,
+            "contains": [
+              "申請書",
+              "租賃契約"
+            ]
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-relative",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "我沒有提供收到的日期，你能確定是哪天截止嗎？",
+            "found": false,
+            "contains": []
+          },
+          "answer": {
+            "answer": "補正期限：收受本通知次日起七日內。",
+            "evidence": "補正期限：收受本通知次日起七日內",
+            "found": true
+          },
+          "passed": false
+        },
+        {
+          "question": {
+            "text": "要補哪兩份資料？",
+            "found": true,
+            "contains": [
+              "申請書",
+              "租賃契約"
+            ]
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "amount",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "無須繳交費用"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "2026年11月15日上午8時"
+        },
+        {
+          "field": "deadline",
+          "kind": "forbidden_spans",
+          "passed": false,
+          "forbidden": [
+            "11月15日"
+          ],
+          "actual": "2026年11月15日上午8時"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "amount",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "無須繳交費用"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "2026年11月15日上午8時"
+        },
+        {
+          "field": "deadline",
+          "kind": "forbidden_spans",
+          "passed": false,
+          "forbidden": [
+            "11月15日"
+          ],
+          "actual": "2026年11月15日上午8時"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "action",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "改走樓梯"
+          ],
+          "actual": "行動不便住戶請事先向管理先進安排協助。"
+        },
+        {
+          "field": "contact",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "管理室"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "本次公告沒有收費或報名截止日期。"
+        },
+        {
+          "field": "required_documents",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "No registration is required."
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "action",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "改走樓梯"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "deadline",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "本次公告沒有收費或報名截止日期。"
+        },
+        {
+          "field": "required_documents",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "No registration is required."
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "deadline",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "11月3日",
+            "郵戳為憑"
+          ],
+          "actual": "2026年11月3日"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "deadline",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "11月3日",
+            "郵戳為憑"
+          ],
+          "actual": "2026年11月3日"
+        },
+        {
+          "field": "required_documents",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "報名表",
+            "作品集光碟",
+            "身分證"
+          ],
+          "actual": "報名表、作品光碟、身分證影本"
+        }
+      ],
+      "questions": []
+    }
+  ]
+}

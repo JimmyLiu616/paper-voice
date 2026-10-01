@@ -1,0 +1,39 @@
+{
+  "experiment": "span-fields-v1",
+  "decision": "rejected_not_deployed",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "scope": "13 previously used dev documents; two fields only; not the public-v8 four-field image benchmark.",
+  "baseline_passed": 18,
+  "candidate_passed": 16,
+  "checks_planned": 20,
+  "invalid_model_spans": 10,
+  "latency_seconds": {
+    "median": 0.991,
+    "max": 11.481
+  },
+  "findings": [
+    {
+      "id": "dev-instruction-text",
+      "issue": "Required-documents changed from empty to the registration-method sentence; exact source copying still misclassified the field."
+    },
+    {
+      "id": "dev-bilingual",
+      "issue": "Required-documents changed from empty to a block about elevator repair, with no actual document requirement."
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "issue": "Candidate selected eligibility text as documents and still omitted the application form; exact matching did not establish category correctness."
+    },
+    {
+      "id": "nycu-ethics-114-p1",
+      "issue": "Raw candidate selected dispatch metadata/enclosures as required documents and altered characters; source validator hid it."
+    }
+  ],
+  "conclusions": [
+    "Removing redundant evidence generation alone did not solve the failures.",
+    "Postprocessing can conceal malformed outputs, so passing span checks cannot be attributed solely to the model.",
+    "Reviewed training data should include empty-field negatives, category boundaries, conditions and faithful spans under realistic OCR noise.",
+    "This experiment does not prove fine-tuning will improve quality; no model weights updated."
+  ]
+}

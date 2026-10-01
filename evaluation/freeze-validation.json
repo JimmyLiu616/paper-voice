@@ -1,0 +1,7 @@
+{
+  "frozen_files_still_match": true,
+  "changed_app_rejected_before_run_directory": true,
+  "probe_exit_code": 1,
+  "freeze_sha256": "89c8093d480fa5c06db9f45c21ca5bf02048a6ca954e45bfe0c94486202442d0",
+  "note": "Negative probe used a separate modified manifest. Original freeze and production files unchanged."
+}

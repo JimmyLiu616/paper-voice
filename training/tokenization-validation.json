@@ -1,0 +1,476 @@
+{
+  "purpose": "read-only-draft-token-inspection",
+  "checked_utc": "2026-10-01T13:14:37.596301+00:00",
+  "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+  "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+  "verified_metadata_files": [
+    "README.md",
+    "chat_template.jinja",
+    "config.json",
+    "generation_config.json",
+    "model.safetensors.index.json",
+    "params.json",
+    "processor_config.json",
+    "special_tokens_map.json",
+    "tekken.json",
+    "tokenizer.json",
+    "tokenizer_config.json"
+  ],
+  "packages": {
+    "transformers": "5.18.0",
+    "mistral-common": "1.12.0"
+  },
+  "max_tokens": 1024,
+  "source_sha256": "71eca351d8694aa88da1641db9aa4b839839d658e45cfaa9a4d42308a572eaa1",
+  "code_sha256": {
+    "inspect_training_tokens.py": "38c3b81b8abab4e8d69a2989ae1d46de822921b62bdcdfc5ba863c772aba9a65",
+    "training_tokens.py": "d743a5afeb37e84d3c891bfb95b104555507b538663860415c4fc5239da549dd",
+    "prepare_training_messages.py": "0b1a2cd6ba6d80d9758e9f95a0fc2807998a82344984fd42daf08d1e0b748b5d"
+  },
+  "human_reviewed": 0,
+  "eligible_for_training": false,
+  "weights_loaded": false,
+  "optimizer_steps": 0,
+  "token_dataset_written": false,
+  "sequences": [
+    {
+      "source_id": "draft-oral-history-release",
+      "split": "train",
+      "task": "fields",
+      "tokens": 368,
+      "prefix_tokens": 262,
+      "supervised_tokens": 106,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-oral-history-release",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 372,
+      "prefix_tokens": 280,
+      "supervised_tokens": 92,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-oral-history-release",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 324,
+      "prefix_tokens": 280,
+      "supervised_tokens": 44,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-oral-history-release",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 300,
+      "prefix_tokens": 275,
+      "supervised_tokens": 25,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-bike-permit-renewal",
+      "split": "train",
+      "task": "fields",
+      "tokens": 421,
+      "prefix_tokens": 279,
+      "supervised_tokens": 142,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-bike-permit-renewal",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 362,
+      "prefix_tokens": 299,
+      "supervised_tokens": 63,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-bike-permit-renewal",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 395,
+      "prefix_tokens": 299,
+      "supervised_tokens": 96,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-bike-permit-renewal",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 321,
+      "prefix_tokens": 295,
+      "supervised_tokens": 26,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-kitchen-deposit",
+      "split": "train",
+      "task": "fields",
+      "tokens": 395,
+      "prefix_tokens": 268,
+      "supervised_tokens": 127,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-kitchen-deposit",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 358,
+      "prefix_tokens": 292,
+      "supervised_tokens": 66,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-kitchen-deposit",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 343,
+      "prefix_tokens": 282,
+      "supervised_tokens": 61,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-kitchen-deposit",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 325,
+      "prefix_tokens": 284,
+      "supervised_tokens": 41,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-rain-barrel-address",
+      "split": "train",
+      "task": "fields",
+      "tokens": 402,
+      "prefix_tokens": 281,
+      "supervised_tokens": 121,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-rain-barrel-address",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 354,
+      "prefix_tokens": 301,
+      "supervised_tokens": 53,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-rain-barrel-address",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 368,
+      "prefix_tokens": 305,
+      "supervised_tokens": 63,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-rain-barrel-address",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 315,
+      "prefix_tokens": 291,
+      "supervised_tokens": 24,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-mobile-library-route",
+      "split": "train",
+      "task": "fields",
+      "tokens": 319,
+      "prefix_tokens": 271,
+      "supervised_tokens": 48,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-mobile-library-route",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 331,
+      "prefix_tokens": 286,
+      "supervised_tokens": 45,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-mobile-library-route",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 361,
+      "prefix_tokens": 291,
+      "supervised_tokens": 70,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-mobile-library-route",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 315,
+      "prefix_tokens": 289,
+      "supervised_tokens": 26,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-trail-safety-kit",
+      "split": "train",
+      "task": "fields",
+      "tokens": 358,
+      "prefix_tokens": 248,
+      "supervised_tokens": 110,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-trail-safety-kit",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 329,
+      "prefix_tokens": 267,
+      "supervised_tokens": 62,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-trail-safety-kit",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 324,
+      "prefix_tokens": 269,
+      "supervised_tokens": 55,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-trail-safety-kit",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 298,
+      "prefix_tokens": 265,
+      "supervised_tokens": 33,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-audio-guide-rental",
+      "split": "train",
+      "task": "fields",
+      "tokens": 335,
+      "prefix_tokens": 228,
+      "supervised_tokens": 107,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-audio-guide-rental",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 301,
+      "prefix_tokens": 248,
+      "supervised_tokens": 53,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-audio-guide-rental",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 293,
+      "prefix_tokens": 248,
+      "supervised_tokens": 45,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-audio-guide-rental",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 271,
+      "prefix_tokens": 238,
+      "supervised_tokens": 33,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-oven-repair",
+      "split": "train",
+      "task": "fields",
+      "tokens": 382,
+      "prefix_tokens": 286,
+      "supervised_tokens": 96,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-oven-repair",
+      "split": "train",
+      "task": "qa-1",
+      "tokens": 359,
+      "prefix_tokens": 305,
+      "supervised_tokens": 54,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-oven-repair",
+      "split": "train",
+      "task": "qa-2",
+      "tokens": 366,
+      "prefix_tokens": 303,
+      "supervised_tokens": 63,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-oven-repair",
+      "split": "train",
+      "task": "qa-3",
+      "tokens": 327,
+      "prefix_tokens": 300,
+      "supervised_tokens": 27,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "split": "dev",
+      "task": "fields",
+      "tokens": 407,
+      "prefix_tokens": 287,
+      "supervised_tokens": 120,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "split": "dev",
+      "task": "qa-1",
+      "tokens": 374,
+      "prefix_tokens": 305,
+      "supervised_tokens": 69,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "split": "dev",
+      "task": "qa-2",
+      "tokens": 376,
+      "prefix_tokens": 304,
+      "supervised_tokens": 72,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "split": "dev",
+      "task": "qa-3",
+      "tokens": 327,
+      "prefix_tokens": 301,
+      "supervised_tokens": 26,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-archive-copy-delivery",
+      "split": "dev",
+      "task": "fields",
+      "tokens": 352,
+      "prefix_tokens": 245,
+      "supervised_tokens": 107,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-archive-copy-delivery",
+      "split": "dev",
+      "task": "qa-1",
+      "tokens": 331,
+      "prefix_tokens": 261,
+      "supervised_tokens": 70,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-archive-copy-delivery",
+      "split": "dev",
+      "task": "qa-2",
+      "tokens": 297,
+      "prefix_tokens": 260,
+      "supervised_tokens": 37,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-archive-copy-delivery",
+      "split": "dev",
+      "task": "qa-3",
+      "tokens": 301,
+      "prefix_tokens": 263,
+      "supervised_tokens": 38,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "split": "dev",
+      "task": "fields",
+      "tokens": 324,
+      "prefix_tokens": 245,
+      "supervised_tokens": 79,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "split": "dev",
+      "task": "qa-1",
+      "tokens": 319,
+      "prefix_tokens": 259,
+      "supervised_tokens": 60,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "split": "dev",
+      "task": "qa-2",
+      "tokens": 320,
+      "prefix_tokens": 263,
+      "supervised_tokens": 57,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "split": "dev",
+      "task": "qa-3",
+      "tokens": 282,
+      "prefix_tokens": 256,
+      "supervised_tokens": 26,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-fridge-labels",
+      "split": "dev",
+      "task": "fields",
+      "tokens": 320,
+      "prefix_tokens": 220,
+      "supervised_tokens": 100,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-fridge-labels",
+      "split": "dev",
+      "task": "qa-1",
+      "tokens": 285,
+      "prefix_tokens": 232,
+      "supervised_tokens": 53,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-fridge-labels",
+      "split": "dev",
+      "task": "qa-2",
+      "tokens": 294,
+      "prefix_tokens": 242,
+      "supervised_tokens": 52,
+      "eos_supervised": true
+    },
+    {
+      "source_id": "draft-community-fridge-labels",
+      "split": "dev",
+      "task": "qa-3",
+      "tokens": 261,
+      "prefix_tokens": 233,
+      "supervised_tokens": 28,
+      "eos_supervised": true
+    }
+  ],
+  "errors": [],
+  "status": "passed",
+  "sequence_count": 48,
+  "min_tokens": 261,
+  "max_observed_tokens": 421,
+  "elapsed_seconds": 6.292,
+  "note": "Length/mask checks only; labels are unreviewed. No GPU memory, task quality or training readiness claim."
+}

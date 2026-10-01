@@ -1,0 +1,110 @@
+{
+  "project": "Paper Voice 紙聲通",
+  "recorded_date": "2026-10-01",
+  "models": [
+    {
+      "role": "core vision-language model, extraction, document Q&A",
+      "developer": "Google",
+      "model": "google/gemma-3-4b-it",
+      "runtime_tag": "gemma3:4b",
+      "ollama_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "quantization": "Q4_K_M",
+      "license": "Gemma Terms of Use (custom open-weight license)",
+      "source": "https://huggingface.co/google/gemma-3-4b-it",
+      "distribution": "https://ollama.com/library/gemma3:4b",
+      "license_url": "https://ai.google.dev/gemma/terms",
+      "fine_tuned_by_this_project": false
+    },
+    {
+      "role": "experimental Min Nan / Hokkien POJ text-to-speech",
+      "developer": "Meta AI",
+      "model": "facebook/mms-tts-nan",
+      "revision": "f28526a6caaf9dc55e030da83008c933f6a1978b",
+      "license": "CC BY-NC 4.0",
+      "source": "https://huggingface.co/facebook/mms-tts-nan",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "commercial_use": "Not authorized under the NC license",
+      "taiwanese_pronunciation_evaluated": false,
+      "automatic_mandarin_to_hokkien_translation": false,
+      "fine_tuned_by_this_project": false
+    },
+    {
+      "role": "core spoken document question input; local ASR",
+      "developer": "Taiwan Mobile; published by adi-gov-tw",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
+      "base_model": "openai/whisper-large-v2",
+      "format": "CTranslate2; CPU int8 at load time; four threads",
+      "source": "https://huggingface.co/adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "project": "https://github.com/adi-gov-tw/Taiwan-Tongues-ASR-CE",
+      "license": "TRAIL v0.1 (2025-09-30); model weights TRAIL-M",
+      "license_url": "https://huggingface.co/adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0/blob/46b5eb7ee167ac2fd06cfe02f40e8fac416e5086/LICENSE",
+      "license_copy": "third_party/Taiwan-Tongues-ASR-CE-LICENSE.txt",
+      "fine_tuned_by_this_project": false,
+      "optimization": "CPU int8; VAD; beam 1; short questions; source-preserving s2tw conversion; process RAM released after request",
+      "validation": "asr-validation.json; two synthetic Mandarin questions only; real microphone/Taiwanese/Hakka not validated"
+    }
+  ],
+  "system_components": [
+    {
+      "name": "Windows OCR",
+      "developer": "Microsoft",
+      "role": "optional local OCR reference",
+      "license": "Windows system component; not claimed as open-source AI model",
+      "documentation": "https://learn.microsoft.com/en-us/uwp/api/windows.media.ocr.ocrengine"
+    },
+    {
+      "name": "Microsoft Hanhan Desktop",
+      "developer": "Microsoft",
+      "language": "zh-TW",
+      "role": "local Mandarin WAV synthesis",
+      "license": "Windows system voice; not claimed as open-source AI model",
+      "documentation": "https://learn.microsoft.com/en-us/dotnet/api/system.speech.synthesis.speechsynthesizer"
+    },
+    {
+      "name": "Browser SpeechSynthesis",
+      "role": "optional user-selected fallback",
+      "offline": "depends on installed browser voices"
+    }
+  ],
+  "competition_status": "Official ASR integrated into spoken document Q&A; correction export implemented. Source repository: https://github.com/JimmyLiu616/paper-voice. Eligibility and bonus scoring remain organizer decisions; competition registration is not completed by repository publication.",
+  "original_code_license": "MIT",
+  "data_license": "Original correction-format examples and opt-in exported contributions: CC BY 4.0; see CONTRIBUTING_DATA.md",
+  "experimental_models": [
+    {
+      "role": "local semantic-verification experiment; not deployed in the document pipeline",
+      "developer": "Mistral AI",
+      "model": "mistralai/Ministral-3-3B-Instruct-2512",
+      "runtime_tag": "ministral-3:3b-instruct-2512-q4_K_M",
+      "ollama_digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d",
+      "download_bytes": 2953840808,
+      "quantization": "Q4_K_M",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512",
+      "distribution": "https://ollama.com/library/ministral-3:3b-instruct-2512-q4_K_M",
+      "license_url": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512/blob/main/LICENSE",
+      "fine_tuned_by_this_project": false,
+      "license_copy": "third_party/Ministral-3-LICENSE.txt",
+      "evaluation": "evaluation/answer-verification/runs/ministral-verifier-v1 and ministral-verifier-v2; rejected for deployment"
+    },
+    {
+      "role": "native checkpoint for isolated QLoRA feasibility experiment; not deployed",
+      "developer": "Mistral AI",
+      "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+      "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+      "license": "Apache-2.0",
+      "source": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-BF16",
+      "download_verification": "training/native-model-download.json",
+      "fine_tuned_by_this_project": true,
+      "status": "Synthetic one-step QLoRA feasibility passed; adapter not deployed; no task-quality claim",
+      "documentation": "training/LORA_SMOKE.md",
+      "fine_tuning": {
+        "purpose": "synthetic-feasibility-only",
+        "optimizer_steps": 1,
+        "quality_improvement_evaluated": false,
+        "deployed": false,
+        "report": "training/lora-smoke-report.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+{
+  "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+  "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+  "gated": false,
+  "license": "apache-2.0",
+  "files": [
+    {
+      "name": ".gitattributes",
+      "size": 1618,
+      "lfs": null
+    },
+    {
+      "name": "README.md",
+      "size": 8570,
+      "lfs": null
+    },
+    {
+      "name": "SYSTEM_PROMPT.txt",
+      "size": 2406,
+      "lfs": null
+    },
+    {
+      "name": "chat_template.jinja",
+      "size": 11912,
+      "lfs": null
+    },
+    {
+      "name": "config.json",
+      "size": 1579,
+      "lfs": null
+    },
+    {
+      "name": "consolidated.safetensors",
+      "size": 7698234952,
+      "lfs": {
+        "sha256": "722430146632596c6c41137b2e582095ed01a50342932b035cb8662f7855a340",
+        "size": 7698234952,
+        "pointerSize": 135
+      }
+    },
+    {
+      "name": "generation_config.json",
+      "size": 131,
+      "lfs": null
+    },
+    {
+      "name": "model-00001-of-00002.safetensors",
+      "size": 4967581832,
+      "lfs": {
+        "sha256": "b3821ebc30884f66e3d26d339e161641f34b91ed916627011e7b08e5f1edd884",
+        "size": 4967581832,
+        "pointerSize": 135
+      }
+    },
+    {
+      "name": "model-00002-of-00002.safetensors",
+      "size": 2730659224,
+      "lfs": {
+        "sha256": "718d087fa591fd4356b7241f293c24219399d86f092d46cf36f765051498033a",
+        "size": 2730659224,
+        "pointerSize": 135
+      }
+    },
+    {
+      "name": "model.safetensors.index.json",
+      "size": 45577,
+      "lfs": null
+    },
+    {
+      "name": "params.json",
+      "size": 1096,
+      "lfs": null
+    },
+    {
+      "name": "processor_config.json",
+      "size": 976,
+      "lfs": null
+    },
+    {
+      "name": "special_tokens_map.json",
+      "size": 147094,
+      "lfs": null
+    },
+    {
+      "name": "tekken.json",
+      "size": 16753784,
+      "lfs": {
+        "sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843",
+        "size": 16753784,
+        "pointerSize": 133
+      }
+    },
+    {
+      "name": "tokenizer.json",
+      "size": 17078128,
+      "lfs": {
+        "sha256": "d5f6046775b112f0e2d456ee9dba450684ab964fe5c4e231599bdc6773028135",
+        "size": 17078128,
+        "pointerSize": 133
+      }
+    },
+    {
+      "name": "tokenizer_config.json",
+      "size": 198094,
+      "lfs": null
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "candidate-v8",
+  "split": "dev",
+  "variants": [
+    "clean",
+    "tilt_blur"
+  ],
+  "dataset_sha256": "f7408767f61537ac322e87c07b8cdf8e3cefc3b9bd6537e78ac93ff9f88c787c",
+  "app_sha256": "d2a0c46e7d3b128ccba6d7f91425ea09784432f845eda5ace97120e859248149",
+  "metric": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "population": "Original synthetic notices; no claims about real users or real photos",
+  "health": {
+    "ollama": true,
+    "model_ready": true,
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "app_sha256": "d2a0c46e7d3b128ccba6d7f91425ea09784432f845eda5ace97120e859248149",
+    "asr_ready": true,
+    "asr_model": "Taiwan Tongues ASR CE v1.0",
+    "taigi_ready": true,
+    "privacy": "本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。"
+  },
+  "runner_sha256": "bf6b1dc060bb7f6d7fa5596dd9cac99f318743fd22fc594f2dbcb32701f0a911",
+  "metric_sha256": "4c63f060ca80adf023dfeb9c23e364502facdeb7fa6083f583c1f56d64cb4f62"
+}

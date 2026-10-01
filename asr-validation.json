@@ -1,0 +1,112 @@
+{
+  "scope": "Two synthetic Microsoft Hanhan Mandarin questions; not human speech or Taiwanese/Hakka validation",
+  "optimization": "CPU int8, 4 threads, VAD, beam 1 vs beam 5; each run includes cold model load; no fine-tuning",
+  "runs": [
+    {
+      "text": "最晚什麼時候要完成",
+      "raw_text": "最晚什麼時候要完成",
+      "language": "zh",
+      "duration": 3.19,
+      "seconds": 13.64,
+      "load_seconds": 6.62,
+      "beam_size": 5,
+      "device": "cpu",
+      "compute_type": "int8",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
+      "reference": "最晚什麼時候要完成？",
+      "metrics": {
+        "edit_distance": 1,
+        "reference_characters": 10,
+        "character_error_rate": 0.1,
+        "normalization": "NFKC; remove whitespace; keep punctuation",
+        "scope": "Single human-corrected text pair; not overall model accuracy"
+      }
+    },
+    {
+      "text": "最晚什麼時候要完成",
+      "raw_text": "最晚什麼時候要完成",
+      "language": "zh",
+      "duration": 3.19,
+      "seconds": 13.02,
+      "load_seconds": 6.22,
+      "beam_size": 1,
+      "device": "cpu",
+      "compute_type": "int8",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
+      "reference": "最晚什麼時候要完成？",
+      "metrics": {
+        "edit_distance": 1,
+        "reference_characters": 10,
+        "character_error_rate": 0.1,
+        "normalization": "NFKC; remove whitespace; keep punctuation",
+        "scope": "Single human-corrected text pair; not overall model accuracy"
+      }
+    },
+    {
+      "text": "我需要準備什麼文件",
+      "raw_text": "我需要準備什麼文件",
+      "language": "zh",
+      "duration": 3.11,
+      "seconds": 13.02,
+      "load_seconds": 6.22,
+      "beam_size": 5,
+      "device": "cpu",
+      "compute_type": "int8",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
+      "reference": "我需要準備什麼文件？",
+      "metrics": {
+        "edit_distance": 1,
+        "reference_characters": 10,
+        "character_error_rate": 0.1,
+        "normalization": "NFKC; remove whitespace; keep punctuation",
+        "scope": "Single human-corrected text pair; not overall model accuracy"
+      }
+    },
+    {
+      "text": "我需要準備什麼文件",
+      "raw_text": "我需要準備什麼文件",
+      "language": "zh",
+      "duration": 3.11,
+      "seconds": 13.06,
+      "load_seconds": 6.4,
+      "beam_size": 1,
+      "device": "cpu",
+      "compute_type": "int8",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
+      "reference": "我需要準備什麼文件？",
+      "metrics": {
+        "edit_distance": 1,
+        "reference_characters": 10,
+        "character_error_rate": 0.1,
+        "normalization": "NFKC; remove whitespace; keep punctuation",
+        "scope": "Single human-corrected text pair; not overall model accuracy"
+      }
+    }
+  ],
+  "integration": {
+    "question": {
+      "text": "我需要準備什麼文件",
+      "raw_text": "我需要準備什麼文件",
+      "language": "zh",
+      "duration": 3.11,
+      "seconds": 13.73,
+      "load_seconds": 6.94,
+      "beam_size": 1,
+      "device": "cpu",
+      "compute_type": "int8",
+      "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+      "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086"
+    },
+    "answer": {
+      "answer": "請攜帶已充電的智慧型手機、老花眼鏡。",
+      "evidence": "請攜帶:已充電的智慧型手機、老花眼鏡",
+      "found": true
+    },
+    "speech_bytes": 230908,
+    "image": "self-authored event.png"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "run": "moi-order-v2",
+  "date": "2026-10-01",
+  "source_id": "moi-police-form-109",
+  "page": 4,
+  "base_app_sha256": "d2a0c46e7d3b128ccba6d7f91425ea09784432f845eda5ace97120e859248149",
+  "image_sha256": "dc0f187be003e8a64063cf19562d41444ee89192336af0f907d43bdd18d56849",
+  "boxes_sha256": "d4e1609a6a543585a4229a730dfd1222909cd2ed45ae660e79c585af44baf476",
+  "model": "gemma3:4b",
+  "model_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "comparison": "Same original PNG, cached OCR boxes, model, prompts and generation settings. Only OCR hint order changes: geometric row merging versus native line order.",
+  "results": {
+    "rows": {"seconds": 28.0, "fee_question_found": false, "citizen_documents_question_found": false},
+    "native": {"seconds": 30.05, "fee_question_found": true, "citizen_documents_question_found": true}
+  },
+  "review": "Native order preserved the second-copy fee condition and the conditional passport requirement in these two answers. Other OCR and field errors remain. Codex reviewed; not independently human reviewed.",
+  "limits": [
+    "One development image, one paired run; fixed seed does not prove deterministic results or general superiority.",
+    "This isolated experiment bypassed the upload endpoint's JPEG conversion. The production endpoint was subsequently evaluated separately in public-v6.",
+    "Times include inference and QA; fixed run order and caching prevent a speed comparison.",
+    "moi-order-v1 stopped on a real QA output-length error before saving paired results. It is invalid, retained locally and excluded.",
+    "No model weights were updated."
+  ],
+  "raw_artifacts": ".runtime/layout-experiments/moi-order-v2/",
+  "runner": "scripts/experiment_ocr_order.py"
+}

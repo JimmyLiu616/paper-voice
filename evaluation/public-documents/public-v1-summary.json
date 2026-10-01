@@ -1,0 +1,12 @@
+{
+  "run": "public-v1",
+  "documents": 4,
+  "pages_attempted": 5,
+  "errors": 0,
+  "fields_passed": 5,
+  "fields_planned": 20,
+  "qa_passed": 9,
+  "qa_planned": 10,
+  "app_sha256": "bb497fd3de688f7dde9a4849c572d1517260d3288634399d879a3c8e7e83ce7b",
+  "note": "Required-span / abstention checks, not full semantic correctness. No automatic publication of raw sources."
+}

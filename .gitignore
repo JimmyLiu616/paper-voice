@@ -1,0 +1,8 @@
+.venv/
+.runtime/
+__pycache__/
+.pytest_cache/
+*.pyc
+test-results/
+training/data/
+.venv-train/

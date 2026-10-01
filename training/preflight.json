@@ -1,0 +1,40 @@
+{
+  "environment": "serving",
+  "python": "3.13.9 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 19:09:58) [MSC v.1929 64 bit (AMD64)]",
+  "torch": "2.14.1+cpu",
+  "torch_cuda_available": false,
+  "disk_free_gib": 19.15,
+  "packages": {
+    "transformers": "4.57.6",
+    "peft": null,
+    "bitsandbytes": null,
+    "accelerate": null,
+    "datasets": null
+  },
+  "native_checkpoints": [
+    ".runtime\\training-models\\ministral-3-3b-bf16\\model-00001-of-00002.safetensors",
+    ".runtime\\training-models\\ministral-3-3b-bf16\\model-00002-of-00002.safetensors"
+  ],
+  "eligible_training_rows": 0,
+  "issues": [
+    "No CUDA training runtime; set up a separate GPU environment before trying LoRA.",
+    "Missing training dependency: peft",
+    "Missing training dependency: bitsandbytes",
+    "Missing training dependency: accelerate",
+    "No reviewed, rights-confirmed training split. Dev/test fixtures must not be silently reused for training."
+  ],
+  "note": "Read-only environment check. Smoke training is reported separately and is not evidence of task improvement.",
+  "nvidia_smi": "NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 1945 MiB",
+  "native_checkpoint_download_complete": true,
+  "checkpoint_verification": "Download digest record and current sizes checked here; the smoke runner verifies all SHA256 hashes again.",
+  "smoke_runs": [
+    {
+      "name": "smoke-001",
+      "status": "passed",
+      "optimizer_steps": 1,
+      "quality_improvement_evaluated": false
+    }
+  ],
+  "gpu_environment_ready": false,
+  "ready": false
+}

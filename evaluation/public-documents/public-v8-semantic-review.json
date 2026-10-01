@@ -1,0 +1,56 @@
+{
+  "run": "public-v8",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "scope": "Five already-used PDF pages, real local upload API. Compared transcripts, field values and answers against public-v7. Targeted semantic review only.",
+  "comparison": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "answers_unchanged": true
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "transcript_unchanged": true,
+      "changed_fields": [
+        "required_documents",
+        "amount"
+      ],
+      "answers_unchanged": false
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "answers_unchanged": true
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "answers_unchanged": true
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "answers_unchanged": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "moi-police-form-109-p4",
+      "verdict": "partially_improved",
+      "reason": "Required-documents field now includes the three source identity groups and the passport-use condition; fee no longer includes the next note heading. Source OCR typos persist. Location still uses a publication heading, action starts mid-sentence, and issuance restrictions are missing from conditions."
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "verdict": "unchanged_missing",
+      "reason": "Application form is still missing from the required-documents field."
+    }
+  ],
+  "fine_tuning": false,
+  "quality_claim": "18/20 field span checks and 10/10 QA mechanical checks are not overall or human-verified semantic accuracy.",
+  "qa_note": "One fee answer was rephrased to explicitly say first/second copy; the evidence and mechanical verdict were unchanged. No isolated causal claim about QA improvement."
+}

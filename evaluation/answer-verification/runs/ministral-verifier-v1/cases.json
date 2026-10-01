@@ -1,0 +1,160 @@
+{
+  "version": "answer-verification-dev-v1",
+  "annotation": "Original synthetic contrasts authored by Codex before checker inference; no independent human review. Includes a known failure; development only, not held-out.",
+  "license": "MIT",
+  "cases": [
+    {
+      "id": "utilities-supported",
+      "family": "utilities",
+      "document": "本次僅停止供電。供水照常。",
+      "question": "會停水嗎？",
+      "answer": "不會，供水照常。",
+      "evidence": "本次僅停止供電。供水照常。",
+      "expected_supported": true
+    },
+    {
+      "id": "utilities-unsupported",
+      "family": "utilities",
+      "document": "本次僅停止供電。供水照常。",
+      "question": "會停水嗎？",
+      "answer": "會停止供水。",
+      "evidence": "本次僅停止供電。供水照常。",
+      "expected_supported": false
+    },
+    {
+      "id": "route-supported",
+      "family": "route",
+      "document": "施工期間公車跳過東站，其餘各站正常停靠。",
+      "question": "整條路線停駛嗎？",
+      "answer": "沒有整條停駛，只跳過東站，其餘站正常停靠。",
+      "evidence": "施工期間公車跳過東站，其餘各站正常停靠。",
+      "expected_supported": true
+    },
+    {
+      "id": "route-unsupported",
+      "family": "route",
+      "document": "施工期間公車跳過東站，其餘各站正常停靠。",
+      "question": "整條路線停駛嗎？",
+      "answer": "整條路線停止行駛。",
+      "evidence": "施工期間公車跳過東站，其餘各站正常停靠。",
+      "expected_supported": false
+    },
+    {
+      "id": "buildings-supported",
+      "family": "buildings",
+      "document": "甲棟電梯暫停使用，乙棟電梯正常運作。",
+      "question": "乙棟電梯可以使用嗎？",
+      "answer": "可以，乙棟電梯正常運作。",
+      "evidence": "甲棟電梯暫停使用，乙棟電梯正常運作。",
+      "expected_supported": true
+    },
+    {
+      "id": "buildings-unsupported",
+      "family": "buildings",
+      "document": "甲棟電梯暫停使用，乙棟電梯正常運作。",
+      "question": "乙棟電梯可以使用嗎？",
+      "answer": "不可以，甲乙兩棟的電梯都停用。",
+      "evidence": "甲棟電梯暫停使用，乙棟電梯正常運作。",
+      "expected_supported": false
+    },
+    {
+      "id": "fees-supported",
+      "family": "fees",
+      "document": "首份證明收200元，同次加印相同內容自第二份起每份30元。",
+      "question": "第二份相同內容的證明收多少錢？",
+      "answer": "同次加印相同內容的第二份收30元。",
+      "evidence": "首份證明收200元，同次加印相同內容自第二份起每份30元。",
+      "expected_supported": true
+    },
+    {
+      "id": "fees-unsupported",
+      "family": "fees",
+      "document": "首份證明收200元，同次加印相同內容自第二份起每份30元。",
+      "question": "第二份相同內容的證明收多少錢？",
+      "answer": "同次申請兩份時，第一份和第二份各收30元。",
+      "evidence": "首份證明收200元，同次加印相同內容自第二份起每份30元。",
+      "expected_supported": false
+    },
+    {
+      "id": "dates-supported",
+      "family": "dates",
+      "document": "活動日期：12月18日。申請退費請於12月3日前完成。",
+      "question": "退費申請最晚哪一天？",
+      "answer": "12月3日前。",
+      "evidence": "活動日期：12月18日。申請退費請於12月3日前完成。",
+      "expected_supported": true
+    },
+    {
+      "id": "dates-unsupported",
+      "family": "dates",
+      "document": "活動日期：12月18日。申請退費請於12月3日前完成。",
+      "question": "退費申請最晚哪一天？",
+      "answer": "12月18日前。",
+      "evidence": "活動日期：12月18日。申請退費請於12月3日前完成。",
+      "expected_supported": false
+    },
+    {
+      "id": "english-supported",
+      "family": "english",
+      "document": "Bring a valid photo ID. Admission is free, but advance registration is required.",
+      "question": "入場需要付費嗎？",
+      "answer": "入場免費，但必須事先登記。",
+      "evidence": "Admission is free, but advance registration is required.",
+      "expected_supported": true
+    },
+    {
+      "id": "english-unsupported",
+      "family": "english",
+      "document": "Bring a valid photo ID. Admission is free, but advance registration is required.",
+      "question": "入場需要付費嗎？",
+      "answer": "入場免費，不需要登記。",
+      "evidence": "Admission is free, but advance registration is required.",
+      "expected_supported": false
+    },
+    {
+      "id": "exemption-supported",
+      "family": "exemption",
+      "document": "年滿65歲者免繳報名費；未滿65歲者每人繳200元。所有人都需要報名。",
+      "question": "70歲的參加者需要付報名費嗎？",
+      "answer": "免繳報名費，但仍須報名。",
+      "evidence": "年滿65歲者免繳報名費；未滿65歲者每人繳200元。所有人都需要報名。",
+      "expected_supported": true
+    },
+    {
+      "id": "exemption-unsupported",
+      "family": "exemption",
+      "document": "年滿65歲者免繳報名費；未滿65歲者每人繳200元。所有人都需要報名。",
+      "question": "70歲的參加者需要付報名費嗎？",
+      "answer": "免繳費，也不需要報名。",
+      "evidence": "年滿65歲者免繳報名費；未滿65歲者每人繳200元。所有人都需要報名。",
+      "expected_supported": false
+    },
+    {
+      "id": "eligibility-supported",
+      "family": "eligibility",
+      "document": "本次補助僅限在學學生，畢業生不適用。申請表需附在學證明。",
+      "question": "畢業生能申請這次補助嗎？",
+      "answer": "不能，本次補助不適用畢業生。",
+      "evidence": "本次補助僅限在學學生，畢業生不適用。",
+      "expected_supported": true
+    },
+    {
+      "id": "eligibility-unsupported",
+      "family": "eligibility",
+      "document": "本次補助僅限在學學生，畢業生不適用。申請表需附在學證明。",
+      "question": "畢業生能申請這次補助嗎？",
+      "answer": "可以，只要附上畢業證明即可。",
+      "evidence": "本次補助僅限在學學生，畢業生不適用。",
+      "expected_supported": false
+    },
+    {
+      "id": "observed-water-power-error",
+      "family": "known-regression",
+      "document": "停水時間：2026年11月19日上午9時至下午2時\n停水範圍：竹林社區甲棟與乙棟\n丙棟不受影響。",
+      "question": "會停電嗎？",
+      "answer": "竹林社區甲棟與乙棟會停電。",
+      "evidence": "停水時間：2026年11月19日上午9時至下午2時\n停水範圍：竹林社區甲棟與乙棟",
+      "expected_supported": false
+    }
+  ]
+}

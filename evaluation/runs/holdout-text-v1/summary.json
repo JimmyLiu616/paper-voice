@@ -1,0 +1,74 @@
+{
+  "cases": 4,
+  "errors": 0,
+  "field_checks_passed": 19,
+  "field_checks_total": 21,
+  "qa_checks_passed": 7,
+  "qa_checks_total": 8,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "test-school",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-english-pickup",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-water",
+      "variant": "text",
+      "checks": [
+        {
+          "field": "action",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "提前儲水"
+          ],
+          "actual": ""
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "會停電嗎？",
+            "found": false,
+            "contains": []
+          },
+          "answer": {
+            "answer": "竹林社區甲棟與乙棟會停電。",
+            "evidence": "停水時間：2026年11月19日上午9時至下午2時\n停水範圍：竹林社區甲棟與乙棟",
+            "found": true
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "test-reservation",
+      "variant": "text",
+      "checks": [
+        {
+          "field": "deadline",
+          "kind": "forbidden_spans",
+          "passed": false,
+          "forbidden": [
+            "12月6日",
+            "12月13日"
+          ],
+          "actual": "新預約日期：2026年12月13日\n如無法配合新日期，請於2026年11月30日前申請取消。"
+        }
+      ],
+      "questions": []
+    }
+  ],
+  "inputs_planned": 4,
+  "field_checks_planned": 21,
+  "qa_checks_planned": 8,
+  "complete": true
+}

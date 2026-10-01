@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-10-01T11:18:58.086095+00:00",
+  "candidate": "candidate-v9",
+  "files": {
+    "app.py": "623952c33d4c00f194e71437f144932c138eae171390ccb0035cd998b003d1e7",
+    "corpus.py": "4c63f060ca80adf023dfeb9c23e364502facdeb7fa6083f583c1f56d64cb4f62",
+    "scripts/ocr.ps1": "f99bcc4858376062b125772ab5f1eea127a39c70d3696217db5706b3d3a2d3c1",
+    "scripts/evaluate_documents.py": "2cf2b9f36436f3a6d6b36c0fbdac0cbf1735647fcb4dc67d8438b0dc0b3f7a75",
+    "evaluation/cases.json": "f7408767f61537ac322e87c07b8cdf8e3cefc3b9bd6537e78ac93ff9f88c787c",
+    "evaluation/manifest.json": "61652fa4d7e0471f917553025af105f04cb6b62d96b4b7155df9bf5c7bd422e5"
+  },
+  "model": "gemma3:4b",
+  "model_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+  "planned_runs": [
+    {
+      "name": "holdout-v1",
+      "split": "test",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ]
+    },
+    {
+      "name": "holdout-text-v1",
+      "split": "test",
+      "variants": [
+        "text"
+      ]
+    }
+  ],
+  "purpose": "Evaluate the frozen candidate on reserved synthetic families, then isolate transcription from downstream processing using reference text. No adaptation between these two runs.",
+  "limitations": [
+    "Annotations are project-authored, not independently human reviewed.",
+    "Source fixtures exist in the workspace; this is reserved evaluation, not blind external evaluation.",
+    "If these results inform further tuning, this set becomes development evidence; new final-test families will be needed."
+  ],
+  "fine_tuning": false
+}

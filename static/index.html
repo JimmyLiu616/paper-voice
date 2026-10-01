@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#143b40"><title>紙聲通 · 讓每張紙，都聽得懂</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+  <script src="/static/camera.js" defer></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a class="brand" href="/" aria-label="紙聲通首頁"><span class="brand-mark">紙</span><span>紙聲通<small>PAPER VOICE</small></span></a>
+    <div class="sidebar-caption">生活文書，陪你讀懂</div>
+    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace"><span aria-hidden="true">▤</span> 文件識讀</a><a class="nav-item" href="#speech-panel"><span aria-hidden="true">◖</span> 語音朗讀</a><a class="nav-item" href="#taigi-panel"><span aria-hidden="true">文</span> 台語實驗室</a><button class="nav-item" id="about-btn"><span aria-hidden="true">ⓘ</span> 關於這個作品</button></nav>
+    <div class="sidebar-bottom"><span class="local-label">本機運行</span><p>讓文字變成聲音，<br>讓資訊變成下一步。</p><small>InnoServe 2026<br>開源 AI 模型應用提案</small></div>
+  </aside>
+  <main id="workspace">
+    <header class="topbar"><div class="breadcrumb">我的閱讀工作台 <span>/</span> 文件識讀</div><div class="top-actions"><span id="model-status" class="status-badge">正在檢查本機模型</span><button id="font-btn" class="icon-button" aria-pressed="false">Aa 大字</button></div></header>
+    <section class="intro"><div><div class="eyebrow">READ IT. HEAR IT. UNDERSTAND IT.</div><h1>這張紙，陪你一起讀。</h1><p>拍下生活通知，整理重要資訊，再慢慢說給你聽。</p></div><div class="privacy-note"><span aria-hidden="true">▣</span><div><strong>文件留在你的電腦</strong><small>本機辨識 · 不使用雲端 AI API</small></div></div></section>
+    <div class="steps" aria-label="操作步驟"><span class="current"><b>1</b> 放入文件</span><i></i><span id="step2"><b>2</b> 看懂重點</span><i></i><span id="step3"><b>3</b> 聽一聽、問一問</span></div>
+    <div id="alert" class="alert" role="alert" hidden></div>
+    <div class="work-grid">
+      <section class="panel document-panel" aria-labelledby="doc-heading">
+        <div class="panel-heading"><h2 id="doc-heading">你的文件 <span class="section-no">01</span></h2><button class="text-button" id="clear-btn">清除</button></div>
+        <div class="tabs" role="tablist" aria-label="輸入方式"><button id="image-tab" role="tab" aria-selected="true" aria-controls="image-input" class="selected">上傳圖片</button><button id="text-tab" role="tab" aria-selected="false" aria-controls="text-input" tabindex="-1">貼上文字</button></div>
+        <div id="image-input" role="tabpanel" aria-labelledby="image-tab">
+          <div class="camera-entry"><button id="camera-open" class="secondary-button" type="button">開啟攝影機拍文件</button><span class="hint">拍好後確認，再送出辨識</span></div>
+          <label id="dropzone" class="dropzone" for="file-input"><span class="upload-symbol" aria-hidden="true">＋</span><strong>把文件放進來</strong><span>點選照片，或拖曳到這裡</span><small>JPG、PNG、WebP · 最大 12 MB</small><input id="file-input" type="file" accept="image/jpeg,image/png,image/webp" aria-label="選擇文件圖片"></label>
+          <div id="preview-wrap" class="preview-wrap" hidden><div class="preview-bar"><span id="file-name"></span><button id="change-file" class="text-button">更換圖片</button></div><div class="image-frame"><img id="preview" alt="上傳的文件原圖，可用於核對辨識結果"></div></div>
+          <div class="sample-row"><span>還沒有文件？試試看</span><button id="sample-notice" class="sample-chip">補件通知</button><button id="sample-event" class="sample-chip">社區活動</button></div>
+        </div>
+        <div id="text-input" role="tabpanel" aria-labelledby="text-tab" hidden><label for="source-text" class="field-label">貼上需要解讀的文字</label><textarea id="source-text" rows="12" maxlength="6500" placeholder="貼上繁體中文或英文通知，也可以貼入已修正的辨識原文。"></textarea><p class="hint">文字模式會略過圖片辨識，直接整理你提供的內容。</p></div>
+        <button id="analyze-btn" class="primary-button" disabled><span aria-hidden="true">✦</span> 幫我讀懂</button>
+        <div id="progress" class="progress" role="status" aria-live="polite" hidden><span class="spinner"></span><div><strong id="progress-stage">等待本機模型</strong><small id="progress-time">第一次載入模型可能需要較久</small></div></div>
+        <div class="photo-tip"><b>拍攝小提醒</b><p>讓整張紙入鏡、字體清楚，避開反光。先從一頁生活通知開始。</p></div>
+      </section>
+      <section class="panel result-panel" aria-labelledby="result-heading">
+        <div class="panel-heading"><h2 id="result-heading">幫你整理好了 <span class="section-no">02</span></h2><span id="result-meta" class="muted">等待放入文件</span></div>
+        <div id="empty-state" class="empty-state"><div class="empty-glyph" aria-hidden="true">Aa</div><h3>重要的事，一眼看見。</h3><p>放入文件後，這裡會整理<br>要做什麼、辦理期限，以及需要準備的資料。</p><div class="ghost-tags"><span>要做什麼</span><span>何時以前</span><span>需要準備</span></div><small>每一項重點，都能對照辨識原文。</small></div>
+        <div id="result-content" hidden>
+          <div class="result-title-row"><span class="document-type" id="document-type"></span><button id="export-btn" class="text-button">匯出結果</button></div><h3 id="document-title" class="document-title"></h3>
+          <div id="result-warnings"></div><div id="fact-grid" class="fact-grid"></div><div id="condition-list"></div>
+          <p class="verification-note">「原文已對應」表示欄位與辨識文字相符，仍請對照圖片確認。辨識與解釋皆可能出錯。</p>
+          <details id="raw-details" class="raw-details"><summary>查看／修正辨識原文 <span>核對日期與數字</span></summary><textarea id="raw-text" rows="9" maxlength="6500" aria-label="辨識原文，可修正"></textarea><button id="reanalyze-btn" class="secondary-button">用修正文字重新整理</button><small>重新整理後，問答與朗讀會使用修正內容。</small><details id="ocr-details"><summary>查看 Windows OCR 初讀文字</summary><pre id="ocr-reference"></pre></details></details>
+        </div>
+        <section id="speech-panel" class="speech-panel" aria-labelledby="speech-heading"><div class="speech-heading"><div><span class="eyebrow">LISTEN AT YOUR PACE</span><h3 id="speech-heading">慢慢聽，就明白。</h3></div><span class="audio-symbol" aria-hidden="true">▂ ▅ █ ▅ ▂</span></div><div class="speech-options"><label>朗讀內容<select id="read-target"><option value="summary">重要資訊</option><option value="raw">整份辨識原文</option></select></label><label>語音來源<select id="voice-source"><option value="windows">Windows 台灣華語（離線）</option><option value="browser">瀏覽器語音（依裝置）</option></select></label></div><div class="play-row"><button id="speak-btn" class="play-button" disabled>▶ 聽重點</button><button id="stop-btn" class="stop-button" aria-label="停止朗讀">■ 停止</button><label class="speed-label">語速 <select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div><audio id="audio" controls hidden></audio><p id="speech-status" class="speech-status" role="status">完成辨識後，就可以播放語音。</p></section>
+      </section>
+    </div>
+    <div class="bottom-grid">
+      <section class="panel qa-panel"><div class="panel-heading"><h2>還有不清楚的地方？ <span class="section-no">03</span></h2></div><p class="muted">根據這份文件回答，並附上對應原文。</p><div class="question-chips"><button data-question="我需要準備什麼文件？">需要準備什麼？</button><button data-question="最晚什麼時候要完成？">什麼時候以前？</button><button data-question="我要去哪裡辦理？">去哪裡辦理？</button></div><form id="question-form"><input id="question" maxlength="300" placeholder="輸入你的問題…" aria-label="針對文件提問" required><button id="ask-btn" class="primary-button compact" disabled>提問</button></form><div id="answers" class="answers" aria-live="polite"><p class="hint">先讀取一份文件，就能開始提問。</p></div></section>
+      <section id="taigi-panel" class="panel taigi-panel"><div class="panel-heading"><h2>台語聲音實驗室</h2><span class="experimental">人工翻譯</span></div><p>選取文件片段，由台語使用者翻譯成白話字後朗讀。<strong>目前不自動翻譯，口音仍待驗證。</strong></p><button id="taigi-source-btn" class="secondary-button">帶入文件原文</button><label for="taigi-source" class="field-label">要翻譯的原文片段（可縮短）</label><textarea id="taigi-source" rows="2" maxlength="500" placeholder="先讀取文件，再帶入要翻譯的句子。"></textarea><label for="taigi-text" class="field-label">經人工核對的白話字</label><textarea id="taigi-text" rows="2" maxlength="500" placeholder="例如：lí hó" spellcheck="false">lí hó</textarea><label class="check-label"><input id="taigi-confirm" type="checkbox">我已核對白話字與原文意思相符</label><div class="taigi-actions"><button id="taigi-btn" class="secondary-button">試聽台語</button><span id="taigi-status" class="muted">檢查模型中</span></div><p class="hint">Meta MMS · CC BY-NC 4.0（非商業）<br>未選原文時，可單獨試聽白話字。</p></section>
+    </div>
+    <section class="panel corpus-panel"><div class="panel-heading"><h2>把修正變成下一次的進步</h2><span class="experimental">自願貢獻</span></div><p class="hint">先在「查看／修正辨識原文」改好錯字，再按預覽。原圖、錄音及文件檔名不會加入貢獻檔；這裡只下載到本機，不會自動上傳。</p><button id="corpus-preview-btn" class="secondary-button">預覽這次辨識修正</button><div id="corpus-preview" hidden><p id="corpus-status" class="hint" role="status"></p><div class="corpus-pair"><label>遮蔽後的辨識原文<textarea id="corpus-original" rows="5" maxlength="6500"></textarea></label><label>遮蔽後的人工修正<textarea id="corpus-corrected" rows="5" maxlength="6500"></textarea></label></div><p class="warning">自動遮蔽可能漏掉姓名、地址、病情等資訊。請逐行檢查並手動刪除；不要公開他人的私密文件。</p><label class="field-label">資料來源 <select id="corpus-provenance"><option value="synthetic">自製虛構範例</option><option value="authorized">已獲權利人授權的資料</option></select></label><label class="check-label"><input id="corpus-reviewed" type="checkbox">我已逐行核對內容正確，並移除可識別個人的資訊</label><label class="check-label"><input id="corpus-rights" type="checkbox">我有權公開此文字，並同意以 CC BY 4.0 授權；以 Paper Voice 自願貢獻者署名</label><button id="corpus-export-btn" class="secondary-button">下載待審核語料 JSONL</button></div></section>
+    <footer><span>紙聲通 Paper Voice · 2026</span><span>Gemma 3 · Taiwan Tongues ASR CE · Windows 華語／Meta 閩南語合成</span></footer>
+  </main>
+</div>
+<dialog id="about-dialog"><button id="close-about" class="dialog-close" aria-label="關閉說明">×</button><span class="eyebrow">ABOUT PAPER VOICE</span><h2>讓資訊，走到需要的人身邊。</h2><p>紙聲通協助使用者整理生活通知中的行動、期限與應備文件，並提供朗讀與有原文依據的問答。</p><h3>這個版本的能力</h3><p>Google Gemma 3 4B 本機讀圖、Taiwan Tongues ASR CE 語音提問、文件問答與中文朗讀、人工翻譯後的閩南語白話字朗讀、自願修正語料匯出。</p><h3>資料與模型</h3><p>上傳圖片與結果不寫入資料庫。完成工作最多在記憶體保留 30 分鐘，可隨時清除。中文合成使用短暫檔案，完成後刪除。模型首次下載需要網路；此版本推論只呼叫本機服務。</p><p>Gemma 採自訂開放權重授權；Taiwan Tongues 採 TRAIL 授權；Windows 語音不是開源模型；MMS 採 CC BY-NC 4.0。未宣稱已取得主辦資格認定或模型加分。</p><h3>展示時請誠實說明</h3><p>尚未包含台語自動翻譯、手寫專門微調、逐字影像框選或實際使用者成效驗證。語音辨識已用自製合成華語測試，真人麥克風與台客語辨識仍待驗證。範例通知是自製測試資料，不是真實公文。</p></dialog>
+<dialog id="camera-dialog" aria-labelledby="camera-title">
+  <div class="panel-heading"><h2 id="camera-title">拍下這份文件</h2><button id="camera-close" type="button" class="text-button">關閉攝影機</button></div>
+  <p class="hint">把文件完整放進畫面，避開反光。確認使用前，照片只留在瀏覽器。</p>
+  <label class="field-label" for="camera-select">攝影機</label><select id="camera-select" disabled><option value="">預設攝影機</option></select>
+  <div class="camera-frame"><p id="camera-placeholder">攝影機尚未開啟<br><small>按下方「啟動預覽」開始拍照</small></p><video id="camera-video" autoplay muted playsinline aria-label="攝影機即時預覽" hidden></video><img id="camera-photo" alt="剛拍下的文件，請確認文字清楚" hidden></div>
+  <p id="camera-status" class="hint" role="status" aria-live="polite">按「啟動預覽」，並允許瀏覽器使用攝影機。</p>
+  <div class="camera-actions"><button id="camera-start" type="button" class="secondary-button">啟動預覽</button><button id="camera-shutter" type="button" class="primary-button compact" disabled>拍照</button><button id="camera-retake" type="button" class="secondary-button" hidden>重拍</button><button id="camera-use" type="button" class="primary-button compact" hidden>使用照片並辨識</button></div>
+  <p class="hint">拍照或關閉視窗後會停止攝影機。無法開啟時，可關閉此視窗並改用上傳圖片。</p>
+</dialog>
+</body></html>

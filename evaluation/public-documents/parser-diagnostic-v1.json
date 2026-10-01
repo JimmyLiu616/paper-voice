@@ -1,0 +1,29 @@
+{
+  "experiment": "parser-diagnostic-v1",
+  "scope": "Two already-used public development transcripts; new text-only model inference followed by baseline/candidate parser replay on identical raw model outputs. Not image benchmark or independent holdout.",
+  "baseline_sha256": "a114ac39bf30c58251714d9a53ffbf82f668e2c1e4aad98d7b69bbc511495509",
+  "candidate_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "changes": [
+    {
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [
+        "required_documents",
+        "amount"
+      ]
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": []
+    }
+  ],
+  "findings": [
+    "Standalone required-documents headings previously stopped before numbered list items.",
+    "A standalone note heading without a colon was appended to the fee section.",
+    "Bilingual form required-documents list is recovered and fee field no longer includes the following note heading.",
+    "Tuition page 2 required application form is still missing; no change in this diagnostic.",
+    "Other known semantic errors remain, including a publication heading used as a location and missing issuance restrictions."
+  ],
+  "fine_tuning": false
+}

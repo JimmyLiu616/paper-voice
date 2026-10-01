@@ -1,0 +1,74 @@
+{
+  "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+  "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+  "directory": ".runtime\\training-models\\ministral-3-3b-bf16",
+  "files": [
+    {
+      "file": "README.md",
+      "size": 8570,
+      "sha256": "88189c3b964024a8a1d39e0a820596776b997fabb332a151a25973b242f06382"
+    },
+    {
+      "file": "chat_template.jinja",
+      "size": 11912,
+      "sha256": "0701cfbdc2b7d44fdbad104dff604faee4b0543e8247624568777fe465746f9b"
+    },
+    {
+      "file": "config.json",
+      "size": 1579,
+      "sha256": "c89d1a0b4f237d2892ce911d1fe03e9e5a4834579f7149ebc715a4c3fa564214"
+    },
+    {
+      "file": "generation_config.json",
+      "size": 131,
+      "sha256": "e0923390059f84a9180b00e5501778acc45ea9856cd7f2fd68208b360927c677"
+    },
+    {
+      "file": "model-00001-of-00002.safetensors",
+      "size": 4967581832,
+      "sha256": "b3821ebc30884f66e3d26d339e161641f34b91ed916627011e7b08e5f1edd884"
+    },
+    {
+      "file": "model-00002-of-00002.safetensors",
+      "size": 2730659224,
+      "sha256": "718d087fa591fd4356b7241f293c24219399d86f092d46cf36f765051498033a"
+    },
+    {
+      "file": "model.safetensors.index.json",
+      "size": 45577,
+      "sha256": "7829dcf0040e34f1172b401563fcbb27cc3c5a0244ef01e6af18b7a64d63a81e"
+    },
+    {
+      "file": "params.json",
+      "size": 1096,
+      "sha256": "d15587c57574d2a92c66ff2552c6db5173d4c440ad47f7454dc51bad0ecaeb59"
+    },
+    {
+      "file": "processor_config.json",
+      "size": 976,
+      "sha256": "ece2373c2ae391bce18785a1810543bc6173a1f28b6767cffab2c35dbea5f002"
+    },
+    {
+      "file": "special_tokens_map.json",
+      "size": 147094,
+      "sha256": "0a5c981e8c5c6f8886ee007a6d4543a0be6b221cb9ca32a8709384a4c6fc8cbb"
+    },
+    {
+      "file": "tekken.json",
+      "size": 16753784,
+      "sha256": "600bb27946565481ecf51ba8aee252e49b9a68507866080ac9c30185bb312843"
+    },
+    {
+      "file": "tokenizer.json",
+      "size": 17078128,
+      "sha256": "d5f6046775b112f0e2d456ee9dba450684ab964fe5c4e231599bdc6773028135"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "size": 198094,
+      "sha256": "f59f7294e4f26383d0ea93840fe21cf197784be0842a8301a0343e8c34ed0d6d"
+    }
+  ],
+  "remote_code_executed": false,
+  "consolidated_duplicate_downloaded": false
+}

@@ -1,0 +1,77 @@
+{
+  "cases": 8,
+  "errors": 0,
+  "field_checks_passed": 51,
+  "field_checks_total": 51,
+  "qa_checks_passed": 15,
+  "qa_checks_total": 16,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "text",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "維修期間能搭電梯嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-postal",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    }
+  ],
+  "inputs_planned": 8,
+  "field_checks_planned": 51,
+  "qa_checks_planned": 16,
+  "complete": true
+}

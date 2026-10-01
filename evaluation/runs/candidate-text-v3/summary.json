@@ -1,0 +1,96 @@
+{
+  "cases": 8,
+  "errors": 0,
+  "field_checks_passed": 50,
+  "field_checks_total": 51,
+  "qa_checks_passed": 14,
+  "qa_checks_total": 16,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "text",
+      "checks": [
+        {
+          "field": "required_documents",
+          "kind": "must_abstain",
+          "passed": false,
+          "actual": "無須繳交費用"
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "我還需要去集合嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "text",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "可以到現場直接交資料嗎？",
+            "found": true,
+            "contains": [
+              "不接受"
+            ]
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

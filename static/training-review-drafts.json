@@ -1,0 +1,559 @@
+{
+  "version": "original-review-drafts-v1",
+  "synthetic": true,
+  "purpose": "Unreviewed training/development candidates, not a completed dataset or holdout test.",
+  "rows": [
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-oral-history-release",
+      "family": "draft-oral-history-release",
+      "split": "train",
+      "title": "街區口述歷史照片使用確認",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "街區口述歷史照片使用確認\n【虛構標註素材，不是正式公告】\n照片展示預定於116年8月1日開始。\n請於116年7月12日17時前將照片使用同意書送達故事館櫃台，寄出日期不作為收件依據。\n需繳交照片使用同意書及照片編號清單；只填清單不算完成授權。\n本次確認不收費。\n先前已交同意書者仍須補交照片編號清單。",
+      "fields": {
+        "deadline": "116年7月12日17時前將照片使用同意書送達故事館櫃台，寄出日期不作為收件依據。",
+        "required_documents": "照片使用同意書及照片編號清單；只填清單不算完成授權。",
+        "amount": "本次確認不收費。",
+        "conditions": "先前已交同意書者仍須補交照片編號清單。"
+      },
+      "questions": [
+        {
+          "question": "7月12日寄出就算準時嗎？",
+          "answer": "不算，須在7月12日17時前送達櫃台；寄出日期不作為收件依據。",
+          "found": true,
+          "evidence": [
+            "請於116年7月12日17時前將照片使用同意書送達故事館櫃台，寄出日期不作為收件依據。"
+          ],
+          "focus": "deadline"
+        },
+        {
+          "question": "之前交過同意書，還要交清單嗎？",
+          "answer": "仍須補交照片編號清單。",
+          "found": true,
+          "evidence": [
+            "先前已交同意書者仍須補交照片編號清單。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "最多可以提供幾張照片？",
+          "answer": "文件沒有提供張數上限。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-bike-permit-renewal",
+      "family": "draft-bike-permit-renewal",
+      "split": "train",
+      "title": "自行車停車證換發須知",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "自行車停車證換發須知\n【虛構標註素材，不是正式公告】\n換發期間為116年2月3日至2月20日，每日9時至16時。\n本人辦理請出示舊停車證與身分證明正本；委託辦理另附委託書及受託人身分證明正本。\n每張換發費為30元；舊證遺失者每張收取80元，不再加收30元。\n舊證遺失者以原登記編號替代舊證。",
+      "fields": {
+        "deadline": "116年2月3日至2月20日，每日9時至16時。",
+        "required_documents": "本人辦理請出示舊停車證與身分證明正本；委託辦理另附委託書及受託人身分證明正本。",
+        "amount": "每張換發費為30元；舊證遺失者每張收取80元，不再加收30元。",
+        "conditions": "舊證遺失者以原登記編號替代舊證。"
+      },
+      "questions": [
+        {
+          "question": "遺失舊證要繳110元嗎？",
+          "answer": "不是，遺失舊證每張收80元，不再加收30元。",
+          "found": true,
+          "evidence": [
+            "舊證遺失者每張收取80元，不再加收30元。"
+          ],
+          "focus": "fee"
+        },
+        {
+          "question": "委託別人時只帶舊證就可以嗎？",
+          "answer": "不可以，還要身分證明正本，並另附委託書及受託人身分證明正本。",
+          "found": true,
+          "evidence": [
+            "本人辦理請出示舊停車證與身分證明正本；委託辦理另附委託書及受託人身分證明正本。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "停車證可以在哪些停車場使用？",
+          "answer": "文件沒有列出適用停車場。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-kitchen-deposit",
+      "family": "draft-kitchen-deposit",
+      "split": "train",
+      "title": "共享廚房清潔押金通知",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "共享廚房清潔押金通知\n【虛構標註素材，不是正式公告】\n使用者須在場地使用前一日中午12時前完成押金繳納。\n繳納時出示預約確認單即可，無須附身分證影本。\n每次使用收取清潔押金600元；檢查合格後全額退還，押金不是場地租金。\n公益共煮方案經核准者免收清潔押金，仍須接受離場檢查。",
+      "fields": {
+        "deadline": "場地使用前一日中午12時前完成押金繳納。",
+        "required_documents": "出示預約確認單即可，無須附身分證影本。",
+        "amount": "每次使用收取清潔押金600元；檢查合格後全額退還，押金不是場地租金。",
+        "conditions": "公益共煮方案經核准者免收清潔押金，仍須接受離場檢查。"
+      },
+      "questions": [
+        {
+          "question": "核准的公益方案免押金，也免檢查嗎？",
+          "answer": "免收清潔押金，但仍須接受離場檢查。",
+          "found": true,
+          "evidence": [
+            "公益共煮方案經核准者免收清潔押金，仍須接受離場檢查。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "需要附身分證影本嗎？",
+          "answer": "無須附身分證影本，出示預約確認單即可。",
+          "found": true,
+          "evidence": [
+            "繳納時出示預約確認單即可，無須附身分證影本。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "場地租金也是600元嗎？",
+          "answer": "文件沒有提供場地租金金額，600元是清潔押金。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-rain-barrel-address",
+      "family": "draft-rain-barrel-address",
+      "split": "train",
+      "title": "雨水桶配送地址更正通知",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "雨水桶配送地址更正通知\n【虛構標註素材，不是正式公告】\n第一批配送日為116年5月6日。\n需更正地址者，請於116年4月28日18時前提交更正表；逾時更正不適用第一批配送。\n更正表應附訂單編號，不需重新繳交原申請書。\n更正地址不收手續費；本通知未列配送費。\n已交付物流的訂單不能依此方式更正地址，應聯繫原受理窗口。",
+      "fields": {
+        "deadline": "116年4月28日18時前提交更正表；逾時更正不適用第一批配送。",
+        "required_documents": "更正表應附訂單編號，不需重新繳交原申請書。",
+        "amount": "更正地址不收手續費；本通知未列配送費。",
+        "conditions": "已交付物流的訂單不能依此方式更正地址，應聯繫原受理窗口。"
+      },
+      "questions": [
+        {
+          "question": "更正地址要重新交原申請書嗎？",
+          "answer": "不需要，更正表應附訂單編號即可。",
+          "found": true,
+          "evidence": [
+            "更正表應附訂單編號，不需重新繳交原申請書。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "已交付物流，也能用這份更正表改地址嗎？",
+          "answer": "不能依此方式更正，應聯繫原受理窗口。",
+          "found": true,
+          "evidence": [
+            "已交付物流的訂單不能依此方式更正地址，應聯繫原受理窗口。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "配送費是多少？",
+          "answer": "文件沒有提供配送費。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-mobile-library-route",
+      "family": "draft-mobile-library-route",
+      "split": "train",
+      "title": "巡迴書車臨時站點調整",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "巡迴書車臨時站點調整\n【虛構標註素材，不是正式公告】\n116年9月14日，巡迴書車的松葉站改設於市場北側廣場，服務時段為14時至16時。\n當日竹林站維持原地點與時段。\n這是站點異動通知，讀者不必事先回覆，也無須提交申請文件。\n持有預約書者仍須等候到書通知；站點異動不代表預約書已可領取。",
+      "fields": {
+        "deadline": "",
+        "required_documents": "",
+        "amount": "",
+        "conditions": "持有預約書者仍須等候到書通知；站點異動不代表預約書已可領取。"
+      },
+      "questions": [
+        {
+          "question": "竹林站也改到市場了嗎？",
+          "answer": "沒有，竹林站維持原地點與時段。",
+          "found": true,
+          "evidence": [
+            "當日竹林站維持原地點與時段。"
+          ],
+          "focus": "entity"
+        },
+        {
+          "question": "看到站點異動通知就能領預約書嗎？",
+          "answer": "還不能據此確認，持有預約書者仍須等候到書通知。",
+          "found": true,
+          "evidence": [
+            "持有預約書者仍須等候到書通知；站點異動不代表預約書已可領取。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "借閱逾期一天要收多少錢？",
+          "answer": "文件沒有提供逾期收費。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-trail-safety-kit",
+      "family": "draft-trail-safety-kit",
+      "split": "train",
+      "title": "步道志工裝備領用",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "步道志工裝備領用\n【虛構標註素材，不是正式公告】\n裝備領用日為116年3月7日，請於當日15時前到服務站簽領。\n攜帶志工識別證正本及領用通知；兩者皆須出示。\n本次領用免費，遺失後的補發費用另行公告。\n曾領取舊款背心者只領安全帽，不再發給新背心。",
+      "fields": {
+        "deadline": "116年3月7日，請於當日15時前到服務站簽領。",
+        "required_documents": "志工識別證正本及領用通知；兩者皆須出示。",
+        "amount": "本次領用免費，遺失後的補發費用另行公告。",
+        "conditions": "曾領取舊款背心者只領安全帽，不再發給新背心。"
+      },
+      "questions": [
+        {
+          "question": "識別證和通知擇一就好嗎？",
+          "answer": "不是，志工識別證正本與領用通知都要出示。",
+          "found": true,
+          "evidence": [
+            "攜帶志工識別證正本及領用通知；兩者皆須出示。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "已領過舊款背心的人可以再領新背心嗎？",
+          "answer": "不可以，只領安全帽，不再發給新背心。",
+          "found": true,
+          "evidence": [
+            "曾領取舊款背心者只領安全帽，不再發給新背心。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "安全帽遺失補發要多少錢？",
+          "answer": "文件沒有提供補發金額，費用另行公告。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-audio-guide-rental",
+      "family": "draft-audio-guide-rental",
+      "split": "train",
+      "title": "Museum audio guide rental",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "Museum audio guide rental\n【虛構標註素材，不是正式公告】\nReturn the audio guide to the front desk by 16:45 on the day of rental.\nShow the admission ticket and a photo ID. Staff will inspect the ID and return it immediately.\nThe rental fee is NT$70 per device. Visitors aged 70 or above pay NT$30; admission is charged separately.\nA replacement device is available at no extra rental fee if the first device fails during the same visit.",
+      "fields": {
+        "deadline": "Return the audio guide to the front desk by 16:45 on the day of rental.",
+        "required_documents": "Show the admission ticket and a photo ID. Staff will inspect the ID and return it immediately.",
+        "amount": "The rental fee is NT$70 per device. Visitors aged 70 or above pay NT$30; admission is charged separately.",
+        "conditions": "A replacement device is available at no extra rental fee if the first device fails during the same visit."
+      },
+      "questions": [
+        {
+          "question": "70歲的訪客租一台要多少錢？",
+          "answer": "租借費為新臺幣30元；門票另外收費。",
+          "found": true,
+          "evidence": [
+            "Visitors aged 70 or above pay NT$30; admission is charged separately."
+          ],
+          "focus": "fee"
+        },
+        {
+          "question": "證件會被保管到歸還機器嗎？",
+          "answer": "不會，工作人員檢查證件後會立即歸還。",
+          "found": true,
+          "evidence": [
+            "Staff will inspect the ID and return it immediately."
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "門票多少錢？",
+          "answer": "文件只說門票另計，沒有提供門票價格。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-community-oven-repair",
+      "family": "draft-community-oven-repair",
+      "split": "train",
+      "title": "社區麵包窯修繕期間使用說明",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "社區麵包窯修繕期間使用說明\n【虛構標註素材，不是正式公告】\n116年11月6日至11月9日修繕的是戶外麵包窯；室內料理教室照常開放。\n修繕期間禁止使用戶外麵包窯，無須另行申請暫停使用。\n已繳戶外麵包窯使用費者全額退費，請於116年11月20日前提交退款表與原繳費收據影本。\n室內料理教室的預約不因本次修繕自動取消。",
+      "fields": {
+        "deadline": "116年11月20日前提交退款表與原繳費收據影本。",
+        "required_documents": "退款表與原繳費收據影本。",
+        "amount": "已繳戶外麵包窯使用費者全額退費",
+        "conditions": "室內料理教室的預約不因本次修繕自動取消。"
+      },
+      "questions": [
+        {
+          "question": "修繕期間室內料理教室也關閉嗎？",
+          "answer": "沒有，室內料理教室照常開放。",
+          "found": true,
+          "evidence": [
+            "修繕的是戶外麵包窯；室內料理教室照常開放。"
+          ],
+          "focus": "entity"
+        },
+        {
+          "question": "申請退款要交收據正本嗎？",
+          "answer": "通知要求原繳費收據影本，並提交退款表。",
+          "found": true,
+          "evidence": [
+            "請於116年11月20日前提交退款表與原繳費收據影本。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "修繕廠商是哪一家？",
+          "answer": "文件沒有提供修繕廠商。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-garden-waitlist",
+      "family": "draft-garden-waitlist",
+      "split": "dev",
+      "title": "社區園圃候補席次確認",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "社區園圃候補席次確認\n【虛構標註素材，不是正式公告】\n候補序號21至25號獲得本輪確認資格，其他序號請等候後續通知。\n取得資格者須在116年1月18日16時前回覆確認，未回覆即放棄本輪席次。\n回覆時附候補通知及本人簽名的耕作約定書。\n取得席次後每季繳交材料費450元；本次回覆階段不收費。\n尚未取得席次者不必先繳材料費。",
+      "fields": {
+        "deadline": "取得資格者須在116年1月18日16時前回覆確認，未回覆即放棄本輪席次。",
+        "required_documents": "候補通知及本人簽名的耕作約定書。",
+        "amount": "取得席次後每季繳交材料費450元；本次回覆階段不收費。",
+        "conditions": "尚未取得席次者不必先繳材料費。"
+      },
+      "questions": [
+        {
+          "question": "序號26號這次也要回覆嗎？",
+          "answer": "本輪確認資格是21至25號，其他序號等候後續通知。",
+          "found": true,
+          "evidence": [
+            "候補序號21至25號獲得本輪確認資格，其他序號請等候後續通知。"
+          ],
+          "focus": "eligibility"
+        },
+        {
+          "question": "回覆時就要付450元嗎？",
+          "answer": "不用，本次回覆階段不收費，取得席次後才每季繳450元。",
+          "found": true,
+          "evidence": [
+            "取得席次後每季繳交材料費450元；本次回覆階段不收費。"
+          ],
+          "focus": "fee"
+        },
+        {
+          "question": "下一輪什麼時候通知？",
+          "answer": "文件沒有提供下一輪日期。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-archive-copy-delivery",
+      "family": "draft-archive-copy-delivery",
+      "split": "dev",
+      "title": "地方檔案影本寄送確認",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "地方檔案影本寄送確認\n【虛構標註素材，不是正式公告】\n申請人收到估價單後五個工作日內，請回傳簽名的估價單及寄送地址確認表。\n每頁影印費2元，郵資依估價單另外計算；選擇現場領取者免郵資。\n未回傳確認表以前不製作影本；已完成付款不代表文件已寄出。",
+      "fields": {
+        "deadline": "收到估價單後五個工作日內",
+        "required_documents": "簽名的估價單及寄送地址確認表。",
+        "amount": "每頁影印費2元，郵資依估價單另外計算；選擇現場領取者免郵資。",
+        "conditions": "未回傳確認表以前不製作影本；已完成付款不代表文件已寄出。"
+      },
+      "questions": [
+        {
+          "question": "現場領取是不是連影印費也免了？",
+          "answer": "不是，現場領取免的是郵資；每頁影印費仍為2元。",
+          "found": true,
+          "evidence": [
+            "每頁影印費2元，郵資依估價單另外計算；選擇現場領取者免郵資。"
+          ],
+          "focus": "fee"
+        },
+        {
+          "question": "付款完成就代表已寄出嗎？",
+          "answer": "不代表文件已寄出。",
+          "found": true,
+          "evidence": [
+            "已完成付款不代表文件已寄出。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "確切要在幾月幾日前回傳？",
+          "answer": "文件沒有收到估價單的日期，無法換算確切截止日。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-nature-recording-access",
+      "family": "draft-nature-recording-access",
+      "split": "dev",
+      "title": "自然觀察紀錄室開放調整",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "自然觀察紀錄室開放調整\n【虛構標註素材，不是正式公告】\n116年6月2日起，錄音資料改在二樓聆聽室提供；照片資料仍在一樓閱覽。\n聆聽錄音需出示預約確認信，閱覽照片無須預約。\n兩項服務皆免費，但不得自行複製錄音檔案。\n預約確認信不是錄音檔案複製許可。",
+      "fields": {
+        "deadline": "",
+        "required_documents": "聆聽錄音需出示預約確認信，閱覽照片無須預約。",
+        "amount": "兩項服務皆免費，但不得自行複製錄音檔案。",
+        "conditions": "預約確認信不是錄音檔案複製許可。"
+      },
+      "questions": [
+        {
+          "question": "照片也移到二樓了嗎？",
+          "answer": "沒有，照片資料仍在一樓閱覽。",
+          "found": true,
+          "evidence": [
+            "錄音資料改在二樓聆聽室提供；照片資料仍在一樓閱覽。"
+          ],
+          "focus": "entity"
+        },
+        {
+          "question": "有預約信就能複製錄音檔案嗎？",
+          "answer": "不能據此取得複製許可，通知也禁止自行複製錄音檔案。",
+          "found": true,
+          "evidence": [
+            "兩項服務皆免費，但不得自行複製錄音檔案。"
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "每天幾點關門？",
+          "answer": "文件沒有提供每日關門時間。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "draft-community-fridge-labels",
+      "family": "draft-community-fridge-labels",
+      "split": "dev",
+      "title": "Community fridge label collection",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "Community fridge label collection\n【虛構標註素材，不是正式公告】\nCollect the new food labels between 10:00 and 12:00 on 6 April 2027.\nBring the collection email or its printed copy. A membership card is not required.\nEach household receives one pack free of charge. Extra packs cost NT$25 each.\nHouseholds that collected a free pack in March may buy extra packs but cannot claim another free pack.",
+      "fields": {
+        "deadline": "Collect the new food labels between 10:00 and 12:00 on 6 April 2027.",
+        "required_documents": "Bring the collection email or its printed copy. A membership card is not required.",
+        "amount": "Each household receives one pack free of charge. Extra packs cost NT$25 each.",
+        "conditions": "Households that collected a free pack in March may buy extra packs but cannot claim another free pack."
+      },
+      "questions": [
+        {
+          "question": "一定要帶會員卡嗎？",
+          "answer": "不需要會員卡，帶領取通知電子郵件或其列印本即可。",
+          "found": true,
+          "evidence": [
+            "Bring the collection email or its printed copy. A membership card is not required."
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "三月領過免費包，這次還能免費領嗎？",
+          "answer": "不能再領免費包，但可以購買加購包。",
+          "found": true,
+          "evidence": [
+            "Households that collected a free pack in March may buy extra packs but cannot claim another free pack."
+          ],
+          "focus": "exception"
+        },
+        {
+          "question": "一包有幾張標籤？",
+          "answer": "文件沒有提供每包標籤數量。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        }
+      ]
+    }
+  ]
+}

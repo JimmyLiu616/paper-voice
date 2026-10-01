@@ -1,0 +1,140 @@
+{
+  "cases": 8,
+  "errors": 0,
+  "field_checks_passed": 37,
+  "field_checks_total": 42,
+  "qa_checks_passed": 14,
+  "qa_checks_total": 16,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "test-school",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "required_documents",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "同意書",
+            "緊急聯絡表"
+          ],
+          "actual": "家長簽名同書緊聯絡表"
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "test-school",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-english-pickup",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-english-pickup",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-water",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "action",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "提前儲水"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "conditions",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "丙棟不受影響"
+          ],
+          "actual": "聯絡窗囗：社區管理中心\n本次作業不向住戶收費。"
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "丙棟也會停水嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "test-water",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "action",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "提前儲水"
+          ],
+          "actual": ""
+        },
+        {
+          "field": "conditions",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "丙棟不受影響"
+          ],
+          "actual": "聯絡窗囗：社區管理中心\n本次作業不向住戶收費。"
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "丙棟也會停水嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "test-reservation",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "test-reservation",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    }
+  ],
+  "inputs_planned": 8,
+  "field_checks_planned": 42,
+  "qa_checks_planned": 16,
+  "complete": true
+}

@@ -1,0 +1,40 @@
+{
+  "checked_at": "2026-10-01",
+  "evidence": "Browser-generated JSONL read from visible export textarea and saved locally; verified against canonical draft payload.",
+  "rows": 12,
+  "questions": 36,
+  "human_reviewed": 0,
+  "rights_confirmed": 0,
+  "export_matches_canonical": true,
+  "cli_exit_code": 1,
+  "expected_rejection_errors": [
+    "row 1: rights and human review must be explicitly confirmed",
+    "row 2: rights and human review must be explicitly confirmed",
+    "row 3: rights and human review must be explicitly confirmed",
+    "row 4: rights and human review must be explicitly confirmed",
+    "row 5: rights and human review must be explicitly confirmed",
+    "row 6: rights and human review must be explicitly confirmed",
+    "row 7: rights and human review must be explicitly confirmed",
+    "row 8: rights and human review must be explicitly confirmed",
+    "row 9: rights and human review must be explicitly confirmed",
+    "row 10: rights and human review must be explicitly confirmed",
+    "row 11: rights and human review must be explicitly confirmed",
+    "row 12: rights and human review must be explicitly confirmed"
+  ],
+  "eligible_for_training": false,
+  "source_hashes": {
+    "static/training-review-drafts.json": "71eca351d8694aa88da1641db9aa4b839839d658e45cfaa9a4d42308a572eaa1",
+    "static/review-data.js": "ba1c9167f45bd98b3d03904130b97fd796a068603f3e4e56de98a53f66a1774b",
+    "static/training-review.js": "8724cdd3b502d186141a22b0279e1f533d76c1db3d030406e6b78f03c2dee90e",
+    "scripts/validate_training_data.py": "31ba8debc2d99e998f57a8e6d5471991c5cd7f7f5fbdcce4e1e1a26654040b36"
+  },
+  "ui_export_sha256": "66fa7c5685abc223340dc46c71ab5e74546a5c640f9d759e0b6adff47ad91794",
+  "browser_observation": "Fresh local review page shows 0/12 confirmed and reviewed export disabled.",
+  "automatic_file_download_verified": false,
+  "limitations": [
+    "No human semantic review performed.",
+    "Structural consistency is not semantic correctness or proof of license.",
+    "No final held-out test dataset.",
+    "Browser clipboard and automatic download are not verified here."
+  ]
+}

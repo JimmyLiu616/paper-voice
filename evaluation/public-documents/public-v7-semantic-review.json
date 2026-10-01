@@ -1,0 +1,33 @@
+{
+  "run": "public-v7",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "scope": "Compared all five transcripts, fields and QA answers with public-v6: unchanged. Retain the prior targeted review; not a new independent full audit.",
+  "findings": [
+    {
+      "id": "moi-police-form-109-p4",
+      "component": "fee_question",
+      "verdict": "improved_in_this_case",
+      "reason": "The answer now explicitly limits the 20 fee to the second and later copies. The question specifies same-content copies and the evidence retains that condition. The previous automated check also passed, so its numeric score does not measure this improvement."
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "component": "transcript",
+      "verdict": "partially_improved",
+      "reason": "The lower Chinese paragraphs and English paragraphs are no longer interleaved line by line. Header placement, English OCR errors and missing list numbers remain. Native OCR order is not a complete layout solution."
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "component": "fields",
+      "verdict": "needs_review",
+      "reason": "Required documents remains blank. Conditions omits the wanted/unserved-sentence restrictions. Location incorrectly uses a publication section heading; the action starts mid-sentence; the amount includes the following section heading. Source substring matching does not establish semantic correctness."
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "component": "required_documents",
+      "verdict": "missing",
+      "reason": "The application form is still not presented in the required-documents field."
+    }
+  ],
+  "fine_tuning": false
+}

@@ -1,0 +1,32 @@
+{
+  "corpus_preview_redactions": 2,
+  "export_record": {
+    "schema": "paper-voice-correction-v1",
+    "id": "f185ec18-5479-4467-b113-818426b84eb4",
+    "task": "document_transcription_correction",
+    "original": "你好，歡迎參加活動。\n地點：服務站-樓\n[已遮蔽]\n電話：[已遮蔽]",
+    "corrected": "你好，歡迎參加活動。\n地點：服務站一樓\n[已遮蔽]\n電話：[已遮蔽]",
+    "provenance": "synthetic",
+    "license": "CC-BY-4.0",
+    "attribution": "Paper Voice voluntary contribution; contributor identity omitted",
+    "human_reviewed": true,
+    "images_included": false,
+    "audio_included": false,
+    "metrics": {
+      "edit_distance": 1,
+      "reference_characters": 31,
+      "character_error_rate": 0.0323,
+      "normalization": "NFKC; remove whitespace; keep punctuation",
+      "scope": "Single human-corrected text pair; not overall model accuracy"
+    },
+    "status": "local_export_pending_maintainer_review"
+  },
+  "paired_taigi": {
+    "source": "你好",
+    "poj": "lí hó",
+    "sample_rate": 16000,
+    "duration": 0.624,
+    "scope": "basic synthesis plumbing only; not independent Taiwanese linguistic validation"
+  },
+  "source": "Self-authored fictional text; no personal user data or external upload"
+}

@@ -1,0 +1,36 @@
+{
+  "environment": "training",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "torch": "2.10.0+cu128",
+  "torch_cuda_available": true,
+  "disk_free_gib": 19.15,
+  "packages": {
+    "transformers": "5.18.0",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.15.0",
+    "datasets": null
+  },
+  "native_checkpoints": [
+    ".runtime\\training-models\\ministral-3-3b-bf16\\model-00001-of-00002.safetensors",
+    ".runtime\\training-models\\ministral-3-3b-bf16\\model-00002-of-00002.safetensors"
+  ],
+  "eligible_training_rows": 0,
+  "issues": [
+    "No reviewed, rights-confirmed training split. Dev/test fixtures must not be silently reused for training."
+  ],
+  "note": "Read-only environment check. Smoke training is reported separately and is not evidence of task improvement.",
+  "nvidia_smi": "NVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 1955 MiB",
+  "native_checkpoint_download_complete": true,
+  "checkpoint_verification": "Download digest record and current sizes checked here; the smoke runner verifies all SHA256 hashes again.",
+  "smoke_runs": [
+    {
+      "name": "smoke-001",
+      "status": "passed",
+      "optimizer_steps": 1,
+      "quality_improvement_evaluated": false
+    }
+  ],
+  "gpu_environment_ready": true,
+  "ready": false
+}

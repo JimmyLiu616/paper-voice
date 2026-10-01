@@ -1,0 +1,20 @@
+{
+  "scope": "Replay of the same saved real model extraction; only postprocessing differs. No new model inference.",
+  "app_sha256": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823",
+  "trace_sha256": "deebf68842feb101366e02c2fd09cda727127afa9fa97a617b4e638357b68817",
+  "before": {
+    "key": "deadline",
+    "label": "何時以前",
+    "value": "新預約日期：2026年12月13日\n如無法配合新日期，請於2026年11月30日前申請取消。",
+    "evidence": "新預約日期：2026年12月13日\n如無法配合新日期，請於2026年11月30日前申請取消。",
+    "state": "source_matched"
+  },
+  "after": {
+    "key": "deadline",
+    "label": "何時以前",
+    "value": "如無法配合新日期，請於2026年11月30日前申請取消。",
+    "evidence": "如無法配合新日期，請於2026年11月30日前申請取消。",
+    "state": "source_matched"
+  },
+  "passed": true
+}

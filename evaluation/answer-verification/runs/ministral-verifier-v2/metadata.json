@@ -1,0 +1,17 @@
+{
+  "app_sha256": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823",
+  "health": {
+    "ollama": true,
+    "model_ready": true,
+    "model": "ministral-3:3b-instruct-2512-q4_K_M",
+    "digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d",
+    "app_sha256": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823",
+    "asr_ready": true,
+    "asr_model": "Taiwan Tongues ASR CE v1.0",
+    "taigi_ready": true,
+    "privacy": "本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。"
+  },
+  "prompt_version": "v1",
+  "cases_sha256": "cf1c893997c2cba1069aa5ec83c1681492ed83a332d1d3578760fa3cb9b92406",
+  "scope": "Synthetic paired development check. Proposed answers are authored fixtures, not model-generated baseline answers. No fine-tuning."
+}

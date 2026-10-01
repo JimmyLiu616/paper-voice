@@ -1,0 +1,33 @@
+{
+  "run": "opened-test-v3",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "app_sha256": "a114ac39bf30c58251714d9a53ffbf82f668e2c1e4aad98d7b69bbc511495509",
+  "scope": "Targeted checks of prior failures; opened-test regression, not fresh held-out validation.",
+  "findings": [
+    {
+      "id": "test-water",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "improved": "The unsupported electricity answer is rejected because its cited quote explicitly concerns water.",
+      "remaining": "The action field is still blank; conditions misses the unaffected building; the answer to the unaffected-building question still refuses."
+    },
+    {
+      "id": "test-reservation",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "improved": "The cancellation deadline card retains its condition and November 30 date, without prepending the December 13 reservation date.",
+      "remaining": "No claim of all date or eligibility interpretations being correct."
+    },
+    {
+      "id": "test-school",
+      "variant": "clean",
+      "remaining": "Transcription still drops characters from the required-document list."
+    }
+  ],
+  "fine_tuning": false
+}

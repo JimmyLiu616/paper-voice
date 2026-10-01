@@ -1,0 +1,73 @@
+{
+  "scope": "Development-only authored-answer classification; paired cases are not independent, not a complete QA evaluation.",
+  "decision": "Do not deploy either model checker: missed contradictions, false rejections, inconsistent reasons and/or output truncation.",
+  "runs": [
+    {
+      "run": "verifier-v1",
+      "model": "gemma3:4b",
+      "model_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "prompt_version": "v1",
+      "summary": {
+        "cases": 17,
+        "passed": 14,
+        "errors": 0,
+        "supported_kept": 8,
+        "supported_planned": 8,
+        "unsupported_rejected": 6,
+        "unsupported_planned": 9
+      },
+      "deployed": false
+    },
+    {
+      "run": "verifier-v2",
+      "model": "gemma3:4b",
+      "model_digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "prompt_version": "v2",
+      "summary": {
+        "cases": 17,
+        "passed": 14,
+        "errors": 0,
+        "supported_kept": 8,
+        "supported_planned": 8,
+        "unsupported_rejected": 6,
+        "unsupported_planned": 9
+      },
+      "deployed": false
+    },
+    {
+      "run": "ministral-verifier-v1",
+      "model": "ministral-3:3b-instruct-2512-q4_K_M",
+      "model_digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d",
+      "prompt_version": "v2",
+      "summary": {
+        "cases": 17,
+        "passed": 12,
+        "errors": 4,
+        "supported_kept": 6,
+        "supported_planned": 8,
+        "unsupported_rejected": 6,
+        "unsupported_planned": 9
+      },
+      "deployed": false
+    },
+    {
+      "run": "ministral-verifier-v2",
+      "model": "ministral-3:3b-instruct-2512-q4_K_M",
+      "model_digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d",
+      "prompt_version": "v1",
+      "summary": {
+        "cases": 17,
+        "passed": 13,
+        "errors": 0,
+        "supported_kept": 5,
+        "supported_planned": 8,
+        "unsupported_rejected": 8,
+        "unsupported_planned": 9
+      },
+      "deployed": false
+    }
+  ],
+  "production_change": "Only deadline-boundary correction and a bounded deterministic service-topic conflict check; no second model call.",
+  "fine_tuning": false,
+  "training_reuse": "These evaluation documents are reserved by the training-data validator; no automatic relabeling into train."
+}

@@ -1,0 +1,100 @@
+{
+  "retrieval_date": "2026-10-01",
+  "dpi": 150,
+  "synthetic": false,
+  "capture": "PDF rasterization, not physical camera photographs",
+  "sources": [
+    {
+      "id": "nycu-ethics-114",
+      "title": "國立陽明交通大學114年研究參與者保護倫理講習會函",
+      "url": "https://ncu.edu.tw/rd/upload/news/news_20250221094628_1.pdf",
+      "pages": [
+        1
+      ],
+      "date": "2025-02-19",
+      "pdf_sha256": "bd74499ddba561d8923a54eef15c1e5a870ebaf9428a5948c8e78bab586ab34a",
+      "images": [
+        {
+          "page": 1,
+          "path": ".runtime/public-documents/images/nycu-ethics-114-p1.png",
+          "sha256": "440b3db7bbd4c03c82e61d35b3bea32b8e22b4a8f9be3977b2f2de733844d5d1"
+        }
+      ]
+    },
+    {
+      "id": "moi-police-form-109",
+      "title": "內政部警察刑事紀錄證明文件格式預告（歷史草案）",
+      "url": "https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg026233/ch02/type3/gov10/num1/Eg.pdf",
+      "pages": [
+        4
+      ],
+      "date": "2020-12-03",
+      "pdf_sha256": "c4f0d63d7cd4654b6f3b3db0ccd26bfe681e56d85a365f450d593647a9afebd9",
+      "images": [
+        {
+          "page": 4,
+          "path": ".runtime/public-documents/images/moi-police-form-109-p4.png",
+          "sha256": "dc0f187be003e8a64063cf19562d41444ee89192336af0f907d43bdd18d56849"
+        }
+      ]
+    },
+    {
+      "id": "wda-pretraining-115",
+      "title": "115年度推動事業單位辦理職前培訓計畫公告",
+      "url": "https://ws.wda.gov.tw/Download.ashx?n=5YWs5ZGKLTExNeW5tOW6puaOqOWLleS6i%2BalreWWruS9jei%2BpueQhuiBt%2BWJjeWfueiok%2BioiOeVqy5wZGY%3D&u=LzAwMS9VcGxvYWQvMzEwL3JlbGZpbGUvOTMwMC8xODcwMDcvZjEwYWQ4YzYtMmUzNy00MDM3LWEzNzEtMTM3MDIzZTc0NTNjLnBkZg%3D%3D",
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "landing_url": "https://tcnr.wda.gov.tw/News_Content.aspx?n=9CDFC65181CC2AEA&s=7096E023258FDA09&sms=68798FA6FAE753EC",
+      "pdf_sha256": "08d7e6d8214db1d9363cb3c7bea64cbcdf6c9303e554554f23c52905ecc8667a",
+      "images": [
+        {
+          "page": 1,
+          "path": ".runtime/public-documents/images/wda-pretraining-115-p1.png",
+          "sha256": "c34ffabce3fe4293b98393facc9c3da14e9a9f0f3944f7cf0416c5202ceac66a"
+        },
+        {
+          "page": 2,
+          "path": ".runtime/public-documents/images/wda-pretraining-115-p2.png",
+          "sha256": "573c7e1ab0fe2bf621405059ca6a7dee20e518e6b42e822241114615a57ecafc"
+        },
+        {
+          "page": 3,
+          "path": ".runtime/public-documents/images/wda-pretraining-115-p3.png",
+          "sha256": "1c4fafe709c1366aa7f94815b8bde5a8945dd917b1b0fcd70b1e7351cb518d24"
+        }
+      ]
+    },
+    {
+      "id": "taipei-tuition-115",
+      "title": "臺北市115年度第2次失業勞工子女就學費用補助公告",
+      "url": "https://www-ws.gov.taipei/Download.ashx?icon=..pdf&n=6ZmE5Lu2MS3lhazlkYot5Y%2BX55CG6Ie65YyX5biC5aSx5qWt5Yue5bel5a2Q5aWzMTE15bm056ysMeWtuOacn%2BWwseWtuOiyu%2BeUqOijnOWKqS5wZGY%3D&u=LzAwMS9VcGxvYWQvMzA3L3JlbGZpbGUvMTAxNzQvOTY3NzUzNi9jMWM3MmE4Ni00ODc0LTQ1MjEtODE4ZC0zZTA1NzQ5NjA1YjgucGRm",
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "landing_url": "https://dcsd.gov.taipei/News_Content.aspx?n=0BC465B3E114DFB7&s=1DD249B3DECA921C",
+      "pdf_sha256": "e1c2c42db55ec629f85e151878a53bb42b3e4dd8a92459d4a0ae6d010c46fa11",
+      "images": [
+        {
+          "page": 1,
+          "path": ".runtime/public-documents/images/taipei-tuition-115-p1.png",
+          "sha256": "e777ccbb53c6d8352b6bac18184ed32e801c92292634221ec016920223ffe523"
+        },
+        {
+          "page": 2,
+          "path": ".runtime/public-documents/images/taipei-tuition-115-p2.png",
+          "sha256": "f72971f9c9708da33bd6aa39e3b06689b2e31fbc1b3bb47343edc7b0fe4db1eb"
+        },
+        {
+          "page": 3,
+          "path": ".runtime/public-documents/images/taipei-tuition-115-p3.png",
+          "sha256": "f9706440d11881e4359f70a46f20e443e7775653e3eadf79df44709350c6bfcc"
+        }
+      ]
+    }
+  ]
+}

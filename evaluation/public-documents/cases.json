@@ -1,0 +1,361 @@
+{
+  "version": "public-page-checks-v1",
+  "annotation": "Codex authored from visually inspected official PDF pages before inference; not independently human-reviewed. Each page is a separate input, grouped by source document. Empty fields and required spans are structural checks, not full semantic accuracy.",
+  "cases": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "source_id": "nycu-ethics-114",
+      "page": 1,
+      "checks": [
+        {
+          "field": "deadline",
+          "groups": [
+            [
+              "114年3月19日"
+            ],
+            [
+              "額滿"
+            ]
+          ]
+        },
+        {
+          "field": "required_documents",
+          "empty": true
+        },
+        {
+          "field": "amount",
+          "groups": [
+            [
+              "300"
+            ],
+            [
+              "免費"
+            ]
+          ]
+        },
+        {
+          "field": "conditions",
+          "groups": [
+            [
+              "額滿",
+              "校內",
+              "附設醫院"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "校外人員每人報名費是多少？",
+          "found": true,
+          "groups": [
+            [
+              "300",
+              "三百"
+            ]
+          ]
+        },
+        {
+          "text": "這一頁寫了哪家銀行的繳費帳號？",
+          "found": false,
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "source_id": "moi-police-form-109",
+      "page": 4,
+      "checks": [
+        {
+          "field": "deadline",
+          "empty": true
+        },
+        {
+          "field": "required_documents",
+          "groups": [
+            [
+              "身分證正本"
+            ],
+            [
+              "護照"
+            ],
+            [
+              "居留證"
+            ]
+          ]
+        },
+        {
+          "field": "amount",
+          "groups": [
+            [
+              "100",
+              "一百"
+            ],
+            [
+              "20",
+              "二十"
+            ]
+          ]
+        },
+        {
+          "field": "conditions",
+          "groups": [
+            [
+              "通緝"
+            ],
+            [
+              "執行"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "文件列出的第一份及同次申請內容相同的第二份證書，各收多少錢？",
+          "found": true,
+          "groups": [
+            [
+              "100",
+              "一百"
+            ],
+            [
+              "20",
+              "二十"
+            ]
+          ]
+        },
+        {
+          "text": "這一頁有指定我要搭哪一路公車去申請嗎？",
+          "found": false,
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "source_id": "wda-pretraining-115",
+      "page": 2,
+      "checks": [
+        {
+          "field": "deadline",
+          "groups": [
+            [
+              "115年10月31日"
+            ]
+          ]
+        },
+        {
+          "field": "required_documents",
+          "groups": [
+            [
+              "申請表件檢核表"
+            ],
+            [
+              "招募計畫書"
+            ],
+            [
+              "訓練計畫書"
+            ],
+            [
+              "5份",
+              "五份"
+            ]
+          ]
+        },
+        {
+          "field": "amount",
+          "groups": [
+            [
+              "65%",
+              "65％"
+            ],
+            [
+              "80%",
+              "80％"
+            ],
+            [
+              "100萬",
+              "一百萬"
+            ]
+          ]
+        },
+        {
+          "field": "conditions",
+          "groups": [
+            [
+              "免附"
+            ],
+            [
+              "事業單位",
+              "學校",
+              "政府機關"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "申請單位本身是事業單位時，委託訓練同意書還需要附嗎？",
+          "found": true,
+          "groups": [
+            [
+              "免附",
+              "不需要",
+              "無須",
+              "不用"
+            ]
+          ]
+        },
+        {
+          "text": "這一頁是否提供審查會議的確切日期？",
+          "found": false,
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "source_id": "taipei-tuition-115",
+      "page": 2,
+      "checks": [
+        {
+          "field": "deadline",
+          "groups": [
+            [
+              "115年9月30日"
+            ],
+            [
+              "郵戳"
+            ]
+          ]
+        },
+        {
+          "field": "required_documents",
+          "groups": [
+            [
+              "申請書"
+            ]
+          ]
+        },
+        {
+          "field": "amount",
+          "empty": true
+        },
+        {
+          "field": "conditions",
+          "groups": [
+            [
+              "不在此限"
+            ],
+            [
+              "職業訓練",
+              "非自願離職"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "本頁的受理截止日是何時？郵寄以什麼為憑？",
+          "found": true,
+          "groups": [
+            [
+              "115年9月30日"
+            ],
+            [
+              "郵戳"
+            ]
+          ]
+        },
+        {
+          "text": "這一頁有寫申請手續費是多少嗎？",
+          "found": false,
+          "groups": []
+        }
+      ]
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "source_id": "taipei-tuition-115",
+      "page": 3,
+      "checks": [
+        {
+          "field": "deadline",
+          "groups": [
+            [
+              "115年10月8日"
+            ],
+            [
+              "9月24",
+              "9月30"
+            ]
+          ]
+        },
+        {
+          "field": "required_documents",
+          "groups": [
+            [
+              "申請書"
+            ],
+            [
+              "存摺"
+            ],
+            [
+              "繳款"
+            ],
+            [
+              "戶口名簿",
+              "戶籍謄本"
+            ]
+          ]
+        },
+        {
+          "field": "amount",
+          "groups": [
+            [
+              "18,800",
+              "18800"
+            ],
+            [
+              "43,200",
+              "43200"
+            ]
+          ]
+        },
+        {
+          "field": "conditions",
+          "groups": [
+            [
+              "其中一人"
+            ]
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "text": "符合本頁所述9月24日至9月30日失業且文件不及備妥的情況，最晚何時完成補件？",
+          "found": true,
+          "groups": [
+            [
+              "115年10月8日"
+            ]
+          ]
+        },
+        {
+          "text": "申請人和配偶都符合資格，可以兩個人各申請一次嗎？",
+          "found": true,
+          "groups": [
+            [
+              "其中一人",
+              "一人",
+              "不可",
+              "不能",
+              "不可以"
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

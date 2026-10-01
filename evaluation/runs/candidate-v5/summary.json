@@ -1,0 +1,167 @@
+{
+  "cases": 16,
+  "errors": 0,
+  "field_checks_passed": 99,
+  "field_checks_total": 102,
+  "qa_checks_passed": 30,
+  "qa_checks_total": 32,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-registration",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "location",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "一樓櫃台"
+          ],
+          "actual": ""
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "contact",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "管理室"
+          ],
+          "actual": ""
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "維修期間能搭電梯嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "維修期間能搭電梯嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-postal",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "required_documents",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "報名表",
+            "作品集光碟",
+            "身分證"
+          ],
+          "actual": "報名表、作品光碟、身分證影本"
+        }
+      ],
+      "questions": []
+    }
+  ]
+}

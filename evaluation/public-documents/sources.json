@@ -1,0 +1,46 @@
+{
+  "retrieval_date": "2026-10-01",
+  "scope": "Public official PDFs for local evaluation, not current application advice; source material retains its original legal status and is not relicensed under project MIT. No training or automatic publishing.",
+  "sources": [
+    {
+      "id": "nycu-ethics-114",
+      "title": "國立陽明交通大學114年研究參與者保護倫理講習會函",
+      "url": "https://ncu.edu.tw/rd/upload/news/news_20250221094628_1.pdf",
+      "pages": [
+        1
+      ],
+      "date": "2025-02-19"
+    },
+    {
+      "id": "moi-police-form-109",
+      "title": "內政部警察刑事紀錄證明文件格式預告（歷史草案）",
+      "url": "https://gazette.nat.gov.tw/EG_FileManager/eguploadpub/eg026233/ch02/type3/gov10/num1/Eg.pdf",
+      "pages": [
+        4
+      ],
+      "date": "2020-12-03"
+    },
+    {
+      "id": "wda-pretraining-115",
+      "title": "115年度推動事業單位辦理職前培訓計畫公告",
+      "url": "https://ws.wda.gov.tw/Download.ashx?n=5YWs5ZGKLTExNeW5tOW6puaOqOWLleS6i%2BalreWWruS9jei%2BpueQhuiBt%2BWJjeWfueiok%2BioiOeVqy5wZGY%3D&u=LzAwMS9VcGxvYWQvMzEwL3JlbGZpbGUvOTMwMC8xODcwMDcvZjEwYWQ4YzYtMmUzNy00MDM3LWEzNzEtMTM3MDIzZTc0NTNjLnBkZg%3D%3D",
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "landing_url": "https://tcnr.wda.gov.tw/News_Content.aspx?n=9CDFC65181CC2AEA&s=7096E023258FDA09&sms=68798FA6FAE753EC"
+    },
+    {
+      "id": "taipei-tuition-115",
+      "title": "臺北市115年度第2次失業勞工子女就學費用補助公告",
+      "url": "https://www-ws.gov.taipei/Download.ashx?icon=..pdf&n=6ZmE5Lu2MS3lhazlkYot5Y%2BX55CG6Ie65YyX5biC5aSx5qWt5Yue5bel5a2Q5aWzMTE15bm056ysMeWtuOacn%2BWwseWtuOiyu%2BeUqOijnOWKqS5wZGY%3D&u=LzAwMS9VcGxvYWQvMzA3L3JlbGZpbGUvMTAxNzQvOTY3NzUzNi9jMWM3MmE4Ni00ODc0LTQ1MjEtODE4ZC0zZTA1NzQ5NjA1YjgucGRm",
+      "pages": [
+        1,
+        2,
+        3
+      ],
+      "landing_url": "https://dcsd.gov.taipei/News_Content.aspx?n=0BC465B3E114DFB7&s=1DD249B3DECA921C"
+    }
+  ]
+}

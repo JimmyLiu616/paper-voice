@@ -1,0 +1,400 @@
+{
+  "runs": [
+    {
+      "run": "baseline-v1",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        82,
+        102
+      ],
+      "focus_fields": [
+        48,
+        64
+      ],
+      "qa": [
+        28,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "b2ba3b3054c06c18fe9684b15a8243aa15daeaa4a5588dfa080515415a04f5f7"
+    },
+    {
+      "run": "candidate-text-v10",
+      "split": "dev",
+      "variants": [
+        "text"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 8,
+      "all_fields": [
+        51,
+        51
+      ],
+      "focus_fields": [
+        32,
+        32
+      ],
+      "qa": [
+        15,
+        16
+      ],
+      "errors": 0,
+      "app_sha256": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823"
+    },
+    {
+      "run": "candidate-text-v3",
+      "split": "dev",
+      "variants": [
+        "text"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 8,
+      "all_fields": [
+        50,
+        51
+      ],
+      "focus_fields": [
+        31,
+        32
+      ],
+      "qa": [
+        14,
+        16
+      ],
+      "errors": 0,
+      "app_sha256": "dd39f34ec5775617672452021fda514dad585da73595f3142eb678e18d2e396a"
+    },
+    {
+      "run": "candidate-text-v5",
+      "split": "dev",
+      "variants": [
+        "text"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 8,
+      "all_fields": [
+        51,
+        51
+      ],
+      "focus_fields": [
+        32,
+        32
+      ],
+      "qa": [
+        16,
+        16
+      ],
+      "errors": 0,
+      "app_sha256": "bb497fd3de688f7dde9a4849c572d1517260d3288634399d879a3c8e7e83ce7b"
+    },
+    {
+      "run": "candidate-v11",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        100,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        31,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "a114ac39bf30c58251714d9a53ffbf82f668e2c1e4aad98d7b69bbc511495509"
+    },
+    {
+      "run": "candidate-v2",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        93,
+        102
+      ],
+      "focus_fields": [
+        57,
+        64
+      ],
+      "qa": [
+        29,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "78c96f02fd0b2c6aaf1073cc9507860b7f88e325bf84171609bff54a41c7b0f9"
+    },
+    {
+      "run": "candidate-v3",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        99,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        28,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "dd39f34ec5775617672452021fda514dad585da73595f3142eb678e18d2e396a"
+    },
+    {
+      "run": "candidate-v4",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        99,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        26,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "bdb0371b824e8248819153483c806d77a3f4948ade9b11052737a8ed2ac32442"
+    },
+    {
+      "run": "candidate-v5",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        99,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        30,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "bb497fd3de688f7dde9a4849c572d1517260d3288634399d879a3c8e7e83ce7b"
+    },
+    {
+      "run": "candidate-v7",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        100,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        31,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "38ad6c7222f298a5c7c94e8be097e84d3e916656defda248fe2f82c0a47af17f"
+    },
+    {
+      "run": "candidate-v8",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        100,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        31,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "d2a0c46e7d3b128ccba6d7f91425ea09784432f845eda5ace97120e859248149"
+    },
+    {
+      "run": "candidate-v9",
+      "split": "dev",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "development",
+      "document_families": 8,
+      "inputs": 16,
+      "all_fields": [
+        100,
+        102
+      ],
+      "focus_fields": [
+        63,
+        64
+      ],
+      "qa": [
+        31,
+        32
+      ],
+      "errors": 0,
+      "app_sha256": "623952c33d4c00f194e71437f144932c138eae171390ccb0035cd998b003d1e7"
+    },
+    {
+      "run": "holdout-text-v1",
+      "split": "test",
+      "variants": [
+        "text"
+      ],
+      "purpose": "reserved-evaluation",
+      "document_families": 4,
+      "inputs": 4,
+      "all_fields": [
+        19,
+        21
+      ],
+      "focus_fields": [
+        11,
+        12
+      ],
+      "qa": [
+        7,
+        8
+      ],
+      "errors": 0,
+      "app_sha256": "623952c33d4c00f194e71437f144932c138eae171390ccb0035cd998b003d1e7"
+    },
+    {
+      "run": "holdout-v1",
+      "split": "test",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "reserved-evaluation",
+      "document_families": 4,
+      "inputs": 8,
+      "all_fields": [
+        35,
+        42
+      ],
+      "focus_fields": [
+        19,
+        24
+      ],
+      "qa": [
+        12,
+        16
+      ],
+      "errors": 0,
+      "app_sha256": "623952c33d4c00f194e71437f144932c138eae171390ccb0035cd998b003d1e7"
+    },
+    {
+      "run": "opened-test-text-v2",
+      "split": "test",
+      "variants": [
+        "text"
+      ],
+      "purpose": "opened-test-regression",
+      "document_families": 4,
+      "inputs": 4,
+      "all_fields": [
+        20,
+        21
+      ],
+      "focus_fields": [
+        12,
+        12
+      ],
+      "qa": [
+        7,
+        8
+      ],
+      "errors": 0,
+      "app_sha256": "79004ee4133d7fd41db5b14a456742df8a2942a9b807512bb75278cbbc5de823"
+    },
+    {
+      "run": "opened-test-v3",
+      "split": "test",
+      "variants": [
+        "clean",
+        "tilt_blur"
+      ],
+      "purpose": "opened-test-regression",
+      "document_families": 4,
+      "inputs": 8,
+      "all_fields": [
+        37,
+        42
+      ],
+      "focus_fields": [
+        21,
+        24
+      ],
+      "qa": [
+        14,
+        16
+      ],
+      "errors": 0,
+      "app_sha256": "a114ac39bf30c58251714d9a53ffbf82f668e2c1e4aad98d7b69bbc511495509"
+    }
+  ],
+  "note": "Read split and variants separately: development, reserved images, and reference-text diagnostics are different comparisons. Multiple images per family are not independent. Test results opened for diagnosis are not fresh tests for future tuning. No fine-tuning performed."
+}

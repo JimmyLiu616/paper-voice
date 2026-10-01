@@ -1,0 +1,106 @@
+{
+  "health": {
+    "ollama": true,
+    "model_ready": true,
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "taigi_ready": true,
+    "privacy": "本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。"
+  },
+  "event_result": {
+    "title": "和樂社區 | 手機攝影體驗",
+    "document_type": "公告",
+    "fields": [
+      {
+        "key": "action",
+        "label": "要做什麼",
+        "value": "請到活動中心服務櫃台登記",
+        "evidence": "報名方式：請到活動中心服務櫃台登記",
+        "state": "source_matched"
+      },
+      {
+        "key": "deadline",
+        "label": "何時以前",
+        "value": "2026年10月12日下午5時",
+        "evidence": "報名截止：2026年10月12日下午5時",
+        "state": "source_matched"
+      },
+      {
+        "key": "location",
+        "label": "相關地點",
+        "value": "和樂活動中心二樓教室",
+        "evidence": "活動地點：和樂活動中心二樓教室",
+        "state": "source_matched"
+      },
+      {
+        "key": "required_documents",
+        "label": "需要準備",
+        "value": "已充電的智慧型手機、老花眼鏡",
+        "evidence": "請攜帶：已充電的智慧型手機、老花眼鏡",
+        "state": "source_matched"
+      },
+      {
+        "key": "contact",
+        "label": "聯絡方式",
+        "value": "",
+        "evidence": "",
+        "state": "not_found"
+      },
+      {
+        "key": "amount",
+        "label": "金額／費用",
+        "value": "新臺幣100元",
+        "evidence": "報名費用：新臺幣100元",
+        "state": "source_matched"
+      },
+      {
+        "key": "conditions",
+        "label": "適用條件／例外",
+        "value": "額滿即停止受理。",
+        "evidence": "名額有限，額滿即停止受理。",
+        "state": "source_matched"
+      }
+    ],
+    "summary": [
+      "要做什麼：請到活動中心服務櫃台登記",
+      "何時以前：2026年10月12日下午5時",
+      "相關地點：和樂活動中心二樓教室",
+      "需要準備：已充電的智慧型手機、老花眼鏡",
+      "金額／費用：新臺幣100元",
+      "適用條件／例外：額滿即停止受理。",
+      "文件提醒：參加對象：年滿60歲的社區居民",
+      "文件提醒：名額有限，額滿即停止受理。"
+    ],
+    "warnings": [],
+    "conditions_raw": [
+      "參加對象：年滿60歲的社區居民",
+      "名額有限，額滿即停止受理。"
+    ],
+    "raw_text": "和樂社區 | 手機攝影體驗\n\n本文件為虛構展示範例，非正式公告。\n\n活動日期：2026年10月18日\n活動時間：上午10時至中午12時\n活動地點：和樂活動中心二樓教室\n報名截止：2026年10月12日下午5時\n參加對象：年滿60歲的社區居民\n請攜帶：已充電的智慧型手機、老花眼鏡\n報名費用：新臺幣100元\n報名方式：請到活動中心服務櫃台登記\n\n名額有限，額滿即停止受理。\n\nCommunity Photography Workshop\n\n紙聲通 PAPER VOICE / 原創測試資料 / 2026",
+    "model": "gemma3:4b",
+    "ocr_reference": "和樂社區|手機攝影體驗\n本文件為虛構展示範例,非正式公告。\n活動日期:2026年10月18日\n活動時間上午10時至中午12時\n活動地點:和樂活動中心二樓教室\n報名截止:2026年10月12日下午5時\n參加對象年滿60歲的社區居民\n請攜帶:已充電的智型手機老花眼鏡\n報名費用:新臺幣100元\n報名方式:請到活動中心服務櫃台登記\n名額有限,額滿即停止受理\nCommunity Ph0tography Workshop\n紙聲通PAPERVOICE/原創測試資料/2026",
+    "transcript_agreement": 0.984,
+    "seconds": 7.3,
+    "input_source": "image"
+  },
+  "supported_question": {
+    "answer": "請攜帶已充電的智慧型手機、老花眼鏡。",
+    "evidence": "請攜帶：已充電的智慧型手機、老花眼鏡",
+    "found": true
+  },
+  "unknown_question": {
+    "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+    "evidence": "",
+    "found": false
+  },
+  "zh-TW": {
+    "seconds": 7.866258503401361,
+    "sample_rate": 22050,
+    "bytes": 346948
+  },
+  "nan": {
+    "seconds": 0.624,
+    "sample_rate": 16000,
+    "bytes": 20012
+  }
+}

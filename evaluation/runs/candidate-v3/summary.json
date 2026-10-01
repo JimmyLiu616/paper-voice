@@ -1,0 +1,197 @@
+{
+  "cases": 16,
+  "errors": 0,
+  "field_checks_passed": 99,
+  "field_checks_total": 102,
+  "qa_checks_passed": 28,
+  "qa_checks_total": 32,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-registration",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "location",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "一樓櫃台"
+          ],
+          "actual": ""
+        }
+      ],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "我還需要去集合嗎？",
+            "found": true,
+            "contains": []
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "clean",
+      "checks": [
+        {
+          "field": "contact",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "管理室"
+          ],
+          "actual": ""
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "哪一家廠商來修理？",
+            "found": false,
+            "contains": []
+          },
+          "answer": {
+            "answer": "樂山公寓的電梯維修。",
+            "evidence": "樂山公寓|電梯維修 Elevator Service\n聯絡窗囗：- 樓管理室\nNo registration is required.\n本次公告沒有收費或報名截止日期。\n虛構測試文件,不是正式公告\n維修日期：2026年10月29日\n維修期間電梯暫停使用，請改走樓梯。\n行動不便住戶請事先[無法辨識]合管理室安排協助。",
+            "found": true
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "tilt_blur",
+      "checks": [],
+      "questions": [
+        {
+          "question": {
+            "text": "哪一家廠商來修理？",
+            "found": false,
+            "contains": []
+          },
+          "answer": {
+            "answer": "樂山公寓的電梯維修。",
+            "evidence": "樂山公寓|電梯維修 Elevator Service\n聯絡窗口：一樓管理室\nNo registration is required.\n本次公告沒有收費或報名截止日期。\n虛構測試文件·不是正式公告\n維修日期：2026年10月29日\n維修期間電梯暫停使用，請改走樓梯。\n行動不便住戶請事先洽管理室安排協助。",
+            "found": true
+          },
+          "passed": false
+        }
+      ]
+    },
+    {
+      "id": "dev-postal",
+      "variant": "clean",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "tilt_blur",
+      "checks": [
+        {
+          "field": "required_documents",
+          "kind": "required_spans",
+          "passed": false,
+          "expected": [
+            "報名表",
+            "作品集光碟",
+            "身分證"
+          ],
+          "actual": "報名表、作品光碟、身分證影本"
+        }
+      ],
+      "questions": [
+        {
+          "question": {
+            "text": "可以到現場直接交資料嗎？",
+            "found": true,
+            "contains": [
+              "不接受"
+            ]
+          },
+          "answer": {
+            "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+            "evidence": "",
+            "found": false
+          },
+          "passed": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "cases": 8,
+  "errors": 0,
+  "field_checks_passed": 51,
+  "field_checks_total": 51,
+  "qa_checks_passed": 16,
+  "qa_checks_total": 16,
+  "note": "Required-span/abstention checks, NOT exact semantic correctness. CER keeps punctuation.",
+  "failures": [
+    {
+      "id": "dev-registration",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-waiver",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-english-renewal",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-relative",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-cancellation",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-instruction-text",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-bilingual",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    },
+    {
+      "id": "dev-postal",
+      "variant": "text",
+      "checks": [],
+      "questions": []
+    }
+  ]
+}
