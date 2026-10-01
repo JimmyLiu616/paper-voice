@@ -1,0 +1,60 @@
+{
+  "run": "public-v11",
+  "app_sha256": "e69c57878954429cb747efe3c1e0bc8246ebb96e73ae877cbadc17a2c8defbf2",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "generation_events": 20,
+  "generation_log_sha256": "d174775fe3a7d3e1b87660b821364c0f5994fa3a70997d4df7c983be03e8b3cd",
+  "results_sha256": "c6ed76ee2c020b0bb812042c7ef40ac4264419cafae1311550bdbb52ee130c21",
+  "paired_replay": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "same_saved_generation_for_both_validators": true,
+      "changed_fields": [],
+      "transcript_same_as_public_v10": true,
+      "failed_checks": []
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "same_saved_generation_for_both_validators": true,
+      "changed_fields": [],
+      "transcript_same_as_public_v10": true,
+      "failed_checks": [
+        "conditions"
+      ]
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "same_saved_generation_for_both_validators": true,
+      "changed_fields": [],
+      "transcript_same_as_public_v10": true,
+      "failed_checks": []
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "same_saved_generation_for_both_validators": true,
+      "changed_fields": [],
+      "transcript_same_as_public_v10": true,
+      "failed_checks": [
+        "required_documents"
+      ]
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "same_saved_generation_for_both_validators": true,
+      "changed_fields": [],
+      "transcript_same_as_public_v10": false,
+      "failed_checks": []
+    }
+  ],
+  "scope": "5 existing development pages, isolated real image API; actual recorded generations replayed through old and new validators. Not unseen accuracy or fine-tuning.",
+  "remaining_failures": [
+    "Police form issuance restriction omitted from conditions.",
+    "Tuition page 2 application form omitted from required_documents."
+  ],
+  "other_known_limits": [
+    "Gazette title can still be returned as location; action may begin mid-sentence.",
+    "Mechanical QA checks do not establish complete semantic correctness.",
+    "public-v10 lower 16/20 result retained; model output varies even with fixed seed."
+  ]
+}

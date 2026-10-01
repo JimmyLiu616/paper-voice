@@ -6,6 +6,7 @@ from pathlib import Path
 import sys
 import time
 import httpx
+import base64
 
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'scripts'))
@@ -17,7 +18,9 @@ def groups_match(text,groups):
 
 
 def main():
-    p=argparse.ArgumentParser();p.add_argument('--name',default='public-v1');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('--name',default='public-v1')
+    p.add_argument('--isolated',action='store_true',help='Run the same API in-process; save private model outputs without replacing the live service.')
+    args=p.parse_args()
     if not args.name.replace('-','').replace('_','').isalnum():p.error('Invalid run name')
     base=ROOT/'evaluation/public-documents'
     cases=json.loads((base/'cases.json').read_text(encoding='utf-8'))['cases']
@@ -35,7 +38,35 @@ def main():
     (out/'manifest.json').write_bytes((base/'manifest.json').read_bytes())
     (out/'runner.py').write_bytes(Path(__file__).read_bytes())
     rows=[]
-    with httpx.Client(base_url='http://127.0.0.1:8765',headers={'X-PaperVoice':'local-ui'},timeout=260) as client:
+    if args.isolated:
+        from fastapi.testclient import TestClient
+        sys.path.insert(0,str(ROOT))
+        import app as backend
+        original_generate=backend.generate
+        async def captured_generate(prompt,**kwargs):
+            event={'case_id':case['id'],'prompt_sha256':hashlib.sha256(prompt.encode()).hexdigest(),
+                   'tokens':kwargs.get('tokens',1400),'model':backend.MODEL}
+            event['operation']='transcript' if kwargs.get('image') else ('answer' if 'answer' in kwargs.get('schema',{}).get('properties',{}) else 'extraction')
+            if kwargs.get('image'):
+                event['image_sha256']=hashlib.sha256(base64.b64decode(kwargs['image'])).hexdigest()
+            try:
+                result=await original_generate(prompt,**kwargs)
+                event['output']=result
+                return result
+            except Exception as exc:
+                event['error_type']=type(exc).__name__
+                raise
+            finally:
+                with (out/'generations.jsonl').open('a',encoding='utf-8') as file:
+                    file.write(json.dumps(event,ensure_ascii=False)+'\n')
+        backend.generate=captured_generate
+        session=TestClient(backend.app,headers={'X-PaperVoice':'local-ui'})
+        meta['transport']='in-process API; real Ollama, image preprocessing and Windows OCR; live service unchanged'
+        meta['private_generation_log']='generations.jsonl'
+    else:
+        session=httpx.Client(base_url='http://127.0.0.1:8765',headers={'X-PaperVoice':'local-ui'},timeout=260)
+        meta['transport']='live localhost API'
+    with session as client:
         meta['health']=client.get('/api/health').json()
         if meta['health'].get('app_sha256') != meta['app_sha256']:
             raise ValueError('Running service differs from app.py; restart service before evaluating')

@@ -197,6 +197,25 @@ def invalid_answer_format(answer: str) -> bool:
     return not text or bool(re.fullmatch(r'[`\s]*["\']?found["\']?\s*[:=]\s*(?:true|false)[.`\s]*', text, re.I))
 
 
+def ordered_source_lines(value: str, source: str) -> bool:
+    """Verify each nonempty model line before restoring one labelled source section."""
+    lines = [normalized(line) for line in value.splitlines() if line.strip()]
+    if len(lines) < 2:
+        return False
+    source = normalized(source)
+    offset = 0
+    for line in lines:
+        # A shorter number must not match the tail of a different source amount.
+        pattern = (r'(?<![\d.,])' if line[0].isdigit() else '') + re.escape(line)
+        if line[-1].isdigit():
+            pattern += r'(?![\d.,])'
+        match = re.compile(pattern).search(source, offset)
+        if not match:
+            return False
+        offset = match.end()
+    return True
+
+
 def validate_extraction(data: dict, raw: str) -> dict:
     """A checked quote is a transcript match, NEVER a claim of image accuracy."""
     data = dict(data)
@@ -208,7 +227,9 @@ def validate_extraction(data: dict, raw: str) -> dict:
             if key == 'amount':
                 old_value=str((data.get(key) or {}).get('value') or '')
                 # Do not silently turn a model-invented number into a verified value.
-                if old_value and normalized(old_value) not in normalized(candidates[0]['evidence']):continue
+                if (old_value and normalized(old_value) not in normalized(candidates[0]['evidence'])
+                        and not ordered_source_lines(old_value, candidates[0]['evidence'])):
+                    continue
             data[key] = candidates[0]
     # Prefer an explicit application-method line over a model-selected exception.
     # This copies a labelled source span and does not infer an action from a date.

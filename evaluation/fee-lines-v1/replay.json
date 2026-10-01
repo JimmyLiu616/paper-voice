@@ -1,0 +1,14 @@
+{
+  "app_sha256": "e69c57878954429cb747efe3c1e0bc8246ebb96e73ae877cbadc17a2c8defbf2",
+  "baseline_app_sha256": "b3d51315b0df633d02622aad9bfeb056882289e77f4654a60d3998113cd5efa9",
+  "saved_output_sha256": "74395b930dbfc9f84d5c1fc8ca3d2bc3dd370a61458d109e62ce48d02936eccc",
+  "runner_sha256": "a671b798602dd0a5bca15e9dfcc550c0902316fe1a3191d811ba009c94218fd6",
+  "changed_fields": [
+    "amount"
+  ],
+  "before_state": "needs_review",
+  "after_state": "source_matched",
+  "full_source_quote_preserved": true,
+  "two_amounts_roles_and_cap_preserved": true,
+  "scope": "One saved real extraction shared by both validators; no new generation, fine-tuning or general accuracy claim."
+}
