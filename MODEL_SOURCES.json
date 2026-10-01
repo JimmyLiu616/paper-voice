@@ -83,6 +83,19 @@
       "name": "Browser SpeechSynthesis",
       "role": "optional user-selected fallback",
       "offline": "depends on installed browser voices"
+    },
+    {
+      "name": "Taibun",
+      "version": "1.1.8",
+      "developer": "Andrei Harbachov",
+      "role": "local Taiwanese Hanji to POJ pronunciation draft; not Mandarin sentence translation",
+      "source": "https://github.com/andreihar/taibun",
+      "code_license": "MIT",
+      "license_copy": "third_party/Taibun-LICENSE.txt",
+      "dictionary_license": "CC BY-SA 4.0 (Taibun package declaration)",
+      "dictionary_sources": "Taiwanese-Chinese Online Dictionary and iTaigi via ChhoeTaigi",
+      "dictionary_source_url": "https://github.com/ChhoeTaigi/ChhoeTaigiDatabase",
+      "pronunciation_evaluated_by_native_speaker": false
     }
   ],
   "competition_status": "Official ASR integrated into spoken document Q&A; correction export implemented. Source repository: https://github.com/JimmyLiu616/paper-voice. Eligibility and bonus scoring remain organizer decisions; competition registration is not completed by repository publication.",

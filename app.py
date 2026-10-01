@@ -814,6 +814,21 @@ class HakkaRequest(BaseModel):
     dialect: Literal['sixian', 'hailu'] = 'sixian'
 
 
+class TaigiPronunciationRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=80)
+
+
+@app.post('/api/taigi-pronunciation')
+async def taigi_pronunciation(body: TaigiPronunciationRequest):
+    from scripts.taigi_text import pronunciation_draft
+    try:
+        return await asyncio.to_thread(pronunciation_draft, body.text)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    except (ImportError, FileNotFoundError) as exc:
+        raise HTTPException(503, '台語轉寫套件或模型字表尚未安裝，請依 README 完成安裝。') from exc
+
+
 def hakka_ready():
     return ((ROOT / '.venv-local-tts/Scripts/python.exe').is_file()
             and all((RUNTIME / 'voxhakka' / name).is_file() for name in
@@ -891,13 +906,12 @@ def taigi_wav(text: str) -> bytes:
         taigi_engine = tokenizer, model
     tokenizer, model = taigi_engine
     # Do not allow unsupported symbols to be silently discarded by the tokenizer.
-    text = unicodedata.normalize('NFC', text.strip().lower())
     vocab = tokenizer.get_vocab()
-    unsupported = sorted(set(text) - set(vocab))
-    if unsupported:
-        raise HTTPException(422, '模型不支援這些字元：' + ' '.join(unsupported) + '。請改成符合模型字表的白話字。')
-    if not any(c.isalpha() for c in text):
-        raise HTTPException(422, '請輸入白話字句子。')
+    from scripts.taigi_text import mms_text
+    try:
+        text = mms_text(text, vocab)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
     with torch.inference_mode():
         torch.manual_seed(42)
         waveform = model(**tokenizer(text, return_tensors='pt')).waveform[0].cpu().numpy()

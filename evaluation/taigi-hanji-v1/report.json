@@ -1,0 +1,80 @@
+{
+  "scope": "Real CPU synthesis and complete vocabulary coverage only; no native-speaker pronunciation or Mandarin translation score.",
+  "app_sha256": "81c9f2eb3ae865696c2a6e86bd027e0c78772ec945bc5df65697344687e00996",
+  "helper_sha256": "82fe9c021d9580eb2aa0764b5617aaaa2acdb5c7536ceff2c8f136931499b0e5",
+  "model": "facebook/mms-tts-nan",
+  "taibun_version": "1.1.8",
+  "runs": [
+    {
+      "text": "你好",
+      "poj": "lí hó",
+      "model_text": "lí hó",
+      "engine": "Taibun 1.1.8 / POJ / south / citation tones",
+      "warning": "這是台語漢字的讀音草稿，不是華語翻譯；多音字、文白讀與變調仍須核對。MMS 前處理會將鼻音上標 ⁿ 轉為 n，標點轉為空白；聲音口音尚待驗證。",
+      "seconds": 12.104,
+      "audio_seconds": 0.624,
+      "sample_rate": 16000,
+      "wav_sha256": "e09de47d76c6a2e19231980333efb4c8f616dd3360fa3bfa0524d5d3b46e5cc6"
+    },
+    {
+      "text": "食飽未？",
+      "poj": "chia̍h-pá bōe？",
+      "model_text": "chia̍h-pá bōe",
+      "engine": "Taibun 1.1.8 / POJ / south / citation tones",
+      "warning": "這是台語漢字的讀音草稿，不是華語翻譯；多音字、文白讀與變調仍須核對。MMS 前處理會將鼻音上標 ⁿ 轉為 n，標點轉為空白；聲音口音尚待驗證。",
+      "seconds": 0.309,
+      "audio_seconds": 1.456,
+      "sample_rate": 16000,
+      "wav_sha256": "38c0682520682c1d171af9f2399fa93c9adc6a174429ae3e0ca524d94b2a2b54"
+    },
+    {
+      "text": "請共身分證影本攑來。",
+      "poj": "chhiáⁿ kā sin-hūn-chèng iáⁿ-pún gia̍h lâi。",
+      "model_text": "chhián kā sin-hūn-chèng ián-pún gia̍h lâi",
+      "engine": "Taibun 1.1.8 / POJ / south / citation tones",
+      "warning": "這是台語漢字的讀音草稿，不是華語翻譯；多音字、文白讀與變調仍須核對。MMS 前處理會將鼻音上標 ⁿ 轉為 n，標點轉為空白；聲音口音尚待驗證。",
+      "seconds": 0.484,
+      "audio_seconds": 2.608,
+      "sample_rate": 16000,
+      "wav_sha256": "b6fb3e3f62bb62c1da39731d394649d56d66c067db3108b34379947cdc10dae7"
+    },
+    {
+      "text": "若是已經辦好，就免閣來。",
+      "poj": "nā-sī í-keng pān-hó，tō bián koh-lâi。",
+      "model_text": "nā-sī í-keng pān-hó tō bián koh-lâi",
+      "engine": "Taibun 1.1.8 / POJ / south / citation tones",
+      "warning": "這是台語漢字的讀音草稿，不是華語翻譯；多音字、文白讀與變調仍須核對。MMS 前處理會將鼻音上標 ⁿ 轉為 n，標點轉為空白；聲音口音尚待驗證。",
+      "seconds": 0.564,
+      "audio_seconds": 2.992,
+      "sample_rate": 16000,
+      "wav_sha256": "2f2789d3b9253a2f3f124f5430997e5cb86533b7e25efd8f678f11546cea91dc"
+    }
+  ],
+  "rejections": [
+    {
+      "text": "龘",
+      "status": 422,
+      "detail": "字典未收錄這些字，無法完整轉寫：龘"
+    },
+    {
+      "text": "2026年10月20日",
+      "status": 422,
+      "detail": "請使用台語漢字；數字請寫成讀法，外文與符號請先移除。"
+    },
+    {
+      "text": "１０月",
+      "status": 422,
+      "detail": "請使用台語漢字；數字請寫成讀法，外文與符號請先移除。"
+    },
+    {
+      "text": "你好abc",
+      "status": 422,
+      "detail": "請使用台語漢字；數字請寫成讀法，外文與符號請先移除。"
+    },
+    {
+      "text": "你好🙂",
+      "status": 422,
+      "detail": "請使用台語漢字；數字請寫成讀法，外文與符號請先移除。"
+    }
+  ]
+}

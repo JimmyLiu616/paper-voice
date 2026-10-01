@@ -1,0 +1,33 @@
+{
+  "app_sha256": "81c9f2eb3ae865696c2a6e86bd027e0c78772ec945bc5df65697344687e00996",
+  "app_js_sha256": "5c293f3132a913918e74583dcbc5e85abb84f71243106e14cb6e86ac85363b90",
+  "checks": {
+    "python_passed": 224,
+    "javascript_passed": 30
+  },
+  "document_pipeline_unchanged_vs_3110c48": {
+    "generate": true,
+    "extract": true,
+    "validate_extraction": true,
+    "process_job": true,
+    "analyze": true,
+    "ask": true,
+    "windows_ocr": true
+  },
+  "browser": {
+    "text": "請共身分證影本攑來。",
+    "poj": "chhiáⁿ kā sin-hūn-chèng iáⁿ-pún gia̍h lâi。",
+    "human_confirmation_checked": false,
+    "hanji_edit_clears_old_poj": true,
+    "taigi_audio_seconds": 2.608,
+    "taigi_media_error": null,
+    "mandarin_audio_seconds": 35.45619,
+    "mandarin_media_error": null,
+    "photo_notice_seconds": 12.4,
+    "photo_scope": "Single UI smoke run; no new controlled speed comparison."
+  },
+  "limitations": [
+    "No native-speaker pronunciation assessment",
+    "No automatic Mandarin-to-Taiwanese translation"
+  ]
+}

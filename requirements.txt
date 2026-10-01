@@ -10,3 +10,5 @@ torch>=2.6
 pytest>=8
 faster-whisper>=1.2,<2
 opencc-python-reimplemented>=0.1.7,<1
+taibun==1.1.8
+msgpack==1.1.2

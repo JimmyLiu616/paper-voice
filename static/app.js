@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const state = {file:null, mode:'image', job:null, result:null, run:0, busy:false, preview:null, audio:null, speechController:null};
+const state = {file:null, mode:'image', job:null, result:null, run:0, busy:false, preview:null, audio:null, taigiAudio:null, speechController:null};
 const headers = {'X-PaperVoice':'local-ui'};
 let asrReady=false, asrBusy=false, qaBusy=false, recorder=null, recordStream=null, recordTimer=null, voiceRun=0;
 let voiceReady = false, modelReady = false;
@@ -42,7 +42,7 @@ function mode(value) {
 }
 function stopSpeech() {
   state.speechController?.abort(); state.speechController=null;
-  $('audio').pause(); window.PaperVoiceHakka?.stop(); if('speechSynthesis' in window) speechSynthesis.cancel();
+  $('audio').pause(); $('taigi-audio').pause(); window.PaperVoiceHakka?.stop(); if('speechSynthesis' in window) speechSynthesis.cancel();
   $('speak-btn').textContent='▶ 聽重點'; $('taigi-btn').disabled=false;
 }
 async function discardJob(id) { if(id) await api('/api/jobs/'+encodeURIComponent(id),{method:'DELETE'}).catch(()=>{}); }
@@ -52,7 +52,7 @@ function resetResult() {
   state.run++; state.busy=false; stopSpeech(); discardJob(state.job); state.job=null; state.result=null;
   $('progress').hidden=true; $('result-content').hidden=true; $('empty-state').hidden=false;
   $('result-meta').textContent='等待放入文件'; $('answers').replaceChildren(textNode('p','先讀取一份文件，就能開始提問。','hint'));
-  $('speech-status').textContent='完成辨識後，就可以播放語音。'; $('audio').hidden=true;
+  $('speech-status').textContent='完成辨識後，就可以播放語音。'; $('audio').hidden=true; $('taigi-audio').hidden=true;
   $('step2').classList.remove('current'); $('step3').classList.remove('current'); buttons();
 }
 function chooseFile(file) {
@@ -123,19 +123,22 @@ $('analyze-btn').onclick=()=>analyze();
 $('reanalyze-btn').onclick=()=>{if($('raw-text').value.trim().length<4){message('請輸入至少四個字。');return;}analyze($('raw-text').value);};
 function readText(){if(!state.result)return '';return $('read-target').value==='raw'?state.result.raw_text:(state.result.summary.join('。\n')||'這份文件未找到可核對的重點，請查看原圖與辨識原文。');}
 async function playLocal(text,language='zh-TW') {
+  const player=language==='nan'?$('taigi-audio'):$('audio');
+  const status=language==='nan'?$('taigi-play-status'):$('speech-status');
   stopSpeech();message(); const controller=new AbortController();state.speechController=controller;
-  $('speech-status').textContent=language==='nan'?'正在用本機閩南語模型產生語音…':'正在用 Windows 台灣華語產生語音…';
+  status.textContent=language==='nan'?'正在用本機閩南語模型產生語音…':'正在用 Windows 台灣華語產生語音…';
   if(language==='nan')$('taigi-btn').disabled=true;else $('speak-btn').disabled=true;
   try {
     const paired=language==='nan' && $('taigi-source').value.trim();
     const payload=paired?{job_id:state.job,source:$('taigi-source').value.trim(),poj:text,confirmed:$('taigi-confirm').checked}:{text,language,rate:-1};
     const response=await api(paired?'/api/document-taigi':'/api/speech',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify(payload)});
     const blob=await response.blob();if(controller.signal.aborted)return;
-    if(state.audio)URL.revokeObjectURL(state.audio);state.audio=URL.createObjectURL(blob);
-    $('audio').src=state.audio;$('audio').hidden=false;$('audio').playbackRate=Number($('speed').value);
-    try {await $('audio').play();$('speech-status').textContent=language==='nan'?'閩南語試聽中；請核對發音與口音。':'台灣華語朗讀中 · 可暫停或調整語速';}
-    catch {$('speech-status').textContent='語音已產生，請按下播放器的播放鍵。';}
-  } catch(e){if(e.name!=='AbortError'){message(e.message);$('speech-status').textContent='語音未能產生，請檢查訊息後重試。';}}
+    const audioKey=language==='nan'?'taigiAudio':'audio';
+    if(state[audioKey])URL.revokeObjectURL(state[audioKey]);state[audioKey]=URL.createObjectURL(blob);
+    player.src=state[audioKey];player.hidden=false;player.playbackRate=Number($('speed').value);
+    try {await player.play();status.textContent=language==='nan'?'閩南語試聽中；請核對發音與口音。':'台灣華語朗讀中 · 可暫停或調整語速';}
+    catch {status.textContent='語音已產生，請按下播放器的播放鍵。';}
+  } catch(e){if(e.name!=='AbortError'){message(e.message);status.textContent='語音未能產生，請檢查訊息後重試。';}}
   finally{if(state.speechController===controller){$('taigi-btn').disabled=false;buttons();}}
 }
 $('speak-btn').onclick=()=>{
@@ -151,8 +154,9 @@ $('speak-btn').onclick=()=>{
   }else {if(text.length>1800){message('整份原文超過單次朗讀上限（1,800 字），請改聽重要資訊，或將文件分段。');return;}playLocal(text);}
 };
 $('stop-btn').onclick=()=>{stopSpeech();$('speech-status').textContent='已停止朗讀。';buttons();};
-$('speed').onchange=()=>{$('audio').playbackRate=Number($('speed').value);};
+$('speed').onchange=()=>{for(const id of ['audio','taigi-audio'])$(id).playbackRate=Number($('speed').value);};
 $('taigi-btn').onclick=()=>{const text=$('taigi-text').value.trim();if(!text){message('請先輸入白話字。');return;}playLocal(text,'nan');};
+$('taigi-audio').addEventListener('ended',()=>{$('taigi-play-status').textContent='台語試聽完成，可按播放器重播。';});
 $('audio').addEventListener('ended',()=>{$('speech-status').textContent='朗讀完成。';});
 $('question-form').addEventListener('submit',async e=>{
   e.preventDefault();if(!state.result||state.busy||qaBusy)return;const question=$('question').value.trim();if(!question)return;qaBusy=true;
@@ -230,7 +234,7 @@ $('record-btn').onclick=async()=>{
 $('audio-file').onchange=e=>{const file=e.target.files[0];e.target.value='';if(!file || !state.result)return;if(file.size>8*1024*1024){message('音檔請小於 8 MB。');return;}sendAudio(file,state.job,++voiceRun);};
 window.addEventListener('pagehide',()=>{voiceRun++;clearTimeout(recordTimer);recordStream?.getTracks().forEach(t=>t.stop());});
 $('taigi-source-btn').onclick=()=>{if(!state.result)return;$('taigi-source').value=state.result.raw_text.slice(0,500);$('taigi-text').value='';$('taigi-confirm').checked=false;};
-for(const id of ['taigi-source','taigi-text'])$(id).addEventListener('input',()=>{$('taigi-confirm').checked=false;});
+for(const id of ['taigi-source','taigi-text'])$(id).addEventListener('input',()=>{stopSpeech();buttons();$('taigi-confirm').checked=false;$('taigi-audio').pause();$('taigi-audio').hidden=true;$('taigi-play-status').textContent='文字已變更，請重新產生台語音檔。';});
 $('corpus-preview-btn').onclick=async()=>{
   if(!state.result)return;const job=state.job;
   try {

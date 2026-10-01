@@ -8,10 +8,12 @@
 
 | 範圍 | 最近已完成的驗證 | 適用限制與紀錄 |
 |---|---|---|
-| Python程式 | 完整回歸203項通過；1項既有Starlette/httpx棄用警告 | 新增6項模型預載檢查；不代表模型品質。`evaluation/photo-latency-v1/README.md` |
+| Python程式 | 完整回歸224項通過；1項既有Starlette/httpx棄用警告 | 含模型預載、客語邊界與台語轉寫檢查；不代表模型品質。`evaluation/photo-latency-v1/README.md` |
 | 照片預載實測 | 兩張自製圖未預載28.9／25.5秒；预載完成後8.3／7.5秒，全文及欄位一致 | 提前準備另需20.5／19.1秒，未加速模型本身；每條件僅一次。`evaluation/photo-latency-v1/README.md` |
 | ASR非語音前置檢查 | 三種非語音訊號從8–12秒降至約0.58秒；4筆合成語音文字相同 | 每例一組配對，無真人或台語品質結論；正式API已驗證。`evaluation/asr-preflight-v1/README.md` |
-| JavaScript程式 | 完整回歸25項通過 | 回答朗讀8項、相機生命週期6項、資料核對8項、預載3項。`evaluation/qa-completeness/answer-speech-v1.json` |
+| 台語漢字試聽 | 4句真實MMS音檔、5例不完整輸入拒絕 | 非華語翻譯，未經母語者評分；見 `evaluation/taigi-hanji-v1/README.md` |
+| 客語試聽 | 四縣／海陸兩腔實際瀏覽器產生音檔 | 固定短句與聲音，未經母語者評分；見 `evaluation/hakka-v1/README.md` |
+| JavaScript程式 | 完整回歸30項通過 | 回答朗讀8項、相機生命週期6項、資料核對8項、預載3項、台語草稿過期防護5項。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 公文圖片（隔離API） | public-v14：5頁，欄位20/20、問答機械檢查10/10、0執行錯誤 | 額外兩项待辦診斷同輸出0→2/2，其餘33欄相同，分開計分。地點、其他待辦空欄與清單／引用完整性限制仍在。`evaluation/public-documents/public-v14-review.json` |
 | 回答與引用朗讀 | 真實UI完成預設引用、只讀回答及拒答三種播放 | 以文字通知測試；未證明使用者理解改善。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 文件訓練GPU流程 | 229 tokens、1步optimizer；52個張量更新，104個載入張量與保存檔相符，獨立程序生成一致 | 同一固定合成素材，更新前後答案相同，無任務改善證據。`evaluation/qa-completeness/cuda-smoke-document-001/` |
@@ -21,7 +23,7 @@
 | 新增成對核對頁 | 新6份0/6，原12份12/12；新草稿匯出保留未確認狀態 | 無新增訓練／推論；人工語意核對尚未完成。`training/contrast-ui-validation.json` |
 | 老師展示素材 | 約188.77秒MP4與字幕已發布 | 真實截圖剪輯、非連續錄影；旁白另行合成，版本差異見 `DEMO.md` |
 
-重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `dfe8d8a2817ce0ace6ad5a7f2ad5869c5f91cab6cb2a337339ce661876b83cb7`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
+重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `81c9f2eb3ae865696c2a6e86bd027e0c78772ec945bc5df65697344687e00996`，ASR、閩南語與客語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
 
 ## 早期自動測試紀錄
 
