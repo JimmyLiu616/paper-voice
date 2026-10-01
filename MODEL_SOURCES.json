@@ -72,7 +72,7 @@
   "data_license": "Original correction-format examples and opt-in exported contributions: CC BY 4.0; see CONTRIBUTING_DATA.md",
   "experimental_models": [
     {
-      "role": "local semantic-verification experiment; not deployed in the document pipeline",
+      "role": "local semantic-verification and core VLM comparison experiments; not deployed in the document pipeline",
       "developer": "Mistral AI",
       "model": "mistralai/Ministral-3-3B-Instruct-2512",
       "runtime_tag": "ministral-3:3b-instruct-2512-q4_K_M",
@@ -85,7 +85,8 @@
       "license_url": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512/blob/main/LICENSE",
       "fine_tuned_by_this_project": false,
       "license_copy": "third_party/Ministral-3-LICENSE.txt",
-      "evaluation": "evaluation/answer-verification/runs/ministral-verifier-v1 and ministral-verifier-v2; rejected for deployment"
+      "evaluation": "evaluation/answer-verification/runs/ministral-verifier-v1 and ministral-verifier-v2; rejected for deployment",
+      "core_vlm_evaluation": "evaluation/core-model-comparison/ministral-core-v1/; paired 5-page regression: 15/20 fields and 7/10 QA versus Gemma 18/20 and 10/10; rejected as direct replacement"
     },
     {
       "role": "native checkpoint for isolated QLoRA feasibility experiment; not deployed",

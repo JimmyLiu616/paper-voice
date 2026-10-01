@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-01",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "decision": "Do not replace the serving Gemma model with this unchanged Ministral configuration.",
+  "fine_tuning": false,
+  "deployed": false,
+  "formal_service_unchanged": true,
+  "method": "Paired 5 previously used official-document pages through the same isolated ASGI API, JPEG preprocessing, OCR, prompts, extraction validation and QA; model order alternates by page. Models use recorded digests, temperature 0, seed 42 and context 8192.",
+  "findings": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "finding": "Both models pass the four field checks and two QA checks; Ministral action is hidden for review. This is not a whole-document correctness verdict."
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "finding": "Both pass 3/4 fields and 2/2 QA, but failures differ. Ministral captures issuance restrictions missed by Gemma, while losing the fee card. Direct source-image inspection also shows its nationality-code instruction in action is unsupported; its contact card is a blank Phone No. placeholder. Gemma retains its earlier truncated action and publication-heading location errors."
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "finding": "Gemma passes 4/4 fields and 2/2 QA. Ministral loses the subsidy amount card and refuses the explicit business-applicant exemption question (3/4, 1/2). The relevant exemption is present in its own document-list card."
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "finding": "Both miss the application form in required documents; both retain deadline/postmark and pass both QA checks. Ministral action describes eligibility instead of an action."
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "finding": "Gemma passes 4/4 fields and 2/2 QA. Ministral hides deadline and amount, refuses the conditional extension question, and answers the spouse-eligibility question with the literal metadata string found=true despite returning a relevant quote (2/4, 0/2)."
+    }
+  ],
+  "limits": [
+    "All sources are opened development documents, not unseen evaluation.",
+    "Required-span and abstention checks do not measure full semantic accuracy.",
+    "The same application prompts are used without model-specific tuning; this does not establish that Ministral cannot improve.",
+    "Cold loads, switching and caches affect the recorded per-page times; no general speed claim.",
+    "The unchanged app snapshot contains Gemma-specific UI/stage wording even in the isolated Ministral run; metadata and result model tags identify actual inference.",
+    "Raw official-document transcripts and source PDF/image files remain local and are not republished."
+  ]
+}

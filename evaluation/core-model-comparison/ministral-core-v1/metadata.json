@@ -1,0 +1,61 @@
+{
+  "name": "ministral-core-v1",
+  "app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "cases_sha256": "0d6015d5440559ef58cd368e49c9523d445ef07fd9273c5f301762672bee1a45",
+  "manifest_sha256": "07ce1faffe806b0f195c03a8f6e14b01792472fb1b323635f806ac64f916c0ab",
+  "runner_sha256": "e186194cc9ea56780d7152b91a3f59d3c38f4ee4d0441684479fca970fc27b43",
+  "transport": "isolated in-process ASGI API; real external Ollama and Windows OCR",
+  "scope": "Same 5 existing development pages and 10 questions, alternating model order by page.",
+  "deployed": false,
+  "models": {
+    "gemma": {
+      "tag": "gemma3:4b",
+      "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+      "capabilities": [
+        "completion",
+        "vision"
+      ],
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "gemma3",
+        "families": [
+          "gemma3"
+        ],
+        "parameter_size": "4.3B",
+        "quantization_level": "Q4_K_M"
+      }
+    },
+    "ministral": {
+      "tag": "ministral-3:3b-instruct-2512-q4_K_M",
+      "digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d",
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools"
+      ],
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "mistral3",
+        "families": [
+          "mistral3"
+        ],
+        "parameter_size": "3.8B",
+        "quantization_level": "Q4_K_M"
+      }
+    }
+  },
+  "quality_accuracy_claimed": false,
+  "live_service_before": {
+    "ollama": true,
+    "model_ready": true,
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+    "asr_ready": true,
+    "asr_model": "Taiwan Tongues ASR CE v1.0",
+    "taigi_ready": true,
+    "privacy": "本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。"
+  }
+}

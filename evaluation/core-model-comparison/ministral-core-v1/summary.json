@@ -1,0 +1,25 @@
+{
+  "run": "ministral-core-v1",
+  "app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "models": {
+    "gemma": {
+      "pages": 5,
+      "errors": 0,
+      "fields_passed": 18,
+      "fields_planned": 20,
+      "qa_passed": 10,
+      "qa_planned": 10
+    },
+    "ministral": {
+      "pages": 5,
+      "errors": 0,
+      "fields_passed": 15,
+      "fields_planned": 20,
+      "qa_passed": 7,
+      "qa_planned": 10
+    }
+  },
+  "live_model_unchanged": true,
+  "deployed": false,
+  "note": "Paired existing-development regression, not unseen accuracy. Requires semantic review."
+}

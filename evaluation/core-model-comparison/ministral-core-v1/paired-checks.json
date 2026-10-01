@@ -1,0 +1,382 @@
+[
+  {
+    "id": "nycu-ethics-114-p1",
+    "windows_ocr_reference_identical": true,
+    "models": {
+      "gemma": {
+        "seconds_single_observation": 32.3,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      },
+      "ministral": {
+        "seconds_single_observation": 56.3,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "moi-police-form-109-p4",
+    "windows_ocr_reference_identical": true,
+    "models": {
+      "ministral": {
+        "seconds_single_observation": 25.13,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": false
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      },
+      "gemma": {
+        "seconds_single_observation": 54.14,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": false
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "wda-pretraining-115-p2",
+    "windows_ocr_reference_identical": true,
+    "models": {
+      "gemma": {
+        "seconds_single_observation": 21.71,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      },
+      "ministral": {
+        "seconds_single_observation": 41.81,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": false
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": false,
+            "passed": false
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "taipei-tuition-115-p2",
+    "windows_ocr_reference_identical": true,
+    "models": {
+      "ministral": {
+        "seconds_single_observation": 19.57,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": false
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      },
+      "gemma": {
+        "seconds_single_observation": 35.31,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": false
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": false,
+            "actual_found": false,
+            "passed": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "taipei-tuition-115-p3",
+    "windows_ocr_reference_identical": true,
+    "models": {
+      "gemma": {
+        "seconds_single_observation": 20.41,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": true
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": true
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          },
+          {
+            "index": 2,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": true
+          }
+        ]
+      },
+      "ministral": {
+        "seconds_single_observation": 42.65,
+        "field_checks": [
+          {
+            "field": "deadline",
+            "passed": false
+          },
+          {
+            "field": "required_documents",
+            "passed": true
+          },
+          {
+            "field": "amount",
+            "passed": false
+          },
+          {
+            "field": "conditions",
+            "passed": true
+          }
+        ],
+        "qa_checks": [
+          {
+            "index": 1,
+            "expected_found": true,
+            "actual_found": false,
+            "passed": false
+          },
+          {
+            "index": 2,
+            "expected_found": true,
+            "actual_found": true,
+            "passed": false
+          }
+        ]
+      }
+    }
+  }
+]
