@@ -1,0 +1,15 @@
+{
+  "baseline_outputs_identical_excluding_timing": true,
+  "baseline_tasks": 8,
+  "same_base_quantization_lora_code_tokenization": true,
+  "identical_train_dev_input_bytes": true,
+  "changed_config_keys": [
+    "name",
+    "learning_rate"
+  ],
+  "learning_rates": [
+    0.0001,
+    5e-05
+  ],
+  "test_generation_performed": false
+}

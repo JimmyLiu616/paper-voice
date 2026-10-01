@@ -72,3 +72,6 @@ v9 已完成首次凍結保留測試：4個家族8張圖，欄位35/42、問答1
 - 指定模型可訓練版本：https://huggingface.co/adi-gov-tw/Taiwan-Tongues-ASR-CE-pretrained-v1.0
 
 Gemma 授權是否符合本組認定仍待主辦確認；TRAIL 模型衍生發布必須遵循其條款。微調不會自動解除原模型授權限制。
+
+
+2026-10-02第二次任務實驗僅降低learning rate，控制基準相同；結果修回一題拒答但新增conditions漏列，拒絕部署。8份train、2份dev規模不足以支持無限參數搜尋，下一步優先新的核對資料與完整欄位／例外對照，test維持不推論。比較證據見 [REVIEWED_RUN_002.md](REVIEWED_RUN_002.md)。

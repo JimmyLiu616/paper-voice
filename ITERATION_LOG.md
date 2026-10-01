@@ -107,3 +107,5 @@ v4 起保存程式快照與雜湊。較早版本只有雜湊、逐例輸出與�
 2026-10-02 微調輸出比較：新增score_document_lora.py，離線核對已完成實驗的生成／輸入檔雜湊並以source/task對齊，拒絕缺題、重複、錯誤來源／reference與test輸入。分開報格式、EOS、四欄精確匹配、found／拒答及引文來源；不把來源存在或精確匹配宣稱語意正確。既有cuda-smoke-document-001實測1題前後相同，皆帶JSON圍欄、嚴格格式與參考匹配0/1；沒有重新訓練／GPU／生成，也沒有品質提升。18項新增測試、完整Python135項通過。正式app.py與模型不變，任務訓練仍待人工核對與獨立test。操作見training/DOCUMENT_LORA.md。
 
 2026-10-02 notices-reviewed-001：重新檢查核對頁發現12/12已確認（前次0/12狀態已過時），已保存原始匯出。文件／標註與公開草稿相同，只新增使用者確認聲明；原始匯出及核對者不公開。首輪前固定8/2/2，32訓練任務、8步、104張量改變，4.25GiB保留峰值。8個dev任务純JSON由0到6，四欄精確匹配仍1/8，新增禁止複製錄音題的錯誤拒答，故不採用；test未推論。新程序104張量與8筆生成完全一致。完整已公開的非個資生成紀錄與代理審閱見evaluation/document-lora/notices-reviewed-001，正式app及權重不變。
+
+2026-10-02 notices-reviewed-002：預先固定一次learning rate 0.0001→0.00005比較；同資料、原生基礎模型、seed、32任務、1epoch／8步。兩輪baseline八筆輸出除時間外相同、輸入位元組及runtime雜湊一致。候選恢復禁止複製錄音問答，但同文件conditions變空；純JSON0/8，四欄精確匹配仍1/8。104張量更新、4.25GiB，同程序保存重載已做，新程序重現未執行。再次不採用，test未推論，不啟動更廣的同小dev參數搜尋。見training/REVIEWED_RUN_002.md及evaluation/document-lora/notices-reviewed-002。

@@ -1,0 +1,315 @@
+{
+  "tasks": 8,
+  "totals": {
+    "baseline": {
+      "strict_json": 0,
+      "structure_valid": 8,
+      "ended_with_eos": 8,
+      "strict_reference_pass": 0,
+      "unexpected_positive": 0,
+      "missing_answer": 0,
+      "field_exact": 1,
+      "field_checks_planned": 8,
+      "qa_planned": 6
+    },
+    "adapter": {
+      "strict_json": 0,
+      "structure_valid": 8,
+      "ended_with_eos": 8,
+      "strict_reference_pass": 0,
+      "unexpected_positive": 0,
+      "missing_answer": 0,
+      "field_exact": 1,
+      "field_checks_planned": 8,
+      "qa_planned": 6
+    }
+  },
+  "rows": [
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "fields",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "field_exact": {
+          "deadline": false,
+          "required_documents": false,
+          "amount": false,
+          "conditions": false
+        },
+        "field_source_match": {
+          "deadline": true,
+          "required_documents": false,
+          "amount": false,
+          "conditions": false
+        },
+        "unexpected_nonempty_fields": []
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "field_exact": {
+          "deadline": false,
+          "required_documents": false,
+          "amount": false,
+          "conditions": false
+        },
+        "field_source_match": {
+          "deadline": true,
+          "required_documents": false,
+          "amount": true,
+          "conditions": false
+        },
+        "unexpected_nonempty_fields": []
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-1",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": false
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": true,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-2",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-3",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": true,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": true,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "fields",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "field_exact": {
+          "deadline": true,
+          "required_documents": false,
+          "amount": false,
+          "conditions": false
+        },
+        "field_source_match": {
+          "deadline": true,
+          "required_documents": true,
+          "amount": true,
+          "conditions": false
+        },
+        "unexpected_nonempty_fields": []
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "field_exact": {
+          "deadline": true,
+          "required_documents": false,
+          "amount": false,
+          "conditions": false
+        },
+        "field_source_match": {
+          "deadline": true,
+          "required_documents": true,
+          "amount": true,
+          "conditions": true
+        },
+        "unexpected_nonempty_fields": []
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "qa-1",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "qa-2",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "qa-3",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": true,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": true,
+        "evidence_source_match": true
+      },
+      "unchanged_output": false
+    }
+  ],
+  "new_strict_reference_passes": 0,
+  "lost_strict_reference_passes": 0,
+  "unchanged_outputs": 0,
+  "task_quality_verified": false,
+  "deployed": false,
+  "human_review_required": true,
+  "limitations": [
+    "Strict reference matching may reject valid paraphrases.",
+    "Source-matched evidence may still be irrelevant or fail to support the answer.",
+    "A dev diagnostic is not held-out quality, training success or deployment approval.",
+    "Markdown fences are inspected diagnostically but never pass strict JSON."
+  ],
+  "purpose": "reviewed-document-text-experiment",
+  "same_fixture_train_and_dev": false,
+  "artifacts_sha256": {
+    "baseline-dev.jsonl": "8c1f6e54bc04875c6969de038f9dac6e9497df48c937c461961f091b17704ae9",
+    "adapter-dev.jsonl": "26e83617178f64487995d0b3eaf819d1c91bcd23550b6cd1d58fbfbc7c2b6050",
+    "inputs/manifest.json": "221b84e0affac36fe6fe717696d9a4e86ededf18e4e2168b0309a26650036e92",
+    "inputs/dev.jsonl": "059e6e3011752fda2141db284fa9bf00ea0fb2ee32bb8b31f1c4f1ccfcc71d93"
+  },
+  "scorer_sha256": "6ea0d04fb4933a42fcb31e432f11c68088ddf089eda00f22d37e3a4f44ca8754",
+  "training_report_sha256": "eac4f661f723cfb2b78fb57b5d1797b8751583b2431e148458532165f281b4a9",
+  "test_labels_read": false,
+  "document_hash_mode": "normalized",
+  "gpu_used": false,
+  "model_generation_performed": false
+}

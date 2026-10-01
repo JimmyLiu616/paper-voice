@@ -15,6 +15,7 @@
 | 文件訓練GPU流程 | 229 tokens、1步optimizer；52個張量更新，104個載入張量與保存檔相符，獨立程序生成一致 | 同一固定合成素材，更新前後答案相同，無任務改善證據。`evaluation/qa-completeness/cuda-smoke-document-001/` |
 | 微調輸出離線比較 | 已保存的1題前後答案相同，皆帶圍欄；嚴格JSON與參考匹配0/1 | 未再訓練／推論，沒有品質或泛化改善結論。`evaluation/qa-completeness/cuda-smoke-document-001/paired-dev-metrics.json` |
 | 首次核對資料任務微調 | 32訓練任務、8次更新；104張量新程序重載相同、8筆dev生成重現；約4.25 GiB | 純JSON 0/8→6/8，但新增1題錯誤拒答，未採用；test未推論。`training/REVIEWED_RUN_001.md` |
+| 第二次任務微調 | 僅learning rate減半；8筆baseline完全相同，104張量更新，同程序保存重載 | 修回禁止題回答但新增例外欄漏列，純JSON0/8，仍未採用；未做新程序重現。`training/REVIEWED_RUN_002.md` |
 | 老師展示素材 | 約188.77秒MP4與字幕已發布 | 真實截圖剪輯、非連續錄影；旁白另行合成，版本差異見 `DEMO.md` |
 
 重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `e69c57878954429cb747efe3c1e0bc8246ebb96e73ae877cbadc17a2c8defbf2`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。

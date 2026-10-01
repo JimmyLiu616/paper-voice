@@ -97,7 +97,7 @@
       "source": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-BF16",
       "download_verification": "training/native-model-download.json",
       "fine_tuned_by_this_project": true,
-      "status": "Feasibility runs and first reviewed-data task run completed; task candidate rejected for a new unsupported refusal; serving model unchanged",
+      "status": "Two reviewed synthetic task runs completed; learning-rate reduction restored a prohibition answer but introduced an empty exception field. Both candidates rejected; serving model unchanged.",
       "documentation": "training/LORA_SMOKE.md",
       "fine_tuning": {
         "purpose": "synthetic-feasibility-only",
@@ -121,7 +121,25 @@
         "task_quality_verified": false,
         "report": "evaluation/document-lora/notices-reviewed-001/",
         "documentation": "training/REVIEWED_RUN_001.md"
-      }
+      },
+      "controlled_comparisons": [
+        {
+          "run": "notices-reviewed-002",
+          "control_run": "notices-reviewed-001",
+          "learning_rate": 5e-05,
+          "optimizer_steps": 8,
+          "only_training_parameter_changed": "learning_rate",
+          "baseline_outputs_identical": true,
+          "same_process_saved_adapter_reload": true,
+          "fresh_process_verification_performed": false,
+          "adapter_sha256": "9ab34a78b249a4f909ee179f738bb9a6fb6229fcb3be6fbc7fff4ec67d5a9326",
+          "test_generation_performed": false,
+          "decision": "rejected: missing exception field and Markdown-only outputs remain",
+          "deployed": false,
+          "report": "evaluation/document-lora/notices-reviewed-002/",
+          "documentation": "training/REVIEWED_RUN_002.md"
+        }
+      ]
     }
   ]
 }

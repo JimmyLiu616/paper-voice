@@ -153,3 +153,5 @@ node --test tests\camera.test.cjs
 原創程式碼與虛構文件圖片採 MIT；修正語料格式示例與自願匯出資料採 CC BY 4.0，詳見 `CONTRIBUTING_DATA.md`。Gemma、Meta MMS、Taiwan Tongues ASR CE（TRAIL）、Windows 語音及套件各自保留原授權，不能用本專案 MIT 重新授權它們。
 
 完整模型來源見 `MODEL_SOURCES.json`；企畫及展示流程見 `SUBMISSION.md`。原始碼公開於 [GitHub](https://github.com/JimmyLiu616/paper-voice)，模型權重與使用者文件不隨儲存庫發布。公開原始碼不等於已提交競賽報名，也不代表主辦已確認參賽資格或加分。
+
+第二次[learning-rate受控比較](training/REVIEWED_RUN_002.md)恢復了否定題回答，但例外欄新增漏列、格式改善消失，仍未採用；兩輪原模型基準相同，保留test未推論。

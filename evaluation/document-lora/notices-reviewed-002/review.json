@@ -1,0 +1,59 @@
+{
+  "run": "notices-reviewed-002",
+  "reviewer": "Codex",
+  "independent_human_output_review": false,
+  "decision": "reject_for_deployment",
+  "test_generation_performed": false,
+  "fresh_process_verification_performed": false,
+  "same_process_saved_adapter_reload_performed": true,
+  "reason": "Lower learning rate restores the explicit-prohibition QA but drops an exception field and retains Markdown fences. It does not meet the no-new-regression criterion.",
+  "findings": [
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "qa-2",
+      "finding": "found=true with a correct prohibition answer and two source-matched quotes; the first adapter incorrectly refused this question."
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "fields",
+      "finding": "conditions becomes empty despite explicit prohibition/permission text; baseline and the first adapter both retained that content, although not as the exact reference span. Required booking confirmation still missing."
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-1",
+      "finding": "The baseline fabricated second quote remains removed."
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "fields",
+      "finding": "Waitlist notice still omitted; amount 450元 omits quarterly applicability and current no-fee condition."
+    }
+  ],
+  "comparison": {
+    "baseline": {
+      "strict_json": 0,
+      "false_refusals": 0,
+      "field_reference_matches": 1
+    },
+    "first_adapter_lr_1e_4": {
+      "strict_json": 6,
+      "false_refusals": 1,
+      "field_reference_matches": 1
+    },
+    "second_adapter_lr_5e_5": {
+      "strict_json": 0,
+      "false_refusals": 0,
+      "field_reference_matches": 1
+    },
+    "task_denominator": 8,
+    "qa_denominator": 6,
+    "field_denominator": 8
+  },
+  "limits": [
+    "One seed, eight dev tasks, two synthetic documents: no statistical or real-document generalization claim.",
+    "Exact-reference matches are not semantic accuracy; valid paraphrases can fail.",
+    "Test remains without inference. Runtime structured decoding was not added to hide format failures.",
+    "No comparison against serving Gemma, no new release weights, no deployment."
+  ],
+  "next_direction": "Do not launch a wider learning-rate sweep on these two dev documents. Prioritize more reviewed training material and complete-field/exception supervision while keeping existing dev/test outside training."
+}

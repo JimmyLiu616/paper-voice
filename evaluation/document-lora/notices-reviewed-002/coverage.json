@@ -1,0 +1,44 @@
+{
+  "train": {
+    "documents": 8,
+    "field_tasks": 8,
+    "qa_tasks": 24,
+    "answerable": 16,
+    "unanswerable": 8,
+    "focus_counts": {
+      "deadline": 1,
+      "exception": 5,
+      "abstention": 8,
+      "fee": 2,
+      "documents": 6,
+      "entity": 2
+    }
+  },
+  "dev": {
+    "documents": 2,
+    "field_tasks": 2,
+    "qa_tasks": 6,
+    "answerable": 4,
+    "unanswerable": 2,
+    "focus_counts": {
+      "eligibility": 1,
+      "fee": 1,
+      "abstention": 2,
+      "entity": 1,
+      "exception": 1
+    }
+  },
+  "test": {
+    "documents": 2,
+    "field_tasks": 2,
+    "qa_tasks": 6,
+    "answerable": 4,
+    "unanswerable": 2,
+    "focus_counts": {
+      "fee": 1,
+      "exception": 2,
+      "abstention": 2,
+      "documents": 1
+    }
+  }
+}

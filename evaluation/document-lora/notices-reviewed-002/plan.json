@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-10-01T16:49:35.768336+00:00",
+  "run": "notices-reviewed-002",
+  "control_run": "notices-reviewed-001",
+  "changed_training_parameter": {
+    "learning_rate": {
+      "before": 0.0001,
+      "after": 5e-05
+    }
+  },
+  "all_other_training_config": {
+    "epochs": 1,
+    "accumulation": 4,
+    "seed": 42,
+    "max_tokens": 1024,
+    "max_new_tokens": 512
+  },
+  "dataset_files_sha256": {
+    "train.jsonl": "0ec4a17b7b0fbd291ba880dd1d8fea137bc5311cf6160461c6e3ecec9c7ef562",
+    "dev.jsonl": "99a868181ff6e53a35eba9f984131a99a34c2b9d9aa1768e5277cd023488b09b",
+    "test.jsonl": "4af57b5bdc5cc0dcb6692dc9becac4128df5adc03c814af22c98c6b5e1ea1eaa"
+  },
+  "starting_point": "Same original native base checkpoint; a new seed-42 LoRA, not continuation of the first adapter.",
+  "hypothesis": "A smaller update may reduce the newly observed false refusal while retaining some format/source-fidelity gains; this is not assumed to work.",
+  "selection": "Reject any new false refusal, wrong amount/date/subject or unsupported quote found in the same dev tasks. Format gains alone do not justify deployment.",
+  "test_generation_planned": false,
+  "scope": "One predefined learning-rate comparison; no grid search; two dev documents are too small for a general quality claim."
+}

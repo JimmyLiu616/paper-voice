@@ -128,3 +128,5 @@ Gemma 3採Google自訂的[Gemma Terms of Use](https://ai.google.dev/gemma/terms)
 - 已整合數產署指定 ASR：https://github.com/adi-gov-tw/Taiwan-Tongues-ASR-CE
 
 原始碼儲存庫已公開；模型授權的參賽認定及指定數產署模型加分仍由主辦審查，沒有宣稱已取得。
+
+2026-10-02追加單參數微調比較：相同資料及8步更新，learning rate減半後，有明確禁止資訊的問題恢復回答，但conditions欄新增漏列，純JSON由第一個adapter的6/8降為0/8，仍未採用。完整控制證據見 `training/REVIEWED_RUN_002.md`；不能只展示較佳單項而宣稱微調有效。

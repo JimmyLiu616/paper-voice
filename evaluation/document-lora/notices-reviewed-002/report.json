@@ -1,0 +1,165 @@
+{
+  "status": "completed-awaiting-quality-review",
+  "purpose": "reviewed-document-text-experiment",
+  "same_fixture_train_and_dev": false,
+  "started_utc": "2026-10-01T16:49:35.952464+00:00",
+  "config": {
+    "name": "notices-reviewed-002",
+    "epochs": 1,
+    "accumulation": 4,
+    "learning_rate": 5e-05,
+    "seed": 42,
+    "max_tokens": 1024,
+    "max_new_tokens": 512
+  },
+  "optimizer_steps": 8,
+  "deployed": false,
+  "task_quality_verified": false,
+  "test_generation_performed": false,
+  "steps": [
+    {
+      "step": 1,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.6397583559155464,
+      "gradient_norm_before_clipping": 3.1640429496765137
+    },
+    {
+      "step": 2,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.6002900674939156,
+      "gradient_norm_before_clipping": 2.6870334148406982
+    },
+    {
+      "step": 3,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.4494823142886162,
+      "gradient_norm_before_clipping": 1.7727320194244385
+    },
+    {
+      "step": 4,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.2935456968843937,
+      "gradient_norm_before_clipping": 1.1182116270065308
+    },
+    {
+      "step": 5,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.5725658386945724,
+      "gradient_norm_before_clipping": 1.8360962867736816
+    },
+    {
+      "step": 6,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.5153525844216347,
+      "gradient_norm_before_clipping": 2.3669228553771973
+    },
+    {
+      "step": 7,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.5749516412615776,
+      "gradient_norm_before_clipping": 2.282792091369629
+    },
+    {
+      "step": 8,
+      "epoch": 1,
+      "examples": 4,
+      "mean_example_loss": 0.6218290254473686,
+      "gradient_norm_before_clipping": 2.1059210300445557
+    }
+  ],
+  "code_sha256": {
+    "train_document_lora.py": "7f9bc201ce858d5534c72a158ee9535c1159dab1586644ffa2196b0c47e38218",
+    "prepare_training_messages.py": "0b1a2cd6ba6d80d9758e9f95a0fc2807998a82344984fd42daf08d1e0b748b5d",
+    "validate_training_data.py": "31ba8debc2d99e998f57a8e6d5471991c5cd7f7f5fbdcce4e1e1a26654040b36",
+    "training_tokens.py": "d743a5afeb37e84d3c891bfb95b104555507b538663860415c4fc5239da549dd"
+  },
+  "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
+  "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
+  "download_manifest_sha256": "51312afbfc5919a6b228e07d2cb25c59bda5e454f1bdb139c475f494a148319d",
+  "stage": "complete",
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "transformers": "5.18.0",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.15.0",
+    "mistral-common": "1.12.0"
+  },
+  "token_lengths": {
+    "train": [
+      368,
+      372,
+      324,
+      300,
+      421,
+      362,
+      395,
+      321,
+      395,
+      358,
+      343,
+      325,
+      402,
+      354,
+      368,
+      315,
+      319,
+      331,
+      361,
+      315,
+      358,
+      329,
+      324,
+      298,
+      335,
+      301,
+      293,
+      271,
+      382,
+      359,
+      366,
+      327
+    ],
+    "dev": [
+      407,
+      374,
+      376,
+      327,
+      324,
+      319,
+      320,
+      282
+    ]
+  },
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "gpu_free_at_start_bytes": 7385120768,
+  "quantization": {
+    "bits": 4,
+    "type": "nf4",
+    "double_quant": true,
+    "compute_dtype": "bfloat16"
+  },
+  "lora": {
+    "r": 4,
+    "alpha": 8,
+    "dropout": 0.0
+  },
+  "trainable_parameters": 1171456,
+  "changed_adapter_tensors": 104,
+  "artifacts_sha256": {
+    "baseline-dev.jsonl": "8c1f6e54bc04875c6969de038f9dac6e9497df48c937c461961f091b17704ae9",
+    "adapter-dev.jsonl": "26e83617178f64487995d0b3eaf819d1c91bcd23550b6cd1d58fbfbc7c2b6050",
+    "adapter/adapter_model.safetensors": "9ab34a78b249a4f909ee179f738bb9a6fb6229fcb3be6fbc7fff4ec67d5a9326",
+    "adapter/adapter_config.json": "7ab4756cb2a4864e8cf162d77fdcacb9613513abd33a3093147a854abff112c3",
+    "inputs/manifest.json": "221b84e0affac36fe6fe717696d9a4e86ededf18e4e2168b0309a26650036e92"
+  },
+  "peak_allocated_bytes": 4242753536,
+  "peak_reserved_bytes": 4565499904
+}
