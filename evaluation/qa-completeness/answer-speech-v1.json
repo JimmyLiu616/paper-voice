@@ -1,0 +1,34 @@
+{
+  "id": "answer-speech-v1",
+  "date": "2026-10-01",
+  "scope": "前端回答語音預設包含完整原文引用；未修改後端、提示詞或權重。",
+  "backend_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "javascript_tests": {"passed": 21, "failed": 0, "new_answer_speech_tests": 8},
+  "syntax_check": "node --check static/app.js passed",
+  "ui_test": {
+    "method": "Codex 瀏覽器操作正式本機服務；文字模式整理、提問、勾選切換、實際 Windows TTS 播放。沒有注入模型結果。",
+    "source": "【自製虛構測試通知】\n紙聲通社區閱覽室補件通知\n請申請人補交身分證正反面影本及申請表。\n補件期限：民國115年10月20日下午5時前。\n辦理地點：社區閱覽室服務台。\n費用：免費。\n已完成補件者不必再次辦理。",
+    "extraction_seconds": 29.5,
+    "question": "最晚什麼時候要完成？",
+    "answer": "民國115年10月20日下午5時前。",
+    "evidence": "補件期限：民國115年10月20日下午5時前。",
+    "default_evidence_checkbox_checked": true,
+    "evidence_audio": {"duration_seconds": 18.247574, "current_time_seconds": 16.311214, "paused": false, "ready_state": 4},
+    "answer_only_audio": {"duration_seconds": 5.297914, "paused": false, "ready_state": 4},
+    "refusal_question": "可以搭哪一路公車？",
+    "refusal_answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+    "refusal_has_evidence_option": false,
+    "refusal_audio": {"duration_seconds": 6.340454, "paused": false, "ready_state": 4},
+    "browser_error_or_warning_logs": [],
+    "stopped_playback_after_test": true
+  },
+  "limits": [
+    "本輪沒有重現圖片示範中漏日期的答案；以純函式測試確認短答加上引用後不丟日期或 PM。",
+    "引用文字保留不代表模型引用正確、圖片辨識正確或使用者理解改善。",
+    "音訊驗證為瀏覽器播放器狀態與時長，沒有真人聽辨或 Windows 英文發音品質結論。",
+    "超過 1800 Unicode code points 會拒絕而非截斷；長度邊界以單元測試驗證，未在 UI 構造超長模型回答。",
+    "同次文字整理的地點仍顯示需要人工確認，費用另重複出現在提醒；本輪未處理這些模型問題。",
+    "既有 v0.1.0-demo 影片與 release ZIP 未更新，保留錄製當時版本。",
+    "不是微調或公文準確率改善證據。"
+  ]
+}

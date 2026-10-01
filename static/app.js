@@ -145,7 +145,22 @@ $('question-form').addEventListener('submit',async e=>{
   e.preventDefault();if(!state.result||state.busy||qaBusy)return;const question=$('question').value.trim();if(!question)return;qaBusy=true;
   const job=state.job;$('ask-btn').disabled=true;message();const waiting=textNode('p','正在根據文件查找答案…','hint');$('answers').prepend(waiting);
   try {const answer=await(await api('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({job_id:job,question})})).json();if(state.job!==job)return;
-    const item=textNode('article','','answer-item');item.append(textNode('strong',question),textNode('p',answer.answer));if(answer.evidence)item.append(textNode('blockquote','原文：'+answer.evidence));const listen=textNode('button','▶ 聽這個回答','secondary-button');listen.type='button';listen.onclick=()=>playLocal(answer.answer);item.append(listen);$('answers').prepend(item);$('question').value='';
+    const item=textNode('article','','answer-item');item.append(textNode('strong',question),textNode('p',answer.answer));if(answer.evidence)item.append(textNode('blockquote','原文：'+answer.evidence));
+    const listen=textNode('button','▶ 聽這個回答','secondary-button');listen.type='button';
+    let includeEvidence=null;
+    if(PaperVoiceAnswerSpeech.hasEvidence(answer)) {
+      const option=textNode('label','','check-label');
+      includeEvidence=document.createElement('input');includeEvidence.type='checkbox';includeEvidence.checked=true;
+      option.append(includeEvidence,textNode('span','同時朗讀原文依據（建議保留）'));
+      item.append(option);
+      const updateLabel=()=>{listen.textContent=includeEvidence.checked?'▶ 聽回答與依據':'▶ 只聽回答';};
+      includeEvidence.addEventListener('change',updateLabel);updateLabel();
+    }
+    listen.onclick=()=>{
+      try {playLocal(PaperVoiceAnswerSpeech.build(answer,includeEvidence?.checked ?? false));}
+      catch(e){stopSpeech();message(e.message);$('speech-status').textContent=e.message;buttons();}
+    };
+    item.append(listen);$('answers').prepend(item);$('question').value='';
   }catch(e){if(state.job===job)message(e.message);}finally{qaBusy=false;waiting.remove();buttons();}
 });
 document.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{$('question').value=button.dataset.question;if(!state.result){message('請先放入文件並完成辨識。');return;}$('question-form').requestSubmit();});
