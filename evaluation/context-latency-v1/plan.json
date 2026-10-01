@@ -1,0 +1,23 @@
+{
+  "app_sha256": "1bb3da2e1ee071033250fbf12c111874e008d71fcc4354f013bfc17b42535af1",
+  "scope": "Two original photo fixtures; 8192 versus4096 context; alternating order; warmup before each; all prompts and generation caps unchanged. Development probe, not general accuracy.",
+  "pairs": [
+    [
+      "notice",
+      8192
+    ],
+    [
+      "notice",
+      4096
+    ],
+    [
+      "event",
+      4096
+    ],
+    [
+      "event",
+      8192
+    ]
+  ],
+  "adoption": "Require unchanged transcripts/fields and meaningful latency improvement; never apply reduced context blindly to long documents."
+}

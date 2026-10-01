@@ -119,3 +119,8 @@ Tokenizer 追加實測：`inspect_training_tokens.py` 在訓練環境以固定�
 ## 2026-10-02：直接 Windows OCR 與翻譯候選篩選
 
 直接 OCR 10/10 配對文字一致，辨識階段中位數省 0.3408 秒；完整 API 兩組全文及七欄一致，單次耗時不可當作普遍加速率。Python 231 passed，JavaScript 未改動，先前 30 passed。見 `evaluation/native-ocr-v1/`。Gemma 4B 六句台語翻譯候選出現文件類型與否定語意錯誤，未採用，見 `evaluation/taigi-translation-v1/`。
+
+
+## 2026-10-02：結果回傳延遲
+
+狀態查詢由1.3秒縮短為0.4秒；6次真實工作雙客戶端配對，收到結果延遲中位數0.7677→0.1475秒，逐對節省中位數0.5774秒。JS 30 passed，正式後端不變。見 `evaluation/result-delivery-v1/`。另測4096上下文未見加速，保留8192，見 `evaluation/context-latency-v1/`。

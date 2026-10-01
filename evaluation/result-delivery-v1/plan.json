@@ -1,0 +1,17 @@
+{
+  "app_sha256": "1bb3da2e1ee071033250fbf12c111874e008d71fcc4354f013bfc17b42535af1",
+  "frontend_sha256": "fd48e389227f055677499a1db36c1ae4168baa9cdd705bec2dca114549dc4d67",
+  "intervals_seconds": [
+    1.3,
+    0.4
+  ],
+  "samples": [
+    "notice",
+    "event",
+    "notice",
+    "event",
+    "notice",
+    "event"
+  ],
+  "scope": "Two polling clients observe the same actual OCR/VLM job. Completion time recorded immediately after process_job returns; not a browser rendering benchmark."
+}

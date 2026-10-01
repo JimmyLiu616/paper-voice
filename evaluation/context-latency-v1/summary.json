@@ -1,0 +1,100 @@
+{
+  "adopted": false,
+  "reason": "Neither photo was faster; retain8192 context",
+  "pairs": [
+    {
+      "sample": "notice",
+      "baseline_seconds": 8.398,
+      "candidate_seconds": 8.811,
+      "transcript_identical": true,
+      "fields_identical": true,
+      "baseline_metrics": [
+        {
+          "total_duration": 3247157300,
+          "load_duration": 7494800,
+          "prompt_eval_count": 599,
+          "prompt_eval_duration": 1114657000,
+          "eval_count": 185,
+          "eval_duration": 2015339000,
+          "done_reason": "stop"
+        },
+        {
+          "total_duration": 4770216000,
+          "load_duration": 31591800,
+          "prompt_eval_count": 590,
+          "prompt_eval_duration": 203837000,
+          "eval_count": 316,
+          "eval_duration": 4398798000,
+          "done_reason": "stop"
+        }
+      ],
+      "candidate_metrics": [
+        {
+          "total_duration": 3820637100,
+          "load_duration": 13714900,
+          "prompt_eval_count": 599,
+          "prompt_eval_duration": 1613902000,
+          "eval_count": 185,
+          "eval_duration": 2128657000,
+          "done_reason": "stop"
+        },
+        {
+          "total_duration": 4753629400,
+          "load_duration": 35779000,
+          "prompt_eval_count": 590,
+          "prompt_eval_duration": 213403000,
+          "eval_count": 315,
+          "eval_duration": 4418449000,
+          "done_reason": "stop"
+        }
+      ]
+    },
+    {
+      "sample": "event",
+      "baseline_seconds": 7.146,
+      "candidate_seconds": 10.835,
+      "transcript_identical": true,
+      "fields_identical": true,
+      "baseline_metrics": [
+        {
+          "total_duration": 2933465900,
+          "load_duration": 13356000,
+          "prompt_eval_count": 588,
+          "prompt_eval_duration": 1095873000,
+          "eval_count": 163,
+          "eval_duration": 1757586000,
+          "done_reason": "stop"
+        },
+        {
+          "total_duration": 3929276600,
+          "load_duration": 10008500,
+          "prompt_eval_count": 558,
+          "prompt_eval_duration": 185678000,
+          "eval_count": 277,
+          "eval_duration": 3633545000,
+          "done_reason": "stop"
+        }
+      ],
+      "candidate_metrics": [
+        {
+          "total_duration": 6301687000,
+          "load_duration": 5839900,
+          "prompt_eval_count": 588,
+          "prompt_eval_duration": 3860854000,
+          "eval_count": 163,
+          "eval_duration": 1781724000,
+          "done_reason": "stop"
+        },
+        {
+          "total_duration": 4150663800,
+          "load_duration": 192533800,
+          "prompt_eval_count": 558,
+          "prompt_eval_duration": 205034000,
+          "eval_count": 270,
+          "eval_duration": 3448189000,
+          "done_reason": "stop"
+        }
+      ]
+    }
+  ]
+}

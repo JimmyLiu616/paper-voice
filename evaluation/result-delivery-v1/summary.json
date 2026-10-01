@@ -1,0 +1,8 @@
+{
+  "jobs": 6,
+  "same_job_comparisons": true,
+  "baseline_median_delay": 0.7677,
+  "candidate_median_delay": 0.1475,
+  "median_paired_saved": 0.5774,
+  "limitation": "Each polling phase can favor either interval; no claim every request becomes faster. More small loopback GET requests; model calls unchanged."
+}

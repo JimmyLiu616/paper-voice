@@ -37,6 +37,7 @@
 
 ## 已實作
 
+- 縮短本機結果查詢間隔；6 次同一工作配對量測，完成後收到結果的等待時間中位數由 0.77 秒降至 0.15 秒。這不代表模型本身加速，見 [結果回傳實測](evaluation/result-delivery-v1/README.md)。
 - JPG／PNG／WebP 單頁辨識，最大 12 MB、2,400 萬像素；EXIF 方向校正、縮圖及移除 EXIF。
 - 瀏覽器攝影機预覽、拍照、重拍、確認後辨識；JPEG 最長邊 2,400 像素，拍下後立即停止相機。
 - Google Gemma 3 4B 量化 VLM 真實讀圖，Windows OCR 提供額外文字線索；無 Windows OCR 時仍可用 VLM。PyWinRT 直接呼叫在 10 張配對圖片中與原流程文字一致，OCR 階段中位數少 0.34 秒；不代表整體推論同比例加速，見 [實測](evaluation/native-ocr-v1/README.md)。

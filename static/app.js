@@ -114,7 +114,7 @@ async function analyze(confirmedText) {
       if(job.raw_text)$('raw-text').value=job.raw_text;
       if(job.status==='done'){render(job.result);break;}
       if(job.status==='error')throw new Error(job.error);
-      await new Promise(resolve=>setTimeout(resolve,1300));
+      await new Promise(resolve=>setTimeout(resolve,400));
     }
   } catch(e) {if(run===state.run)message(e.message);}
   finally {if(run===state.run){state.busy=false;$('progress').hidden=true;buttons();}}
