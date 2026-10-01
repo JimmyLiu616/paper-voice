@@ -1,0 +1,95 @@
+{
+  "scope": "3 targeted follow-up development questions; same frozen extraction as first run",
+  "rows": [
+    {
+      "source_id": "dev-postal",
+      "question": "申請最晚哪天寄出？以什麼為憑？",
+      "groups": [
+        [
+          "2026"
+        ],
+        [
+          "11月3日"
+        ],
+        [
+          "郵戳"
+        ]
+      ],
+      "variants": {
+        "baseline": {
+          "answer": {
+            "answer": "申請最晚2026年11月3日寄出，以郵戳為憑。",
+            "evidence": "申請截止：2026年11月3日，以郵戳為憑",
+            "found": true
+          },
+          "passed": true
+        },
+        "candidate": {
+          "answer": {
+            "answer": "申請最晚於2026年11月3日寄出，以郵戳為憑。",
+            "evidence": "申請截止：2026年11月3日，以郵戳為憑",
+            "found": true
+          },
+          "passed": true
+        }
+      }
+    },
+    {
+      "source_id": "dev-registration",
+      "question": "活動是哪天舉行？",
+      "groups": [
+        [
+          "2026"
+        ],
+        [
+          "11月8日"
+        ]
+      ],
+      "variants": {
+        "baseline": {
+          "answer": {
+            "answer": "活動日期：2026年11月8日",
+            "evidence": "活動日期：2026年11月8日",
+            "found": true
+          },
+          "passed": true
+        },
+        "candidate": {
+          "answer": {
+            "answer": "活動日期是2026年11月8日。",
+            "evidence": "活動日期：2026年11月8日",
+            "found": true
+          },
+          "passed": true
+        }
+      }
+    },
+    {
+      "source_id": "dev-relative",
+      "question": "補正的七日從什麼時候開始算？",
+      "groups": [
+        [
+          "次日"
+        ]
+      ],
+      "variants": {
+        "baseline": {
+          "answer": {
+            "answer": "補正的七日從收受本通知次日起。",
+            "evidence": "補正期限：收受本通知次日起七日內",
+            "found": true
+          },
+          "passed": true
+        },
+        "candidate": {
+          "answer": {
+            "answer": "補正的七日從收受本通知次日起算。",
+            "evidence": "補正期限：收受本通知次日起七日內",
+            "found": true
+          },
+          "passed": true
+        }
+      }
+    }
+  ]
+}

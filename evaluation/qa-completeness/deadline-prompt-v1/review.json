@@ -1,0 +1,39 @@
+{
+  "decision": "rejected",
+  "deployed": false,
+  "fine_tuning": false,
+  "reviewer": "Codex; no independent human review",
+  "findings": [
+    {
+      "id": "no-deadline",
+      "issue": "Candidate answer says no deadline, but cites application-method text. The quote is verbatim yet does not support the claim. Baseline cites the actual no-deadline sentence.",
+      "severity": "regression"
+    },
+    {
+      "id": "english-deadline",
+      "issue": "Both omit PM; candidate also omits the deadline boundary wording. 4 PM cannot be shortened to ambiguous 4 oclock.",
+      "severity": "unresolved"
+    },
+    {
+      "id": "dev-bilingual-qa-0",
+      "issue": "Candidate correctly retains elevator suspension and stair instruction, unlike baseline refusal.",
+      "severity": "improvement"
+    },
+    {
+      "id": "demo-deadline",
+      "issue": "Both answer fully on the shipped text fixture. This does not establish a fix for the video OCR result: its expired in-memory job was unavailable, and the experiment uses a new text extraction.",
+      "severity": "scope-limit"
+    }
+  ],
+  "followup": {
+    "questions": 3,
+    "baseline_passed": 3,
+    "candidate_passed": 3,
+    "scope": "postmark condition, event date versus deadline, relative start day"
+  },
+  "training_state": {
+    "draft_rows": 12,
+    "human_reviewed_rows": 0,
+    "reviewed_training_files": 0
+  }
+}

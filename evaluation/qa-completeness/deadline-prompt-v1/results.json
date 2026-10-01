@@ -1,0 +1,672 @@
+[
+  {
+    "id": "dev-registration-qa-0",
+    "source_id": "dev-registration",
+    "question": "要帶哪兩份文件？",
+    "found": true,
+    "groups": [
+      [
+        "學生證"
+      ],
+      [
+        "家長同意書"
+      ]
+    ],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "學生證正本、家長同意書",
+          "evidence": "應備文件：學生證正本、家長同意書",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.928
+      },
+      "candidate": {
+        "answer": {
+          "answer": "需要帶學生證正本和家長同意書。",
+          "evidence": "應備文件：學生證正本、家長同意書",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.917
+      }
+    }
+  },
+  {
+    "id": "dev-registration-qa-1",
+    "source_id": "dev-registration",
+    "question": "可以搭哪一路公車？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.572
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.712
+      }
+    }
+  },
+  {
+    "id": "dev-waiver-qa-0",
+    "source_id": "dev-waiver",
+    "question": "有低收入戶證明還需要付補發費嗎？",
+    "found": true,
+    "groups": [
+      [
+        "免"
+      ]
+    ],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "持有效低收入戶證明者免收補發費。",
+          "evidence": "一般補發費用：新臺幣80元\n持有效低收入戶證明者免收補發費。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.122
+      },
+      "candidate": {
+        "answer": {
+          "answer": "持有效低收入戶證明者免收補發費。",
+          "evidence": "一般補發費用：新臺幣80元\n持有效低收入戶證明者免收補發費。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 2.521
+      }
+    }
+  },
+  {
+    "id": "dev-waiver-qa-1",
+    "source_id": "dev-waiver",
+    "question": "遺失三次會被永久停權嗎？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.588
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.778
+      }
+    }
+  },
+  {
+    "id": "dev-english-renewal-qa-0",
+    "source_id": "dev-english-renewal",
+    "question": "更新會員需要付費嗎？",
+    "found": true,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "renewal fee: Free",
+          "evidence": "Renewal fee: Free",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 2.803
+      },
+      "candidate": {
+        "answer": {
+          "answer": "更新會員無需付費。",
+          "evidence": "Renewal fee: Free",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.167
+      }
+    }
+  },
+  {
+    "id": "dev-english-renewal-qa-1",
+    "source_id": "dev-english-renewal",
+    "question": "Can I renew on the website?",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.567
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 3.079
+      }
+    }
+  },
+  {
+    "id": "dev-relative-qa-0",
+    "source_id": "dev-relative",
+    "question": "我沒有提供收到的日期，你能確定是哪天截止嗎？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "文件只有相對期限，缺少已核實的起算日期，無法確定實際截止日。請向原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.0
+      },
+      "candidate": {
+        "answer": {
+          "answer": "文件只有相對期限，缺少已核實的起算日期，無法確定實際截止日。請向原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.0
+      }
+    }
+  },
+  {
+    "id": "dev-relative-qa-1",
+    "source_id": "dev-relative",
+    "question": "要補哪兩份資料？",
+    "found": true,
+    "groups": [
+      [
+        "申請書"
+      ],
+      [
+        "租賃契約"
+      ]
+    ],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "簽名申請書、租賃契約影本。",
+          "evidence": "應備文件：簽名申請書、租賃契約影本",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.052
+      },
+      "baseline": {
+        "answer": {
+          "answer": "簽名申請書、租賃契約影本。",
+          "evidence": "應備文件：簽名申請書、租賃契約影本",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.216
+      }
+    }
+  },
+  {
+    "id": "dev-cancellation-qa-0",
+    "source_id": "dev-cancellation",
+    "question": "我還需要去集合嗎？",
+    "found": true,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "不需要。",
+          "evidence": "請勿前往集合地點，無須繳交費用。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 3.063
+      },
+      "candidate": {
+        "answer": {
+          "answer": "不需要前往集合地點。",
+          "evidence": "請勿前往集合地點，無須繳交費用。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.694
+      }
+    }
+  },
+  {
+    "id": "dev-cancellation-qa-1",
+    "source_id": "dev-cancellation",
+    "question": "新的導覽是在12月1日嗎？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.554
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.694
+      }
+    }
+  },
+  {
+    "id": "dev-instruction-text-qa-0",
+    "source_id": "dev-instruction-text",
+    "question": "報名費是多少？",
+    "found": true,
+    "groups": [
+      [
+        "120"
+      ]
+    ],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "報名費是新臺幣120元。",
+          "evidence": "費用：新臺幣120元",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.83
+      },
+      "candidate": {
+        "answer": {
+          "answer": "報名費是新臺幣120元。",
+          "evidence": "費用：新臺幣120元",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.716
+      }
+    }
+  },
+  {
+    "id": "dev-instruction-text-qa-1",
+    "source_id": "dev-instruction-text",
+    "question": "可以用信用卡付款嗎？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.639
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.588
+      }
+    }
+  },
+  {
+    "id": "dev-bilingual-qa-0",
+    "source_id": "dev-bilingual",
+    "question": "維修期間能搭電梯嗎？",
+    "found": true,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": false,
+        "seconds": 1.225
+      },
+      "candidate": {
+        "answer": {
+          "answer": "維修期間電梯暫停使用，請改走樓梯。",
+          "evidence": "維修日期：2026年10月29日\nService hours: 09:00-12:00\n維修期間電梯暫停使用，請改走樓梯。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.418
+      }
+    }
+  },
+  {
+    "id": "dev-bilingual-qa-1",
+    "source_id": "dev-bilingual",
+    "question": "哪一家廠商來修理？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 1.644
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.744
+      }
+    }
+  },
+  {
+    "id": "dev-postal-qa-0",
+    "source_id": "dev-postal",
+    "question": "可以到現場直接交資料嗎？",
+    "found": true,
+    "groups": [
+      [
+        "不接受"
+      ]
+    ],
+    "kind": "existing-regression",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "不接受現場繳件。",
+          "evidence": "審查費：新臺幣300元\n不接受現場繳件。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.795
+      },
+      "candidate": {
+        "answer": {
+          "answer": "不接受現場繳件。",
+          "evidence": "審查費：新臺幣300元\n不接受現場繳件。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.87
+      }
+    }
+  },
+  {
+    "id": "dev-postal-qa-1",
+    "source_id": "dev-postal",
+    "question": "何時公布錄取名單？",
+    "found": false,
+    "groups": [],
+    "kind": "existing-regression",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.624
+      },
+      "baseline": {
+        "answer": {
+          "answer": "文件沒有提供可核對的答案，請洽原發文單位確認。",
+          "evidence": "",
+          "found": false
+        },
+        "passed": true,
+        "seconds": 0.688
+      }
+    }
+  },
+  {
+    "id": "demo-deadline",
+    "source_id": "demo-notice",
+    "question": "最晚什麼時候要完成",
+    "found": true,
+    "groups": [
+      [
+        "115"
+      ],
+      [
+        "10月20日"
+      ],
+      [
+        "下午5時",
+        "下午5點",
+        "17時",
+        "17:00"
+      ]
+    ],
+    "kind": "deadline-completeness",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "民國115年10月20日下午5時前",
+          "evidence": "補件期限：民國115年10月20日下午5時前",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.921
+      },
+      "candidate": {
+        "answer": {
+          "answer": "民國115年10月20日下午5時前。",
+          "evidence": "補件期限：民國115年10月20日下午5時前",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.96
+      }
+    }
+  },
+  {
+    "id": "registration-deadline",
+    "source_id": "dev-registration",
+    "question": "最晚什麼時候報名？",
+    "found": true,
+    "groups": [
+      [
+        "2026"
+      ],
+      [
+        "10月23日"
+      ],
+      [
+        "12時",
+        "12點",
+        "12:00"
+      ]
+    ],
+    "kind": "deadline-completeness",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "報名截止於2026年10月23日中午12時。",
+          "evidence": "報名截止：2026年10月23日中午12時",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.169
+      },
+      "baseline": {
+        "answer": {
+          "answer": "2026年10月23日中午12時。",
+          "evidence": "報名截止：2026年10月23日中午12時",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 3.899
+      }
+    }
+  },
+  {
+    "id": "english-deadline",
+    "source_id": "dev-english-renewal",
+    "question": "最晚什麼時候更新會員？",
+    "found": true,
+    "groups": [
+      [
+        "2026"
+      ],
+      [
+        "10月28日",
+        "October 28"
+      ],
+      [
+        "下午4",
+        "16:00",
+        "16時",
+        "4 PM"
+      ]
+    ],
+    "kind": "deadline-completeness",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "會員最晚於 2026 年 10 月 28 日 4 點前更新。",
+          "evidence": "Renewal deadline: October 28, 2026 at 4 PM",
+          "found": true
+        },
+        "passed": false,
+        "seconds": 1.46
+      },
+      "candidate": {
+        "answer": {
+          "answer": "會員最晚於 2026 年 10 月 28 日 4 點更新。",
+          "evidence": "Renewal deadline: October 28, 2026 at 4 PM",
+          "found": true
+        },
+        "passed": false,
+        "seconds": 0.969
+      }
+    }
+  },
+  {
+    "id": "relative-deadline",
+    "source_id": "dev-relative",
+    "question": "補正期限是多久？",
+    "found": true,
+    "groups": [
+      [
+        "次日"
+      ],
+      [
+        "七日",
+        "7日",
+        "七天",
+        "7天"
+      ]
+    ],
+    "kind": "deadline-completeness",
+    "variants": {
+      "candidate": {
+        "answer": {
+          "answer": "補正期限是收受本通知次日起七日內。",
+          "evidence": "補正期限：收受本通知次日起七日內",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.827
+      },
+      "baseline": {
+        "answer": {
+          "answer": "補正期限是收受本通知次日起七日內。",
+          "evidence": "補正期限：收受本通知次日起七日內",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 1.329
+      }
+    }
+  },
+  {
+    "id": "no-deadline",
+    "source_id": "dev-waiver",
+    "question": "有沒有申請截止日？",
+    "found": true,
+    "groups": [
+      [
+        "未設定",
+        "沒有",
+        "未訂",
+        "不設"
+      ]
+    ],
+    "kind": "deadline-completeness",
+    "variants": {
+      "baseline": {
+        "answer": {
+          "answer": "本通知未設定申請截止日。",
+          "evidence": "本通知未設定申請截止日。",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 2.429
+      },
+      "candidate": {
+        "answer": {
+          "answer": "本通知未設定申請截止日。",
+          "evidence": "申請方式：請攜帶證件至閱覽室申請補發",
+          "found": true
+        },
+        "passed": true,
+        "seconds": 0.909
+      }
+    }
+  }
+]

@@ -51,7 +51,13 @@ v9 已完成首次凍結保留測試：4個家族8張圖，欄位35/42、問答1
 
 執行 `.\.venv\Scripts\python.exe scripts\training_preflight.py` 產生服務環境的 `training/preflight.json`；另用 `.venv-train` 執行同腳本並加 `--environment training`，產生 `preflight-training.json`。目前訓練環境就緒，但任務資料未經人工複核，所以完整任務訓練的 `ready` 仍為 false；這不否定獨立合成 smoke run 已成功。
 
-## 官方參考
+## 依示範與提示實驗新增的任務目標
+
+`evaluation/qa-completeness/deadline-prompt-v1/` 顯示完整期限提示並未可靠解決問題。後續任務資料需涵蓋：日期與上午／下午資訊完整保留、相對期限起算點、同文件不同事件的日期區分，以及「引文確實支持答案」的正反例。尤其答案在全文中正確、但配上無關逐字引文的例子，不能被文字片段匹配當成正確。
+
+這21題與追加3題都是已開啟的開發診斷，不可移入訓練後再當獨立測試。新訓練／保留來源仍按前述門檻核對；目前12份草稿無人工複核，沒有正式任務訓練或成效宣稱。
+
+## 官方參考來源
 
 - 競賽明列微調**或優化**成果：https://innoserveawards.tca.org.tw/advertise26_AI-Open_Source.htm
 - PEFT 量化與 LoRA：https://huggingface.co/docs/peft/v0.21.0/en/developer_guides/quantization

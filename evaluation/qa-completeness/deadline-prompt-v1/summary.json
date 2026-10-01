@@ -1,0 +1,33 @@
+{
+  "name": "deadline-prompt-v1",
+  "app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "instruction": "回答時間或期限時，完整保留來源明示的年、月、日、時刻，以及起算點、郵戳或資格條件；不可只答幾點而漏掉日期。依問題區分不同事件，不要混入發文日或其他活動日期；來源未寫的部分不可自行補出。",
+  "scope": "Paired model calls on existing fictional development documents; automated span checks, not independent human-reviewed evaluation.",
+  "fields": "One shared actual extraction per document for both prompts",
+  "question_count": 21,
+  "health": {
+    "ollama": true,
+    "model_ready": true,
+    "model": "gemma3:4b",
+    "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a",
+    "app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+    "asr_ready": true,
+    "asr_model": "Taiwan Tongues ASR CE v1.0",
+    "taigi_ready": true,
+    "privacy": "本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。"
+  },
+  "totals": {
+    "baseline": 19,
+    "candidate": 20
+  },
+  "improvements": [
+    "dev-bilingual-qa-0"
+  ],
+  "regressions": [],
+  "errors": 0,
+  "deployed": false,
+  "decision": "rejected",
+  "reason": "New unrelated evidence on no-deadline; English PM omission persists; shipped-reference demo input does not reproduce the recorded OCR-context failure.",
+  "human_reviewed": false,
+  "reviewer": "Codex source-and-answer inspection; not independent human evaluation"
+}
