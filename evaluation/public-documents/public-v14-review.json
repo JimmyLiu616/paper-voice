@@ -1,0 +1,189 @@
+{
+  "run": "public-v14",
+  "app_sha256": "dfe8d8a2817ce0ace6ad5a7f2ad5869c5f91cab6cb2a337339ce661876b83cb7",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "generation_events": 20,
+  "generation_log_sha256": "df4809adfbcc33dead527a64f337c6ca4efbb968f1c7a88deabfbc1476f82614",
+  "results_sha256": "a9a3bcaa628a37795acbc68a0faab77d573988bb6956fa2763351fcb6daf188f",
+  "paired_replay": [
+    {
+      "action_diagnostic": null,
+      "id": "nycu-ethics-114-p1",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": {
+        "before": false,
+        "after": true
+      },
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [
+        "action"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": false,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": null,
+      "id": "wda-pretraining-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": {
+        "before": false,
+        "after": true
+      },
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": [
+        "action"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": false,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": null,
+      "id": "taipei-tuition-115-p3",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    }
+  ],
+  "same_transcripts_as_public_v13": true,
+  "scope": "Five existing development pages; two extra action diagnostics remain separate from the original four-field score.",
+  "action_diagnostics": {
+    "before": 0,
+    "after": 2,
+    "planned": 2
+  },
+  "known_limits": [
+    "The new method paragraph preserves original OCR errors and broken URLs; it does not repair those characters.",
+    "The gazette title can still be returned as location. Some other pages still have empty action fields.",
+    "Generic references to other required documents are not a complete checklist.",
+    "Prior fee-answer and deadline-citation completeness limitations remain."
+  ],
+  "qa_review": "Only one answer changed whitespace/punctuation; the dates, postmark rule and citation content remain the same. Other nine answers unchanged.",
+  "decision": "adopt source action selection with URI section-boundary handling",
+  "models_and_prompts_changed": false,
+  "training_executed": false,
+  "reserved_test_inference": false
+}

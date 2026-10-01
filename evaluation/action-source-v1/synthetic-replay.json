@@ -1,0 +1,199 @@
+{
+  "scope": "32 already-opened synthetic results replayed from final served field/value pairs, not the original model generations. No inference or reserved training test.",
+  "candidate_app_sha256": "dfe8d8a2817ce0ace6ad5a7f2ad5869c5f91cab6cb2a337339ce661876b83cb7",
+  "rows": [
+    {
+      "run": "candidate-v11",
+      "id": "dev-registration",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-registration",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-waiver",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-waiver",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-english-renewal",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-english-renewal",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-relative",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-relative",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-cancellation",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-cancellation",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-instruction-text",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-instruction-text",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-bilingual",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-bilingual",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-postal",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-v11",
+      "id": "dev-postal",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-registration",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-waiver",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-english-renewal",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-relative",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-cancellation",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-instruction-text",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-bilingual",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "candidate-text-v10",
+      "id": "dev-postal",
+      "variant": "text",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-school",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-school",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-english-pickup",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-english-pickup",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-water",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-water",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-reservation",
+      "variant": "clean",
+      "changed_fields": []
+    },
+    {
+      "run": "opened-test-v3",
+      "id": "test-reservation",
+      "variant": "tilt_blur",
+      "changed_fields": []
+    }
+  ],
+  "changed": 0
+}

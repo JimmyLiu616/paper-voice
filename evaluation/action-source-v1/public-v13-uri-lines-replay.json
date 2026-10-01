@@ -1,0 +1,179 @@
+{
+  "run": "public-v13",
+  "baseline_app_sha256": "7d1b350d97973cffc56a9b277752bd799d32b8dd7ac813c8440bb709faa15bc6",
+  "candidate_app_sha256": "dfe8d8a2817ce0ace6ad5a7f2ad5869c5f91cab6cb2a337339ce661876b83cb7",
+  "generation_log_sha256": "a224eb25a70f7bcac362f2e7e119fff11ef6746cd6c22c830c87e717f7ba057b",
+  "results_sha256": "c9f8b6e260ac63499c6219ce35a603eff7e8563fed2fb67f173fc77e410a3571",
+  "runner_sha256": "871407a5657c07539b087efaf94b147a56407a6aeed7e7760e9a8134ff7cc57f",
+  "rows": [
+    {
+      "action_diagnostic": null,
+      "id": "nycu-ethics-114-p1",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": {
+        "before": false,
+        "after": true
+      },
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [
+        "action"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": false
+    },
+    {
+      "action_diagnostic": null,
+      "id": "wda-pretraining-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "action_diagnostic": {
+        "before": false,
+        "after": true
+      },
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": [
+        "action"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": false
+    },
+    {
+      "action_diagnostic": null,
+      "id": "taipei-tuition-115-p3",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    }
+  ],
+  "action_before_passed": 0,
+  "action_after_passed": 2,
+  "action_planned": 2,
+  "before_passed": 20,
+  "after_passed": 20,
+  "planned": 20,
+  "new_inference": false,
+  "training": false,
+  "scope": "Paired replay of the same saved outputs on existing development pages; no semantic accuracy or fine-tuning claim."
+}

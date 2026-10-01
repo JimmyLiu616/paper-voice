@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-01T17:36:01.771322+00:00",
+  "baseline_app_sha256": "7d1b350d97973cffc56a9b277752bd799d32b8dd7ac813c8440bb709faa15bc6",
+  "hypothesis": "Source action fallback confuses the substring \u8acb\u88dc within \u7533\u8acb\u88dc\u52a9 and loses the conditional predecessor of a wrapped \u8005,\u8acb\u586b instruction. Numbered multiline method headings are skipped.",
+  "scope": "Source action selection only; no new prompts, weights or QA validation.",
+  "candidate": [
+    "Prefer one explicitly labelled method section including numbered subordinate routes.",
+    "Do not interpret \u8acb inside \u7533\u8acb as an imperative.",
+    "Restore a wrapped \u8005,\u8acb instruction only when immediately preceded by a clear subject plus \u5982/\u82e5 clause; otherwise do not manufacture context."
+  ],
+  "acceptance": [
+    "Same-output replay: restore both known action contexts; all other fields unchanged.",
+    "Synthetic negative and section-boundary regression; full Python suite.",
+    "Five-page isolated image API with all existing 20 field and 10 QA checks; inspect changed answers for semantic regression."
+  ],
+  "limits": [
+    "These two action diagnostics are separate from the original four-field denominator of 20.",
+    "Known development sources; not unseen accuracy or fine-tuning benefit.",
+    "No reserved test input used."
+  ]
+}

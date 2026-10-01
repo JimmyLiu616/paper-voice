@@ -126,7 +126,7 @@ NON_DEADLINE_HEADING = re.compile(r'^'+SOURCE_PREFIX+
     r'(?:(?:original|new) )?(?:event|reservation|publication|collection|maintenance) (?:date|time|hours))\s*[:：]', re.I)
 
 
-def labelled_facts(raw: str, pattern: str, *, document_list: bool = False):
+def labelled_facts(raw: str, pattern: str, *, document_list: bool = False, method_list: bool = False):
     """Copy labelled sections, retaining wrapped lines and subordinate list items."""
     matches=[]
     lines=raw.splitlines()
@@ -140,7 +140,8 @@ def labelled_facts(raw: str, pattern: str, *, document_list: bool = False):
         # A numbered heading itself still ends at its next sibling section.
         numbered_children=document_list and not tail and not MAJOR_ITEM.match(line)
         for following in lines[i+1:]:
-            if (not following.strip() or SECTION_START.match(following) or NOTE_HEADING.match(following)
+            uri_line = method_list and re.match(r'^\s*[A-Za-z][A-Za-z0-9+.-]*://', following)
+            if (not following.strip() or (SECTION_START.match(following) and not uri_line) or NOTE_HEADING.match(following)
                     or (MAJOR_ITEM.match(following) and not numbered_children) or PAGE_FOOTER.match(following)):break
             # An unlabelled one-line fact must not swallow the next independent sentence.
             if not structured and tail and not MINOR_ITEM.match(following):
@@ -275,6 +276,28 @@ def document_list_source(raw: str, value: str, evidence: str) -> str:
     return context
 
 
+def source_action(raw: str):
+    """Prefer explicit methods; do not mistake application nouns for commands."""
+    methods = labelled_facts(raw, r'(?:報名方式|辦理方式|申請方式|補件方式|繳交方式)', method_list=True)
+    if methods:
+        return methods[0] if len(methods) == 1 and len(methods[0]['value']) <= 1200 else None
+    lines = raw.splitlines()
+    for index, line in enumerate(lines):
+        if not re.search(r'(?<!申)請(?:於|在|到|將|攜|備|填|補|繳|至|勿|不要|改|先)', line):
+            continue
+        if re.match(r'^\s*者[,，]', line):
+            previous = lines[index - 1].strip() if index else ''
+            if (re.match(r'^(?:本人|申請人|使用者|借用人|參加者)(?:如|若)', previous)
+                    and not previous.endswith(('。', '！', '？', ';', '；'))):
+                value = previous + '\n' + line.strip()
+                if len(value) <= 1200:
+                    return {'value': value, 'evidence': value}
+            continue
+        if not re.search(r'如|若|忽略|確認', line):
+            return {'value': line.strip(), 'evidence': line.strip()}
+    return None
+
+
 def validate_extraction(data: dict, raw: str) -> dict:
     """A checked quote is a transcript match, NEVER a claim of image accuracy."""
     data = dict(data)
@@ -290,20 +313,9 @@ def validate_extraction(data: dict, raw: str) -> dict:
                         and not ordered_source_lines(old_value, candidates[0]['evidence'])):
                     continue
             data[key] = candidates[0]
-    # Prefer an explicit application-method line over a model-selected exception.
-    # This copies a labelled source span and does not infer an action from a date.
-    for line in raw.splitlines():
-        match = re.match(r'\s*(?:報名方式|辦理方式|申請方式|補件方式|繳交方式)\s*[:：]\s*(.+)', line)
-        if match:
-            data = dict(data)
-            data['action'] = {'value': match.group(1), 'evidence': line.strip()}
-            break
-    else:
-        for line in raw.splitlines():
-            if re.search(r'請(?:於|在|到|將|攜|備|填|補|繳|至|勿|不要|改|先)', line) and not re.search(r'如|若|忽略|確認', line):
-                data = dict(data)
-                data['action'] = {'value': line.strip(), 'evidence': line.strip()}
-                break
+    action = source_action(raw)
+    if action:
+        data['action'] = action
     condition_lines = [line.strip() for line in raw.splitlines()
                        if re.search(r'如已|如果|若已|除非|名額有限|額滿|參加對象|適用對象|不適用|免辦|免收|免附|免費|不在此限|僅能|不接受|已取消|不受影響', line)]
     if condition_lines and not (data.get('conditions') or {}).get('value'):
