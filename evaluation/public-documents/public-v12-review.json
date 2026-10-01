@@ -1,0 +1,172 @@
+{
+  "run": "public-v12",
+  "app_sha256": "a6329761e38f40a5528a117f71278f52d3d362d20ad6bf7e44a88d7b8d748a2b",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "generation_events": 20,
+  "generation_log_sha256": "d1d35144c2303c07b5987a054954a3dcf1be4a7223c9599953bab4509c9616f3",
+  "results_sha256": "1990c3434a3a8ac131e65c2a163b21a79c915e6262df8f65098b0f45bfebfaa0",
+  "paired_replay": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [
+        "conditions"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": false,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": false,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": false,
+          "after": false
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    }
+  ],
+  "same_transcripts_as_public_v11": true,
+  "scope": "5 existing development pages, isolated real API followed by replay of the same new generations against both validators.",
+  "remaining_failures": [
+    "Tuition page 2 application form still omitted from required_documents."
+  ],
+  "known_limits": [
+    "Gazette title still returned as location and action may start mid-sentence.",
+    "The fee answer no longer repeats the same-content qualification, which was explicit in the question and is still in the full source citation. Mechanical QA checks do not establish answer completeness.",
+    "This repairs one observed source-alignment failure; it does not prove general semantic accuracy or fine-tuning improvement."
+  ],
+  "decision": "adopt limited condition source-span recovery",
+  "models_and_prompts_changed": false,
+  "training_executed": false,
+  "reserved_test_inference": false
+}

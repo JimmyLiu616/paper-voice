@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-10-01T17:13:45.775229+00:00",
+  "baseline_app_sha256": "e69c57878954429cb747efe3c1e0bc8246ebb96e73ae877cbadc17a2c8defbf2",
+  "hypothesis": "A source-exact conditions value with an unrelated evidence quote can be recovered from one unique full-line source span, keeping leading list markers and punctuation.",
+  "scope": "Conditions field only. Do not modify models, prompts or QA validation.",
+  "rejection_rules": [
+    "Changed characters, repeated matching occurrences, missing leading qualifiers, and omitted substantive trailing text must not be accepted by source-span recovery.",
+    "Keep the existing fallback when recovery is unavailable."
+  ],
+  "checks": [
+    "Paired replay of all five actual public-v11 extraction generations.",
+    "Targeted synthetic adversarial cases for negation, numbers, repeated text and source boundaries.",
+    "Full Python regression.",
+    "Isolated real five-page image API run before deployment."
+  ],
+  "limits": [
+    "Existing development documents, not unseen evaluation or independent human review.",
+    "Source matching does not establish semantic correctness or OCR fidelity.",
+    "No new training or use of reserved test data."
+  ]
+}

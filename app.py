@@ -216,6 +216,45 @@ def ordered_source_lines(value: str, source: str) -> bool:
     return True
 
 
+def condition_source_span(raw: str, value: str) -> str:
+    """Recover only a unique, complete source-line span for an explicit condition."""
+    if not re.search(r'禁止|不得|不予|不適用|不在此限|除非|僅限|僅能|不接受|免辦|免附|\b(?:except|not permitted|not allowed)\b', value, re.I):
+        return ''
+    needle = normalized(value)
+    if not needle:
+        return ''
+    # Track original offsets while applying the same NFKC/whitespace comparison.
+    chars, offsets = [], []
+    for index, char in enumerate(raw):
+        for item in unicodedata.normalize('NFKC', char):
+            if not item.isspace():
+                chars.append(item)
+                offsets.append(index)
+    haystack = ''.join(chars)
+    start = haystack.find(needle)
+    if start < 0 or haystack.find(needle, start + 1) >= 0:
+        return ''
+    first, last = offsets[start], offsets[start + len(needle) - 1] + 1
+    # Per-character normalization can differ for combining sequences; refuse those.
+    if normalized(raw[first:last]) != needle:
+        return ''
+    line_start = raw.rfind('\n', 0, first) + 1
+    line_end = raw.find('\n', last)
+    if line_end < 0:
+        line_end = len(raw)
+    # Do not drop a leading negation/qualification or a substantive trailing clause.
+    if not re.fullmatch(SOURCE_PREFIX, raw[line_start:first]):
+        return ''
+    if line_start and not MAJOR_ITEM.match(raw[line_start:line_end]):
+        previous = raw[:line_start].rstrip('\r\n').rsplit('\n', 1)[-1].strip()
+        if previous and not previous.endswith(('。', '！', '？', '.', '!', '?')):
+            return ''  # The prior wrapped line may contain the missing condition.
+    if not re.fullmatch(r'[\s。.!！?？;；、,，）)\]】]*', raw[last:line_end]):
+        return ''
+    span = raw[line_start:line_end].strip()
+    return span if len(span) <= 1200 else ''
+
+
 def validate_extraction(data: dict, raw: str) -> dict:
     """A checked quote is a transcript match, NEVER a claim of image accuracy."""
     data = dict(data)
@@ -251,6 +290,7 @@ def validate_extraction(data: dict, raw: str) -> dict:
         data = dict(data)
         data['conditions'] = {'value': condition_lines[0], 'evidence': condition_lines[0]}
     fields = []
+    recovered_condition = False
     for key, label in LABELS.items():
         fact = data.get(key) or {}
         value, evidence = str(fact.get('value') or '').strip(), str(fact.get('evidence') or '').strip()
@@ -260,6 +300,12 @@ def validate_extraction(data: dict, raw: str) -> dict:
             value = ''
         matched = bool(value and evidence and normalized(evidence) in normalized(raw)
                        and normalized(value) in normalized(evidence))
+        if key == 'conditions' and not matched and value:
+            recovered = condition_source_span(raw, value)
+            if recovered:
+                value = evidence = recovered
+                matched = True
+                recovered_condition = True
         if key == 'conditions' and not matched and condition_lines:
             value = evidence = condition_lines[0]
             matched = True
@@ -305,6 +351,10 @@ def validate_extraction(data: dict, raw: str) -> dict:
             summary.append(f"{item['label']}：{item['value']}")
     conditions = condition_lines
     for condition in conditions:
+        if recovered_condition:
+            context = paragraph_context(raw, condition)
+            if context and len(context) <= 1200:
+                condition = context
         if normalized(condition) not in normalized(''.join(summary)):
             summary.append('文件提醒：' + condition)
     warnings = []
