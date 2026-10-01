@@ -89,7 +89,7 @@
       "core_vlm_evaluation": "evaluation/core-model-comparison/ministral-core-v1/; paired 5-page regression: 15/20 fields and 7/10 QA versus Gemma 18/20 and 10/10; rejected as direct replacement"
     },
     {
-      "role": "native checkpoint for isolated QLoRA feasibility experiment; not deployed",
+      "role": "native checkpoint for isolated QLoRA feasibility and reviewed synthetic document experiments; not deployed",
       "developer": "Mistral AI",
       "model": "mistralai/Ministral-3-3B-Instruct-2512-BF16",
       "revision": "b6d637bef2393152b3da2b2fde72eecdee30557e",
@@ -97,7 +97,7 @@
       "source": "https://huggingface.co/mistralai/Ministral-3-3B-Instruct-2512-BF16",
       "download_verification": "training/native-model-download.json",
       "fine_tuned_by_this_project": true,
-      "status": "Synthetic one-step QLoRA feasibility passed; adapter not deployed; no task-quality claim",
+      "status": "Feasibility runs and first reviewed-data task run completed; task candidate rejected for a new unsupported refusal; serving model unchanged",
       "documentation": "training/LORA_SMOKE.md",
       "fine_tuning": {
         "purpose": "synthetic-feasibility-only",
@@ -105,6 +105,22 @@
         "quality_improvement_evaluated": false,
         "deployed": false,
         "report": "training/lora-smoke-report.json"
+      },
+      "task_fine_tuning": {
+        "run": "notices-reviewed-001",
+        "purpose": "reviewed-document-text-experiment",
+        "data_origin": "12 original synthetic notices with user review declarations, partitioned 8 train / 2 dev / 2 test",
+        "training_tasks": 32,
+        "optimizer_steps": 8,
+        "dev_tasks": 8,
+        "test_generation_performed": false,
+        "adapter_sha256": "c055da2ab0cd7604471990f798a0eb5b0d3a1787addacc8bffcbab9a7e58f9b7",
+        "fresh_process_verification_passed": true,
+        "decision": "rejected for deployment: a supported prohibition answer became found=false",
+        "deployed": false,
+        "task_quality_verified": false,
+        "report": "evaluation/document-lora/notices-reviewed-001/",
+        "documentation": "training/REVIEWED_RUN_001.md"
       }
     }
   ]

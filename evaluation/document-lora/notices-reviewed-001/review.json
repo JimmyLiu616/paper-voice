@@ -1,0 +1,43 @@
+{
+  "run": "notices-reviewed-001",
+  "reviewer": "Codex",
+  "independent_human_output_review": false,
+  "decision": "reject_for_deployment",
+  "test_generation_performed": false,
+  "reason": "Format improved but a supported prohibition answer became an unnecessary refusal, violating the no-new-negation-regression criterion.",
+  "findings": [
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "fields",
+      "finding": "Required documents still omit the waitlist notice; adapter also omits the signature qualifier. Amount remains incomplete."
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-1",
+      "finding": "Adapter removes the baseline fabricated second quote and answers eligibility with a real source quote."
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "task": "qa-2",
+      "finding": "Adapter answers the immediate no-fee question but drops later quarterly-fee context from its answer."
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "fields",
+      "finding": "Both omit the explicitly required booking confirmation. Adapter conditions better preserve contiguous source punctuation, but exact reference fields remain 1/8 overall."
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "task": "qa-2",
+      "finding": "Baseline answers the explicit prohibition; adapter returns found=false and no evidence despite sufficient document information."
+    }
+  ],
+  "limits": [
+    "Eight dev tasks from two synthetic documents; exact-reference 0/8 is not semantic accuracy because valid paraphrases also fail exact matching.",
+    "Both sets of eight generations end with EOS; neither was counted as truncated.",
+    "The twelve synthetic notices have user review declarations; software cannot verify reviewer identity or depth of review.",
+    "The two held-out documents come from the same authored collection and were visible during creation/review; no test inference has been run.",
+    "No comparison to the serving Gemma model in this experiment; the baseline is native Ministral with adapter disabled."
+  ],
+  "next_direction": "Add new training examples contrasting explicit prohibitions/exceptions with genuinely absent information; retain dev/test sources outside training. Do not deploy based on JSON format gains."
+}

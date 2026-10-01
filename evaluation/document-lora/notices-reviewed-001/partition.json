@@ -1,0 +1,96 @@
+{
+  "created_utc": "2026-10-01T16:38:53.610331+00:00",
+  "source_sha256": "d5fd5e774e1b1dcbe46c077ccbc98ad4c0e3f4fd05f3e80774cceee787b28b2c",
+  "counts": {
+    "train": 8,
+    "dev": 2,
+    "test": 2
+  },
+  "partition": [
+    {
+      "source_id": "draft-oral-history-release",
+      "family": "draft-oral-history-release",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-bike-permit-renewal",
+      "family": "draft-bike-permit-renewal",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-kitchen-deposit",
+      "family": "draft-kitchen-deposit",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-rain-barrel-address",
+      "family": "draft-rain-barrel-address",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-mobile-library-route",
+      "family": "draft-mobile-library-route",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-trail-safety-kit",
+      "family": "draft-trail-safety-kit",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-audio-guide-rental",
+      "family": "draft-audio-guide-rental",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-community-oven-repair",
+      "family": "draft-community-oven-repair",
+      "original_split": "train",
+      "experiment_split": "train"
+    },
+    {
+      "source_id": "draft-garden-waitlist",
+      "family": "draft-garden-waitlist",
+      "original_split": "dev",
+      "experiment_split": "dev"
+    },
+    {
+      "source_id": "draft-archive-copy-delivery",
+      "family": "draft-archive-copy-delivery",
+      "original_split": "dev",
+      "experiment_split": "test"
+    },
+    {
+      "source_id": "draft-nature-recording-access",
+      "family": "draft-nature-recording-access",
+      "original_split": "dev",
+      "experiment_split": "dev"
+    },
+    {
+      "source_id": "draft-community-fridge-labels",
+      "family": "draft-community-fridge-labels",
+      "original_split": "dev",
+      "experiment_split": "test"
+    }
+  ],
+  "files_sha256": {
+    "train.jsonl": "0ec4a17b7b0fbd291ba880dd1d8fea137bc5311cf6160461c6e3ecec9c7ef562",
+    "dev.jsonl": "99a868181ff6e53a35eba9f984131a99a34c2b9d9aa1768e5277cd023488b09b",
+    "test.jsonl": "4af57b5bdc5cc0dcb6692dc9becac4128df5adc03c814af22c98c6b5e1ea1eaa"
+  },
+  "review_declarations_preserved": true,
+  "document_labels_questions_unchanged": true,
+  "rationale": "Keep eight original train documents; freeze two original dev documents as held-out test before first task training. One Chinese relative-deadline/fee document and one English exception/document document. Remaining two dev documents cover eligibility and service identity.",
+  "limitations": [
+    "All twelve are authored synthetic notices with user review declarations, not independent real-world documents.",
+    "Test texts and labels were visible during authoring and review; no test inference or selection of adapters has occurred.",
+    "Human identity and depth of review cannot be verified by software."
+  ]
+}

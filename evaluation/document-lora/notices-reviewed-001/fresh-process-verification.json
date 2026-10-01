@@ -1,0 +1,17 @@
+{
+  "run": "notices-reviewed-001",
+  "purpose": "reviewed-document-text-experiment",
+  "fresh_process": true,
+  "adapter_tensors_exactly_equal": true,
+  "tensor_count": 104,
+  "generation_exactly_equal_excluding_timing": true,
+  "records": 8,
+  "elapsed_after_checkpoint_check_seconds": 29.495,
+  "script_sha256": "04d68b8f159864e666acd7b076340ea3d963ff2ca27c3b03b5195895b5b15bfc",
+  "outputs_sha256": "38a1b7d30702e19054c80bb519ca3266e27f7f96ed694d03bc1d20dea867b2b0",
+  "adapter_sha256": "c055da2ab0cd7604471990f798a0eb5b0d3a1787addacc8bffcbab9a7e58f9b7",
+  "task_quality_verified": false,
+  "deployed": false,
+  "note": "Serialization and generation reproducibility only. Synthetic runs reuse their training fixture.",
+  "passed": true
+}
