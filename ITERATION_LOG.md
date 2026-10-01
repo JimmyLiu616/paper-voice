@@ -59,6 +59,8 @@ v5 圖片評測剩下：
 
 ## 微調決策
 
+2026-10-01 交件說明核對：重新讀取官方組別頁及Gemma官方條款，確認截止時間、微調或優化的加分表述，以及Gemma自訂授權仍待主辦認定。以正式服務health回傳的app SHA256核對public-v8紀錄，模型／ASR／閩南語狀態皆已就緒。更新 `SUBMISSION.md`、`VALIDATION.md`、`DEMO.md`，補上已發布影片、目前97項Python及21項JavaScript測試、原文朗讀與CUDA流程驗證；保留歷史結果並標明適用版本。新增供團隊使用的主辦詢問草稿與老師展示開場說明，未寄送訊息或替團隊報名。沒有新增模型品質或人工資料核對的宣稱。
+
 2026-10-01 `cuda-smoke-document-001`：新增僅接受固定原創 smoke 素材的驗證入口，實際呼叫新文件訓練器的共用 CUDA runtime；未假造人工核對或改動12份草稿。229-token 序列完成1步optimizer，52個adapter張量更新，顯存保留峰值4.02 GiB。原模型及重載adapter皆生成67 tokens並以EOS結束，答案完全相同、皆帶Markdown JSON圍欄。另啟全新程序確認104個載入張量逐一相符，生成記錄除時間外完全一致。97項Python測試通過。這只補上流程可運行與序列化證據，train／dev為同一筆合成素材，無品質改善或泛化結論；新权重只留本機，未部署。完整輸出與程式快照見 `evaluation/qa-completeness/cuda-smoke-document-001/`。
 
 2026-10-01 `document-trainer-v1`：新增受資料門檻限制的離線文字 QLoRA 入口，重用人工核對／來源分組檢查，固定原生 Ministral 3 3B checkpoint；規劃產生同條件原模型與已保存重載 adapter 的全部 dev 原始答案、EOS／時間／顯存紀錄，test 不參與訓練或推論。25項相關測試通過，包括實際未核對草稿拒絕、CPU optimizer 尾批梯度平均與生成不帶参考答案。本入口完整 CUDA 任務流程尚未執行，沒有正式任務權重或改善結論；既有 smoke 不能替代它的端到端驗證。操作與限制見 `training/DOCUMENT_LORA.md`。
