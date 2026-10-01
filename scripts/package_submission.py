@@ -15,7 +15,8 @@ files += ['training/preflight.json','training/preflight-training.json',
           'training/native-model-manifest.json','training/native-model-download.json',
           'training/smoke-fixture.json','training/lora-smoke-report.json',
           'training/review-drafts-validation.json','training/review-ui-validation.json',
-          'training/messages-validation.json','training/tokenization-validation.json']
+          'training/messages-validation.json','training/tokenization-validation.json',
+          'training/contrast-drafts-validation.json','training/contrast-ui-validation.json']
 with zipfile.ZipFile(destination,'w',zipfile.ZIP_DEFLATED) as archive:
     for file in files:
         if (root/file).is_file():archive.write(root/file,'paper-voice/'+file.replace('\\','/'))

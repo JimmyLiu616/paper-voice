@@ -1,0 +1,23 @@
+{
+  "rows": 6,
+  "pairs": 3,
+  "questions": 18,
+  "splits": {
+    "train": 6,
+    "dev": 0,
+    "test": 0
+  },
+  "structural_errors": [],
+  "approval_errors": [
+    "row 1: rights and human review must be explicitly confirmed",
+    "row 2: rights and human review must be explicitly confirmed",
+    "row 3: rights and human review must be explicitly confirmed",
+    "row 4: rights and human review must be explicitly confirmed",
+    "row 5: rights and human review must be explicitly confirmed",
+    "row 6: rights and human review must be explicitly confirmed"
+  ],
+  "eligible_for_training": false,
+  "sha256": "72c0f8f2a8ef22ad642f0da6c6e273ff0ffa95a85ffa3bf30ab7a6c9777493b5",
+  "original_review_dataset_modified": false,
+  "original_test_sources_used": false
+}

@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-02",
+  "method": "Actual local browser UI via CUA, with read-only inspection of exported textarea",
+  "contrast_source_sha256": "72c0f8f2a8ef22ad642f0da6c6e273ff0ffa95a85ffa3bf30ab7a6c9777493b5",
+  "original_source_sha256": "71eca351d8694aa88da1641db9aa4b839839d658e45cfaa9a4d42308a572eaa1",
+  "original_review_count": 12,
+  "original_total": 12,
+  "new_review_count": 0,
+  "new_total": 6,
+  "reviewed_export_disabled": true,
+  "new_draft_export": {
+    "rows": 6,
+    "human_reviewed_true": 0,
+    "rights_confirmed_true": 0,
+    "splits": [
+      "train"
+    ]
+  },
+  "agent_confirmed_documents": 0,
+  "training_executed": false,
+  "model_inference_executed": false,
+  "tests": {
+    "python_passed": 138,
+    "javascript_passed": 22,
+    "python_warnings": 1
+  },
+  "download_file_delivery_verified": false,
+  "screenshot_sha256": "8d33f93b30287caed29af1fed3021056af2ed43905b9e8f238941e5cafd83885",
+  "limitations": [
+    "No human semantic review of the six new notices.",
+    "No claim of model improvement.",
+    "Automatic file download delivery not verified; JSONL preview inspected."
+  ]
+}

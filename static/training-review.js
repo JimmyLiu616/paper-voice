@@ -3,6 +3,11 @@
   const R = window.PaperVoiceReview;
   const $ = id => document.getElementById(id);
   const titles = {deadline:'期限',required_documents:'應備文件',amount:'費用／金額',conditions:'例外條件'};
+  const batch = document.body.dataset.reviewBatch || 'initial';
+  const sources = {
+    initial: {url:'/static/training-review-drafts.json',label:'原始草稿分組',prefix:'paper-voice'},
+    contrast: {url:'/static/training-review-contrast.json',label:'補強訓練資料 · 不納入保留測試',prefix:'paper-voice-contrast'}
+  };
   let rows = [], current = 0, storageKey = '', storageWarning = false;
   const status = message => { $('status').textContent = message; };
   const currentRow = () => rows[current];
@@ -48,7 +53,7 @@
     $('editor').hidden=false;
     $('title').textContent=row.title;
     $('source-id').textContent=`文件代號：${row.source_id}`;
-    $('split').textContent=`${row.split === 'train' ? '訓練' : '開發'}草稿 · 虛構原創 · 尚無最終測試集`;
+    $('split').textContent=`${row.split === 'train' ? '訓練' : '開發'}草稿 · 虛構原創 · ${sources[batch].label}`;
     $('original').textContent=row.document;
     $('fields').replaceChildren(...R.fields.map(name => control(titles[name],row.fields[name],value=>{row.fields[name]=value;})));
     $('questions').replaceChildren(...row.questions.map((q,index)=>{
@@ -78,14 +83,15 @@
       $('export-text').value=text;$('export-preview').hidden=false;$('export-preview').open=true;
       const url=URL.createObjectURL(new Blob([text],{type:'application/x-ndjson;charset=utf-8'}));
       const a=document.createElement('a');a.href=url;
-      a.download=reviewedOnly?'paper-voice-reviewed.jsonl':'paper-voice-drafts.jsonl';
+      a.download=sources[batch].prefix+(reviewedOnly?'-reviewed.jsonl':'-drafts.jsonl');
       document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
       status(reviewedOnly?'已產生已確認資料並嘗試下載；下方也可複製。尚未開始訓練。':'已產生全部草稿並嘗試下載；下方也可複製。未確認資料仍標為未審核，不能直接訓練。');
       $('export-preview').scrollIntoView({block:'start'});
     } catch(error){status(error.message);}
   }
   try {
-    const response=await fetch('/static/training-review-drafts.json');
+    if (!Object.hasOwn(sources,batch)) throw new Error('不支援的草稿批次。');
+    const response=await fetch(sources[batch].url);
     if(!response.ok) throw new Error('無法載入草稿，請確認本機服務正常。');
     const source=await response.text();const dataset=JSON.parse(source);
     const hash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(source))),b=>b.toString(16).padStart(2,'0')).join('');

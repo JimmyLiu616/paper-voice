@@ -54,3 +54,13 @@ test('shipped candidates stay unreviewed, with grounded spans and no test split'
   assert.equal(data.rows.reduce((n,r)=>n+r.questions.length,0),36);
   for(const row of data.rows){assert.deepEqual(R.errors(row),[]);assert.equal(row.human_reviewed,false);assert.equal(row.rights_confirmed,false);}
 });
+
+test('contrast batch is separately exportable but cannot export as reviewed',()=>{
+  const data=JSON.parse(fs.readFileSync(path.join(__dirname,'../static/training-review-contrast.json'),'utf8'));
+  assert.equal(data.rows.length,6);
+  for(const row of data.rows){assert.deepEqual(R.errors(row),[]);assert.equal(row.split,'train');assert.equal(R.approved(row),false);}
+  assert.throws(()=>R.serialize(data.rows,true));
+  const exported=R.serialize(data.rows,false).trim().split('\n').map(JSON.parse);
+  assert.equal(exported.length,6);
+  assert.ok(exported.every(row=>!row.human_reviewed && !row.rights_confirmed));
+});

@@ -2,21 +2,21 @@
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>紙聲通 · 訓練資料核對</title>
+  <title>紙聲通 · 禁止與例外資料核對</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/static/training-review.css">
   <script src="/static/review-data.js" defer></script>
   <script src="/static/training-review.js" defer></script>
 </head>
-<body>
+<body data-review-batch="contrast">
   <header><a href="/">紙聲通</a><span>訓練資料核對</span></header>
   <main>
     <section class="intro">
       <p class="eyebrow">先確認資料，再討論微調</p>
-      <h1>讓每一筆標註，都有依據。</h1>
-      <p><a href="/static/training-review-contrast.html">核對新增的禁止／例外成對草稿（6份）</a></p>
-      <p>這 12 份通知由 AI 原創，都是虛構素材，不是正式公告。請對照原文，檢查四個欄位及每題答案，尤其是日期、金額、否定與例外。</p>
-      <p class="note">原始草稿分組為8份訓練、4份開發；正式實驗的分組另依實驗紀錄。這裡只做核對與本機匯出，不會開始訓練或對外上傳。</p>
+      <h1>禁止、例外，還是沒有說明？</h1>
+      <p><a href="/static/training-review.html">回原本12份資料的核對頁</a></p>
+      <p>這6份AI原創虛構通知分成3對。同一對的第一題相同，原文條件不同：一份明確說明規定，另一份未提供該項規定。請依各自原文核對，不要沿用另一份答案。</p>
+      <p class="note">全部是待核對的補強訓練草稿，成對文件須保留在同一訓練分組。請特別確認文件清單、身分費率、上限與例外是否完整。這一頁另存暫存，不影響原本12份確認紀錄；不會開始訓練或對外上傳。</p>
     </section>
     <section id="review-toolbar" class="toolbar" aria-label="核對設定與匯出">
       <label>核對者姓名或代號<input id="reviewer" autocomplete="off" maxlength="80" placeholder="填寫你的姓名或代號"></label>

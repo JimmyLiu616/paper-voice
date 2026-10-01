@@ -1,0 +1,301 @@
+{
+  "version": "contrast-train-drafts-v1",
+  "synthetic": true,
+  "purpose": "Unreviewed train-only contrast pairs. Never use pair siblings as dev/test.",
+  "rows": [
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-observation-equipment-1",
+      "family": "contrast-observation-equipment",
+      "split": "train",
+      "title": "環境觀測器材借用 · 1",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "環境觀測器材借用\n【虛構標註素材，不是正式公告】\n期限：請於117年3月9日17時前完成借用登記，當日17時後送達者不受理。\n應備文件：\n（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。\n費用：\n每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。\n其他事項：禁止自行拆開器材外殼，故障器材請交回管理員處理。",
+      "fields": {
+        "deadline": "請於117年3月9日17時前完成借用登記，當日17時後送達者不受理。",
+        "required_documents": "（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。",
+        "amount": "每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。",
+        "conditions": "禁止自行拆開器材外殼，故障器材請交回管理員處理。"
+      },
+      "questions": [
+        {
+          "question": "借用期間可以自行拆開器材外殼嗎？",
+          "answer": "不可以；禁止自行拆開外殼，故障器材須交回管理員處理。",
+          "found": true,
+          "evidence": [
+            "禁止自行拆開器材外殼，故障器材請交回管理員處理。"
+          ],
+          "focus": "explicit-rule"
+        },
+        {
+          "question": "委託辦理時，需要準備哪些文件？",
+          "answer": "借用申請表正本、參與課程證明影本，另附委託書及代理人證件正本。",
+          "found": true,
+          "evidence": [
+            "（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "學校團體每組要繳300元再加100元嗎？",
+          "answer": "不是，學校團體每組押金100元，完成清點後退還；押金不是租金。",
+          "found": true,
+          "evidence": [
+            "每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。"
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-observation-equipment",
+      "contrast_role": "explicit"
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-observation-equipment-2",
+      "family": "contrast-observation-equipment",
+      "split": "train",
+      "title": "環境觀測器材借用 · 2",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "環境觀測器材借用\n【虛構標註素材，不是正式公告】\n期限：請於117年3月9日17時前完成借用登記，當日17時後送達者不受理。\n應備文件：\n（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。\n費用：\n每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。\n其他事項：本次借用僅限環境課程使用。",
+      "fields": {
+        "deadline": "請於117年3月9日17時前完成借用登記，當日17時後送達者不受理。",
+        "required_documents": "（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。",
+        "amount": "每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。",
+        "conditions": "本次借用僅限環境課程使用。"
+      },
+      "questions": [
+        {
+          "question": "借用期間可以自行拆開器材外殼嗎？",
+          "answer": "文件沒有提供這項規定，無法確認。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        },
+        {
+          "question": "委託辦理時，需要準備哪些文件？",
+          "answer": "借用申請表正本、參與課程證明影本，另附委託書及代理人證件正本。",
+          "found": true,
+          "evidence": [
+            "（一）借用申請表正本。\n（二）參與課程證明影本。\n（三）委託辦理者另附委託書及代理人證件正本。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "學校團體每組要繳300元再加100元嗎？",
+          "answer": "不是，學校團體每組押金100元，完成清點後退還；押金不是租金。",
+          "found": true,
+          "evidence": [
+            "每組押金300元；學校團體每組押金100元，完成清點後退還，押金不是租金。"
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-observation-equipment",
+      "contrast_role": "unspecified"
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-riverside-walk-1",
+      "family": "contrast-riverside-walk",
+      "split": "train",
+      "title": "河岸健走活動改期 · 1",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "河岸健走活動改期\n【虛構標註素材，不是正式公告】\n期限：請於117年9月12日中午12時前交回改期確認表，以窗口收件時間為準。\n應備文件：\n改期確認表及原報名收據影本；委託送件者另附委託書。\n費用：\n一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。\n其他事項：經主辦單位核准因公缺席者退還全額報名費；未經核准者不適用這項退費規定。",
+      "fields": {
+        "deadline": "請於117年9月12日中午12時前交回改期確認表，以窗口收件時間為準。",
+        "required_documents": "改期確認表及原報名收據影本；委託送件者另附委託書。",
+        "amount": "一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。",
+        "conditions": "經主辦單位核准因公缺席者退還全額報名費；未經核准者不適用這項退費規定。"
+      },
+      "questions": [
+        {
+          "question": "經核准因公缺席，可以退還全額報名費嗎？",
+          "answer": "可以，經主辦單位核准因公缺席者可退還全額報名費；未經核准者不適用。",
+          "found": true,
+          "evidence": [
+            "經主辦單位核准因公缺席者退還全額報名費；未經核准者不適用這項退費規定。"
+          ],
+          "focus": "explicit-rule"
+        },
+        {
+          "question": "委託送件可以只交改期確認表嗎？",
+          "answer": "不可以，還要原報名收據影本，委託送件另附委託書。",
+          "found": true,
+          "evidence": [
+            "改期確認表及原報名收據影本；委託送件者另附委託書。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "持有效志工證要繳180元再加60元嗎？",
+          "answer": "不用，報名費為60元，不另收一般費用；交通費另計且金額未載。",
+          "found": true,
+          "evidence": [
+            "一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。"
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-riverside-walk",
+      "contrast_role": "explicit"
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-riverside-walk-2",
+      "family": "contrast-riverside-walk",
+      "split": "train",
+      "title": "河岸健走活動改期 · 2",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "河岸健走活動改期\n【虛構標註素材，不是正式公告】\n期限：請於117年9月12日中午12時前交回改期確認表，以窗口收件時間為準。\n應備文件：\n改期確認表及原報名收據影本；委託送件者另附委託書。\n費用：\n一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。\n其他事項：缺席名單於活動後彙整，不影響下一場報名資格。",
+      "fields": {
+        "deadline": "請於117年9月12日中午12時前交回改期確認表，以窗口收件時間為準。",
+        "required_documents": "改期確認表及原報名收據影本；委託送件者另附委託書。",
+        "amount": "一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。",
+        "conditions": "缺席名單於活動後彙整，不影響下一場報名資格。"
+      },
+      "questions": [
+        {
+          "question": "經核准因公缺席，可以退還全額報名費嗎？",
+          "answer": "文件沒有提供這項規定，無法確認。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        },
+        {
+          "question": "委託送件可以只交改期確認表嗎？",
+          "answer": "不可以，還要原報名收據影本，委託送件另附委託書。",
+          "found": true,
+          "evidence": [
+            "改期確認表及原報名收據影本；委託送件者另附委託書。"
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "持有效志工證要繳180元再加60元嗎？",
+          "answer": "不用，報名費為60元，不另收一般費用；交通費另計且金額未載。",
+          "found": true,
+          "evidence": [
+            "一般參加者報名費180元。\n持有效志工證者報名費60元，不另收一般費用。\n交通費另計，金額未載。"
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-riverside-walk",
+      "contrast_role": "unspecified"
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-weaving-workshop-1",
+      "family": "contrast-weaving-workshop",
+      "split": "train",
+      "title": "Community weaving workshop · 1",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "Community weaving workshop\n【虛構標註素材，不是正式公告】\n期限：Submit the enrollment form by 15:30 on 20 May 2028. Late forms will not be accepted.\n應備文件：\nBring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required.\n費用：\nThe workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person.\n其他事項：Participants whose registration is cancelled by the organizer receive a full workshop-fee refund; materials charges are refunded only for unopened kits.",
+      "fields": {
+        "deadline": "Submit the enrollment form by 15:30 on 20 May 2028. Late forms will not be accepted.",
+        "required_documents": "Bring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required.",
+        "amount": "The workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person.",
+        "conditions": "Participants whose registration is cancelled by the organizer receive a full workshop-fee refund; materials charges are refunded only for unopened kits."
+      },
+      "questions": [
+        {
+          "question": "主辦單位取消報名時，工作坊費和已拆封材料費都會全額退嗎？",
+          "answer": "工作坊費會全額退還，但材料費只有未拆封材料包才退，已拆封不符合這項條件。",
+          "found": true,
+          "evidence": [
+            "Participants whose registration is cancelled by the organizer receive a full workshop-fee refund; materials charges are refunded only for unopened kits."
+          ],
+          "focus": "explicit-rule"
+        },
+        {
+          "question": "只帶證件影本就能完成現場查驗嗎？",
+          "answer": "不可以，須帶確認電子郵件、材料選擇單與附照片證件供查驗；不需證件影本。",
+          "found": true,
+          "evidence": [
+            "Bring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required."
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "持有效學生證的90元費用已包含材料嗎？",
+          "answer": "沒有，工作坊費為90元，材料另計，每人材料費上限80元。",
+          "found": true,
+          "evidence": [
+            "The workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person."
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-weaving-workshop",
+      "contrast_role": "explicit"
+    },
+    {
+      "schema": "paper-voice-understanding-v1",
+      "source_id": "contrast-weaving-workshop-2",
+      "family": "contrast-weaving-workshop",
+      "split": "train",
+      "title": "Community weaving workshop · 2",
+      "license": "MIT",
+      "rights_confirmed": false,
+      "human_reviewed": false,
+      "provenance": "Original fictional notice authored by Codex; labels are drafts, not independently human-reviewed.",
+      "synthetic": true,
+      "document": "Community weaving workshop\n【虛構標註素材，不是正式公告】\n期限：Submit the enrollment form by 15:30 on 20 May 2028. Late forms will not be accepted.\n應備文件：\nBring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required.\n費用：\nThe workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person.\n其他事項：Only participants with confirmed enrollment may attend the session.",
+      "fields": {
+        "deadline": "Submit the enrollment form by 15:30 on 20 May 2028. Late forms will not be accepted.",
+        "required_documents": "Bring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required.",
+        "amount": "The workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person.",
+        "conditions": "Only participants with confirmed enrollment may attend the session."
+      },
+      "questions": [
+        {
+          "question": "主辦單位取消報名時，工作坊費和已拆封材料費都會全額退嗎？",
+          "answer": "文件沒有提供這項規定，無法確認。",
+          "found": false,
+          "evidence": [],
+          "focus": "abstention"
+        },
+        {
+          "question": "只帶證件影本就能完成現場查驗嗎？",
+          "answer": "不可以，須帶確認電子郵件、材料選擇單與附照片證件供查驗；不需證件影本。",
+          "found": true,
+          "evidence": [
+            "Bring the confirmation email, the materials selection sheet, and a photo ID for inspection. A photocopy of the ID is not required."
+          ],
+          "focus": "documents"
+        },
+        {
+          "question": "持有效學生證的90元費用已包含材料嗎？",
+          "answer": "沒有，工作坊費為90元，材料另計，每人材料費上限80元。",
+          "found": true,
+          "evidence": [
+            "The workshop fee is NT$240 per person. Students with a valid student card pay NT$90. Materials cost is charged separately, up to NT$80 per person."
+          ],
+          "focus": "fee"
+        }
+      ],
+      "contrast_pair": "contrast-weaving-workshop",
+      "contrast_role": "unspecified"
+    }
+  ]
+}
