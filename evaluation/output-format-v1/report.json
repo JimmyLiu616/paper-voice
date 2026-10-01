@@ -1,0 +1,57 @@
+{
+  "app_sha256": "d10a0ac20b8d5915f6df40677ec199fafecaccaf3768757a85b27a74a564d7f3",
+  "source_results_sha256": "a410fa3f3b47b7d2302857f6353eccfa28c232bc01e96eb71e8e07dc61f0a9b6",
+  "runner_sha256": "072bcf419aab77de9433e63135ba60f8d3852fa6996bb36136831b51f7440da7",
+  "scope": "Three observed failures replayed from saved output; no model generation or accuracy estimate.",
+  "passed": 3,
+  "changes": [
+    {
+      "id": "moi-police-form-109-p4",
+      "model": "gemma",
+      "field": "location",
+      "before": {
+        "key": "location",
+        "label": "相關地點",
+        "value": "內政篇",
+        "evidence": "內政篇",
+        "state": "source_matched"
+      },
+      "after": {
+        "key": "location",
+        "label": "相關地點",
+        "value": "",
+        "evidence": "",
+        "state": "needs_review"
+      }
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "model": "ministral",
+      "field": "contact",
+      "before": {
+        "key": "contact",
+        "label": "聯絡方式",
+        "value": "Phone No.: _______________________",
+        "evidence": "聯絡電話：\nPhone No.: _______________________",
+        "state": "source_matched"
+      },
+      "after": {
+        "key": "contact",
+        "label": "聯絡方式",
+        "value": "",
+        "evidence": "",
+        "state": "needs_review"
+      }
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "model": "ministral",
+      "field": "answer",
+      "before": "found=true",
+      "status": 502,
+      "after": {
+        "detail": "這次回答格式異常，請重新提問。"
+      }
+    }
+  ]
+}

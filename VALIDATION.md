@@ -1,6 +1,6 @@
 # 本機驗證紀錄
 
-日期：2026-10-01（台灣時間）。設備：RTX 5060 Laptop 8GB、約 16GB RAM。
+日期：2026-10-02（台灣時間）。設備：RTX 5060 Laptop 8GB、約 16GB RAM。
 
 ## 目前版本的驗證摘要
 
@@ -8,14 +8,14 @@
 
 | 範圍 | 最近已完成的驗證 | 適用限制與紀錄 |
 |---|---|---|
-| Python程式 | 完整回歸97項通過；1項既有Starlette/httpx棄用警告 | 包括文件訓練入口、合成素材限制及重載比較；不代表模型品質。`evaluation/qa-completeness/cuda-smoke-document-001/review.json` |
+| Python程式 | 完整回歸108項通過；1項既有Starlette/httpx棄用警告 | 新增11項非答案與合法相近輸入檢查；不代表模型品質。`evaluation/output-format-v2/` |
 | JavaScript程式 | 完整回歸21項通過 | 回答朗讀8項、相機生命週期6項、資料核對7項。`evaluation/qa-completeness/answer-speech-v1.json` |
-| 正式公文圖片 | public-v8：5頁，欄位18/20、問答機械檢查10/10、0執行錯誤 | 既有開發集；非完整語意正確率。`evaluation/public-documents/public-v8-summary.json` |
+| 正式公文圖片 | public-v10：5頁，欄位16/20、問答機械檢查10/10、0執行錯誤 | 比public-v8少2項欄位通過，最後一頁逐字稿變動；不得宣稱整體改善。`evaluation/public-documents/public-v10-review.json` |
 | 回答與引用朗讀 | 真實UI完成預設引用、只讀回答及拒答三種播放 | 以文字通知測試；未證明使用者理解改善。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 文件訓練GPU流程 | 229 tokens、1步optimizer；52個張量更新，104個載入張量與保存檔相符，獨立程序生成一致 | 同一固定合成素材，更新前後答案相同，無任務改善證據。`evaluation/qa-completeness/cuda-smoke-document-001/` |
 | 老師展示素材 | 約188.77秒MP4與字幕已發布 | 真實截圖剪輯、非連續錄影；旁白另行合成，版本差異見 `DEMO.md` |
 
-重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
+重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `b3d51315b0df633d02622aad9bfeb056882289e77f4654a60d3998113cd5efa9`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
 
 ## 早期自動測試紀錄
 

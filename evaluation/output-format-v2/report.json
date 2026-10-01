@@ -1,0 +1,38 @@
+{
+  "app_sha256": "b3d51315b0df633d02622aad9bfeb056882289e77f4654a60d3998113cd5efa9",
+  "source_results_sha256": "a410fa3f3b47b7d2302857f6353eccfa28c232bc01e96eb71e8e07dc61f0a9b6",
+  "runner_sha256": "b7daa8dd3785a19f67dfc6b3f2c9bde5cdd7610daec6b0ee49ac215b1fd091d6",
+  "scope": "Two observed failures replayed from saved output; no model generation or accuracy estimate.",
+  "passed": 2,
+  "changes": [
+    {
+      "id": "moi-police-form-109-p4",
+      "model": "ministral",
+      "field": "contact",
+      "before": {
+        "key": "contact",
+        "label": "聯絡方式",
+        "value": "Phone No.: _______________________",
+        "evidence": "聯絡電話：\nPhone No.: _______________________",
+        "state": "source_matched"
+      },
+      "after": {
+        "key": "contact",
+        "label": "聯絡方式",
+        "value": "",
+        "evidence": "",
+        "state": "needs_review"
+      }
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "model": "ministral",
+      "field": "answer",
+      "before": "found=true",
+      "status": 502,
+      "after": {
+        "detail": "這次回答格式異常，請重新提問。"
+      }
+    }
+  ]
+}

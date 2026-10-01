@@ -1,0 +1,63 @@
+{
+  "run": "public-v10",
+  "app_sha256": "b3d51315b0df633d02622aad9bfeb056882289e77f4654a60d3998113cd5efa9",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "comparison": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "failed_checks": [],
+      "answers_unchanged": true
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "failed_checks": [
+        "conditions"
+      ],
+      "answers_unchanged": true
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "failed_checks": [],
+      "answers_unchanged": true
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "transcript_unchanged": true,
+      "changed_fields": [],
+      "failed_checks": [
+        "required_documents"
+      ],
+      "answers_unchanged": true
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "transcript_unchanged": false,
+      "changed_fields": [
+        "deadline",
+        "required_documents",
+        "contact",
+        "amount"
+      ],
+      "failed_checks": [
+        "deadline",
+        "amount"
+      ],
+      "answers_unchanged": false
+    }
+  ],
+  "decision": "Retain the narrow contact/answer format guards; do not claim overall quality improvement. Publication-heading location guard and raw-only QA candidate rejected.",
+  "limitations": [
+    "18/20 in public-v8 and public-v9; 16/20 in public-v10. Do not replace this lower score with a rerun.",
+    "public-v10 last-page OCR transcript differs from public-v8; deadline and amount are hidden by existing evidence checks. No isolated end-to-end causal attribution.",
+    "Gazette section used as location, truncated action, omitted issuance restriction and missing application form remain unresolved.",
+    "QA 10/10 is mechanical required-span/refusal checking, not human-verified semantic accuracy."
+  ],
+  "training": false
+}

@@ -1,0 +1,10 @@
+{
+  "id": "taipei-tuition-115-p3",
+  "baseline_app_sha256": "13d8ee19ae92d8dd51c40f0e3b8fc12048eda967590ea06f04da93ffa72da26d",
+  "candidate_app_sha256": "b3d51315b0df633d02622aad9bfeb056882289e77f4654a60d3998113cd5efa9",
+  "input_text_sha256": "985a59698a3d5ab97c398a20b690541006cfc49effb6941d42347303e6d79f6e",
+  "output_sha256": "74395b930dbfc9f84d5c1fc8ca3d2bc3dd370a61458d109e62ce48d02936eccc",
+  "same_generated_extraction_for_both_validators": true,
+  "changed_fields": [],
+  "scope": "Single diagnostic page with public-v10 transcript; fresh model extraction shared by old/new validators. Shared helpers and prompts checked structurally unchanged. Not a repeat end-to-end score."
+}

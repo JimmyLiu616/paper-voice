@@ -1,0 +1,7 @@
+{
+  "status": 422,
+  "body": {
+    "detail": "文件過長，辨識結果可能被截斷。請裁切成較小段落後重試。"
+  },
+  "scope": "Targeted follow-up for the first incomplete raw-only comparison failure; same saved input."
+}

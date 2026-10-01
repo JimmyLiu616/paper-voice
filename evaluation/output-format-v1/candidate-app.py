@@ -181,9 +181,12 @@ def deadline_paragraph(raw: str, value: str):
     return '\n'.join(lines)
 
 
-def invalid_field_format(key: str, value: str) -> bool:
+def invalid_field_format(key: str, value: str, raw: str) -> bool:
     """Reject narrow, observed non-facts; a source match alone is insufficient."""
     text = unicodedata.normalize('NFKC', value).strip()
+    if key == 'location' and '行政院公報' in normalized(raw):
+        if re.fullmatch(r'(?:內政|外交|國防|財政|教育|法務|經濟|交通|衛生|環保|勞動|農業|綜合行政)篇', text):
+            return True
     if key == 'contact':
         # Labelled extraction may already have removed the field's label.
         return bool(re.fullmatch(
@@ -273,7 +276,7 @@ def validate_extraction(data: dict, raw: str) -> dict:
                 value=evidence=context
         if re.search(r'[-－][樓年月日]|[週星期][-－]', value):
             matched = False  # Common OCR confusion: 一 vs dash; do not read it as a verified number.
-        if matched and invalid_field_format(key, value):
+        if matched and invalid_field_format(key, value, raw):
             matched = False
         fields.append({'key': key, 'label': label, 'value': value if matched else '',
                        'evidence': evidence if matched else '',
