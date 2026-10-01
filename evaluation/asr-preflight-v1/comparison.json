@@ -1,0 +1,79 @@
+{
+  "scope": "Four generated non-speech signals and four variants of two Windows Hanhan synthetic questions. No human or Taiwanese/Hakka speech.",
+  "adopted": true,
+  "cases": [
+    {
+      "id": "silence",
+      "output_preserved": true,
+      "baseline_model_loads": 0,
+      "candidate_model_loads": 0,
+      "baseline_process_seconds": 0.473,
+      "candidate_process_seconds": 0.513
+    },
+    {
+      "id": "click",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 0,
+      "baseline_process_seconds": 12.38,
+      "candidate_process_seconds": 0.578
+    },
+    {
+      "id": "tone",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 0,
+      "baseline_process_seconds": 8.972,
+      "candidate_process_seconds": 0.579
+    },
+    {
+      "id": "noise",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 0,
+      "baseline_process_seconds": 8.151,
+      "candidate_process_seconds": 0.573
+    },
+    {
+      "id": "deadline",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 1,
+      "baseline_process_seconds": 15.637,
+      "candidate_process_seconds": 15.402
+    },
+    {
+      "id": "documents",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 1,
+      "baseline_process_seconds": 15.501,
+      "candidate_process_seconds": 16.085
+    },
+    {
+      "id": "quiet-documents",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 1,
+      "baseline_process_seconds": 15.753,
+      "candidate_process_seconds": 15.917
+    },
+    {
+      "id": "padded-deadline",
+      "output_preserved": true,
+      "baseline_model_loads": 1,
+      "candidate_model_loads": 1,
+      "baseline_process_seconds": 16.416,
+      "candidate_process_seconds": 16.062
+    }
+  ],
+  "gates_passed": true,
+  "speech_outputs_preserved": 4,
+  "non_speech_rejections_preserved": 4,
+  "measurement_runner_sha256": "63d7ddc31758a3b5a25c74c5ab861fc904c500c7c2f7e3e69d3b3358cf7e9a57",
+  "limitations": [
+    "Single sequential paired observation per fixture, no cache clearing or statistical latency claim.",
+    "Synthetic Mandarin only; no human, Taiwanese or Hakka quality evaluation.",
+    "Inference preflight optimization, no weight update."
+  ]
+}

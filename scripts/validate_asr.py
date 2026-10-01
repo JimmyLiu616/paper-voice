@@ -26,6 +26,7 @@ with httpx.Client(base_url='http://127.0.0.1:8765', headers=headers, timeout=240
             if 'error' in data:
                 raise RuntimeError(data['error'])
             data.update(reference=text, metrics=correction_metric(data['text'],text))
+            data['metrics']['scope'] = 'Single synthetic TTS prompt versus ASR text; not human speech or overall model accuracy'
             results.append(data)
             print(json.dumps(data,ensure_ascii=False),flush=True)
     # Actual HTTP audio -> confirmed question -> grounded answer -> Mandarin audio.

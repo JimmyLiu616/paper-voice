@@ -36,23 +36,17 @@ def decode_bounded(path, max_seconds=30):
 def recognize(path, model_dir, language='zh', beam=1):
     import numpy as np
     from faster_whisper import WhisperModel
-    from faster_whisper.vad import VadOptions, get_speech_timestamps
     from opencc import OpenCC
     started = time.monotonic()
     audio = decode_bounded(path)
     if np.max(np.abs(audio)) < 0.003:
         raise ValueError('沒有偵測到清楚的聲音，請靠近麥克風重錄。')
-    vad_parameters = {'min_silence_duration_ms': 500}
-    # Use the existing detector/settings before allocating the full ASR model.
-    # Speech still follows the unchanged transcribe/VAD path on the original audio.
-    if not get_speech_timestamps(audio, VadOptions(**vad_parameters)):
-        raise ValueError('未辨識到問題，請放慢速度重錄或改用文字。')
     model = WhisperModel(str(model_dir), device='cpu', compute_type='int8',
                          cpu_threads=4, num_workers=1, local_files_only=True)
     loaded = time.monotonic()
     segments, info = model.transcribe(audio, language=None if language == 'auto' else language,
         task='transcribe', beam_size=beam, temperature=0, vad_filter=True,
-        vad_parameters=vad_parameters,
+        vad_parameters={'min_silence_duration_ms': 500},
         condition_on_previous_text=False, hallucination_silence_threshold=1)
     raw = ''.join(s.text for s in segments).strip()
     # Convert characters only; avoid phrase substitution (e.g. 文件 -> 檔案).

@@ -1,0 +1,39 @@
+{
+  "worker_sha256": "903cd2af7116d6fca5f4fa23131a85f82779b7a8c00f1551f8f20d780ee5deaf",
+  "runs": [
+    {
+      "id": "click",
+      "http_status": 422,
+      "response": {
+        "detail": "未辨識到問題，請放慢速度重錄或改用文字。"
+      },
+      "seconds": 0.694
+    },
+    {
+      "id": "noise",
+      "http_status": 422,
+      "response": {
+        "detail": "未辨識到問題，請放慢速度重錄或改用文字。"
+      },
+      "seconds": 0.582
+    },
+    {
+      "id": "documents",
+      "http_status": 200,
+      "response": {
+        "text": "我需要準備什麼文件",
+        "raw_text": "我需要準備什麼文件",
+        "language": "zh",
+        "duration": 3.11,
+        "seconds": 14.95,
+        "load_seconds": 7.07,
+        "beam_size": 1,
+        "device": "cpu",
+        "compute_type": "int8",
+        "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
+        "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086"
+      },
+      "seconds": 15.53
+    }
+  ]
+}

@@ -20,7 +20,7 @@
         "reference_characters": 10,
         "character_error_rate": 0.1,
         "normalization": "NFKC; remove whitespace; keep punctuation",
-        "scope": "Single human-corrected text pair; not overall model accuracy"
+        "scope": "Single synthetic TTS prompt versus ASR text; not human speech or overall model accuracy"
       }
     },
     {
@@ -41,7 +41,7 @@
         "reference_characters": 10,
         "character_error_rate": 0.1,
         "normalization": "NFKC; remove whitespace; keep punctuation",
-        "scope": "Single human-corrected text pair; not overall model accuracy"
+        "scope": "Single synthetic TTS prompt versus ASR text; not human speech or overall model accuracy"
       }
     },
     {
@@ -62,7 +62,7 @@
         "reference_characters": 10,
         "character_error_rate": 0.1,
         "normalization": "NFKC; remove whitespace; keep punctuation",
-        "scope": "Single human-corrected text pair; not overall model accuracy"
+        "scope": "Single synthetic TTS prompt versus ASR text; not human speech or overall model accuracy"
       }
     },
     {
@@ -83,7 +83,7 @@
         "reference_characters": 10,
         "character_error_rate": 0.1,
         "normalization": "NFKC; remove whitespace; keep punctuation",
-        "scope": "Single human-corrected text pair; not overall model accuracy"
+        "scope": "Single synthetic TTS prompt versus ASR text; not human speech or overall model accuracy"
       }
     }
   ],

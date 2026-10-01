@@ -160,3 +160,5 @@ node --test tests\camera.test.cjs
 完整模型來源見 `MODEL_SOURCES.json`；企畫及展示流程見 `SUBMISSION.md`。原始碼公開於 [GitHub](https://github.com/JimmyLiu616/paper-voice)，模型權重與使用者文件不隨儲存庫發布。公開原始碼不等於已提交競賽報名，也不代表主辦已確認參賽資格或加分。
 
 第二次[learning-rate受控比較](training/REVIEWED_RUN_002.md)恢復了否定題回答，但例外欄新增漏列、格式改善消失，仍未採用；兩輪原模型基準相同，保留test未推論。
+
+2026-10-02 ASR前置檢查：使用原VAD設定提前拒絕無語音輸入，真實模型配對測試的點擊聲／純音／白雜音由8–12秒降至約0.58秒，且不載入ASR模型；靜音原已早退。四筆合成華語轉寫內容相同，一般語音延遲未一致改善。完整Python183項通過，正式API的兩筆拒絕及一筆合成語音轉寫亦通過。每例一次、無真人或台語品質結論，沒有權重更新。見 [ASR實測](evaluation/asr-preflight-v1/README.md)。
