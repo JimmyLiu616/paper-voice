@@ -43,6 +43,24 @@
 
 正式資料訓練跑完只標示 `completed-awaiting-quality-review`，`task_quality_verified` 和 `deployed` 保持 false。合成流程雖已跑通，正式資料的長度／顯存及任務品質仍須另驗證。先依 dev 固定候選，再另執行保留 test；本程式不提供最終 test 推論，不會自動讀取 test 答案來挑選 adapter。未通過 `EXPERIMENT_PLAN.md` 的日期／金額／否定條件門檻，就保留正式原模型。
 
+## 離線比較已保存的 dev 答案
+
+```powershell
+.\.venv\Scripts\python.exe -X utf8 scripts\score_document_lora.py --name cuda-smoke-document-001
+# 正式訓練完成後，改成該次實驗名稱，例如 notices-001。
+```
+
+此命令只讀取已完成實驗的輸入與生成檔，先核對訓練報告記錄的檔案SHA256，再以來源／任務鍵對齊原模型與adapter。問題、reference或文件雜湊不一致、缺題、重複題、非dev輸入皆拒絕。它不匯入GPU套件、不重新生成、不讀test答案，也不改原訓練報告。輸出 `paired-dev-metrics.json`，已存在就停止，不覆寫歷史結果。
+
+- 格式：嚴格JSON、鍵與型別、EOS是否結束。Markdown圍欄只作額外解析診斷，不算嚴格格式通過；重複JSON鍵與非標準常數拒絕。
+- 四欄：逐欄與reference精確比對，以及非空值是否為來源片段。只做NFKC與空白正規化，不移除否定、數字或標點。
+- 問答：found是否一致、預期無答案卻答有答案、預期有答案卻拒答、答案／引文與reference比對、引文是否在原文。
+- 前後對照：新增／失去的嚴格參考匹配及完全相同的生成數量。格式不合法的題不能因未算到「錯誤肯定」就當作答對。
+
+`strict_reference_pass`只是「格式、EOS、來源片段及參考字串皆匹配」，不是語意正確率。有效同義改寫可能失敗；原文引文可能與問題無關，即使來源匹配仍須人工檢查。報告永遠保留 `task_quality_verified=false`、`deployed=false` 與人工複核提示，不把dev分數當部署核准。
+
+2026-10-02實測既有 `cuda-smoke-document-001`：1題前後输出相同，皆以EOS結束，皆有Markdown圍欄，嚴格JSON及參考匹配都是0/1；只在額外解析中可看見found一致、引文存在於原文。仍是同一合成素材兼train／dev，沒有改善或泛化證據。公開報告見 `../evaluation/qa-completeness/cuda-smoke-document-001/paired-dev-metrics.json`。本輪18項新增比較／對齊測試及完整135項Python測試通過，沒有再訓練。
+
 ## 本輪驗證
 
 ```powershell

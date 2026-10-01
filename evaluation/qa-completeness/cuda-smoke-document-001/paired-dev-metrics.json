@@ -1,0 +1,84 @@
+{
+  "tasks": 1,
+  "totals": {
+    "baseline": {
+      "strict_json": 0,
+      "structure_valid": 1,
+      "ended_with_eos": 1,
+      "strict_reference_pass": 0,
+      "unexpected_positive": 0,
+      "missing_answer": 0,
+      "field_exact": 0,
+      "field_checks_planned": 0,
+      "qa_planned": 1
+    },
+    "adapter": {
+      "strict_json": 0,
+      "structure_valid": 1,
+      "ended_with_eos": 1,
+      "strict_reference_pass": 0,
+      "unexpected_positive": 0,
+      "missing_answer": 0,
+      "field_exact": 0,
+      "field_checks_planned": 0,
+      "qa_planned": 1
+    }
+  },
+  "rows": [
+    {
+      "source_id": "smoke-seed-library-locker-001",
+      "task": "qa-1",
+      "baseline": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "adapter": {
+        "strict_json": false,
+        "structure_valid": true,
+        "ended_with_eos": true,
+        "strict_reference_pass": false,
+        "found_matches": true,
+        "unexpected_positive": false,
+        "missing_answer": false,
+        "answer_exact": false,
+        "evidence_exact": false,
+        "evidence_source_match": true
+      },
+      "unchanged_output": true
+    }
+  ],
+  "new_strict_reference_passes": 0,
+  "lost_strict_reference_passes": 0,
+  "unchanged_outputs": 1,
+  "task_quality_verified": false,
+  "deployed": false,
+  "human_review_required": true,
+  "limitations": [
+    "Strict reference matching may reject valid paraphrases.",
+    "Source-matched evidence may still be irrelevant or fail to support the answer.",
+    "A dev diagnostic is not held-out quality, training success or deployment approval.",
+    "Markdown fences are inspected diagnostically but never pass strict JSON."
+  ],
+  "purpose": "synthetic-feasibility-only",
+  "same_fixture_train_and_dev": true,
+  "artifacts_sha256": {
+    "baseline-dev.jsonl": "471c054f2298675f17148aeae43e9758147be822d0b683767bc9fa869fdd5653",
+    "adapter-dev.jsonl": "f2f3c0c7ac199826721cc769733a35a403d887107bf96d14c8eb0741bdd4a886",
+    "inputs/manifest.json": "d8be692eb708ac6fda2b45cd5eb8279f8bd4cc8dd899853f4b8f996255c54e37",
+    "inputs/dev.jsonl": "773e56c5ae1f53e0226b9c971dfb305423868b99eced6963741790fef7487649"
+  },
+  "scorer_sha256": "6ea0d04fb4933a42fcb31e432f11c68088ddf089eda00f22d37e3a4f44ca8754",
+  "training_report_sha256": "5241591f6f747e6691e1d2725e1271d458bbbf612b3885a6263f7237c4d08bdd",
+  "test_labels_read": false,
+  "document_hash_mode": "raw",
+  "gpu_used": false,
+  "model_generation_performed": false
+}
