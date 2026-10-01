@@ -47,6 +47,8 @@ v9 已完成首次凍結保留測試：4個家族8張圖，欄位35/42、問答1
 
 ## 環境檢查
 
+已補上 `train_document_lora.py` 文件任務入口與同條件 baseline／adapter dev 原始答案輸出，操作及驗證範圍見 `DOCUMENT_LORA.md`。仍缺人工核對資料與獨立 test；只通過資料門檻及 CPU 迴圈測試，尚未完成此入口的 CUDA 全流程，不能當作任務微調已完成。
+
 2026-10-01 追加進度：已建立 Python 3.11 的獨立 `.venv-train`，55個套件通過依賴相容性檢查，版本見 `requirements-cuda-lock.txt`。RTX 5060 Laptop 通過 BF16 與 NF4 反向傳播；原生 BF16 checkpoint 的13個檔案已逐檔驗證。`smoke-001` 完成一個 optimizer step、非零 adapter 更新、保存及獨立程序重載一致性檢查；序列109 tokens、約117萬個可訓練參數，PyTorch 顯存保留峰值3.99 GiB。這不代表長公文或圖像訓練也能用相同顯存。服務 `.venv` 保留原 CPU PyTorch，不混裝。完整結果及限制見 `LORA_SMOKE.md`、`lora-smoke-report.json`。
 
 執行 `.\.venv\Scripts\python.exe scripts\training_preflight.py` 產生服務環境的 `training/preflight.json`；另用 `.venv-train` 執行同腳本並加 `--environment training`，產生 `preflight-training.json`。目前訓練環境就緒，但任務資料未經人工複核，所以完整任務訓練的 `ready` 仍為 false；這不否定獨立合成 smoke run 已成功。

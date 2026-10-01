@@ -8,6 +8,8 @@
 
 目前主攻生活通知／公文的期限、應備文件、費用與例外條件。逐輪開發評測與失敗案例見 `ITERATION_LOG.md`，可執行的合成基準見 `evaluation/README.md`。獨立 Ministral 3 3B 合成單批 QLoRA 已通過權重更新及跨程序重載檢查，見 `training/LORA_SMOKE.md`；僅證明短文字配置能在本機訓練，尚無公文任務改善證據，未部署 adapter。
 
+已另提供經核對資料的[文件 LoRA 訓練入口](training/DOCUMENT_LORA.md)，包含原模型／adapter 開發題輸出比較與執行紀錄；目前只驗證資料门檻與 CPU 迴圈，完整 CUDA 任務訓練仍待人工核對資料及獨立測試來源到位後執行。
+
 ## 開始使用
 
 首次使用請先完成下方「在另一台 Windows 重建」；已完成環境及模型安裝後，可依以下步驟操作。

@@ -54,6 +54,8 @@ test 只參與分組及重複來源檢查，其原文與答案不會寫入輸入
 
 ## 實際 tokenizer 長度與 loss mask
 
+人工核對與分組完成後，可使用文件訓練入口 `scripts/train_document_lora.py`，先加 `--check-only` 檢查，再依 [DOCUMENT_LORA.md](DOCUMENT_LORA.md) 執行。入口會重新驗證原始 JSONL，不接受只手改 prepared bundle 來跳過核對。完整 CUDA 任務流程尚待這批資料到位後實跑；目前提供的12份草稿仍不能通過。
+
 2026-10-01 使用固定 revision 的 Ministral tokenizer 離線讀取原始草稿；12 份文件形成 48 組欄位／問答輸入，長度 261–421 tokens，在本輪 1024 上限內全部通過，沒有截斷。`test` 模式的提示詞 token prefix 與 `finetuning` 模式完整對話前綴相同；提示詞的 labels 皆為 -100，僅 assistant 回答及 EOS 計入 loss。
 
 ```powershell
