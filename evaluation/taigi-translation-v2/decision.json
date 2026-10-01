@@ -1,0 +1,12 @@
+{
+  "deployed_as": "human-reviewed draft; not automatic trusted narration",
+  "native_speaker_reviewed": false,
+  "python_tests": 263,
+  "javascript_tests": 35,
+  "translation_cases": 10,
+  "initial_pronunciation_cases": 8,
+  "final_pronunciation_cases": 10,
+  "real_wavs": 5,
+  "app_sha256": "ec8f85d98e0b50dd591e0ac06b98b64008a60c7fc03ca6df45e102818fefa7db",
+  "scope": "Numeric/unit checks and real UI generation verified; semantics/naturalness require human review."
+}

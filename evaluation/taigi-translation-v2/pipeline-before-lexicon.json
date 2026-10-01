@@ -1,0 +1,82 @@
+[
+  {
+    "id": "documents",
+    "source": "請攜帶身分證影本與報名表。",
+    "translation": "請紮身分證影本佮報名表。",
+    "reading": "請紮身分證影本佮報名表。",
+    "poj": "chhiáⁿ chat sin-hūn-chèng iáⁿ-pún kah pò-miâ-pió。",
+    "error": null
+  },
+  {
+    "id": "free",
+    "source": "本活動免費，無需繳費。",
+    "translation": "本活動免費，無需要繳費。",
+    "reading": "本活動免費，無需要繳費。",
+    "poj": "pún oa̍h-tāng bián-hùi，bô-su-iàu kiáu-hùi。",
+    "error": null
+  },
+  {
+    "id": "exception",
+    "source": "如果已經補交文件，請忽略本通知。",
+    "translation": "若已經補交文件，請忽略本通知。",
+    "reading": "若已經補交文件，請忽略本通知。",
+    "poj": "nā í-keng pó͘ kau bûn-kiāⁿ，chhiáⁿ hut lio̍h pún thong-ti。",
+    "error": null
+  },
+  {
+    "id": "deadline",
+    "source": "請於115年10月20日下午5時前提出申請。",
+    "translation": "請佇115年10月20日下午5時前提出申請。",
+    "reading": "請佇一百一十五年十月二十日下午五時前提出申請。",
+    "poj": "chhiáⁿ tī chi̍t-pah chi̍t cha̍p-gō͘ nî cha̍p goe̍h jī-cha̍p ji̍t hā-ngó͘ gō͘ sî chiân thê-chhut sin-chhéng。",
+    "error": null
+  },
+  {
+    "id": "negative",
+    "source": "只接受紙本申請，不接受線上申請。",
+    "translation": "干焦接受紙本申請，無接受線上申請。",
+    "reading": "干焦接受紙本申請，無接受線上申請。",
+    "poj": "kan-ta chiap-siū chóa pún sin-chhéng，bô chiap-siū soàⁿ-siāng sin-chhéng。",
+    "error": null
+  },
+  {
+    "id": "fee_exception",
+    "source": "低收入戶免繳300元費用，其他申請人須繳費。",
+    "translation": "低收入戶免繳300元費用，其他申請人須繳費。",
+    "reading": "低收入戶免繳三百元費用，其他申請人須繳費。",
+    "poj": "kē-siu-ji̍p-hō͘ bián kiáu saⁿ pah goân hùi-iōng，kî-thaⁿ sin-chhéng-jîn su kiáu-hùi。",
+    "error": null
+  },
+  {
+    "id": "late",
+    "source": "請在2026年10月12日下午5時前送達，逾期不受理。",
+    "translation": "請佇2026年10月12日下午5時前送達，逾期不受理。",
+    "reading": "請佇二千零二十六年十月十二日下午五時前送達，逾期不受理。",
+    "poj": null,
+    "error": "字典未收錄這些字，無法完整轉寫：逾"
+  },
+  {
+    "id": "original_copy",
+    "source": "須繳身分證正本及影本，只有影本不予受理。",
+    "translation": "必須繳交身分證正本佮影本，干焦影本無受理。",
+    "reading": "必須繳交身分證正本佮影本，干焦影本無受理。",
+    "poj": "pit-su kiáu-kau sin-hūn-chèng chiàⁿ-pún kah iáⁿ-pún，kan-ta iáⁿ-pún bô siū-lí。",
+    "error": null
+  },
+  {
+    "id": "age_fee",
+    "source": "費用為500元，65歲以上免費；未滿65歲仍須繳費。",
+    "translation": "費用為500元，65歲以上免費；未滿65歲仍須繳費。",
+    "reading": "費用為五百元，六十五歲以上免費；未滿六十五歲仍須繳費。",
+    "poj": null,
+    "error": "字典未收錄這些字，無法完整轉寫：仍"
+  },
+  {
+    "id": "already_paid",
+    "source": "已繳費者不必再繳；尚未繳費者須於10月5日前繳清。",
+    "translation": "已經繳費者無需要閣繳；猶未繳費者必須佇10月5日前繳清。",
+    "reading": "已經繳費者無需要閣繳；猶未繳費者必須佇十月五日前繳清。",
+    "poj": "í-keng kiáu-hùi chiá bô-su-iàu koh kiáu；iáu-bōe kiáu-hùi chiá pit-su tī cha̍p goe̍h gō͘ ji̍t chiân kiáu chheng。",
+    "error": null
+  }
+]

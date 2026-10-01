@@ -1,0 +1,34 @@
+[
+  {
+    "id": "documents",
+    "seconds": 3.584,
+    "rate": 16000,
+    "frames": 57344,
+    "sha256": "e365518922cadb5e99c794d5e5fa668ae35b6d3dca1088d76733d535ab6c0242",
+    "native_speaker_reviewed": false
+  },
+  {
+    "id": "late",
+    "seconds": 8.272,
+    "rate": 16000,
+    "frames": 132352,
+    "sha256": "0205de8fcb7768ad167cc5ecd84f796cf37a8d4d02144841ec41160865440fdf",
+    "native_speaker_reviewed": false
+  },
+  {
+    "id": "age_fee",
+    "seconds": 8.48,
+    "rate": 16000,
+    "frames": 135680,
+    "sha256": "721e433931eab8473f2fe687e305f7b5d76f758632d5af650d2a4e92043de6fd",
+    "native_speaker_reviewed": false
+  },
+  {
+    "id": "already_paid",
+    "seconds": 10.128,
+    "rate": 16000,
+    "frames": 162048,
+    "sha256": "0eee34b86494eb1761292f3dd93f56fb0c2f94d17b258754f120ed7ab52dcf32",
+    "native_speaker_reviewed": false
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "repo": "Speech-AI-Research-Center/SARC-Taigi-LLM-12b-GGUF",
+  "revision": "aefda61b35defdb81c3ccaea2cab086b4e2325bd",
+  "selected": [
+    {
+      "rfilename": "SARC-Taigi-12b-Q3_K_L.gguf",
+      "blobId": "ece5c5e178ea9a1dd622ce5ceba1c8e3e927c5b3",
+      "size": 6480185504,
+      "lfs": {
+        "sha256": "cd88bdf097e74696de3b4bf1eb9fa55e8dc3bb309521b2a458ff0a4660583d71",
+        "size": 6480185504,
+        "pointerSize": 135
+      }
+    }
+  ],
+  "method": "Ollama Hugging Face pull; verify resolved local blob digest against this pinned upstream LFS digest before inference",
+  "status": "downloaded; verified complete SHA256; Ollama inference succeeded"
+}

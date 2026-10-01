@@ -1,0 +1,12 @@
+{
+  "seconds": 15.416,
+  "result": {
+    "source": "費用為500元，65歲以上免費；未滿65歲仍須繳費。",
+    "translation": "費用為500元，65歲以上免費；未滿65歲仍須繳費。",
+    "reading": "費用為五百元，六十五歲以上免費；未滿六十五歲猶原愛繳費。",
+    "poj": "hùi-iōng ûi gō͘-pah goân，la̍k cha̍p-gō͘ hòe í-siāng bián-hùi；bōe-móa la̍k cha̍p-gō͘ hòe iû-goân ài kiáu-hùi。",
+    "warning": "AI 翻譯及讀音皆為草稿。阿拉伯數字與單位檢查不能驗證否定、條件或整句意思，請逐句對照原文後再朗讀。日期、金額與數量已轉為漢字數詞讀音草稿，請核對讀法。讀音草稿以「過期不受理／猶原愛繳費」代替對應的「逾期不受理／仍須繳費」，請核對；上方譯文仍保留模型原詞。"
+  },
+  "native_speaker_reviewed": false,
+  "scope": "Live API source-bound draft, numeric reading and missing-word repair; no human-confirmation flag submitted"
+}

@@ -834,6 +834,91 @@ class TaigiPronunciationRequest(BaseModel):
     text: str = Field(min_length=1, max_length=80)
 
 
+class TaigiTranslationRequest(BaseModel):
+    job_id: str
+    source: str = Field(min_length=1, max_length=80)
+
+
+async def restore_document_model():
+    try:
+        await warmup()
+    except HTTPException:
+        pass  # Next document request can load the normal model itself.
+
+
+async def generate_taigi_draft(masked):
+    from scripts.taigi_translation import MODEL as TAIGI_MODEL, WEIGHT_SHA256, PROMPT, SCHEMA
+    switched = False
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(180, connect=5)) as client:
+            show = await client.post(f'{OLLAMA}/api/show', json={'model':TAIGI_MODEL})
+            show.raise_for_status()
+            # Ollama stores verified blobs by content hash; don't silently use
+            # a different upstream revision under a mutable model name.
+            modelfile = show.json().get('modelfile', '')
+            if not re.search(r'^FROM .*sha256-' + WEIGHT_SHA256 + r'"?\s*$', modelfile, re.M):
+                raise HTTPException(503, '台語翻譯模型版本不符，請依 README 安裝固定版本。')
+            unloaded = await client.post(f'{OLLAMA}/api/generate', json={'model':MODEL, 'keep_alive':0})
+            unloaded.raise_for_status()
+            switched = True
+            response = await client.post(f'{OLLAMA}/api/chat', json={
+                'model':TAIGI_MODEL, 'stream':False, 'keep_alive':0,
+                'messages':[{'role':'user','content':PROMPT+json.dumps({'source':masked},ensure_ascii=False)}],
+                'format':SCHEMA, 'options':{'temperature':0,'seed':42,'num_ctx':2048,'num_predict':200}})
+            response.raise_for_status()
+            data = response.json()
+            if data.get('done_reason') == 'length':
+                raise HTTPException(502, '台語翻譯未完整生成，請縮短原文。')
+            translation = json.loads(data['message']['content'])['translation']
+            if not isinstance(translation, str):
+                raise ValueError('Invalid translation type')
+            return translation
+    except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
+        raise HTTPException(503, '台語翻譯暫時無法使用，請確認模型已安裝，或縮短原文後重試。') from exc
+    finally:
+        if switched:
+            # Restore asynchronously after releasing model_lock; no document is
+            # sent during the empty warmup request.
+            asyncio.create_task(restore_document_model())
+
+
+@app.post('/api/taigi-translation')
+async def taigi_translation(body: TaigiTranslationRequest):
+    from scripts.taigi_translation import mask_numbers, restore_numbers, reading_draft
+    from scripts.taigi_text import pronunciation_draft
+    job = await get_job(body.job_id)
+    if job['status'] != 'done':
+        raise HTTPException(409, '請先完成文件辨識。')
+    source = body.source.strip()
+    if not source or normalized(source) not in normalized(job['result']['raw_text']):
+        raise HTTPException(422, '請選取目前文件的連續原文短句。')
+    try:
+        masked, numbers = mask_numbers(source)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    if model_lock.locked():
+        raise HTTPException(409, '本機模型正在處理文件，請稍後再翻譯。')
+    async with model_lock:
+        candidate = await generate_taigi_draft(masked)
+    try:
+        translation = restore_numbers(masked, numbers, candidate)
+    except ValueError as exc:
+        raise HTTPException(502, str(exc)) from exc
+    result = {'source':source, 'translation':translation, 'reading':'', 'poj':'',
+              'warning':'AI 翻譯及讀音皆為草稿。阿拉伯數字與單位檢查不能驗證否定、條件或整句意思，請逐句對照原文後再朗讀。'}
+    try:
+        reading = reading_draft(translation)
+        pronunciation = await asyncio.to_thread(pronunciation_draft, reading)
+        result.update(reading=reading, poj=pronunciation['poj'])
+        if numbers:
+            result['warning'] += '日期、金額與數量已轉為漢字數詞讀音草稿，請核對讀法。'
+        if '逾期不受理' in translation or '仍須繳費' in translation:
+            result['warning'] += '讀音草稿以「過期不受理／猶原愛繳費」代替對應的「逾期不受理／仍須繳費」，請核對；上方譯文仍保留模型原詞。'
+    except (ValueError, ImportError, FileNotFoundError) as exc:
+        result['warning'] += ' 尚未產生完整讀音：' + str(exc)
+    return result
+
+
 @app.post('/api/taigi-pronunciation')
 async def taigi_pronunciation(body: TaigiPronunciationRequest):
     from scripts.taigi_text import pronunciation_draft

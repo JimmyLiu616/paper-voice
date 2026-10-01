@@ -1,0 +1,47 @@
+{
+  "cases": [
+    {
+      "id": "late",
+      "source": "請在2026年10月12日下午5時前送達，逾期不受理。",
+      "must_preserve": [
+        "2026",
+        "10",
+        "12",
+        "5",
+        "before",
+        "late rejected"
+      ]
+    },
+    {
+      "id": "original_copy",
+      "source": "須繳身分證正本及影本，只有影本不予受理。",
+      "must_preserve": [
+        "identity original and copy",
+        "copy alone rejected"
+      ]
+    },
+    {
+      "id": "age_fee",
+      "source": "費用為500元，65歲以上免費；未滿65歲仍須繳費。",
+      "must_preserve": [
+        "500",
+        "65",
+        "65",
+        "at least65free",
+        "under65pay"
+      ]
+    },
+    {
+      "id": "already_paid",
+      "source": "已繳費者不必再繳；尚未繳費者須於10月5日前繳清。",
+      "must_preserve": [
+        "paid no repeat",
+        "unpaid pay",
+        "10",
+        "5",
+        "before"
+      ]
+    }
+  ],
+  "purpose": "New development checks fixed before generation; not a blind native-language evaluation"
+}
