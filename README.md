@@ -162,3 +162,20 @@ node --test tests\camera.test.cjs
 第二次[learning-rate受控比較](training/REVIEWED_RUN_002.md)恢復了否定題回答，但例外欄新增漏列、格式改善消失，仍未採用；兩輪原模型基準相同，保留test未推論。
 
 2026-10-02 ASR前置檢查：使用原VAD設定提前拒絕無語音輸入，真實模型配對測試的點擊聲／純音／白雜音由8–12秒降至約0.58秒，且不載入ASR模型；靜音原已早退。四筆合成華語轉寫內容相同，一般語音延遲未一致改善。完整Python183項通過，正式API的兩筆拒絕及一筆合成語音轉寫亦通過。每例一次、無真人或台語品質結論，沒有權重更新。見 [ASR實測](evaluation/asr-preflight-v1/README.md)。
+
+2026-10-02照片等待改善：開啟工作台時提前載入本機模型，選照片時可看到準備狀態。兩張自製圖片預載完成後，上傳到結果由28.9／25.5秒變為8.3／7.5秒，全文及七欄一致；預先載入本身仍需20.5／19.1秒，不能說總計算時間或每次推論快了三倍。189項Python、25項JavaScript通過。縮短欄位輸出及直接使用OCR的候選因漏資訊未採用，紀錄見 [照片速度實測](evaluation/photo-latency-v1/README.md)。影片仍為較早版本。
+
+
+## 客語朗讀（選用、本機）
+
+目前可在「客語實驗室」輸入已核對的客語漢字，切換四縣腔與海陸腔。模型為 [FormoSpeech VoxHakka](https://huggingface.co/formospeech/yourtts-htia-240704)，CC BY-NC 4.0，固定 XF 聲音。每次最多 80 字；不支援的用字會拒絕合成，數字請改成客語讀法。這不是華語自動翻譯，發音尚待母語者驗證。
+
+既有華語使用 Windows 台灣華語；既有台語實驗室使用 Meta MMS 白話字，仍需人工翻譯及核對。不能宣稱公文已能自動轉成正確台語或客語。
+
+先依上述步驟建立主程式 `.venv`，並安裝 Python 3.11 與 uv，再執行：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/setup_hakka.ps1
+```
+
+此步驟建立獨立 `.venv-local-tts`，下載約 1 GB 上游權重及 CPU 語音套件。初始化需要網路，之後語音合成離線；不占用文件辨識的 GPU。版本清單在 `scripts/hakka-requirements-lock.txt`，模型 revision、授權與 SHA256 在 `MODEL_SOURCES.json` 和 `evaluation/hakka-v1/`。權重與虛擬環境不會上傳 GitHub。

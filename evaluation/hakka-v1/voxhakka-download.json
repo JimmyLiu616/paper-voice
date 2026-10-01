@@ -1,0 +1,44 @@
+{
+  "repo": "formospeech/yourtts-htia-240704",
+  "revision": "e61e1026d1fe5edb29f35ad025c090526a7e4fe7",
+  "files": [
+    {
+      "file": "README.md",
+      "bytes": 7164,
+      "sha256": "2a7e1b7460cfd949286d1ee23443770d920b28a6f27f6491b3f925a1a6fe5f62",
+      "lfs_sha256_verified": false
+    },
+    {
+      "file": "config.json",
+      "bytes": 24226,
+      "sha256": "08d84f580be3d38c3285c88fbe93460997ec24e24239d7b9bbda359bf688338a",
+      "lfs_sha256_verified": false
+    },
+    {
+      "file": "language_ids.json",
+      "bytes": 85,
+      "sha256": "b011a3505a4a29b586d3130571df32655617279d379a8755a5ff7cddc50acc9d",
+      "lfs_sha256_verified": false
+    },
+    {
+      "file": "model.pth",
+      "bytes": 1017227982,
+      "sha256": "2f38e9c4536b1642e6a8ee02d3c7965e92f759cad97ea5cf75cb0a5cf0fbb28d",
+      "lfs_sha256_verified": true
+    },
+    {
+      "file": "speaker_embs.pth",
+      "bytes": 93684,
+      "sha256": "2a573f1e2a8e413368f7f0fc93dbdc92039cf2bd4454acd8dbca1647f187215a",
+      "lfs_sha256_verified": true
+    },
+    {
+      "file": "speakers.pth",
+      "bytes": 1248,
+      "sha256": "3336d57e6cb72ef0afec184b6303976a23609c70f58c6f66b99034dbeaa618b6",
+      "lfs_sha256_verified": true
+    }
+  ],
+  "license": "CC-BY-NC-4.0",
+  "deployed": false
+}

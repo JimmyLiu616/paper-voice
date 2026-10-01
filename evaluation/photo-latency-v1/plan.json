@@ -1,0 +1,23 @@
+{
+  "app_sha256": "55f7cc4a7204fb87115f9e0f8038b258074b059daa6d341ae8414dadde1cf74f",
+  "cases": [
+    [
+      "notice",
+      "cold"
+    ],
+    [
+      "notice",
+      "preloaded"
+    ],
+    [
+      "event",
+      "preloaded"
+    ],
+    [
+      "event",
+      "cold"
+    ]
+  ],
+  "scope": "Two original synthetic images, one cold/preloaded pair each; model unloaded before every run, OS file cache not cleared. Preload elapsed time is reported separately, not erased. Same image and inference path.",
+  "runner_sha256": "1f8b1b19ed844ac5114785b2bf9866b66fece6f19f279938f65ee0ce223bf8e8"
+}

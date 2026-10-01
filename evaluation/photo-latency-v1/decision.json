@@ -1,0 +1,416 @@
+{
+  "adopted": "preload existing model while choosing a photo",
+  "inference_functions_ast_unchanged": [
+    "generate",
+    "extract",
+    "validate_extraction",
+    "process_job",
+    "analyze",
+    "ask",
+    "windows_ocr"
+  ],
+  "rejected_alternatives": [
+    {
+      "experiment": "compact-extraction-v1",
+      "raw_results_sha256": "e92c16c47869ba0e864154171de1ae8084d2f34424f00e35a8132f765c6f622f",
+      "variants": [
+        {
+          "variant": "baseline",
+          "checks_passed": 20,
+          "checks_planned": 20,
+          "rows": [
+            {
+              "id": "nycu-ethics-114-p1",
+              "seconds": 16.535,
+              "generated_tokens": 385,
+              "load_seconds": 11.555,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "moi-police-form-109-p4",
+              "seconds": 10.772,
+              "generated_tokens": 785,
+              "load_seconds": 0.242,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "wda-pretraining-115-p2",
+              "seconds": 6.039,
+              "generated_tokens": 488,
+              "load_seconds": 0.003,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p2",
+              "seconds": 8.325,
+              "generated_tokens": 667,
+              "load_seconds": 0.01,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p3",
+              "seconds": 13.846,
+              "generated_tokens": 995,
+              "load_seconds": 0.007,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "variant": "compact",
+          "checks_passed": 15,
+          "checks_planned": 20,
+          "rows": [
+            {
+              "id": "nycu-ethics-114-p1",
+              "seconds": 2.937,
+              "generated_tokens": 217,
+              "load_seconds": 0.005,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": false
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "moi-police-form-109-p4",
+              "seconds": 8.892,
+              "generated_tokens": 238,
+              "load_seconds": 0.324,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": false
+                },
+                {
+                  "field": "conditions",
+                  "passed": false
+                }
+              ]
+            },
+            {
+              "id": "wda-pretraining-115-p2",
+              "seconds": 4.431,
+              "generated_tokens": 311,
+              "load_seconds": 0.003,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": false
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p2",
+              "seconds": 3.895,
+              "generated_tokens": 299,
+              "load_seconds": 0.008,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p3",
+              "seconds": 5.063,
+              "generated_tokens": 365,
+              "load_seconds": 0.006,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": false
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "not adopted; faster path loses a required field check",
+      "scope": "Existing development transcript/OCR references only; no new photo inference or general accuracy claim."
+    },
+    {
+      "experiment": "ocr-direct-v1",
+      "raw_results_sha256": "d9f33fe1a0613c683f00c41a60b48c0a36a5d1cd459c20a040d6ba9c9a3cb7bd",
+      "variants": [
+        {
+          "variant": "ocr_direct",
+          "checks_passed": 19,
+          "checks_planned": 20,
+          "rows": [
+            {
+              "id": "nycu-ethics-114-p1",
+              "seconds": 10.377,
+              "generated_tokens": 475,
+              "load_seconds": 0.088,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "moi-police-form-109-p4",
+              "seconds": 8.868,
+              "generated_tokens": 699,
+              "load_seconds": 0.009,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "wda-pretraining-115-p2",
+              "seconds": 9.608,
+              "generated_tokens": 512,
+              "load_seconds": 0.124,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p2",
+              "seconds": 15.586,
+              "generated_tokens": 596,
+              "load_seconds": 0.008,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": true
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            },
+            {
+              "id": "taipei-tuition-115-p3",
+              "seconds": 14.737,
+              "generated_tokens": 850,
+              "load_seconds": 0.252,
+              "checks": [
+                {
+                  "field": "deadline",
+                  "passed": false
+                },
+                {
+                  "field": "required_documents",
+                  "passed": true
+                },
+                {
+                  "field": "amount",
+                  "passed": true
+                },
+                {
+                  "field": "conditions",
+                  "passed": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "decision": "not adopted; faster path loses a required field check",
+      "scope": "Existing development transcript/OCR references only; no new photo inference or general accuracy claim."
+    }
+  ],
+  "python_tests": 189,
+  "javascript_tests": 25,
+  "training": false,
+  "reserved_test_inference": false,
+  "original_source": "Current application, original synthetic sample images; no user documents"
+}

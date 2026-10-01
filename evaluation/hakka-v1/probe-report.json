@@ -1,0 +1,38 @@
+{
+  "scope": "Two dialects of the same four-character Hakka example; valid waveform/token coverage only, no native-speaker evaluation or Mandarin-to-Hakka translation.",
+  "model": "formospeech/yourtts-htia-240704",
+  "revision": "e61e1026d1fe5edb29f35ad025c090526a7e4fe7",
+  "runtime": "coqui-tts 0.27.5 / CPU torch 2.6.0",
+  "speaker_encoder_disabled": true,
+  "deployed": false,
+  "runs": [
+    {
+      "dialect": "sixian",
+      "text": "天公落水",
+      "pronunciations": [
+        "tʰ-ien_24 k-uŋ_24",
+        "l-ok_5 s-ui_31"
+      ],
+      "seconds": 1.14,
+      "audio_seconds": 2.149,
+      "sample_rate": 22050,
+      "sha256": "075718e5aeb94814895ea2cc5e22bc1ad65bf0a2dd3f1955ed2654ae023c856d",
+      "speaker": "XF",
+      "unknown_tokens": []
+    },
+    {
+      "dialect": "hailu",
+      "text": "天公落水",
+      "pronunciations": [
+        "tʰ-ien_53 k-uŋ_53",
+        "l-ok_2 ʂ-ui_24"
+      ],
+      "seconds": 0.812,
+      "audio_seconds": 2.358,
+      "sample_rate": 22050,
+      "sha256": "bd8844d96ca6ce10a3a836f6148fcebe00930657d409f8c291a9395e02dc562d",
+      "speaker": "XF",
+      "unknown_tokens": []
+    }
+  ]
+}

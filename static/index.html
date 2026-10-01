@@ -5,6 +5,8 @@
   <meta name="theme-color" content="#143b40"><title>紙聲通 · 讓每張紙，都聽得懂</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
   <script src="/static/answer-speech.js" defer></script>
+  <script src="/static/model-warmup.js" defer></script>
+  <script src="/static/hakka-speech.js" defer></script>
   <script src="/static/app.js" defer></script>
   <script src="/static/camera.js" defer></script>
 </head>
@@ -13,7 +15,7 @@
   <aside class="sidebar">
     <a class="brand" href="/" aria-label="紙聲通首頁"><span class="brand-mark">紙</span><span>紙聲通<small>PAPER VOICE</small></span></a>
     <div class="sidebar-caption">生活文書，陪你讀懂</div>
-    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace"><span aria-hidden="true">▤</span> 文件識讀</a><a class="nav-item" href="#speech-panel"><span aria-hidden="true">◖</span> 語音朗讀</a><a class="nav-item" href="#taigi-panel"><span aria-hidden="true">文</span> 台語實驗室</a><button class="nav-item" id="about-btn"><span aria-hidden="true">ⓘ</span> 關於這個作品</button></nav>
+    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace"><span aria-hidden="true">▤</span> 文件識讀</a><a class="nav-item" href="#speech-panel"><span aria-hidden="true">◖</span> 語音朗讀</a><a class="nav-item" href="#taigi-panel"><span aria-hidden="true">文</span> 台語實驗室</a><a class="nav-item" href="#hakka-panel">客語實驗室</a><button class="nav-item" id="about-btn"><span aria-hidden="true">ⓘ</span> 關於這個作品</button></nav>
     <div class="sidebar-bottom"><span class="local-label">本機運行</span><p>讓文字變成聲音，<br>讓資訊變成下一步。</p><small>InnoServe 2026<br>開源 AI 模型應用提案</small></div>
   </aside>
   <main id="workspace">
@@ -32,6 +34,7 @@
           <div class="sample-row"><span>還沒有文件？試試看</span><button id="sample-notice" class="sample-chip">補件通知</button><button id="sample-event" class="sample-chip">社區活動</button></div>
         </div>
         <div id="text-input" role="tabpanel" aria-labelledby="text-tab" hidden><label for="source-text" class="field-label">貼上需要解讀的文字</label><textarea id="source-text" rows="12" maxlength="6500" placeholder="貼上繁體中文或英文通知，也可以貼入已修正的辨識原文。"></textarea><p class="hint">文字模式會略過圖片辨識，直接整理你提供的內容。</p></div>
+        <p id="model-preparation" class="hint" role="status"></p>
         <button id="analyze-btn" class="primary-button" disabled><span aria-hidden="true">✦</span> 幫我讀懂</button>
         <div id="progress" class="progress" role="status" aria-live="polite" hidden><span class="spinner"></span><div><strong id="progress-stage">等待本機模型</strong><small id="progress-time">第一次載入模型可能需要較久</small></div></div>
         <div class="photo-tip"><b>拍攝小提醒</b><p>讓整張紙入鏡、字體清楚，避開反光。先從一頁生活通知開始。</p></div>
@@ -50,6 +53,7 @@
     </div>
     <div class="bottom-grid">
       <section class="panel qa-panel"><div class="panel-heading"><h2>還有不清楚的地方？ <span class="section-no">03</span></h2></div><p class="muted">根據這份文件回答，並附上對應原文。</p><div class="question-chips"><button data-question="我需要準備什麼文件？">需要準備什麼？</button><button data-question="最晚什麼時候要完成？">什麼時候以前？</button><button data-question="我要去哪裡辦理？">去哪裡辦理？</button></div><form id="question-form"><input id="question" maxlength="300" placeholder="輸入你的問題…" aria-label="針對文件提問" required><button id="ask-btn" class="primary-button compact" disabled>提問</button></form><div id="answers" class="answers" aria-live="polite"><p class="hint">先讀取一份文件，就能開始提問。</p></div></section>
+      <section id="hakka-panel" class="panel taigi-panel"><div class="panel-heading"><h2>客語聲音實驗室</h2><span class="experimental">客語漢字試聽</span></div><p>輸入經核對的客語短句，選擇台灣客語腔調。<strong>這是客語朗讀，不會自動把華語翻譯成客語。</strong></p><label class="field-label" for="hakka-dialect">客語腔調</label><select id="hakka-dialect"><option value="sixian">四縣腔</option><option value="hailu">海陸腔</option></select><label class="field-label" for="hakka-text">客語漢字（最多 80 字；數字請寫成讀法）</label><textarea id="hakka-text" rows="2" maxlength="80">天公落水</textarea><div class="taigi-actions"><button id="hakka-btn" class="secondary-button" disabled>試聽客語</button><button id="hakka-stop" class="secondary-button">停止客語</button></div><audio id="hakka-audio" controls hidden></audio><p id="hakka-status" class="hint" role="status">檢查客語模型中</p><p class="hint">VoxHakka / FormoSpeech · CC BY-NC 4.0（非商業）· 固定模型聲音。首次啟動較久，發音仍待母語者驗證。</p></section>
       <section id="taigi-panel" class="panel taigi-panel"><div class="panel-heading"><h2>台語聲音實驗室</h2><span class="experimental">人工翻譯</span></div><p>選取文件片段，由台語使用者翻譯成白話字後朗讀。<strong>目前不自動翻譯，口音仍待驗證。</strong></p><button id="taigi-source-btn" class="secondary-button">帶入文件原文</button><label for="taigi-source" class="field-label">要翻譯的原文片段（可縮短）</label><textarea id="taigi-source" rows="2" maxlength="500" placeholder="先讀取文件，再帶入要翻譯的句子。"></textarea><label for="taigi-text" class="field-label">經人工核對的白話字</label><textarea id="taigi-text" rows="2" maxlength="500" placeholder="例如：lí hó" spellcheck="false">lí hó</textarea><label class="check-label"><input id="taigi-confirm" type="checkbox">我已核對白話字與原文意思相符</label><div class="taigi-actions"><button id="taigi-btn" class="secondary-button">試聽台語</button><span id="taigi-status" class="muted">檢查模型中</span></div><p class="hint">Meta MMS · CC BY-NC 4.0（非商業）<br>未選原文時，可單獨試聽白話字。</p></section>
     </div>
     <section class="panel corpus-panel"><div class="panel-heading"><h2>把修正變成下一次的進步</h2><span class="experimental">自願貢獻</span></div><p class="hint">先在「查看／修正辨識原文」改好錯字，再按預覽。原圖、錄音及文件檔名不會加入貢獻檔；這裡只下載到本機，不會自動上傳。</p><button id="corpus-preview-btn" class="secondary-button">預覽這次辨識修正</button><div id="corpus-preview" hidden><p id="corpus-status" class="hint" role="status"></p><div class="corpus-pair"><label>遮蔽後的辨識原文<textarea id="corpus-original" rows="5" maxlength="6500"></textarea></label><label>遮蔽後的人工修正<textarea id="corpus-corrected" rows="5" maxlength="6500"></textarea></label></div><p class="warning">自動遮蔽可能漏掉姓名、地址、病情等資訊。請逐行檢查並手動刪除；不要公開他人的私密文件。</p><label class="field-label">資料來源 <select id="corpus-provenance"><option value="synthetic">自製虛構範例</option><option value="authorized">已獲權利人授權的資料</option></select></label><label class="check-label"><input id="corpus-reviewed" type="checkbox">我已逐行核對內容正確，並移除可識別個人的資訊</label><label class="check-label"><input id="corpus-rights" type="checkbox">我有權公開此文字，並同意以 CC BY 4.0 授權；以 Paper Voice 自願貢獻者署名</label><button id="corpus-export-btn" class="secondary-button">下載待審核語料 JSONL</button></div></section>

@@ -6,3 +6,4 @@ __pycache__/
 test-results/
 training/data/
 .venv-train/
+.venv-local-tts/

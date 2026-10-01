@@ -1,0 +1,23 @@
+{
+  "app_sha256": "55f7cc4a7204fb87115f9e0f8038b258074b059daa6d341ae8414dadde1cf74f",
+  "comparisons": [
+    {
+      "sample": "notice",
+      "cold_seconds": 28.919,
+      "preloaded_seconds": 8.295,
+      "preparation_seconds": 20.462,
+      "transcript_identical": true,
+      "fields_identical": true
+    },
+    {
+      "sample": "event",
+      "cold_seconds": 25.454,
+      "preloaded_seconds": 7.485,
+      "preparation_seconds": 19.072,
+      "transcript_identical": true,
+      "fields_identical": true
+    }
+  ],
+  "all_done": true,
+  "scope": "Moves model load before upload when the page/file selection leaves enough preparation time. Does not speed up token generation, OCR, or every warm request. Single pair per sample, not population performance."
+}

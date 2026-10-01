@@ -1,0 +1,44 @@
+[
+  {
+    "sample": "notice",
+    "mode": "cold",
+    "image_sha256": "29a995486caf61aec82a71a9fcc71ed2ba8110caca7e7636a67a051fa8e3d5e1",
+    "preparation": null,
+    "upload_to_result_seconds": 28.919,
+    "status": "done",
+    "error": null
+  },
+  {
+    "sample": "notice",
+    "mode": "preloaded",
+    "image_sha256": "29a995486caf61aec82a71a9fcc71ed2ba8110caca7e7636a67a051fa8e3d5e1",
+    "preparation": {
+      "status": "ready",
+      "seconds": 20.462
+    },
+    "upload_to_result_seconds": 8.295,
+    "status": "done",
+    "error": null
+  },
+  {
+    "sample": "event",
+    "mode": "preloaded",
+    "image_sha256": "2b1686d1c2e409d54919993535e0bc61a4f63b2b9277745d26d12f09c71b9a51",
+    "preparation": {
+      "status": "ready",
+      "seconds": 19.072
+    },
+    "upload_to_result_seconds": 7.485,
+    "status": "done",
+    "error": null
+  },
+  {
+    "sample": "event",
+    "mode": "cold",
+    "image_sha256": "2b1686d1c2e409d54919993535e0bc61a4f63b2b9277745d26d12f09c71b9a51",
+    "preparation": null,
+    "upload_to_result_seconds": 25.454,
+    "status": "done",
+    "error": null
+  }
+]

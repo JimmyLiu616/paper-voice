@@ -8,9 +8,10 @@
 
 | 範圍 | 最近已完成的驗證 | 適用限制與紀錄 |
 |---|---|---|
-| Python程式 | 完整回歸183項通過；1項既有Starlette/httpx棄用警告 | 新增6項ASR前置檢查；不代表模型品質。`evaluation/asr-preflight-v1/README.md` |
+| Python程式 | 完整回歸203項通過；1項既有Starlette/httpx棄用警告 | 新增6項模型預載檢查；不代表模型品質。`evaluation/photo-latency-v1/README.md` |
+| 照片預載實測 | 兩張自製圖未預載28.9／25.5秒；预載完成後8.3／7.5秒，全文及欄位一致 | 提前準備另需20.5／19.1秒，未加速模型本身；每條件僅一次。`evaluation/photo-latency-v1/README.md` |
 | ASR非語音前置檢查 | 三種非語音訊號從8–12秒降至約0.58秒；4筆合成語音文字相同 | 每例一組配對，無真人或台語品質結論；正式API已驗證。`evaluation/asr-preflight-v1/README.md` |
-| JavaScript程式 | 完整回歸22項通過 | 回答朗讀8項、相機生命週期6項、資料核對8項。`evaluation/qa-completeness/answer-speech-v1.json` |
+| JavaScript程式 | 完整回歸25項通過 | 回答朗讀8項、相機生命週期6項、資料核對8項、預載3項。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 公文圖片（隔離API） | public-v14：5頁，欄位20/20、問答機械檢查10/10、0執行錯誤 | 額外兩项待辦診斷同輸出0→2/2，其餘33欄相同，分開計分。地點、其他待辦空欄與清單／引用完整性限制仍在。`evaluation/public-documents/public-v14-review.json` |
 | 回答與引用朗讀 | 真實UI完成預設引用、只讀回答及拒答三種播放 | 以文字通知測試；未證明使用者理解改善。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 文件訓練GPU流程 | 229 tokens、1步optimizer；52個張量更新，104個載入張量與保存檔相符，獨立程序生成一致 | 同一固定合成素材，更新前後答案相同，無任務改善證據。`evaluation/qa-completeness/cuda-smoke-document-001/` |

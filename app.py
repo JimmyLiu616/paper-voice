@@ -525,6 +525,7 @@ async def health():
             'asr_ready': all((RUNTIME / 'taiwan-tongues-asr' / name).exists() for name in ('model.bin', 'config.json', 'tokenizer.json')) and (RUNTIME / 'asr-revision.json').exists(),
             'asr_model': 'Taiwan Tongues ASR CE v1.0',
             'taigi_ready': (RUNTIME / 'mms-tts-nan' / 'model.safetensors').exists(),
+            'hakka_ready': hakka_ready(),
             'privacy': '本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。'}
 
 
@@ -550,6 +551,26 @@ async def analyze(file: UploadFile = File(...)):
     jobs[job_id]['warnings'] = warnings
     asyncio.create_task(process_job(job_id, base64.b64encode(buffer.getvalue()).decode(), None))
     return {'id': job_id}
+
+
+@app.post('/api/warmup')
+async def warmup():
+    """Load the existing model while the reader is choosing a document."""
+    if model_lock.locked():
+        return {'status': 'busy'}
+    async with model_lock:
+        started = time.monotonic()
+        try:
+            async with httpx.AsyncClient(timeout=httpx.Timeout(120, connect=5)) as client:
+                response = await client.post(f'{OLLAMA}/api/generate', json={
+                    'model': MODEL, 'prompt': '', 'stream': False, 'keep_alive': '5m',
+                    'options': {'num_ctx': 8192}})
+                response.raise_for_status()
+                if response.json().get('done') is not True:
+                    raise HTTPException(503, '模型尚未完成準備，可稍後直接送出文件。')
+        except (httpx.HTTPError, ValueError):
+            raise HTTPException(503, '暫時無法預先準備模型，可稍後直接送出文件。')
+        return {'status': 'ready', 'seconds': round(time.monotonic() - started, 3)}
 
 
 class TextRequest(BaseModel):
@@ -786,6 +807,55 @@ class SpeechRequest(BaseModel):
     text: str = Field(min_length=1, max_length=1800)
     language: str = 'zh-TW'
     rate: int = Field(default=-1, ge=-3, le=2)
+
+
+class HakkaRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=80)
+    dialect: Literal['sixian', 'hailu'] = 'sixian'
+
+
+def hakka_ready():
+    return ((ROOT / '.venv-local-tts/Scripts/python.exe').is_file()
+            and all((RUNTIME / 'voxhakka' / name).is_file() for name in
+                    ['model.pth', 'config.json', 'speakers.pth', 'speaker_embs.pth', 'language_ids.json']))
+
+
+def hakka_wav(text: str, dialect: str) -> bytes:
+    from scripts.hakka_worker import validate_text
+    try:
+        text = validate_text(text)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    if not hakka_ready():
+        raise HTTPException(503, '客語環境尚未安裝，請參考 README 的客語安裝步驟。')
+    with tempfile.TemporaryDirectory(prefix='paper-voice-hakka-') as tmp:
+        request, output, error = [Path(tmp) / name for name in ['input.json', 'speech.wav', 'error.txt']]
+        request.write_text(json.dumps({'text': text, 'dialect': dialect}), encoding='utf-8')
+        try:
+            result = subprocess.run([str(ROOT / '.venv-local-tts/Scripts/python.exe'), '-X', 'utf8',
+                                     str(ROOT / 'scripts/hakka_worker.py'), '--request', str(request),
+                                     '--output', str(output), '--error', str(error)],
+                                    capture_output=True, timeout=120,
+                                    creationflags=getattr(subprocess, 'CREATE_NO_WINDOW', 0))
+        except (OSError, subprocess.TimeoutExpired) as exc:
+            raise HTTPException(503, '客語語音逾時或無法啟動，請縮短句子再試。') from exc
+        if result.returncode == 2 and error.is_file():
+            raise HTTPException(422, error.read_text(encoding='utf-8'))
+        if result.returncode or not output.is_file():
+            raise HTTPException(503, '客語語音未能產生，請檢查本機客語環境。')
+        wav = output.read_bytes()
+        if len(wav) < 44 or wav[:4] != b'RIFF' or wav[8:12] != b'WAVE':
+            raise HTTPException(503, '客語音檔格式異常，請重試。')
+        return wav
+
+
+@app.post('/api/hakka-speech')
+async def hakka_speech(body: HakkaRequest):
+    if speech_lock.locked():
+        raise HTTPException(409, '正在產生其他語音，請稍後再試。')
+    async with speech_lock:
+        wav = await asyncio.to_thread(hakka_wav, body.text, body.dialect)
+    return Response(wav, media_type='audio/wav')
 
 
 def mandarin_wav(text: str, rate: int) -> bytes:

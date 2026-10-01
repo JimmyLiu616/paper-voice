@@ -4,6 +4,7 @@ const state = {file:null, mode:'image', job:null, result:null, run:0, busy:false
 const headers = {'X-PaperVoice':'local-ui'};
 let asrReady=false, asrBusy=false, qaBusy=false, recorder=null, recordStream=null, recordTimer=null, voiceRun=0;
 let voiceReady = false, modelReady = false;
+let initialPreparationRequested = false;
 function message(text='') { $('alert').textContent=text; $('alert').hidden=!text; }
 function textNode(tag,text,cls) { const node=document.createElement(tag); node.textContent=text; if(cls)node.className=cls; return node; }
 async function api(path, options={}) {
@@ -11,6 +12,17 @@ async function api(path, options={}) {
   if(!response.ok) { let detail; try {detail=(await response.json()).detail;}catch{} throw new Error(typeof detail==='string'?detail:`操作失敗（${response.status}），請稍後再試。`); }
   return response;
 }
+const modelPreparation = PaperVoiceWarmup.create({
+  request: () => api('/api/warmup', {method:'POST'}).then(r => r.json()),
+  onState: status => {
+    $('model-preparation').textContent = {
+      preparing:'正在提前準備模型，你可以先選照片或拍攝文件。',
+      ready:'模型已預先準備，可以送出文件。',
+      busy:'模型正在處理文件，新文件將依序處理。',
+      unavailable:'可直接送出文件；首次處理可能需要較久。'
+    }[status];
+  }
+});
 function buttons() {
   $('analyze-btn').disabled=state.busy || !modelReady || (state.mode==='image'?!state.file:$('source-text').value.trim().length<4);
   $('speak-btn').disabled=!state.result || state.busy;
@@ -30,7 +42,7 @@ function mode(value) {
 }
 function stopSpeech() {
   state.speechController?.abort(); state.speechController=null;
-  $('audio').pause(); if('speechSynthesis' in window) speechSynthesis.cancel();
+  $('audio').pause(); window.PaperVoiceHakka?.stop(); if('speechSynthesis' in window) speechSynthesis.cancel();
   $('speak-btn').textContent='▶ 聽重點'; $('taigi-btn').disabled=false;
 }
 async function discardJob(id) { if(id) await api('/api/jobs/'+encodeURIComponent(id),{method:'DELETE'}).catch(()=>{}); }
@@ -51,6 +63,7 @@ function chooseFile(file) {
   if(state.preview)URL.revokeObjectURL(state.preview);
   state.preview=URL.createObjectURL(file); $('preview').src=state.preview; $('file-name').textContent=file.name;
   $('dropzone').hidden=true; $('preview-wrap').hidden=false; buttons();
+  if(modelReady)modelPreparation.prepare();
 }
 $('file-input').addEventListener('change',e=>chooseFile(e.target.files[0]));
 $('change-file').onclick=()=>$('file-input').click();
@@ -172,9 +185,11 @@ window.addEventListener('pagehide',()=>{stopSpeech();if(state.job)fetch('/api/jo
 async function checkHealth(){
   try {const health=await(await api('/api/health')).json();modelReady=health.model_ready;
     asrReady=health.asr_ready;
+    window.PaperVoiceHakka?.setReady(health.hakka_ready);
     $('asr-model-status').textContent=asrReady?'Taiwan Tongues ASR CE · 本機已就緒':'指定語音模型尚未準備完成';
     $('model-status').textContent=modelReady?'Gemma 3 · 本機已就緒':(health.ollama?'模型下載／準備中':'請啟動 Ollama');$('model-status').classList.toggle('wait',!modelReady);
     $('taigi-status').textContent=health.taigi_ready?'本機模型已下載':'模型尚未下載';$('taigi-btn').disabled=!health.taigi_ready;
+    if(modelReady && !initialPreparationRequested){initialPreparationRequested=true;modelPreparation.prepare();}
   }catch{$('model-status').textContent='本機服務連線中斷';$('model-status').classList.add('wait');modelReady=false;}
   buttons();
 }

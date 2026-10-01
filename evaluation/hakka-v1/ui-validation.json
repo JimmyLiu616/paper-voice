@@ -1,0 +1,27 @@
+{
+  "scope": "Browser clicks on live localhost app, fixed synthetic Hakka sentence only; no native-speaker rating or automatic translation.",
+  "model": "formospeech/yourtts-htia-240704",
+  "revision": "e61e1026d1fe5edb29f35ad025c090526a7e4fe7",
+  "app_sha256": "a56098bc0b742acfbc6edb82958331cbbe8554eb6b9b486fb27f3accb66964c0",
+  "worker_sha256": "8a434f7b34d681ad43e2b34686f696913d73824e874929d37d2359cfc66e0d85",
+  "text": "天公落水",
+  "dialects": [
+    {
+      "dialect": "sixian",
+      "ui_completed": true
+    },
+    {
+      "dialect": "hailu",
+      "ui_completed": true,
+      "browser_audio_seconds": 2.357551,
+      "ready_state": 4,
+      "media_error": null
+    }
+  ],
+  "checks": {
+    "python_passed": 203,
+    "javascript_passed": 25,
+    "javascript_syntax_passed": true
+  },
+  "weights_published": false
+}
