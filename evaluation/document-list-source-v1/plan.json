@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-10-01T17:25:54.529307+00:00",
+  "baseline_app_sha256": "a6329761e38f40a5528a117f71278f52d3d362d20ad6bf7e44a88d7b8d748a2b",
+  "hypothesis": "A required_documents value changed into a delimited list is rejected even though every item occurs in order in a valid source evidence paragraph. Restore the full source paragraph only when it explicitly requests preparing documents.",
+  "scope": "Required documents field, source-alignment repair only. No model, prompt or QA-validator changes.",
+  "gates": [
+    "Each of at least two document-like list items must occur verbatim and in order in the model evidence.",
+    "Evidence must map to one unique source paragraph; output copies that entire original paragraph.",
+    "Reject changed or added items, order reversal, repeated matches, unsupported attachments and non-obligatory reference text.",
+    "Full Python regression, paired replay of all five saved public-v12 outputs and a new isolated real five-page API run before deployment."
+  ],
+  "limits": [
+    "Existing development cases, not independent held-out test.",
+    "Generic references to other required documents do not establish a complete list.",
+    "Keep costs, conditions, source qualifiers and known semantic limitations visible.",
+    "No training or use of the reserved training experiment test."
+  ]
+}

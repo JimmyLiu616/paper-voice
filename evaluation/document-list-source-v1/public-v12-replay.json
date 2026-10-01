@@ -1,0 +1,163 @@
+{
+  "run": "public-v12",
+  "baseline_app_sha256": "a6329761e38f40a5528a117f71278f52d3d362d20ad6bf7e44a88d7b8d748a2b",
+  "candidate_app_sha256": "7d1b350d97973cffc56a9b277752bd799d32b8dd7ac813c8440bb709faa15bc6",
+  "generation_log_sha256": "d1d35144c2303c07b5987a054954a3dcf1be4a7223c9599953bab4509c9616f3",
+  "results_sha256": "1990c3434a3a8ac131e65c2a163b21a79c915e6262df8f65098b0f45bfebfaa0",
+  "runner_sha256": "9e883143811200d8459150e2672111e3d62686850fd8d96469972baf27d6d659",
+  "rows": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": [
+        "required_documents"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": false,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": false
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    }
+  ],
+  "before_passed": 19,
+  "after_passed": 20,
+  "planned": 20,
+  "new_inference": false,
+  "training": false,
+  "scope": "Paired replay of the same saved outputs on existing development pages; no semantic accuracy or fine-tuning claim."
+}

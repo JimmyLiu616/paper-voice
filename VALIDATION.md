@@ -8,9 +8,9 @@
 
 | 範圍 | 最近已完成的驗證 | 適用限制與紀錄 |
 |---|---|---|
-| Python程式 | 完整回歸151項通過；1項既有Starlette/httpx棄用警告 | 新增13項例外來源定位／拒絕錯配檢查；不代表模型品質。`evaluation/condition-source-v1/README.md` |
+| Python程式 | 完整回歸164項通過；1項既有Starlette/httpx棄用警告 | 新增13項文件清單來源／附件與豁免檢查；不代表模型品質。`evaluation/document-list-source-v1/README.md` |
 | JavaScript程式 | 完整回歸22項通過 | 回答朗讀8項、相機生命週期6項、資料核對8項。`evaluation/qa-completeness/answer-speech-v1.json` |
-| 公文圖片（隔離API） | public-v12：5頁，欄位19/20、問答機械檢查10/10、0執行錯誤 | 同一實際輸出對照18→19，只恢復核發限制；其餘34欄相同。問答仍有條件省略，public-v10的16/20保留。`evaluation/public-documents/public-v12-review.json` |
+| 公文圖片（隔離API） | public-v13：5頁，欄位20/20、問答機械檢查10/10、0執行錯誤 | 同一實際輸出對照19→20，只恢復申請書段落；其餘34欄相同。地點／行動、清單及引用完整性限制仍在；非全部語意正確。`evaluation/public-documents/public-v13-review.json` |
 | 回答與引用朗讀 | 真實UI完成預設引用、只讀回答及拒答三種播放 | 以文字通知測試；未證明使用者理解改善。`evaluation/qa-completeness/answer-speech-v1.json` |
 | 文件訓練GPU流程 | 229 tokens、1步optimizer；52個張量更新，104個載入張量與保存檔相符，獨立程序生成一致 | 同一固定合成素材，更新前後答案相同，無任務改善證據。`evaluation/qa-completeness/cuda-smoke-document-001/` |
 | 微調輸出離線比較 | 已保存的1題前後答案相同，皆帶圍欄；嚴格JSON與參考匹配0/1 | 未再訓練／推論，沒有品質或泛化改善結論。`evaluation/qa-completeness/cuda-smoke-document-001/paired-dev-metrics.json` |
@@ -19,7 +19,7 @@
 | 新增成對核對頁 | 新6份0/6，原12份12/12；新草稿匯出保留未確認狀態 | 無新增訓練／推論；人工語意核對尚未完成。`training/contrast-ui-validation.json` |
 | 老師展示素材 | 約188.77秒MP4與字幕已發布 | 真實截圖剪輯、非連續錄影；旁白另行合成，版本差異見 `DEMO.md` |
 
-重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `a6329761e38f40a5528a117f71278f52d3d362d20ad6bf7e44a88d7b8d748a2b`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
+重新讀取本機 `/api/health` 時，正式服務回報 Gemma digest `a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a`，app SHA256 `7d1b350d97973cffc56a9b277752bd799d32b8dd7ac813c8440bb709faa15bc6`，ASR與閩南語模型已就緒。這確認服務當時可回應及版本一致，不是重新跑過全部模型品質評測。
 
 ## 早期自動測試紀錄
 

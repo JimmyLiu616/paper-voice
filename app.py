@@ -255,6 +255,26 @@ def condition_source_span(raw: str, value: str) -> str:
     return span if len(span) <= 1200 else ''
 
 
+def document_list_source(raw: str, value: str, evidence: str) -> str:
+    """Restore an explicit source instruction, never manufacture a document list."""
+    if not value or not evidence or len(value) > 1200 or len(evidence) > 1200:
+        return ''
+    parts = [part.strip() for part in re.split(r'[、\n]+', value) if part.strip()]
+    if len(parts) < 2 or not all(re.fullmatch(
+            r'[^，,。;；:：!?！？\n]{0,80}(?:書|表|證|證件|單|文件|資料|照片|收據)'
+            r'(?:正本|影本)?(?:[0-9一二兩]+份)?', part) for part in parts):
+        return ''
+    if not ordered_source_lines('\n'.join(parts), evidence):
+        return ''
+    context = paragraph_context(raw, evidence)
+    if not context or len(context) > 1200:
+        return ''
+    # A description, enclosure, or exemption alone is not a request to prepare it.
+    if not re.search(r'(?<![無不毋免])(?:應|須|需|請)(?:填寫|填妥|備妥|檢附|繳交|攜帶|準備)', evidence):
+        return ''
+    return context
+
+
 def validate_extraction(data: dict, raw: str) -> dict:
     """A checked quote is a transcript match, NEVER a claim of image accuracy."""
     data = dict(data)
@@ -300,6 +320,11 @@ def validate_extraction(data: dict, raw: str) -> dict:
             value = ''
         matched = bool(value and evidence and normalized(evidence) in normalized(raw)
                        and normalized(value) in normalized(evidence))
+        if key == 'required_documents' and not matched:
+            recovered = document_list_source(raw, value, evidence)
+            if recovered:
+                value = evidence = recovered
+                matched = True
         if key == 'conditions' and not matched and value:
             recovered = condition_source_span(raw, value)
             if recovered:

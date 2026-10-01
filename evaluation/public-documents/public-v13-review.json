@@ -1,0 +1,172 @@
+{
+  "run": "public-v13",
+  "app_sha256": "7d1b350d97973cffc56a9b277752bd799d32b8dd7ac813c8440bb709faa15bc6",
+  "reviewer": "Codex",
+  "independent_human_review": false,
+  "generation_events": 20,
+  "generation_log_sha256": "a224eb25a70f7bcac362f2e7e119fff11ef6746cd6c22c830c87e717f7ba057b",
+  "results_sha256": "c9f8b6e260ac63499c6219ce35a603eff7e8563fed2fb67f173fc77e410a3571",
+  "paired_replay": [
+    {
+      "id": "nycu-ethics-114-p1",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "moi-police-form-109-p4",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "wda-pretraining-115-p2",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "taipei-tuition-115-p2",
+      "changed_fields": [
+        "required_documents"
+      ],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": false,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": false,
+      "recorded_fields_match_candidate": true
+    },
+    {
+      "id": "taipei-tuition-115-p3",
+      "changed_fields": [],
+      "checks": [
+        {
+          "field": "deadline",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "required_documents",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "amount",
+          "before": true,
+          "after": true
+        },
+        {
+          "field": "conditions",
+          "before": true,
+          "after": true
+        }
+      ],
+      "previous_condition_retained_in_summary": true,
+      "recorded_fields_match_baseline": true,
+      "recorded_fields_match_candidate": true
+    }
+  ],
+  "same_transcripts_as_public_v12": true,
+  "scope": "Five existing development pages; isolated real API then replay of the same saved generations with both validators.",
+  "failed_mechanical_field_checks": [],
+  "known_limits": [
+    "Only the four selected field types and two questions per page are covered by the mechanical score. It is not complete semantic accuracy.",
+    "Gazette title still appears as location and action may start mid-sentence.",
+    "The restored document paragraph names the application form but refers generically to other required documents; it is not a complete checklist.",
+    "The deadline answer preserves the dates and postmark rule; its new citation ends before the late-submissions clause.",
+    "The previous fee answer completeness limitation remains."
+  ],
+  "decision": "adopt limited source-paragraph recovery for reformatted document lists",
+  "models_and_prompts_changed": false,
+  "training_executed": false,
+  "reserved_test_inference": false
+}
