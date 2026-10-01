@@ -2,6 +2,8 @@
 
 原始碼：[JimmyLiu616/paper-voice](https://github.com/JimmyLiu616/paper-voice)。這是需要在 Windows 安裝並執行的本機應用，GitHub 頁面提供程式與說明。
 
+[示範影片與實驗權重下載](https://github.com/JimmyLiu616/paper-voice/releases/tag/v0.1.0-demo) · [LoRA 實驗權重、授權與載入說明](training/ADAPTER_RELEASE.md)。正式應用仍使用原版 Gemma 3；下載實驗 adapter 不是執行應用的必要步驟。
+
 在 Windows 本機運行的生活文書識讀原型：圖片 → 本機 OCR 輔助 → Google Gemma 3 VLM 核對 → 重要欄位 → 中文朗讀及文件問答。加入數產署 Taiwan Tongues ASR CE 語音提問；另提供人工翻譯後的 Meta MMS 閩南語白話字朗讀與自願修正語料匯出。
 
 目前主攻生活通知／公文的期限、應備文件、費用與例外條件。逐輪開發評測與失敗案例見 `ITERATION_LOG.md`，可執行的合成基準見 `evaluation/README.md`。獨立 Ministral 3 3B 合成單批 QLoRA 已通過權重更新及跨程序重載檢查，見 `training/LORA_SMOKE.md`；僅證明短文字配置能在本機訓練，尚無公文任務改善證據，未部署 adapter。

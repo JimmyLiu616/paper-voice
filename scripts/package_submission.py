@@ -4,7 +4,7 @@ import zipfile
 
 root=Path(__file__).resolve().parents[1]
 destination=root.parent/'paper-voice-submission.zip'
-files=['app.py','corpus.py','README.md','SUBMISSION.md','VALIDATION.md','MODEL_SOURCES.json','LICENSE','CONTRIBUTING_DATA.md','ITERATION_LOG.md','asr-validation.json','extension-validation.json',
+files=['app.py','corpus.py','README.md','DEMO.md','SUBMISSION.md','VALIDATION.md','MODEL_SOURCES.json','LICENSE','CONTRIBUTING_DATA.md','ITERATION_LOG.md','asr-validation.json','extension-validation.json',
        'requirements.txt','requirements-lock.txt','pytest.ini','Start.ps1','Start.cmd','Stop.ps1','Stop.cmd',
        '.gitignore','validation-report.json','release-validation.json']
 for folder in ['static','scripts','samples','tests','third_party','evaluation']:
