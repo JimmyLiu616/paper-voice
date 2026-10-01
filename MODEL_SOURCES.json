@@ -172,5 +172,14 @@
         }
       ]
     }
+  ],
+  "software_components": [
+    {
+      "name": "PyWinRT",
+      "version": "3.2.1",
+      "license": "MIT",
+      "source": "https://github.com/pywinrt/pywinrt",
+      "role": "Direct binding for the existing Windows OCR engine; PowerShell fallback retained"
+    }
   ]
 }

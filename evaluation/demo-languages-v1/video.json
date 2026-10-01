@@ -1,0 +1,30 @@
+{
+  "video": "paper-voice-languages-demo.mp4",
+  "sha256": "8a5982f9b35f5ced1bc109222d8307fb1b406eefdd348d07a5e170bea8d49af1",
+  "bytes": 1417022,
+  "seconds": 77.33,
+  "source": "Actual browser screenshot sampling; pauses between segments cut; synthetic Mandarin narration and separately generated TTS clips. Not native screen recording or synchronous system audio.",
+  "segments": [
+    {
+      "segment": "通知辨識",
+      "start_seconds": 0,
+      "duration": 24.222,
+      "capture_frames": 35,
+      "narration": "這是紙聲通的本機操作示範。我們選擇原創的補件通知，實際呼叫模型讀取圖片。這一次用了八點四秒，整理期限、身分證影本、報名表、免費與已補件可忽略的條件。每次耗時會不同，結果也需要核對原圖。"
+    },
+    {
+      "segment": "台語漢字與白話字試聽",
+      "start_seconds": 24.222,
+      "duration": 24.593,
+      "capture_frames": 38,
+      "narration": "台語實驗室可以把台語漢字轉成白話字草稿，再交給本機語音模型。這是讀音轉寫，目前還不能自動把華語公文翻成台語。這裡示範你好，發音品質仍待母語使用者核對。"
+    },
+    {
+      "segment": "客語四縣腔試聽",
+      "start_seconds": 48.815,
+      "duration": 28.515,
+      "capture_frames": 44,
+      "narration": "客語實驗室提供四縣與海陸兩種腔調。這裡以四縣腔試聽天公落水。文字應先由客語使用者核對，系統不會自動翻譯華語。台語與客語模型採非商業授權。"
+    }
+  ]
+}

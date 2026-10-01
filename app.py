@@ -55,6 +55,13 @@ def cleanup():
 
 @asynccontextmanager
 async def lifespan(app):
+    if os.name == 'nt':
+        from scripts.native_ocr import prepare_runtime
+        try:
+            await asyncio.to_thread(prepare_runtime)
+        except (ImportError, OSError):
+            # Direct OCR will retry safely or use its PowerShell fallback.
+            pass
     async def purge():
         while True:
             await asyncio.sleep(60)
@@ -783,6 +790,15 @@ def ocr_reference_text(data: dict) -> str:
 
 
 def windows_ocr(image: bytes) -> str:
+    try:
+        from scripts.native_ocr import recognize
+        return ocr_reference_text(recognize(image))
+    except Exception:
+        # Optional native bindings must not remove the established OS fallback.
+        return windows_ocr_powershell(image)
+
+
+def windows_ocr_powershell(image: bytes) -> str:
     """Optional OS OCR; retain native line order instead of flattening columns into rows."""
     try:
         with tempfile.TemporaryDirectory(prefix='paper-voice-ocr-') as tmp:

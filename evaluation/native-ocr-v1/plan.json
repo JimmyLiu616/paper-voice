@@ -1,0 +1,47 @@
+{
+  "scope": "Same image preparation and Windows zh-Hant-TW engine. OCR text identity; not an OCR accuracy score. Photo pairs have preloaded Gemma and use one observation per condition. OS caches are not cleared.",
+  "app_sha256": "1bb3da2e1ee071033250fbf12c111874e008d71fcc4354f013bfc17b42535af1",
+  "jpeg_quality": 93,
+  "images": [
+    {
+      "name": "notice.png",
+      "sha256": "29a995486caf61aec82a71a9fcc71ed2ba8110caca7e7636a67a051fa8e3d5e1"
+    },
+    {
+      "name": "event.png",
+      "sha256": "2b1686d1c2e409d54919993535e0bc61a4f63b2b9277745d26d12f09c71b9a51"
+    },
+    {
+      "name": "moi-police-form-109-p4.png",
+      "sha256": "dc0f187be003e8a64063cf19562d41444ee89192336af0f907d43bdd18d56849"
+    },
+    {
+      "name": "nycu-ethics-114-p1.png",
+      "sha256": "440b3db7bbd4c03c82e61d35b3bea32b8e22b4a8f9be3977b2f2de733844d5d1"
+    },
+    {
+      "name": "taipei-tuition-115-p1.png",
+      "sha256": "e777ccbb53c6d8352b6bac18184ed32e801c92292634221ec016920223ffe523"
+    },
+    {
+      "name": "taipei-tuition-115-p2.png",
+      "sha256": "f72971f9c9708da33bd6aa39e3b06689b2e31fbc1b3bb47343edc7b0fe4db1eb"
+    },
+    {
+      "name": "taipei-tuition-115-p3.png",
+      "sha256": "f9706440d11881e4359f70a46f20e443e7775653e3eadf79df44709350c6bfcc"
+    },
+    {
+      "name": "wda-pretraining-115-p1.png",
+      "sha256": "c34ffabce3fe4293b98393facc9c3da14e9a9f0f3944f7cf0416c5202ceac66a"
+    },
+    {
+      "name": "wda-pretraining-115-p2.png",
+      "sha256": "573c7e1ab0fe2bf621405059ca6a7dee20e518e6b42e822241114615a57ecafc"
+    },
+    {
+      "name": "wda-pretraining-115-p3.png",
+      "sha256": "1c4fafe709c1366aa7f94815b8bde5a8945dd917b1b0fcd70b1e7351cb518d24"
+    }
+  ]
+}

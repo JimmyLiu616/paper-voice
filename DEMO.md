@@ -1,3 +1,7 @@
+# 新版多語示範
+
+[下載約 77 秒的新影片與原始碼](https://github.com/JimmyLiu616/paper-voice/releases/tag/v0.2.0-languages-demo)。實際畫面取樣、另配旁白及模型音檔；不是原生連續螢幕錄影。涵蓋辨識、台語轉寫與四縣客語，詳見 `evaluation/demo-languages-v1/`。
+
 # 紙聲通：老師展示包
 
 下載頁：https://github.com/JimmyLiu616/paper-voice/releases/tag/v0.1.0-demo

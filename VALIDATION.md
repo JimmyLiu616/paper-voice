@@ -114,3 +114,8 @@ Tokenizer 追加實測：`inspect_training_tokens.py` 在訓練環境以固定�
 - 重新開啟核對頁仍顯示 0／12，已確認匯出按鈕停用；未由代理勾選實際人工審核聲明。
 - 報告與來源雜湊：`training/review-ui-validation.json`。自動下載及剪貼簿功能未證實成功；頁面提供可見內容供手動另存。
 - 這是資料準備流程驗證，不是語意準確率、人工標註品質、完整 train／dev／test 或微調成效。
+
+
+## 2026-10-02：直接 Windows OCR 與翻譯候選篩選
+
+直接 OCR 10/10 配對文字一致，辨識階段中位數省 0.3408 秒；完整 API 兩組全文及七欄一致，單次耗時不可當作普遍加速率。Python 231 passed，JavaScript 未改動，先前 30 passed。見 `evaluation/native-ocr-v1/`。Gemma 4B 六句台語翻譯候選出現文件類型與否定語意錯誤，未採用，見 `evaluation/taigi-translation-v1/`。

@@ -1,0 +1,16 @@
+[
+  {
+    "sample": "notice",
+    "powershell_seconds": 12.063,
+    "native_seconds": 8.376,
+    "transcript_identical": true,
+    "fields_identical": true
+  },
+  {
+    "sample": "event",
+    "powershell_seconds": 10.538,
+    "native_seconds": 10.311,
+    "transcript_identical": true,
+    "fields_identical": true
+  }
+]

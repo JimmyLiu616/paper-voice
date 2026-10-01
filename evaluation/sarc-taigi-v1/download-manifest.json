@@ -1,0 +1,106 @@
+[
+  {
+    "repo": "unsloth/gemma-3-12b-it-bnb-4bit",
+    "revision": "826e729dbaeea4ecb143738eed2bcf3539ebf7bf",
+    "kind": "base",
+    "files": [
+      {
+        "name": "README.md",
+        "bytes": 24986,
+        "sha256": "5a5435b4b5586d651573549827240348cb457b27e713432500433915408e30b5",
+        "lfs_verified": false
+      },
+      {
+        "name": "added_tokens.json",
+        "bytes": 35,
+        "sha256": "50b2f405ba56a26d4913fd772089992252d7f942123cc0a034d96424221ba946",
+        "lfs_verified": false
+      },
+      {
+        "name": "chat_template.json",
+        "bytes": 1615,
+        "sha256": "fe16baf728db49457cde32802cd7efc0ac8a7a9877dbe22fe3322b2d9dc6ccd9",
+        "lfs_verified": false
+      },
+      {
+        "name": "config.json",
+        "bytes": 2236,
+        "sha256": "095a1c2aeb3dc83f16643964c5dd7d109e002d80e45f54559009d610723c158c",
+        "lfs_verified": false
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 210,
+        "sha256": "031fdd1faee68cf7e0cafd12203a08f51f86abd82877a401fc8dafad7b2f7b5c",
+        "lfs_verified": false
+      },
+      {
+        "name": "model-00001-of-00002.safetensors",
+        "bytes": 4992269027,
+        "sha256": "5578abd3c27241a31f21c13220f44a427b99f1c36564ac587670f3be990d4ffc",
+        "lfs_verified": true
+      },
+      {
+        "name": "model-00002-of-00002.safetensors",
+        "bytes": 2806556175,
+        "sha256": "790314e959098fdf65825d475a12c794cacbdffe6097f72a1d25c5720d3625c3",
+        "lfs_verified": true
+      },
+      {
+        "name": "model.safetensors.index.json",
+        "bytes": 396548,
+        "sha256": "a6fe6d7c94fa568e90b4bf20c68fa85a842198f228aff1bedaa34970c605d593",
+        "lfs_verified": false
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 670,
+        "sha256": "45a857d8a2495d0be30a5d2d6de03278195eb028b6e0b8efc248bfa697d65f05",
+        "lfs_verified": false
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 33384568,
+        "sha256": "4667f2089529e8e7657cfb6d1c19910ae71ff5f28aa7ab2ff2763330affad795",
+        "lfs_verified": true
+      },
+      {
+        "name": "tokenizer.model",
+        "bytes": 4689074,
+        "sha256": "1299c11d7cf632ef3b4e11937501358ada021bbdf7c47638d13c0ee982f2e79c",
+        "lfs_verified": true
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 1158492,
+        "sha256": "8925eabb556c1897ca1bed405f0612e735a56afcd4d77e76eb90fd771e706f9c",
+        "lfs_verified": false
+      }
+    ]
+  },
+  {
+    "repo": "Speech-AI-Research-Center/SARC-Taigi-LLM-12b",
+    "revision": "463f70d45293afdf18bf37aa6747ce8b71d77c84",
+    "kind": "adapter",
+    "files": [
+      {
+        "name": "README.md",
+        "bytes": 7163,
+        "sha256": "d3a0ad97919667aef730aee4a3aa5c68dafe67f4a757fd1c3d3c9a183791363f",
+        "lfs_verified": false
+      },
+      {
+        "name": "adapter_config.json",
+        "bytes": 1051,
+        "sha256": "eac42157c6805b8a6554cfd7ecfd0ff39e07a3108d1bc985f440905633562cd9",
+        "lfs_verified": false
+      },
+      {
+        "name": "adapter_model.safetensors",
+        "bytes": 547780080,
+        "sha256": "b85e718894154a2500497ded74849c4056e5ad8ba9970647219cadcb5401db4e",
+        "lfs_verified": true
+      }
+    ]
+  }
+]

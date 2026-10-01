@@ -132,3 +132,8 @@ v4 起保存程式快照與雜湊。較早版本只有雜湊、逐例輸出與�
 ### 台語漢字轉寫與播放器
 
 新增 Taibun 漢字轉 POJ 草稿，保留人工核對與原文一致性檢查；過期回應不覆蓋新內容。明確處理 NFKC 鼻音上標與標點，數字／未知字拒絕。四句原創台語短句經真實 MMS CPU 合成均為有效音檔；五個拒絕案例通過，尚無母語者發音評分。台語區加入獨立播放器。Python 224 項與 JavaScript 30 項通過；見 evaluation/taigi-hanji-v1。
+
+
+## 2026-10-02：直接 Windows OCR 與翻譯候選篩選
+
+直接 OCR 10/10 配對文字一致，辨識階段中位數省 0.3408 秒；完整 API 兩組全文及七欄一致，單次耗時不可當作普遍加速率。Python 231 passed，JavaScript 未改動，先前 30 passed。見 `evaluation/native-ocr-v1/`。Gemma 4B 六句台語翻譯候選出現文件類型與否定語意錯誤，未採用，見 `evaluation/taigi-translation-v1/`。

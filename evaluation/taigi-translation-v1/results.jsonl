@@ -1,0 +1,6 @@
+{"id": "documents", "source": "請攜帶身分證影本與報名表。", "must_preserve": ["身分證", "影本", "報名表"], "response": "{\"taigi\": \"請帶來你證件的照片跟報名表格。\"}", "seconds": 1.165, "done_reason": "stop", "tokens": 19, "load_ns": 9326000}
+{"id": "free", "source": "本活動免費，無需繳費。", "must_preserve": ["free and no payment"], "response": "{\"taigi\": \"這場活動毋需課費，是免費的。\"}", "seconds": 0.354, "done_reason": "stop", "tokens": 19, "load_ns": 3665200}
+{"id": "exception", "source": "如果已經補交文件，請忽略本通知。", "must_preserve": ["if already submitted", "ignore notice"], "response": "{\"taigi\": \"若已交文件，請毋管此通知。\"}", "seconds": 0.367, "done_reason": "stop", "tokens": 18, "load_ns": 4257900}
+{"id": "deadline", "source": "請於115年10月20日下午5時前提出申請。", "must_preserve": ["115", "10", "20", "5", "afternoon", "before"], "response": "{\"taigi\": \"請毋擺115年度10月20日時下五時前提出申請。\"}", "seconds": 0.45, "done_reason": "stop", "tokens": 27, "load_ns": 6482100}
+{"id": "negative", "source": "只接受紙本申請，不接受線上申請。", "must_preserve": ["paper only", "online rejected"], "response": "{\"taigi\": \"毋擺紙本申請，毋擺線上申請。\"}", "seconds": 0.352, "done_reason": "stop", "tokens": 18, "load_ns": 3705100}
+{"id": "fee_exception", "source": "低收入戶免繳300元費用，其他申請人須繳費。", "must_preserve": ["300", "low income exempt", "others pay"], "response": "{\"taigi\": \"低收入戶毋必繳三百元費用，其餘申請人須繳費。\"}", "seconds": 0.404, "done_reason": "stop", "tokens": 25, "load_ns": 3680500}

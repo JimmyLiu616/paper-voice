@@ -1,0 +1,82 @@
+[
+  {
+    "name": "notice.png",
+    "native_seconds": 0.2475,
+    "powershell_seconds": 0.8535,
+    "characters": 222,
+    "text_identical": true,
+    "text_sha256": "261a629091e1f3a59e56afbb6dea97d3a11745bcfef3634391ecfefdca2ed665"
+  },
+  {
+    "name": "event.png",
+    "native_seconds": 0.1588,
+    "powershell_seconds": 0.5029,
+    "characters": 234,
+    "text_identical": true,
+    "text_sha256": "b9c8f0d4893740fc15031d62bc62f2251352e69cb431a5da34d45e86d9865107"
+  },
+  {
+    "name": "moi-police-form-109-p4.png",
+    "native_seconds": 1.303,
+    "powershell_seconds": 1.5856,
+    "characters": 2536,
+    "text_identical": true,
+    "text_sha256": "5097dbab8a251720a37d3cc3a56f5bbb1960ab22c875ec9ec710145089df4add"
+  },
+  {
+    "name": "nycu-ethics-114-p1.png",
+    "native_seconds": 0.2802,
+    "powershell_seconds": 0.6271,
+    "characters": 661,
+    "text_identical": true,
+    "text_sha256": "24e9bb5a48faa2af4fa328e557ebb820ecdb1e1f941f409a43fcb05a8a9f97de"
+  },
+  {
+    "name": "taipei-tuition-115-p1.png",
+    "native_seconds": 0.1993,
+    "powershell_seconds": 0.5228,
+    "characters": 395,
+    "text_identical": true,
+    "text_sha256": "ff7d052e5fca1e91a02fc001a1e704afdc16a10733438ab6f4d46ba85700d6a2"
+  },
+  {
+    "name": "taipei-tuition-115-p2.png",
+    "native_seconds": 0.2786,
+    "powershell_seconds": 0.5689,
+    "characters": 554,
+    "text_identical": true,
+    "text_sha256": "34bdc397e7e688787cdb798c543dbbe545a6a6f52bee705821099cfbe3ee9827"
+  },
+  {
+    "name": "taipei-tuition-115-p3.png",
+    "native_seconds": 0.2545,
+    "powershell_seconds": 0.57,
+    "characters": 599,
+    "text_identical": true,
+    "text_sha256": "3e324b1dc1489fc3b755faa866e95b895f91fadd40a6f86b684b0a78151327d7"
+  },
+  {
+    "name": "wda-pretraining-115-p1.png",
+    "native_seconds": 0.2929,
+    "powershell_seconds": 0.6304,
+    "characters": 387,
+    "text_identical": true,
+    "text_sha256": "598d1bcf8182e8d9612db9dad18f4756bc6ed1891b5be6c3fab9cc00e76f3c16"
+  },
+  {
+    "name": "wda-pretraining-115-p2.png",
+    "native_seconds": 0.2193,
+    "powershell_seconds": 0.5677,
+    "characters": 541,
+    "text_identical": true,
+    "text_sha256": "28c6c21efcb8cdaeb04cf7c7ff1d5ee92ead237c96972798a01067b275a96578"
+  },
+  {
+    "name": "wda-pretraining-115-p3.png",
+    "native_seconds": 0.132,
+    "powershell_seconds": 0.4772,
+    "characters": 124,
+    "text_identical": true,
+    "text_sha256": "29dc2dd59208972d8e409b6da01b605fa8adb4b07edba294d11431d88e97a750"
+  }
+]

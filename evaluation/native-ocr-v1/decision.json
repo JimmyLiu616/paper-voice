@@ -1,0 +1,10 @@
+{
+  "adopted": true,
+  "app_sha256": "1bb3da2e1ee071033250fbf12c111874e008d71fcc4354f013bfc17b42535af1",
+  "python_tests": 231,
+  "javascript_unchanged_previous_passed": 30,
+  "median_ocr_saved_seconds": 0.3408,
+  "photos_note": "One pair per image, runtime variability; do not attribute the entire notice delta to OCR. Real photo API uses production JPEG quality 93. Initial isolated OCR probe used 92, was corrected and repeated at 93; only corrected OCR pairs are included here.",
+  "fallback": "On missing bindings, timeout or native error, use existing PowerShell OCR.",
+  "compatibility": "Native OCR before first torch import reproduced WinError1114; initialize torch before WinRT at startup. Real browser photo then Taigi playback passed after repair."
+}

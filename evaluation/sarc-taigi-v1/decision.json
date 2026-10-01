@@ -1,0 +1,17 @@
+{
+  "deployed": false,
+  "translation_outputs": 0,
+  "base_revision": "826e729dbaeea4ecb143738eed2bcf3539ebf7bf",
+  "adapter_revision": "463f70d45293afdf18bf37aa6747ce8b71d77c84",
+  "load_attempts": [
+    {
+      "mode": "default async tensor loading; GPU6GiB CPU5GiB",
+      "error": "MemoryError"
+    },
+    {
+      "mode": "HF_DEACTIVATE_ASYNC_LOAD=1; same memory settings",
+      "error": "Windows error1455: paging file too small"
+    }
+  ],
+  "action": "Serving Gemma3:4b restored; did not alter Windows paging-file settings. Weights remain local."
+}
