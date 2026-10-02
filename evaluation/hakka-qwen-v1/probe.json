@@ -1,0 +1,44 @@
+[
+  {
+    "source": "請攜帶身分證影本及報名表。",
+    "raw": "{\"translation\":\"請帶身分證影本摎報名表。\"}",
+    "done_reason": "stop",
+    "translation": "請帶身分證影本摎報名表。",
+    "seconds": 54.047
+  },
+  {
+    "source": "請於115年10月20日下午5時前提出申請。",
+    "raw": "{\"translation\":\"請於[NUM_A]年[NUM_B]月[NUM_C]日下午[NUM_D]時前提出申請。\"}",
+    "done_reason": "stop",
+    "translation": "請於115年10月20日下午5時前提出申請。",
+    "seconds": 1.12
+  },
+  {
+    "source": "本活動免費，但材料費另收。",
+    "raw": "{\"translation\":\"這隻活動免費，但材料費另收。\"}",
+    "done_reason": "stop",
+    "translation": "這隻活動免費，但材料費另收。",
+    "seconds": 0.747
+  },
+  {
+    "source": "如果文件不齊全，請先打電話詢問承辦人。",
+    "raw": "{\"translation\":\"如果文件不齊全，請先打電話詢問承辦人。\"}",
+    "done_reason": "stop",
+    "translation": "如果文件不齊全，請先打電話詢問承辦人。",
+    "seconds": 0.381
+  },
+  {
+    "source": "已完成報名的人不需要再次申請。",
+    "raw": "{\"translation\":\"係講已經完成報名嘅人毋需再次申請。\"}",
+    "done_reason": "stop",
+    "translation": "係講已經完成報名嘅人毋需再次申請。",
+    "seconds": 0.342
+  },
+  {
+    "source": "只有65歲以上才免費，其他人須繳500元。",
+    "raw": "{\"translation\":\"只有[NUM_A]歲以上才免費，其他人須繳[NUM_B]元。\"}",
+    "done_reason": "stop",
+    "translation": "只有65歲以上才免費，其他人須繳500元。",
+    "seconds": 0.392
+  }
+]
