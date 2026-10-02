@@ -1,0 +1,96 @@
+{
+  "status": "completed_with_errors",
+  "model": "paper-voice-omnitranslate-test",
+  "deployed": false,
+  "native_reviewed": false,
+  "target_code_evidence": "MihaiPopa-1/OmniSurgical-1.0 revision 6950fd8ed0566258fafcb15d3ae88860004597ac uses hak_Hani",
+  "prompt_style": "author raw prompt, temperature 0, no examples or retrieval",
+  "english_input": "Manually authored diagnostic input, not an automated pivot pipeline.",
+  "results": [
+    {
+      "input_language": "zh",
+      "target": "hak_Hani",
+      "source": "你好，謝謝你的幫忙。",
+      "raw": "EN->hak_Hani.\n</think>\nＢｅр пем бір бір пам.",
+      "translation": "Ｂｅр пем бір бір пам.",
+      "done_reason": "stop",
+      "seconds": 3.557,
+      "has_khmer_characters": false,
+      "source_digits": [],
+      "output_digits": []
+    },
+    {
+      "input_language": "en",
+      "target": "hak_Hani",
+      "source": "Hello, thank you for your help.",
+      "raw": "EN->hak_Hani.\n</think>\nПобем, бут бут пур бут.",
+      "translation": "Побем, бут бут пур бут.",
+      "done_reason": "stop",
+      "seconds": 0.75,
+      "has_khmer_characters": false,
+      "source_digits": [],
+      "output_digits": []
+    },
+    {
+      "input_language": "zh",
+      "target": "hak_Hani",
+      "source": "請攜帶身分證影本及報名表。",
+      "raw": "EN->hak_Hani.\n</think>\n『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶",
+      "translation": "『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶』『扶",
+      "done_reason": "length",
+      "seconds": 3.575,
+      "has_khmer_characters": false,
+      "source_digits": [],
+      "output_digits": []
+    },
+    {
+      "input_language": "en",
+      "target": "hak_Hani",
+      "source": "Please bring a copy of your identity card and the registration form.",
+      "http_status": 500,
+      "error": "{\"error\":\"prediction aborted, token repeat limit reached\"}"
+    },
+    {
+      "input_language": "zh",
+      "target": "hak_Hani",
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "http_status": 500,
+      "error": "{\"error\":\"prediction aborted, token repeat limit reached\"}"
+    },
+    {
+      "input_language": "en",
+      "target": "hak_Hani",
+      "source": "Only people aged 65 and over can attend for free. Others must pay 500 dollars.",
+      "http_status": 500,
+      "error": "{\"error\":\"prediction aborted, token repeat limit reached\"}"
+    },
+    {
+      "input_language": "en",
+      "target": "fra_Latn",
+      "source": "Hello, thank you for your help.",
+      "raw": "EN->fra_Latn.\n</think>\nBonjour, merci pour votre aide",
+      "translation": "Bonjour, merci pour votre aide",
+      "done_reason": "stop",
+      "seconds": 1.864,
+      "has_khmer_characters": false,
+      "source_digits": [],
+      "output_digits": []
+    },
+    {
+      "input_language": "en",
+      "target": "zho_Hant",
+      "source": "Please bring a copy of your identity card and the registration form.",
+      "raw": "EN->zho_Hant.\n</think>\n请带一份身份卡和注册表的复印件。",
+      "translation": "请带一份身份卡和注册表的复印件。",
+      "done_reason": "stop",
+      "seconds": 1.179,
+      "has_khmer_characters": false,
+      "source_digits": [],
+      "output_digits": []
+    }
+  ],
+  "attempt_failures": [
+    "Server error '500 Internal Server Error' for url 'http://127.0.0.1:11434/api/generate'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500",
+    "Server error '500 Internal Server Error' for url 'http://127.0.0.1:11434/api/generate'\nFor more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/500"
+  ]
+}

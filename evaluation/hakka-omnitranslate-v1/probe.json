@@ -1,0 +1,153 @@
+{
+  "status": "completed",
+  "model": "MihaiPopa-1/OmniTranslate-1.1",
+  "quantization": "Q8_0",
+  "weight_repository": "mradermacher/OmniTranslate-1.1-GGUF",
+  "revision": "37b35f67dc9d81daac6a20fdedbdcf4a71d81b0d",
+  "sha256": "f01eca22cffac334b7e944084a10ca9add0a643ae5e67be3ba76cc38e56ff10c",
+  "license": "apache-2.0",
+  "deployed": false,
+  "native_reviewed": false,
+  "cases": [
+    "你好，謝謝你的幫忙。",
+    "請攜帶身分證影本及報名表。",
+    "請於115年10月20日下午5時前提出申請。",
+    "本活動免費，但材料費另收。",
+    "如果文件不齊全，請先打電話詢問承辦人。",
+    "已完成報名的人不需要再次申請。",
+    "只有65歲以上才免費，其他人須繳500元。",
+    "只接受紙本申請，不接受線上申請。"
+  ],
+  "results": [
+    {
+      "source": "你好，謝謝你的幫忙。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\nឈួយឈួមានោះ១០០០១០០០១០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០០",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 17.162
+    },
+    {
+      "source": "請攜帶身分證影本及報名表。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\nបីដើម្បីដោយស្រាប់ប្រែបានស្រាប់ បីដើម្បីដោយស្រាប់ប្រែបានស្រាប់",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 4.429
+    },
+    {
+      "source": "請於115年10月20日下午5時前提出申請。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Latn.\n</think>\nប្រែបែង២០១០ ១០ ១០ ១០ ១០ ១០ ១០ ២០ ១០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០ ២០",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 22.48
+    },
+    {
+      "source": "本活動免費，但材料費另收。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\nមេជំមេត២មេអោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ មេសោមោ ម",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 5.754
+    },
+    {
+      "source": "如果文件不齊全，請先打電話詢問承辦人。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\nបីឈីតីមួយៗ ដើម្បីស្វែងរួម តែស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួម ដោយស្វែងរួ",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 6.168
+    },
+    {
+      "source": "已完成報名的人不需要再次申請。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名者無需再申請\n完成報名",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 36.405
+    },
+    {
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Hant.\n</think>\nមួយដោយ 65 លោកមួយ នឹងមែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទេ មែនទ",
+      "thinking": "",
+      "done_reason": "length",
+      "seconds": 17.063
+    },
+    {
+      "source": "只接受紙本申請，不接受線上申請。",
+      "target": "hak_Hant",
+      "output": "EN->hak_Latn.\n</think>\n只接紙本申請，不接線上申請。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 3.006
+    },
+    {
+      "source": "你好，謝謝你的幫忙。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn->sul_Sul.\n</think>\nNop pef pef bof bof pam.",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 16.12
+    },
+    {
+      "source": "請攜帶身分證影本及報名表。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn.\n</think>\n請攜帶身分證影本及報名表。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 1.29
+    },
+    {
+      "source": "請於115年10月20日下午5時前提出申請。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn.\n</think>\n申請時間：2023年10月20日 115年10月20日下午5時前提出申請。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 1.299
+    },
+    {
+      "source": "本活動免費，但材料費另收。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn->sul_Sul.\n</think>\n本活動免費，但材料費另收。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 0.844
+    },
+    {
+      "source": "如果文件不齊全，請先打電話詢問承辦人。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn.\n</think>\n如果文件不齊全，請先打電話詢問承辦人。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 1.223
+    },
+    {
+      "source": "已完成報名的人不需要再次申請。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn->sul_Sul.\n</think>\n已完成報名的人不需要再次申請。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 0.819
+    },
+    {
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn->sul_Sul.\n</think>\n只65歲以上才免費，其他人須繳500元。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 1.032
+    },
+    {
+      "source": "只接受紙本申請，不接受線上申請。",
+      "target": "Hakka Chinese (Taiwan Sixian dialect, Traditional Chinese characters)",
+      "output": "EN->sul_Latn.\n</think>\n只接受紙本申請，不接受線上申請。",
+      "thinking": "",
+      "done_reason": "stop",
+      "seconds": 0.711
+    }
+  ],
+  "notes": "Author-style raw prompt; no examples, no reference answers, no retrieval. Language-name variant explicitly requests Taiwanese Hakka characters.",
+  "stage": "completed"
+}

@@ -1,0 +1,16 @@
+{
+  "app_changed": false,
+  "new_model_deployed": false,
+  "warmup": {
+    "status": "ready",
+    "seconds": 23.669
+  },
+  "health_http_status": 200,
+  "source": "本活動免費，不必繳費。",
+  "translation": "這隻活動免費，毋使繳費。",
+  "speech_error": "",
+  "seconds": 37.99,
+  "audio_seconds": 3.6694784580498867,
+  "app_sha256": "7ccfe85feefb7e8ad83ed73a514761bf568c1fc803e20f4e37153fb462aa609a",
+  "status": "passed"
+}
