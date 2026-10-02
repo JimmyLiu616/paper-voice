@@ -4,14 +4,9 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#143b40"><title>紙聲通 · 讓每張紙，都聽得懂</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
-  <script src="/static/answer-speech.js" defer></script>
   <script src="/static/model-warmup.js" defer></script>
-  <script src="/static/hakka-speech.js" defer></script>
-  <script src="/static/amis-speech.js" defer></script>
-  <script src="/static/taigi-pronunciation.js" defer></script>
+  <script src="/static/narrator.js" defer></script>
   <script src="/static/app.js" defer></script>
-  <script src="/static/taigi-translation.js" defer></script>
-  <script src="/static/hakka-translation.js" defer></script>
   <script src="/static/camera.js" defer></script>
 </head>
 <body>
@@ -19,7 +14,7 @@
   <aside class="sidebar">
     <a class="brand" href="/" aria-label="紙聲通首頁"><span class="brand-mark">紙</span><span>紙聲通<small>PAPER VOICE</small></span></a>
     <div class="sidebar-caption">生活文書，陪你讀懂</div>
-    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace"><span aria-hidden="true">▤</span> 文件識讀</a><a class="nav-item" href="#speech-panel"><span aria-hidden="true">◖</span> 語音朗讀</a><a class="nav-item" href="#taigi-panel"><span aria-hidden="true">文</span> 台語實驗室</a><a class="nav-item" href="#hakka-panel">客語實驗室</a><a class="nav-item" href="#amis-panel">阿美語翻譯朗讀</a><button class="nav-item" id="about-btn"><span aria-hidden="true">ⓘ</span> 關於這個作品</button></nav>
+    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace">文件識讀</a><a class="nav-item" href="#conversation">提問與朗讀</a><button class="nav-item" id="about-btn">關於這個作品</button></nav>
     <div class="sidebar-bottom"><span class="local-label">本機運行</span><p>讓文字變成聲音，<br>讓資訊變成下一步。</p><small>InnoServe 2026<br>開源 AI 模型應用提案</small></div>
   </aside>
   <main id="workspace">
@@ -52,50 +47,36 @@
           <p class="verification-note">「原文已對應」表示欄位與辨識文字相符，仍請對照圖片確認。辨識與解釋皆可能出錯。</p>
           <details id="raw-details" class="raw-details"><summary>查看／修正辨識原文 <span>核對日期與數字</span></summary><textarea id="raw-text" rows="9" maxlength="6500" aria-label="辨識原文，可修正"></textarea><button id="reanalyze-btn" class="secondary-button">用修正文字重新整理</button><small>重新整理後，問答與朗讀會使用修正內容。</small><details id="ocr-details"><summary>查看 Windows OCR 初讀文字</summary><pre id="ocr-reference"></pre></details></details>
         </div>
-        <section id="speech-panel" class="speech-panel" aria-labelledby="speech-heading"><div class="speech-heading"><div><span class="eyebrow">LISTEN AT YOUR PACE</span><h3 id="speech-heading">慢慢聽，就明白。</h3></div><span class="audio-symbol" aria-hidden="true">▂ ▅ █ ▅ ▂</span></div><div class="speech-options"><label>朗讀內容<select id="read-target"><option value="summary">重要資訊</option><option value="raw">整份辨識原文</option></select></label><label>語音來源<select id="voice-source"><option value="windows">Windows 台灣華語（離線）</option><option value="browser">瀏覽器語音（依裝置）</option></select></label></div><div class="play-row"><button id="speak-btn" class="play-button" disabled>▶ 聽重點</button><button id="stop-btn" class="stop-button" aria-label="停止朗讀">■ 停止</button><label class="speed-label">語速 <select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div><audio id="audio" controls hidden></audio><p id="speech-status" class="speech-status" role="status">完成辨識後，就可以播放語音。</p></section>
+        <section id="speech-panel" class="speech-panel" aria-label="朗讀文件">
+          <h3>也可以直接聽文件</h3><div class="document-listen"><label for="read-target">朗讀內容</label><select id="read-target"><option value="summary">重要資訊</option><option value="raw">整份辨識原文</option></select><button id="speak-btn" class="play-button" disabled>用所選語言朗讀</button></div>
+          <p class="hint">使用下方「提問與朗讀」所選的語言。翻譯以完整短句處理，超出支援範圍時會說明原因。</p>
+        </section>
       </section>
     </div>
-    <div class="bottom-grid">
-      <section class="panel qa-panel"><div class="panel-heading"><h2>還有不清楚的地方？ <span class="section-no">03</span></h2></div><p class="muted">根據這份文件回答，並附上對應原文。</p><div class="question-chips"><button data-question="我需要準備什麼文件？">需要準備什麼？</button><button data-question="最晚什麼時候要完成？">什麼時候以前？</button><button data-question="我要去哪裡辦理？">去哪裡辦理？</button></div><form id="question-form"><input id="question" maxlength="300" placeholder="輸入你的問題…" aria-label="針對文件提問" required><button id="ask-btn" class="primary-button compact" disabled>提問</button></form><div id="answers" class="answers" aria-live="polite"><p class="hint">先讀取一份文件，就能開始提問。</p></div></section>
-      <section id="amis-panel" class="panel taigi-panel">
-        <div class="panel-heading"><h2>阿美語翻譯朗讀</h2><span class="experimental">中文 → 翻譯草稿 → 自動朗讀</span></div>
-        <p>輸入中文短句，按一次就能聽阿美語。譯文會直接交給語音模型，<strong>不需勾選人工核對。</strong></p>
-        <label class="field-label" for="amis-source-kind">中文來源</label><select id="amis-source-kind"><option value="manual">手動輸入中文</option><option value="document">目前文件原文</option></select>
-        <label class="field-label" for="amis-field">選取文件重點</label><select id="amis-field"><option value="">先讀取文件</option></select>
-        <button id="amis-source-btn" class="secondary-button" disabled>帶入中文原文</button><button id="amis-example" class="secondary-button">填入免費活動範例</button>
-        <label class="field-label" for="amis-source">中文短句（最多 80 字）</label><textarea id="amis-source" rows="2" maxlength="80" placeholder="本活動免費，不必繳費。"></textarea>
-        <label class="field-label" for="amis-dialect">譯文語別</label><select id="amis-dialect"><option value="ami_Xiug">秀姑巒阿美語</option><option value="ami_Coas">海岸阿美語</option><option value="ami_Heng">恆春阿美語</option><option value="ami_Mala">馬蘭阿美語</option><option value="ami_Sout">南勢阿美語</option></select>
-        <div class="taigi-actions"><button id="amis-run" class="primary-button compact" disabled>翻譯並朗讀</button><button id="amis-stop" class="secondary-button">停止</button></div>
-        <p id="amis-status" class="hint" role="status">輸入中文短句後，按一次「翻譯並朗讀」。</p>
-        <div aria-live="polite"><p class="field-label">中文原文</p><p id="amis-original"></p><p class="field-label">阿美語翻譯草稿</p><p id="amis-output" lang="ami"></p></div>
-        <audio id="amis-audio" controls hidden></audio>
-        <p class="warning">AI 草稿可能誤譯或漏譯，日期、金額與例外條件請以中文原文為準。語別選擇只改變譯文；五種譯文共用同一阿美語聲音，發音與語意尚未經母語者驗證。</p>
-        <p class="hint">ILRDF NLLB 原住民族語翻譯＋Meta MMS 阿美語語音 · 本機執行 · CC BY-NC 4.0（非商業）</p>
-      </section>
-      <section id="hakka-panel" class="panel taigi-panel">
-        <div class="panel-heading"><h2>客語聲音實驗室</h2><span class="experimental">中文短句 → 客語草稿 → 語音</span></div>
-        <p>輸入中文生活通知，產生客語草稿，核對後以四縣或海陸腔朗讀。<strong>目前限期限、應備文件、費用及補件例外等支援句型，非通用翻譯。</strong></p>
-        <label class="field-label" for="hakka-source-kind">中文來源</label><select id="hakka-source-kind"><option value="manual">手動輸入中文</option><option value="document">目前文件原文</option></select>
-        <label class="field-label" for="hakka-field">選取文件重點</label><select id="hakka-field"><option value="">先讀取文件</option></select>
-        <button id="hakka-source-btn" class="secondary-button" disabled>帶入中文原文</button><button id="hakka-example" class="secondary-button">填入免費活動範例</button>
-        <label class="field-label" for="hakka-source">中文原文（最多 80 字，保留完整條件）</label><textarea id="hakka-source" rows="2" maxlength="80" placeholder="本活動免費，不必繳費。"></textarea>
-        <label class="field-label" for="hakka-dialect">客語腔調</label><select id="hakka-dialect"><option value="sixian">四縣腔</option><option value="hailu">海陸腔</option></select>
-        <button id="hakka-translate" class="secondary-button">中文轉客語草稿</button>
-        <p id="hakka-translate-status" class="hint" role="status">可輸入中文短句，或帶入文件原文。</p><p id="hakka-translation-output" class="hint"></p>
-        <details><summary>可直接試用的中文句型</summary><ul><li>請攜帶身分證影本及報名表。</li><li>請於115年10月20日下午5時前提出申請。</li><li>本活動免費，不必繳費。</li><li>如已完成補件，請忽略本通知。</li><li>只接受紙本申請，不接受線上申請。</li><li>65歲以上免費，未滿65歲須繳500元。</li></ul><p class="hint">同類句型可更換日期、金額及支援文件名稱；遇到不支援的整句會停止，不會略過例外繼續翻譯。兩腔共用文字草稿，數字讀法與口語自然度仍待核對。</p></details>
-        <label class="field-label" for="hakka-text">客語漢字／數詞讀音草稿（可人工修改，最多 80 字）</label><textarea id="hakka-text" rows="2" maxlength="80">天公落水</textarea>
-        <label><input type="checkbox" id="hakka-confirm">我已核對客語草稿與中文原文意思、數字讀法相符</label>
-        <div class="taigi-actions"><button id="hakka-btn" class="secondary-button" disabled>試聽客語</button><button id="hakka-stop" class="secondary-button">停止客語</button></div>
-        <audio id="hakka-audio" controls hidden></audio><p id="hakka-status" class="hint" role="status">檢查客語模型中</p>
-        <p class="hint">本機句型轉換＋VoxHakka / FormoSpeech 語音（CC BY-NC 4.0，非商業）。未輸入中文時仍可試聽人工準備的客語短句。發音尚待母語者驗證。</p>
-      </section>
-      <section id="taigi-panel" class="panel taigi-panel"><div class="panel-heading"><h2>台語聲音實驗室</h2><span class="experimental">翻譯草稿・人工核對</span></div><p>選取一段原文，由本機模型產生台語翻譯及讀音草稿。<strong>請核對日期、費用、否定與例外後再朗讀；口音仍待驗證。</strong></p><label for="taigi-field" class="field-label">選取文件重點</label><select id="taigi-field"><option value="raw">文件原文</option></select><button id="taigi-source-btn" class="secondary-button">帶入所選原文</button><label for="taigi-source" class="field-label">要翻譯的原文片段（可縮短）</label><textarea id="taigi-source" rows="2" maxlength="500" placeholder="先讀取文件，再帶入要翻譯的句子。"></textarea><button id="taigi-translate" class="secondary-button">產生台語翻譯草稿</button><p id="taigi-translate-status" class="hint" role="status">每次 1–80 字；首次切換模型約需數十秒。翻譯完成後會重新準備文件辨識模型。</p><p id="taigi-translation-output" class="hint"></p><label for="taigi-hanji" class="field-label">台語漢字／數詞讀音草稿</label><textarea id="taigi-hanji" rows="2" maxlength="80" placeholder="例如：食飽未？">你好</textarea><button id="taigi-convert" class="secondary-button">漢字轉白話字草稿</button><p id="taigi-convert-status" class="hint" role="status">可輸入台語漢字產生讀音草稿，或在下方自行輸入白話字。漢字轉寫不等於華語翻譯。</p><label for="taigi-text" class="field-label">白話字（轉寫草稿請先核對）</label><textarea id="taigi-text" rows="2" maxlength="500" placeholder="例如：lí hó" spellcheck="false">lí hó</textarea><label class="check-label"><input id="taigi-confirm" type="checkbox">我已核對譯文、數字讀法與原文意思相符</label><div class="taigi-actions"><button id="taigi-btn" class="secondary-button">試聽台語</button><span id="taigi-status" class="muted">檢查模型中</span></div><audio id="taigi-audio" controls hidden></audio><p id="taigi-play-status" class="hint" role="status">台語音檔會顯示在這裡，可暫停或重播。</p><p class="hint">Meta MMS · CC BY-NC 4.0（非商業）<br>未選原文時，可單獨試聽白話字。Taibun 程式 MIT／詞庫 CC BY-SA 4.0；轉寫結果需核對。</p></section>
-    </div>
+    <section id="conversation" class="panel conversation-panel" aria-labelledby="conversation-heading">
+      <div class="panel-heading"><h2 id="conversation-heading">選好語言，問你想知道的事。 <span class="section-no">03</span></h2><span class="local-label">本機翻譯與朗讀</span></div>
+      <div class="language-toolbar"><label for="output-language">回答朗讀語言<select id="output-language"><option value="zh-TW">華語（中文）</option><option value="nan">台語</option><option value="hakka">客語</option><option value="ami">阿美語</option></select></label><label id="dialect-control" for="output-dialect" hidden><span id="dialect-label">語別</span><select id="output-dialect"><option value="">預設</option></select></label><label for="speed">語速<select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div>
+      <p id="language-hint" class="hint"></p>
+      <div class="conversation-grid"><div class="qa-panel">
+        <p class="hint">用中文輸入或錄音提問。系統根據這份文件回答，保留中文與原文依據，再自動翻譯朗讀。</p>
+        <div class="question-chips"><button data-question="我需要準備什麼文件？">需要準備什麼？</button><button data-question="最晚什麼時候要完成？">什麼時候以前？</button><button data-question="需要繳費嗎？">需要繳費嗎？</button></div>
+        <form id="question-form"><input id="question" maxlength="300" placeholder="例如：需要繳費嗎？" aria-label="針對文件提問" required><button id="ask-btn" class="primary-button compact" disabled>提問並朗讀</button></form>
+        <div id="answers" class="answers" aria-live="polite"><p class="hint">先讀取一份文件，就能開始提問。</p></div>
+      </div><section class="narration-panel" aria-label="翻譯與語音結果">
+        <div class="panel-heading"><h3>用熟悉的語言聽</h3><span id="narration-language" class="language-badge">華語</span></div>
+        <p id="narration-context" class="hint">尚未開始</p>
+        <p class="field-label">中文內容</p><p id="narration-source" class="narration-text"></p>
+        <p class="field-label">朗讀內容／翻譯草稿</p><p id="narration-translation" class="narration-text"></p>
+        <p id="narration-status" class="hint" role="status">先讀取文件，再提問；回答會自動翻譯朗讀。</p>
+        <div class="play-row"><button id="replay-answer" class="secondary-button" disabled>用此語言重讀</button><button id="stop-btn" class="stop-button">停止</button></div>
+        <audio id="audio" controls hidden></audio><p id="narration-warning" class="warning" hidden></p>
+      </section></div>
+    </section>
     <section class="panel corpus-panel"><div class="panel-heading"><h2>把修正變成下一次的進步</h2><span class="experimental">自願貢獻</span></div><p class="hint">先在「查看／修正辨識原文」改好錯字，再按預覽。原圖、錄音及文件檔名不會加入貢獻檔；這裡只下載到本機，不會自動上傳。</p><button id="corpus-preview-btn" class="secondary-button">預覽這次辨識修正</button><div id="corpus-preview" hidden><p id="corpus-status" class="hint" role="status"></p><div class="corpus-pair"><label>遮蔽後的辨識原文<textarea id="corpus-original" rows="5" maxlength="6500"></textarea></label><label>遮蔽後的人工修正<textarea id="corpus-corrected" rows="5" maxlength="6500"></textarea></label></div><p class="warning">自動遮蔽可能漏掉姓名、地址、病情等資訊。請逐行檢查並手動刪除；不要公開他人的私密文件。</p><label class="field-label">資料來源 <select id="corpus-provenance"><option value="synthetic">自製虛構範例</option><option value="authorized">已獲權利人授權的資料</option></select></label><label class="check-label"><input id="corpus-reviewed" type="checkbox">我已逐行核對內容正確，並移除可識別個人的資訊</label><label class="check-label"><input id="corpus-rights" type="checkbox">我有權公開此文字，並同意以 CC BY 4.0 授權；以 Paper Voice 自願貢獻者署名</label><button id="corpus-export-btn" class="secondary-button">下載待審核語料 JSONL</button></div></section>
     <footer><span>紙聲通 Paper Voice · 2026</span><span>Gemma 3 · Taiwan Tongues ASR CE · Windows 華語／Meta 閩南語合成</span></footer>
   </main>
 </div>
-<dialog id="about-dialog"><button id="close-about" class="dialog-close" aria-label="關閉說明">×</button><span class="eyebrow">ABOUT PAPER VOICE</span><h2>讓資訊，走到需要的人身邊。</h2><p>紙聲通協助使用者整理生活通知中的行動、期限與應備文件，並提供朗讀與有原文依據的問答。</p><h3>這個版本的能力</h3><p>Google Gemma 3 4B 本機讀圖、Taiwan Tongues ASR CE 語音提問、文件問答與中文朗讀、台語翻譯／白話字草稿、中文通知短句轉客語草稿與四縣／海陸朗讀、阿美語翻譯草稿自動朗讀、自願修正語料匯出。</p><h3>資料與模型</h3><p>上傳圖片與結果不寫入資料庫。完成工作最多在記憶體保留 30 分鐘，可隨時清除。中文合成使用短暫檔案，完成後刪除。模型首次下載需要網路；此版本推論只呼叫本機服務。</p><p>Gemma 採自訂開放權重授權；Taiwan Tongues 採 TRAIL 授權；Windows 語音不是開源模型；MMS 採 CC BY-NC 4.0。未宣稱已取得主辦資格認定或模型加分。</p><h3>展示時請誠實說明</h3><p>台語翻譯草稿仍需逐句人工核對；尚未包含手寫專門微調、逐字影像框選或實際使用者成效驗證。語音辨識已用自製合成華語測試，真人麥克風與台客語辨識仍待驗證。範例通知是自製測試資料，不是真實公文。</p></dialog>
+<dialog id="about-dialog"><button id="close-about" class="dialog-close" aria-label="關閉說明">×</button><span class="eyebrow">ABOUT PAPER VOICE</span><h2>讓資訊，走到需要的人身邊。</h2><p>紙聲通協助使用者整理生活通知中的行動、期限與應備文件，並提供朗讀與有原文依據的問答。</p><h3>這個版本的能力</h3><p>Google Gemma 3 4B 本機讀圖、Taiwan Tongues ASR CE 語音提問、文件問答與中文朗讀、統一語言選單、文件回答自動翻譯與華語／台語／客語／阿美語朗讀、自願修正語料匯出。</p><h3>資料與模型</h3><p>上傳圖片與結果不寫入資料庫。完成工作最多在記憶體保留 30 分鐘，可隨時清除。中文合成使用短暫檔案，完成後刪除。模型首次下載需要網路；此版本推論只呼叫本機服務。</p><p>Gemma 採自訂開放權重授權；Taiwan Tongues 採 TRAIL 授權；Windows 語音不是開源模型；MMS 採 CC BY-NC 4.0。未宣稱已取得主辦資格認定或模型加分。</p><h3>展示時請誠實說明</h3><p>翻譯與發音均為草稿；客語限支援句型，阿美語共用一個聲音。尚未包含手寫專門微調、逐字影像框選或實際使用者成效驗證。語音辨識已用自製合成華語測試，真人麥克風與台客語辨識仍待驗證。範例通知是自製測試資料，不是真實公文。</p></dialog>
 <dialog id="camera-dialog" aria-labelledby="camera-title">
   <div class="panel-heading"><h2 id="camera-title">拍下這份文件</h2><button id="camera-close" type="button" class="text-button">關閉攝影機</button></div>
   <p class="hint">把文件完整放進畫面，避開反光。確認使用前，照片只留在瀏覽器。</p>

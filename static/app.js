@@ -1,9 +1,9 @@
 'use strict';
 const $ = id => document.getElementById(id);
-const state = {file:null, mode:'image', job:null, result:null, run:0, busy:false, preview:null, audio:null, taigiAudio:null, speechController:null};
+const state = {file:null, mode:'image', job:null, result:null, run:0, busy:false, preview:null};
 const headers = {'X-PaperVoice':'local-ui'};
 let asrReady=false, asrBusy=false, qaBusy=false, recorder=null, recordStream=null, recordTimer=null, voiceRun=0;
-let voiceReady = false, modelReady = false;
+let modelReady = false;
 let initialPreparationRequested = false;
 function message(text='') { $('alert').textContent=text; $('alert').hidden=!text; }
 function textNode(tag,text,cls) { const node=document.createElement(tag); node.textContent=text; if(cls)node.className=cls; return node; }
@@ -33,34 +33,22 @@ function buttons() {
     $('audio-file').disabled=!state.result || state.busy || !asrReady || asrBusy || !!recorder;
   }
   $('corpus-preview-btn').disabled=!state.result || state.busy;
-  $('taigi-source-btn').disabled=!state.result || state.busy;
-  $('hakka-source-btn').disabled=!state.result || state.busy;
-  $('amis-source-btn').disabled=!state.result || state.busy;
 }
 function mode(value) {
   state.mode=value;
   for(const m of ['image','text']) { const selected=m===value; $(m+'-input').hidden=!selected; $(m+'-tab').classList.toggle('selected',selected); $(m+'-tab').setAttribute('aria-selected',String(selected)); $(m+'-tab').tabIndex=selected?0:-1; }
   buttons();
 }
-function stopSpeech() {
-  window.PaperVoiceAmis?.stop();
-  state.speechController?.abort(); state.speechController=null;
-  $('audio').pause(); $('taigi-audio').pause(); window.PaperVoiceHakka?.stop(); if('speechSynthesis' in window) speechSynthesis.cancel();
-  $('speak-btn').textContent='▶ 聽重點'; $('taigi-btn').disabled=false;
-}
+function stopSpeech() { window.PaperVoiceNarrator.stop(); }
 async function discardJob(id) { if(id) await api('/api/jobs/'+encodeURIComponent(id),{method:'DELETE'}).catch(()=>{}); }
 function resetResult() {
   voiceRun++; if(recorder && recorder.state==='recording')recorder.stop();
-  $('corpus-preview').hidden=true; $('taigi-source').value=''; $('taigi-confirm').checked=false;
-  state.run++; state.busy=false; stopSpeech(); discardJob(state.job); state.job=null; state.result=null;
-  $('taigi-confirm').checked=false;$('taigi-source').value='';$('taigi-hanji').value='你好';$('taigi-text').value='lí hó';
-  $('taigi-translation-output').textContent='';
-  window.PaperVoiceHakka?.reset();
-  window.PaperVoiceAmis?.reset();
-  $('progress').hidden=true; $('result-content').hidden=true; $('empty-state').hidden=false;
-  $('result-meta').textContent='等待放入文件'; $('answers').replaceChildren(textNode('p','先讀取一份文件，就能開始提問。','hint'));
-  $('speech-status').textContent='完成辨識後，就可以播放語音。'; $('audio').hidden=true; $('taigi-audio').hidden=true;
-  $('step2').classList.remove('current'); $('step3').classList.remove('current'); buttons();
+  $('corpus-preview').hidden=true;
+  state.run++;state.busy=false;stopSpeech();discardJob(state.job);state.job=null;state.result=null;
+  window.PaperVoiceNarrator.reset();
+  $('progress').hidden=true;$('result-content').hidden=true;$('empty-state').hidden=false;
+  $('result-meta').textContent='等待放入文件';$('answers').replaceChildren(textNode('p','先讀取一份文件，就能開始提問。','hint'));
+  $('step2').classList.remove('current');$('step3').classList.remove('current');buttons();
 }
 function chooseFile(file) {
   if(!file)return;
@@ -98,17 +86,10 @@ function render(result) {
     $('fact-grid').append(card);
   }
   $('raw-text').value=result.raw_text;
-  const choices=result.fields.filter(f=>f.evidence);
-  $('taigi-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
-  if(choices.some(f=>f.key==='required_documents'))$('taigi-field').value='required_documents';
-  $('hakka-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
-  if(choices.some(f=>f.key==='deadline'))$('hakka-field').value='deadline';
-  $('amis-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
   $('condition-list').replaceChildren(...(result.conditions_raw||[]).map(t=>textNode('p','文件提醒：'+t,'hint')));
   $('ocr-reference').textContent=result.ocr_reference||'本次未使用 Windows OCR（文字模式或系統未提供）。';
   $('result-warnings').replaceChildren(...result.warnings.map(w=>textNode('p',w,'warning')));
   $('step2').classList.add('current'); $('step3').classList.add('current');
-  $('speech-status').textContent='可以朗讀重點，也可以切換成整份辨識原文。';
   $('answers').replaceChildren(textNode('p','可以點選上面的常見問題，或輸入想知道的事。','hint'));buttons();
 }
 async function analyze(confirmedText) {
@@ -135,63 +116,25 @@ async function analyze(confirmedText) {
 $('analyze-btn').onclick=()=>analyze();
 $('reanalyze-btn').onclick=()=>{if($('raw-text').value.trim().length<4){message('請輸入至少四個字。');return;}analyze($('raw-text').value);};
 function readText(){if(!state.result)return '';return $('read-target').value==='raw'?state.result.raw_text:(state.result.summary.join('。\n')||'這份文件未找到可核對的重點，請查看原圖與辨識原文。');}
-async function playLocal(text,language='zh-TW') {
-  const player=language==='nan'?$('taigi-audio'):$('audio');
-  const status=language==='nan'?$('taigi-play-status'):$('speech-status');
-  stopSpeech();message(); const controller=new AbortController();state.speechController=controller;
-  status.textContent=language==='nan'?'正在用本機閩南語模型產生語音…':'正在用 Windows 台灣華語產生語音…';
-  if(language==='nan')$('taigi-btn').disabled=true;else $('speak-btn').disabled=true;
-  try {
-    const paired=language==='nan' && $('taigi-source').value.trim();
-    const payload=paired?{job_id:state.job,source:$('taigi-source').value.trim(),poj:text,confirmed:$('taigi-confirm').checked}:{text,language,rate:-1};
-    const response=await api(paired?'/api/document-taigi':'/api/speech',{method:'POST',headers:{'Content-Type':'application/json'},signal:controller.signal,body:JSON.stringify(payload)});
-    const blob=await response.blob();if(controller.signal.aborted)return;
-    const audioKey=language==='nan'?'taigiAudio':'audio';
-    if(state[audioKey])URL.revokeObjectURL(state[audioKey]);state[audioKey]=URL.createObjectURL(blob);
-    player.src=state[audioKey];player.hidden=false;player.playbackRate=Number($('speed').value);
-    try {await player.play();status.textContent=language==='nan'?'閩南語試聽中；請核對發音與口音。':'台灣華語朗讀中 · 可暫停或調整語速';}
-    catch {status.textContent='語音已產生，請按下播放器的播放鍵。';}
-  } catch(e){if(e.name!=='AbortError'){message(e.message);status.textContent='語音未能產生，請檢查訊息後重試。';}}
-  finally{if(state.speechController===controller){$('taigi-btn').disabled=false;buttons();}}
-}
-$('speak-btn').onclick=()=>{
-  const text=readText();if(!text)return;
-  if($('voice-source').value==='browser'){
-    stopSpeech(); if(!('speechSynthesis' in window)){message('這個瀏覽器不提供語音合成，請選擇 Windows 聲音。');return;}
-    const voices=speechSynthesis.getVoices();const voice=voices.find(v=>v.lang.toLowerCase()==='zh-tw')||voices.find(v=>v.lang.startsWith('zh'));
-    if(!voice){message('瀏覽器沒有可用的中文聲音，請選擇 Windows 台灣華語。');return;}
-    const utterance=new SpeechSynthesisUtterance(text);utterance.voice=voice;utterance.lang=voice.lang;utterance.rate=Number($('speed').value)*.9;
-    utterance.onerror=()=>{$('speech-status').textContent='瀏覽器語音無法播放，請改用 Windows 台灣華語。';};
-    utterance.onend=()=>{$('speech-status').textContent='朗讀完成。';};
-    speechSynthesis.speak(utterance);$('speech-status').textContent='瀏覽器朗讀中；此聲音是否離線取決於裝置。';
-  }else {if(text.length>1800){message('整份原文超過單次朗讀上限（1,800 字），請改聽重要資訊，或將文件分段。');return;}playLocal(text);}
-};
-$('stop-btn').onclick=()=>{stopSpeech();$('speech-status').textContent='已停止朗讀。';buttons();};
-$('speed').onchange=()=>{for(const id of ['audio','taigi-audio'])$(id).playbackRate=Number($('speed').value);};
-$('taigi-btn').onclick=()=>{const text=$('taigi-text').value.trim();if(!text){message('請先輸入白話字。');return;}playLocal(text,'nan');};
-$('taigi-audio').addEventListener('ended',()=>{$('taigi-play-status').textContent='台語試聽完成，可按播放器重播。';});
-$('audio').addEventListener('ended',()=>{$('speech-status').textContent='朗讀完成。';});
+$('speak-btn').onclick=()=>{const text=readText();if(!text)return;window.PaperVoiceNarrator.speak(text,'文件：'+($('read-target').value==='raw'?'辨識原文':'重要資訊'));$('conversation').scrollIntoView({behavior:'smooth',block:'start'});};
 $('question-form').addEventListener('submit',async e=>{
-  e.preventDefault();if(!state.result||state.busy||qaBusy)return;const question=$('question').value.trim();if(!question)return;qaBusy=true;
-  const job=state.job;$('ask-btn').disabled=true;message();const waiting=textNode('p','正在根據文件查找答案…','hint');$('answers').prepend(waiting);
-  try {const answer=await(await api('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({job_id:job,question})})).json();if(state.job!==job)return;
-    const item=textNode('article','','answer-item');item.append(textNode('strong',question),textNode('p',answer.answer));if(answer.evidence)item.append(textNode('blockquote','原文：'+answer.evidence));
-    const listen=textNode('button','▶ 聽這個回答','secondary-button');listen.type='button';
-    let includeEvidence=null;
-    if(PaperVoiceAnswerSpeech.hasEvidence(answer)) {
-      const option=textNode('label','','check-label');
-      includeEvidence=document.createElement('input');includeEvidence.type='checkbox';includeEvidence.checked=true;
-      option.append(includeEvidence,textNode('span','同時朗讀原文依據（建議保留）'));
-      item.append(option);
-      const updateLabel=()=>{listen.textContent=includeEvidence.checked?'▶ 聽回答與依據':'▶ 只聽回答';};
-      includeEvidence.addEventListener('change',updateLabel);updateLabel();
-    }
-    listen.onclick=()=>{
-      try {playLocal(PaperVoiceAnswerSpeech.build(answer,includeEvidence?.checked ?? false));}
-      catch(e){stopSpeech();message(e.message);$('speech-status').textContent=e.message;buttons();}
-    };
-    item.append(listen);$('answers').prepend(item);$('question').value='';
-  }catch(e){if(state.job===job)message(e.message);}finally{qaBusy=false;waiting.remove();buttons();}
+  e.preventDefault();if(!state.result||state.busy||qaBusy)return;
+  const question=$('question').value.trim();if(!question)return;
+  stopSpeech();qaBusy=true;const job=state.job,epoch=PaperVoiceNarrator.epoch;
+  $('ask-btn').disabled=true;message();const waiting=textNode('p','正在根據文件查找答案…','hint');$('answers').prepend(waiting);
+  try{
+    const answer=await(await api('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({job_id:job,question})})).json();
+    if(state.job!==job)return;
+    const item=textNode('article','','answer-item');item.append(textNode('strong',question),textNode('p',answer.answer));
+    if(answer.evidence)item.append(textNode('blockquote','原文依據：'+answer.evidence));
+    const listen=textNode('button','用所選語言聽這個回答','secondary-button');listen.type='button';
+    listen.onclick=()=>PaperVoiceNarrator.speak(answer.answer,'回答：'+question);
+    item.append(listen);$('answers').querySelectorAll(':scope > p.hint').forEach(node=>node.remove());$('answers').prepend(item);
+    if($('question').value.trim()===question)$('question').value='';
+    PaperVoiceNarrator.remember(answer.answer,'回答：'+question);
+    if(PaperVoiceNarrator.epoch===epoch)PaperVoiceNarrator.speak(answer.answer,'回答：'+question);
+  }catch(e){if(state.job===job)message(e.message);}
+  finally{qaBusy=false;waiting.remove();buttons();}
 });
 document.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{$('question').value=button.dataset.question;if(!state.result){message('請先放入文件並完成辨識。');return;}$('question-form').requestSubmit();});
 $('export-btn').onclick=()=>{if(!state.result)return;const blob=new Blob([JSON.stringify({...state.result,notice:'AI 輔助結果，請對照原文件確認；原文對應不代表影像辨識正確。'},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='紙聲通-識讀結果.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
@@ -202,17 +145,15 @@ window.addEventListener('pagehide',()=>{stopSpeech();if(state.job)fetch('/api/jo
 async function checkHealth(){
   try {const health=await(await api('/api/health')).json();modelReady=health.model_ready;
     asrReady=health.asr_ready;
-    window.PaperVoiceHakka?.setReady(health.hakka_ready);
-    window.PaperVoiceAmis?.setReady(health.amis_ready);
+    window.PaperVoiceNarrator.setReady(health);
     $('asr-model-status').textContent=asrReady?'Taiwan Tongues ASR CE · 本機已就緒':'指定語音模型尚未準備完成';
     $('model-status').textContent=modelReady?'Gemma 3 · 本機已就緒':(health.ollama?'模型下載／準備中':'請啟動 Ollama');$('model-status').classList.toggle('wait',!modelReady);
-    $('taigi-status').textContent=health.taigi_ready?'本機模型已下載':'模型尚未下載';$('taigi-btn').disabled=!health.taigi_ready;
     if(modelReady && !initialPreparationRequested){initialPreparationRequested=true;modelPreparation.prepare();}
   }catch{$('model-status').textContent='本機服務連線中斷';$('model-status').classList.add('wait');modelReady=false;}
   buttons();
 }
-const voicePanel=document.createElement('div');voicePanel.className='voice-question';
-voicePanel.innerHTML='<div class="voice-actions"><button id="record-btn" type="button" class="secondary-button" disabled>● 錄音提問</button><label class="audio-upload">或選音檔<input id="audio-file" type="file" accept="audio/*" disabled></label><label>語音模式 <select id="asr-language"><option value="zh">中文／在地語音</option><option value="en">英文</option><option value="auto">自動判斷</option></select></label></div><p id="asr-model-status" class="hint">正在檢查指定語音模型</p><p id="asr-status" class="hint" role="status">最長 30 秒、8 MB。辨識後請核對問題文字，再按「提問」。台語／客語品質尚待實測。</p>';
+const voicePanel=document.createElement('details');voicePanel.className='voice-question';
+voicePanel.innerHTML='<summary>用語音提問（選用）</summary><div class="voice-actions"><button id="record-btn" type="button" class="secondary-button" disabled>● 錄音提問</button><label class="audio-upload">或選音檔<input id="audio-file" type="file" accept="audio/*" disabled></label><label>語音模式 <select id="asr-language"><option value="zh">中文／在地語音</option><option value="en">英文</option><option value="auto">自動判斷</option></select></label></div><p id="asr-model-status" class="hint">正在檢查指定語音模型</p><p id="asr-status" class="hint" role="status">最長 30 秒、8 MB。辨識後請核對問題文字，再按「提問並朗讀」。台語／客語品質尚待實測。</p>';
 $('question-form').before(voicePanel);
 async function sendAudio(blob, job, run) {
   if(!blob.size)return;
@@ -222,7 +163,7 @@ async function sendAudio(blob, job, run) {
     const result=await(await api('/api/transcribe?language='+encodeURIComponent($('asr-language').value),{method:'POST',body})).json();
     if(run!==voiceRun || job!==state.job)return;
     $('question').value=result.text;$('question').focus();
-    $('asr-status').textContent=`辨識完成（${result.seconds} 秒）。請核對上方問題，必要時改字，再按「提問」。`;
+    $('asr-status').textContent=`辨識完成（${result.seconds} 秒）。請核對上方問題，必要時改字，再按「提問並朗讀」。`;
   }catch(e){if(run===voiceRun)message(e.message);}
   finally{asrBusy=false;buttons();}
 }
@@ -247,7 +188,6 @@ $('record-btn').onclick=async()=>{
 };
 $('audio-file').onchange=e=>{const file=e.target.files[0];e.target.value='';if(!file || !state.result)return;if(file.size>8*1024*1024){message('音檔請小於 8 MB。');return;}sendAudio(file,state.job,++voiceRun);};
 window.addEventListener('pagehide',()=>{voiceRun++;clearTimeout(recordTimer);recordStream?.getTracks().forEach(t=>t.stop());});
-for(const id of ['taigi-source','taigi-text'])$(id).addEventListener('input',()=>{stopSpeech();buttons();$('taigi-confirm').checked=false;$('taigi-audio').pause();$('taigi-audio').hidden=true;$('taigi-play-status').textContent='文字已變更，請重新產生台語音檔。';});
 $('corpus-preview-btn').onclick=async()=>{
   if(!state.result)return;const job=state.job;
   try {
@@ -268,4 +208,3 @@ $('corpus-export-btn').onclick=async()=>{
   }catch(e){message(e.message);}
 };
 checkHealth();setInterval(checkHealth,20000);
-api('/api/voices').then(r=>r.json()).then(data=>{voiceReady=data.mandarin_local;if(!voiceReady){$('voice-source').value='browser';$('speech-status').textContent='未偵測到 Windows 中文聲音，請使用瀏覽器中文語音。';}}).catch(()=>{});

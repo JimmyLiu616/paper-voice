@@ -1,8 +1,8 @@
 """Conservative notice phrase conversion, NOT a general Hakka translation model.
 
 Only whole supported clauses are converted; unknown clauses reject the entire
-draft. Shared formal wording is retained for both TTS dialects. Human review is
-required. This does not call an LLM or a cloud service.
+draft. Shared formal wording is retained for both TTS dialects. Output is an
+unreviewed draft. This does not call an LLM or a cloud service.
 """
 import re
 
@@ -29,7 +29,7 @@ RULES = [
     (r'(?P<docs>'+DOCUMENTS+r')', lambda m:documents(m['docs'])),
     (r'本活動免費', lambda m:'這隻活動免費'),
     (r'(?:費用[:：]\s*)?免費', lambda m:m[0]),
-    (r'(?:不必|無須|不用)繳費', lambda m:'毋使繳費'),
+    (r'(?:不必|無須|不用|不需要)繳費', lambda m:'毋使繳費'),
     (r'(?:如|如果)已完成補件', lambda m:'係講已經完成補件'),
     (r'請忽略本通知', lambda m:'請毋使理會這張通知'),
     (r'請(?:於|在)(?P<date>'+DATE+r')前(?P<action>提出申請|補交文件|送達|繳清)', lambda m:'請在'+date(m['date'])+'前'+m['action']),

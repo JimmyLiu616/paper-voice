@@ -889,7 +889,7 @@ async def restore_document_model():
         pass  # Next document request can load the normal model itself.
 
 
-async def generate_taigi_draft(masked):
+async def generate_taigi_draft(masked, restore=True):
     from scripts.taigi_translation import MODEL as TAIGI_MODEL, WEIGHT_SHA256, PROMPT, SCHEMA
     switched = False
     try:
@@ -919,7 +919,7 @@ async def generate_taigi_draft(masked):
     except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
         raise HTTPException(503, '台語翻譯暫時無法使用，請確認模型已安裝，或縮短原文後重試。') from exc
     finally:
-        if switched:
+        if switched and restore:
             # Restore asynchronously after releasing model_lock; no document is
             # sent during the empty warmup request.
             asyncio.create_task(restore_document_model())
@@ -927,14 +927,18 @@ async def generate_taigi_draft(masked):
 
 @app.post('/api/taigi-translation')
 async def taigi_translation(body: TaigiTranslationRequest):
-    from scripts.taigi_translation import mask_numbers, restore_numbers, reading_draft
-    from scripts.taigi_text import pronunciation_draft
     job = await get_job(body.job_id)
     if job['status'] != 'done':
         raise HTTPException(409, '請先完成文件辨識。')
     source = body.source.strip()
     if not source or normalized(source) not in normalized(job['result']['raw_text']):
         raise HTTPException(422, '請選取目前文件的連續原文短句。')
+    return await translate_taigi_text(source)
+
+
+async def translate_taigi_text(source, restore=True):
+    from scripts.taigi_translation import mask_numbers, restore_numbers, reading_draft
+    from scripts.taigi_text import pronunciation_draft
     try:
         masked, numbers = mask_numbers(source)
     except ValueError as exc:
@@ -942,7 +946,7 @@ async def taigi_translation(body: TaigiTranslationRequest):
     if model_lock.locked():
         raise HTTPException(409, '本機模型正在處理文件，請稍後再翻譯。')
     async with model_lock:
-        candidate = await generate_taigi_draft(masked)
+        candidate = await generate_taigi_draft(masked) if restore else await generate_taigi_draft(masked,restore=False)
     try:
         translation = restore_numbers(masked, numbers, candidate)
     except ValueError as exc:
@@ -1116,6 +1120,69 @@ def taigi_wav(text: str) -> bytes:
     output = io.BytesIO()
     sf.write(output, np.asarray(waveform), model.config.sampling_rate, format='WAV', subtype='PCM_16')
     return output.getvalue()
+
+
+class NarrationRequest(BaseModel):
+    text: str = Field(min_length=1,max_length=1800)
+    language: Literal['zh-TW','nan','hakka','ami'] = 'zh-TW'
+    dialect: str = ''
+
+
+@app.post('/api/narrate')
+async def narrate(body: NarrationRequest):
+    """Translate the supplied Chinese answer/text and immediately synthesize it.
+
+    This endpoint does not claim that text is a verbatim document quotation.
+    Document Q&A grounding remains enforced by /api/ask before narration.
+    """
+    from scripts.narration import sentences,join_wav
+    source=body.text.strip()
+    if not source:raise HTTPException(422,'沒有可朗讀的文字。')
+    dialect=body.dialect or {'hakka':'sixian','ami':'ami_Xiug'}.get(body.language,'')
+    allowed={'zh-TW':{''},'nan':{''},'hakka':{'sixian','hailu'},
+             'ami':{'ami_Xiug','ami_Coas','ami_Heng','ami_Mala','ami_Sout'}}
+    if dialect not in allowed[body.language]:raise HTTPException(422,'語言與語別不符。')
+    if speech_lock.locked():raise HTTPException(409,'本機正在產生語音，請稍後重試。')
+    result={'source':source,'language':body.language,'dialect':dialect,
+            'translation':'','audio_base64':None,'speech_error':'',
+            'warning':'' if body.language=='zh-TW' else 'AI／句型翻譯及語音皆為草稿，日期、費用與例外請對照中文。'}
+    async with speech_lock:
+        try:
+            if body.language=='zh-TW':
+                result['translation']=source
+                audio=await asyncio.to_thread(mandarin_wav,source,-1)
+            else:
+                parts=sentences(source);drafts=[];clips=[]
+                for part in parts:
+                    if body.language=='ami':
+                        item=await asyncio.to_thread(amis_translate_speak_local,part,dialect)
+                        drafts.append(item['translation']);result['translation']='\n'.join(drafts)
+                        if item.get('speech_error') or not item.get('audio_base64'):
+                            raise ValueError(item.get('speech_error') or '阿美語音檔未完成。')
+                        clips.append(base64.b64decode(item['audio_base64']))
+                        result['warning']='阿美語為 AI 草稿；譯文語別共用同一聲音，語意與各語別發音尚未驗證。'
+                    elif body.language=='hakka':
+                        from scripts.hakka_translation import translate_notice
+                        item=translate_notice(part)
+                        drafts.append(item['translation']);result['translation']='\n'.join(drafts)
+                        clips.append(await asyncio.to_thread(hakka_wav,item['reading'],dialect))
+                        result['warning']='客語限生活通知支援句型，並非通用翻譯；四縣／海陸共用譯文，切換語音腔調。'
+                    else:
+                        item=await translate_taigi_text(part,restore=False)
+                        drafts.append(item['translation']);result['translation']='\n'.join(drafts)
+                        if not item.get('poj'):raise ValueError('台語譯文已產生，但尚無完整讀音，無法朗讀此回答。')
+                        clips.append(await asyncio.to_thread(taigi_wav,item['poj']))
+                audio=await asyncio.to_thread(join_wav,clips)
+            result['audio_base64']=base64.b64encode(audio).decode('ascii')
+        except (ValueError,HTTPException) as exc:
+            detail=str(exc.detail) if isinstance(exc,HTTPException) else str(exc)
+            if body.language=='hakka' and '句型' in detail:
+                detail='這份回答超出目前客語支援句型，未播放；可切換華語聽取完整回答。'
+            result['speech_error']=detail
+            # No partial speech: all sentences must finish before returning audio.
+        finally:
+            if body.language=='nan':asyncio.create_task(restore_document_model())
+    return result
 
 
 @app.post('/api/speech')
