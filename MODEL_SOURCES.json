@@ -74,6 +74,28 @@
       "fine_tuned_by_this_project": false,
       "status": "Experimental draft; source/numbers checked mechanically; semantics and pronunciation require human review",
       "report": "evaluation/taigi-translation-v2/README.md"
+    },
+    {
+      "model": "ILRDF/nllb-600m-formosan-all-finetune-v2",
+      "revision": "317a939dd0a77688422a81d36b5fdab81b8ab456",
+      "role": "Traditional Chinese to Amis draft translation",
+      "license": "CC-BY-NC-4.0",
+      "source": "https://huggingface.co/ILRDF/nllb-600m-formosan-all-finetune-v2",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "weights_redistributed": false,
+      "native_speaker_evaluated": false,
+      "download_script": "scripts/download_amis.py"
+    },
+    {
+      "model": "facebook/mms-tts-ami",
+      "revision": "d61903189d7641fc6482ec4d949898bca321ef38",
+      "role": "Amis draft speech synthesis; one voice, no validated dialect matching",
+      "license": "CC-BY-NC-4.0",
+      "source": "https://huggingface.co/facebook/mms-tts-ami",
+      "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
+      "weights_redistributed": false,
+      "native_speaker_evaluated": false,
+      "download_script": "scripts/download_amis.py"
     }
   ],
   "system_components": [

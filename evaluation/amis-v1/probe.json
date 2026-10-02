@@ -1,0 +1,62 @@
+[
+  {
+    "source": "你好。",
+    "dialect": "ami_Xiug",
+    "translation": "ngaʼay ho.",
+    "translation_seconds": 4.344,
+    "model_text": "nga'ay ho",
+    "rate": 16000,
+    "seconds": 1.264,
+    "audio": "probe-0.wav",
+    "sha256": "abe67c5c1589114ab593656b1e41223045b8818d1c5153d66da77e5986e3f27b",
+    "total_seconds": 4.997
+  },
+  {
+    "source": "謝謝你的幫忙。",
+    "dialect": "ami_Xiug",
+    "translation": "aray ko pidama iso.",
+    "translation_seconds": 3.026,
+    "model_text": "aray ko pidama iso",
+    "rate": 16000,
+    "seconds": 2.144,
+    "audio": "probe-1.wav",
+    "sha256": "5781c9ca03e7a5b12a8b5934d899ef06837e6ca567e62cef832f9c6c775a47de",
+    "total_seconds": 3.302
+  },
+  {
+    "source": "本活動免費，不必繳費。",
+    "dialect": "ami_Xiug",
+    "translation": "awaay ko payso, awaay ko ʼaca.",
+    "translation_seconds": 4.387,
+    "model_text": "awaay ko payso awaay ko 'aca",
+    "rate": 16000,
+    "seconds": 3.008,
+    "audio": "probe-2.wav",
+    "sha256": "5abbdd53aaf4b4ea29b3e671521039cff5a8d6d1f1d9c1e82984e919f1697084",
+    "total_seconds": 4.851
+  },
+  {
+    "source": "請攜帶身分證影本。",
+    "dialect": "ami_Xiug",
+    "translation": "pihawikid to sasing no tireng.",
+    "translation_seconds": 2.935,
+    "model_text": "pihawikid to sasing no tireng",
+    "rate": 16000,
+    "seconds": 3.008,
+    "audio": "probe-3.wav",
+    "sha256": "a7e0d0f0249d7ad5675c9683b3e656d97588a3ada0987cad8ed66814e333f639",
+    "total_seconds": 3.277
+  },
+  {
+    "source": "請於115年10月20日下午5時前提出申請。",
+    "dialect": "ami_Xiug",
+    "translation": "i cecay liʼan ira ko lima a mihecaan, motep a folad, tosa poloʼ a romiʼad, i herek no lahok limaay ko toki i ʼayaw no pising.",
+    "translation_seconds": 10.893,
+    "model_text": "i cecay li'an ira ko lima a mihecaan motep a folad tosa polo' a romi'ad i herek no lahok limaay ko toki i 'ayaw no pising",
+    "rate": 16000,
+    "seconds": 15.216,
+    "audio": "probe-4.wav",
+    "sha256": "d1d8beb6dc2f4c38a32937daa70d877bff90878a2e7b9a25781470a611b57b4a",
+    "total_seconds": 13.413
+  }
+]

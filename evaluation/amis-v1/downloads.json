@@ -1,0 +1,91 @@
+[
+  {
+    "repo": "ILRDF/nllb-600m-formosan-all-finetune-v2",
+    "revision": "317a939dd0a77688422a81d36b5fdab81b8ab456",
+    "license": "CC BY-NC 4.0",
+    "files": [
+      {
+        "name": "added_tokens.json",
+        "bytes": 927,
+        "sha256": "07338fcbca3b6816d722d4fb163dc6c9ba42d522512df503996e056fa943056b"
+      },
+      {
+        "name": "config.json",
+        "bytes": 836,
+        "sha256": "b612752d00726730b81ecb9342733c920bb98332b91835ce5df1419981bb68c7"
+      },
+      {
+        "name": "generation_config.json",
+        "bytes": 164,
+        "sha256": "b4d897ff9d969bf5bdfcc79001183c02db1d60f467d7b267ddc2b68650f73864"
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 2460518752,
+        "sha256": "9b9b858f6afebaecfc8fb81d3459820b23459ee315e5b3aaffb081d68e0e9dcb"
+      },
+      {
+        "name": "README.md",
+        "bytes": 1973,
+        "sha256": "65b3881768ae464399992eb3ea13baa57979e21f73393052502e334e521e3fbc"
+      },
+      {
+        "name": "sentencepiece.bpe.model",
+        "bytes": 4852054,
+        "sha256": "14bb8dfb35c0ffdea7bc01e56cea38b9e3d5efcdcb9c251d6b40538e1aab555a"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 4904,
+        "sha256": "e72b8cbb9c025a5dfa49071c22cbb7896e3e04031d541d88a1177885448b6aff"
+      },
+      {
+        "name": "tokenizer.json",
+        "bytes": 32247906,
+        "sha256": "9dbf4e13eff54a0b182069f665b7a6d56b75c7eb53b5708f999759b0919aa15b"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 47919,
+        "sha256": "ce085bedd746f6361198f40d78627d2d11c5a41c65bd3bc180c328b44ce0e447"
+      }
+    ]
+  },
+  {
+    "repo": "facebook/mms-tts-ami",
+    "revision": "d61903189d7641fc6482ec4d949898bca321ef38",
+    "license": "CC BY-NC 4.0",
+    "files": [
+      {
+        "name": "config.json",
+        "bytes": 1641,
+        "sha256": "115859400c1653733334b764d5a8eb58428531105a901b17369baa970f248760"
+      },
+      {
+        "name": "model.safetensors",
+        "bytes": 145218296,
+        "sha256": "f37d58ecd80663ed4e47d3108209e0836761cafaa5aa1d471d9339de32441453"
+      },
+      {
+        "name": "README.md",
+        "bytes": 3969,
+        "sha256": "8e57c043e5dbb303967591ef19c996f676304d54d4062226846e3bd8baec68cc"
+      },
+      {
+        "name": "special_tokens_map.json",
+        "bytes": 47,
+        "sha256": "26ff6550693eac9d05171f7e1c990702dc92de476904ec80b516e97001a8a25e"
+      },
+      {
+        "name": "tokenizer_config.json",
+        "bytes": 287,
+        "sha256": "6c714b0a9dafec13202097d3702eac3c3a26e5ac1c21c2d7b35b7516737c1aad"
+      },
+      {
+        "name": "vocab.json",
+        "bytes": 279,
+        "sha256": "74bd535a5f0d3a4b19fba5c6564fd7e2b25e3ae9feaef8795840c8e18002c5e8"
+      }
+    ]
+  }
+]

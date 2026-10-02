@@ -533,6 +533,7 @@ async def health():
             'asr_model': 'Taiwan Tongues ASR CE v1.0',
             'taigi_ready': (RUNTIME / 'mms-tts-nan' / 'model.safetensors').exists(),
             'hakka_ready': hakka_ready(),
+            'amis_ready': amis_ready(),
             'privacy': '本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。'}
 
 
@@ -842,7 +843,7 @@ class HakkaDraftSpeechRequest(HakkaRequest):
     confirmed: bool = False
 
 
-async def check_hakka_source(source, job_id):
+async def check_optional_document_source(source, job_id):
     if not source.strip():
         raise HTTPException(422, '請輸入中文原文。')
     if job_id is not None:
@@ -856,7 +857,7 @@ async def check_hakka_source(source, job_id):
 @app.post('/api/hakka-translation')
 async def hakka_translation(body: HakkaSourceRequest):
     from scripts.hakka_translation import translate_notice
-    await check_hakka_source(body.source, body.job_id)
+    await check_optional_document_source(body.source, body.job_id)
     try:
         result = translate_notice(body.source)
     except ValueError as exc:
@@ -868,7 +869,7 @@ async def hakka_translation(body: HakkaSourceRequest):
 async def hakka_draft_speech(body: HakkaDraftSpeechRequest):
     if not body.confirmed:
         raise HTTPException(422, '請先核對客語草稿與原文意思、數字讀法，再勾選確認。')
-    await check_hakka_source(body.source, body.job_id)
+    await check_optional_document_source(body.source, body.job_id)
     return await hakka_speech(HakkaRequest(text=body.text, dialect=body.dialect))
 
 
@@ -976,6 +977,60 @@ def hakka_ready():
     return ((ROOT / '.venv-local-tts/Scripts/python.exe').is_file()
             and all((RUNTIME / 'voxhakka' / name).is_file() for name in
                     ['model.pth', 'config.json', 'speakers.pth', 'speaker_embs.pth', 'language_ids.json']))
+
+
+def amis_ready():
+    return all((RUNTIME/folder/file).is_file()
+               for folder,files in [('nllb-formosan',['model.safetensors','config.json','tokenizer.json','tokenizer_config.json']),
+                                    ('mms-tts-ami',['model.safetensors','config.json','vocab.json','tokenizer_config.json'])]
+               for file in files)
+
+
+class AmisRequest(BaseModel):
+    source: str = Field(min_length=1, max_length=80)
+    dialect: Literal['ami_Xiug','ami_Coas','ami_Heng','ami_Mala','ami_Sout'] = 'ami_Xiug'
+    job_id: str | None = None
+
+
+def amis_translate_speak_local(source, dialect):
+    if not amis_ready():
+        raise HTTPException(503, '阿美語模型尚未安裝，請依 README 執行 scripts/download_amis.py。')
+    with tempfile.TemporaryDirectory(prefix='paper-voice-amis-') as tmp:
+        request, result_path, audio = [Path(tmp)/name for name in ['input.json','result.json','speech.wav']]
+        request.write_text(json.dumps({'source':source,'dialect':dialect},ensure_ascii=False),encoding='utf8')
+        try:
+            completed=subprocess.run([str(ROOT/'.venv/Scripts/python.exe'),'-X','utf8',
+                str(ROOT/'scripts/amis_worker.py'),'--request',str(request),'--result',str(result_path),'--audio',str(audio)],
+                capture_output=True,timeout=180,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+        except (OSError,subprocess.TimeoutExpired) as exc:
+            raise HTTPException(503, '阿美語翻譯朗讀逾時或未能啟動，請縮短中文原文再試。') from exc
+        try:
+            result=json.loads(result_path.read_text(encoding='utf8')) if result_path.is_file() else {}
+        except (ValueError,OSError) as exc:
+            raise HTTPException(503, '阿美語模型回應格式異常。') from exc
+        if completed.returncode==2 and result.get('error'):
+            raise HTTPException(422,result['error'])
+        if completed.returncode or not result.get('translation'):
+            raise HTTPException(503,'阿美語模型未能完成翻譯，請檢查本機環境。')
+        result['audio_base64']=None
+        if not result.get('speech_error'):
+            if not audio.is_file():
+                raise HTTPException(503,'阿美語模型未產生音檔。')
+            wav=audio.read_bytes()
+            if len(wav)<44 or len(wav)>3_000_000 or wav[:4]!=b'RIFF' or wav[8:12]!=b'WAVE':
+                raise HTTPException(503,'阿美語音檔格式異常。')
+            result['audio_base64']=base64.b64encode(wav).decode('ascii')
+        return result
+
+
+@app.post('/api/amis-translate-speak')
+async def amis_translate_speak(body: AmisRequest):
+    await check_optional_document_source(body.source,body.job_id)
+    if speech_lock.locked():
+        raise HTTPException(409,'目前正在產生其他語音，請稍後重試。')
+    async with speech_lock:
+        # No confirmed flag: user explicitly requested automatic draft narration.
+        return await asyncio.to_thread(amis_translate_speak_local,body.source.strip(),body.dialect)
 
 
 def hakka_wav(text: str, dialect: str) -> bytes:

@@ -225,3 +225,20 @@ ollama pull hf.co/Speech-AI-Research-Center/SARC-Taigi-LLM-12b-GGUF:Q3_K_L
 8句×2腔發音字典檢查、4個真實音檔與瀏覽器操作見 [客語中文轉換驗證](evaluation/hakka-translation-v1/README.md)。本機4次短句轉換約0.004–0.047秒，語音含環境啟動約20.6–21.5秒；均為單次開發觀察，沒有母語者評分。較早示範影片未包含此功能。
 
 任意中文的客華雙向翻譯可另評估[客委會官方服務](https://speech.hakka.gov.tw/Translation/Online)及申請 API，目前沒有串接；本機文件不會自動送到該網站。
+
+
+## 阿美語自動翻譯朗讀（草稿）
+
+開啟「阿美語翻譯朗讀」→ 輸入最多 80 字中文短句（或帶入文件重點原文）→ 選譯文語別 → 按「翻譯並朗讀」。系統直接將 NLLB 譯文交給 MMS 合成並自動播放，不要求人工核對或確認勾選。瀏覽器若阻擋自動播放，可按音檔播放器。
+
+新增電腦需先在專案根目錄執行：
+
+```powershell
+.venv/Scripts/python.exe scripts/download_amis.py
+```
+
+下載固定 revision 的 ILRDF NLLB 600M 與 Meta MMS Amis，約 2.65 GB；下載器驗證權重 SHA256。推論離線使用 CPU，每次請求釋放翻譯模型後再載入語音模型，避免占用既有文件模型的 GPU。API：`POST /api/amis-translate-speak`，欄位 `source`、`dialect`（預設 `ami_Xiug`）、可選 `job_id`；回傳中文、譯文及 WAV base64，沒有 `confirmed` 欄位。超時 180 秒。停止或修改輸入會取消前端等待，已開始的本機合成可能繼續至結束，但舊結果不會播放。
+
+秀姑巒、海岸、恆春、馬蘭、南勢是**譯文語別**，五者共用同一 MMS 阿美語聲音，未驗證各語別發音匹配。AI 草稿可能誤譯或漏譯，日期、金額、否定與例外不能視為已正確翻譯；原文與譯文並列。保留喉塞音：NLLB 的 U+02BC 撇號映射至 MMS 的 ASCII 撇號；其餘不支援字元不會靜默刪掉，合成失敗仍顯示譯文。
+
+兩模型皆 CC BY-NC 4.0（非商業），來源、固定版本及下載驗證見 `MODEL_SOURCES.json`、`evaluation/amis-v1/`。原始碼授權不會覆蓋模型授權；GitHub 不包含權重。此功能與台語／客語既有核對流程分開。既有示範影片尚未包含阿美語功能。

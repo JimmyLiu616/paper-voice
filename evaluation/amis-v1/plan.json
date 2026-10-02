@@ -1,0 +1,16 @@
+{
+  "translation_model": "ILRDF/nllb-600m-formosan-all-finetune-v2",
+  "translation_revision": "317a939dd0a77688422a81d36b5fdab81b8ab456",
+  "tts_model": "facebook/mms-tts-ami",
+  "tts_revision": "d61903189d7641fc6482ec4d949898bca321ef38",
+  "dialect": "ami_Xiug",
+  "cases": [
+    "你好。",
+    "謝謝你的幫忙。",
+    "本活動免費，不必繳費。",
+    "請攜帶身分證影本。",
+    "請於115年10月20日下午5時前提出申請。"
+  ],
+  "human_confirmation_required": false,
+  "native_speaker_reviewed": false
+}

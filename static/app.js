@@ -35,6 +35,7 @@ function buttons() {
   $('corpus-preview-btn').disabled=!state.result || state.busy;
   $('taigi-source-btn').disabled=!state.result || state.busy;
   $('hakka-source-btn').disabled=!state.result || state.busy;
+  $('amis-source-btn').disabled=!state.result || state.busy;
 }
 function mode(value) {
   state.mode=value;
@@ -42,6 +43,7 @@ function mode(value) {
   buttons();
 }
 function stopSpeech() {
+  window.PaperVoiceAmis?.stop();
   state.speechController?.abort(); state.speechController=null;
   $('audio').pause(); $('taigi-audio').pause(); window.PaperVoiceHakka?.stop(); if('speechSynthesis' in window) speechSynthesis.cancel();
   $('speak-btn').textContent='▶ 聽重點'; $('taigi-btn').disabled=false;
@@ -54,6 +56,7 @@ function resetResult() {
   $('taigi-confirm').checked=false;$('taigi-source').value='';$('taigi-hanji').value='你好';$('taigi-text').value='lí hó';
   $('taigi-translation-output').textContent='';
   window.PaperVoiceHakka?.reset();
+  window.PaperVoiceAmis?.reset();
   $('progress').hidden=true; $('result-content').hidden=true; $('empty-state').hidden=false;
   $('result-meta').textContent='等待放入文件'; $('answers').replaceChildren(textNode('p','先讀取一份文件，就能開始提問。','hint'));
   $('speech-status').textContent='完成辨識後，就可以播放語音。'; $('audio').hidden=true; $('taigi-audio').hidden=true;
@@ -100,6 +103,7 @@ function render(result) {
   if(choices.some(f=>f.key==='required_documents'))$('taigi-field').value='required_documents';
   $('hakka-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
   if(choices.some(f=>f.key==='deadline'))$('hakka-field').value='deadline';
+  $('amis-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
   $('condition-list').replaceChildren(...(result.conditions_raw||[]).map(t=>textNode('p','文件提醒：'+t,'hint')));
   $('ocr-reference').textContent=result.ocr_reference||'本次未使用 Windows OCR（文字模式或系統未提供）。';
   $('result-warnings').replaceChildren(...result.warnings.map(w=>textNode('p',w,'warning')));
@@ -199,6 +203,7 @@ async function checkHealth(){
   try {const health=await(await api('/api/health')).json();modelReady=health.model_ready;
     asrReady=health.asr_ready;
     window.PaperVoiceHakka?.setReady(health.hakka_ready);
+    window.PaperVoiceAmis?.setReady(health.amis_ready);
     $('asr-model-status').textContent=asrReady?'Taiwan Tongues ASR CE · 本機已就緒':'指定語音模型尚未準備完成';
     $('model-status').textContent=modelReady?'Gemma 3 · 本機已就緒':(health.ollama?'模型下載／準備中':'請啟動 Ollama');$('model-status').classList.toggle('wait',!modelReady);
     $('taigi-status').textContent=health.taigi_ready?'本機模型已下載':'模型尚未下載';$('taigi-btn').disabled=!health.taigi_ready;
