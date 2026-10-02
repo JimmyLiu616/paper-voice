@@ -1,0 +1,6 @@
+{"dialect": "sixian", "source": "請攜帶身分證影本及報名表。", "raw": "{\"translation\": \"請紮身分證影本佮報名表。\" }", "seconds": 39.785, "translation": "請紮身分證影本佮報名表。", "reading": "請紮身分證影本佮報名表。"}
+{"dialect": "sixian", "source": "本活動免費，不必繳費。", "raw": "{\"translation\": \"本活動免費，毋免繳費。\"}", "seconds": 1.479, "translation": "本活動免費，毋免繳費。", "reading": "本活動免費，毋免繳費。"}
+{"dialect": "sixian", "source": "如已完成補件，請忽略本通知。", "raw": "{\"translation\": \"若已經完成補件，請忽略本通知。\"}", "seconds": 1.434, "translation": "若已經完成補件，請忽略本通知。", "reading": "若已經完成補件，請忽略本通知。"}
+{"dialect": "sixian", "source": "請於115年10月20日下午5時前提出申請。", "raw": "{\"translation\": \"請佇 [NUM_A] 年 [NUM_B] 月 [NUM_C] 下晡 [NUM_D] 時前提出申請。\"}", "seconds": 2.98, "error": "翻譯改變日期、金額或數量單位，已停止套用。"}
+{"dialect": "sixian", "source": "只接受紙本申請，不接受線上申請。", "raw": "{\"translation\": \"干焦接受紙本申請，無接受線上申請。\"}", "seconds": 1.564, "translation": "干焦接受紙本申請，無接受線上申請。", "reading": "干焦接受紙本申請，無接受線上申請。"}
+{"dialect": "sixian", "source": "65歲以上免費，未滿65歲須繳500元。", "raw": "{\"translation\": \" [ NUM _ A ] 歲以上免費，未滿 [ NUM _ B ] 歲須繳 [ NUM _ C ] 元。\"}", "seconds": 2.517, "error": "翻譯未完整保留數字，已停止套用。請改短原文或人工翻譯。"}

@@ -3,7 +3,12 @@ import subprocess
 import pytest
 from fastapi.testclient import TestClient
 import app
-from scripts.hakka_worker import validate_text, phoneme_tokens
+from scripts.hakka_worker import validate_text, phoneme_tokens, speech_punctuation
+
+
+def test_sentence_boundaries_become_supported_pauses_without_dropping_words():
+    assert speech_punctuation('免費；毋使繳費。\n過期毋受理！')=='免費，毋使繳費，過期毋受理，'
+    assert speech_punctuation('期限：十月五日、下晝五時。')=='期限，十月五日，下晝五時，'
 
 
 @pytest.mark.parametrize('text', ['', '   ', '123', '天公2026', 'hello', '天公🙂', '天' * 81])

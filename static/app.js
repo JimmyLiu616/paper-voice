@@ -34,6 +34,7 @@ function buttons() {
   }
   $('corpus-preview-btn').disabled=!state.result || state.busy;
   $('taigi-source-btn').disabled=!state.result || state.busy;
+  $('hakka-source-btn').disabled=!state.result || state.busy;
 }
 function mode(value) {
   state.mode=value;
@@ -52,6 +53,7 @@ function resetResult() {
   state.run++; state.busy=false; stopSpeech(); discardJob(state.job); state.job=null; state.result=null;
   $('taigi-confirm').checked=false;$('taigi-source').value='';$('taigi-hanji').value='你好';$('taigi-text').value='lí hó';
   $('taigi-translation-output').textContent='';
+  window.PaperVoiceHakka?.reset();
   $('progress').hidden=true; $('result-content').hidden=true; $('empty-state').hidden=false;
   $('result-meta').textContent='等待放入文件'; $('answers').replaceChildren(textNode('p','先讀取一份文件，就能開始提問。','hint'));
   $('speech-status').textContent='完成辨識後，就可以播放語音。'; $('audio').hidden=true; $('taigi-audio').hidden=true;
@@ -96,6 +98,8 @@ function render(result) {
   const choices=result.fields.filter(f=>f.evidence);
   $('taigi-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
   if(choices.some(f=>f.key==='required_documents'))$('taigi-field').value='required_documents';
+  $('hakka-field').replaceChildren(...choices.map(f=>{const option=textNode('option',f.label);option.value=f.key;return option;}));
+  if(choices.some(f=>f.key==='deadline'))$('hakka-field').value='deadline';
   $('condition-list').replaceChildren(...(result.conditions_raw||[]).map(t=>textNode('p','文件提醒：'+t,'hint')));
   $('ocr-reference').textContent=result.ocr_reference||'本次未使用 Windows OCR（文字模式或系統未提供）。';
   $('result-warnings').replaceChildren(...result.warnings.map(w=>textNode('p',w,'warning')));

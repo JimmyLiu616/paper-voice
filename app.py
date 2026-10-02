@@ -830,6 +830,48 @@ class HakkaRequest(BaseModel):
     dialect: Literal['sixian', 'hailu'] = 'sixian'
 
 
+class HakkaSourceRequest(BaseModel):
+    source: str = Field(min_length=1, max_length=80)
+    dialect: Literal['sixian', 'hailu'] = 'sixian'
+    job_id: str | None = None
+
+
+class HakkaDraftSpeechRequest(HakkaRequest):
+    source: str = Field(min_length=1, max_length=80)
+    job_id: str | None = None
+    confirmed: bool = False
+
+
+async def check_hakka_source(source, job_id):
+    if not source.strip():
+        raise HTTPException(422, '請輸入中文原文。')
+    if job_id is not None:
+        job = await get_job(job_id)
+        if job['status'] != 'done':
+            raise HTTPException(409, '請先完成文件辨識。')
+        if normalized(source) not in normalized(job['result']['raw_text']):
+            raise HTTPException(422, '請選取目前文件的連續原文短句。')
+
+
+@app.post('/api/hakka-translation')
+async def hakka_translation(body: HakkaSourceRequest):
+    from scripts.hakka_translation import translate_notice
+    await check_hakka_source(body.source, body.job_id)
+    try:
+        result = translate_notice(body.source)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+    return {'source':body.source.strip(), 'dialect':body.dialect, **result}
+
+
+@app.post('/api/hakka-draft-speech')
+async def hakka_draft_speech(body: HakkaDraftSpeechRequest):
+    if not body.confirmed:
+        raise HTTPException(422, '請先核對客語草稿與原文意思、數字讀法，再勾選確認。')
+    await check_hakka_source(body.source, body.job_id)
+    return await hakka_speech(HakkaRequest(text=body.text, dialect=body.dialect))
+
+
 class TaigiPronunciationRequest(BaseModel):
     text: str = Field(min_length=1, max_length=80)
 

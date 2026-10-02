@@ -1,0 +1,16 @@
+{
+  "standalonePlayer": {
+    "duration": 3.669478,
+    "error": null,
+    "hidden": false,
+    "readyState": 4
+  },
+  "draftConfirmed": false,
+  "tested": [
+    "manual Chinese sample converted",
+    "unknown exception rejected with blank draft",
+    "unconfirmed draft refused playback",
+    "photo deadline source converted",
+    "standalone generated phrase playable"
+  ]
+}

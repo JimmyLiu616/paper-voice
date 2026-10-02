@@ -34,6 +34,13 @@ def phoneme_tokens(pronunciations):
     return tokens
 
 
+def speech_punctuation(text):
+    # The released tokenizer has comma/space pauses, but no full-stop tokens.
+    # Keep every spoken character; map sentence/list boundaries to supported
+    # pauses instead of dropping unknown punctuation in the tokenizer.
+    return re.sub(r'[。！？、；：.!?;:\n]+', '，', text)
+
+
 def synthesize(text, dialect, output):
     text = validate_text(text)
     if dialect not in DIALECTS:
@@ -56,7 +63,7 @@ def synthesize(text, dialect, output):
         characters: ListCharacters = None
 
     vits_config.VitsConfig = ListVitsConfig
-    conversion = g2p(text, DIALECTS[dialect], include_eng=False)
+    conversion = g2p(speech_punctuation(text), DIALECTS[dialect], include_eng=False)
     if conversion.unknown_words:
         raise ValueError('客語字典未收錄部分用字，請換成已核對的客語短句。')
     tokens = phoneme_tokens(conversion.pronunciations)

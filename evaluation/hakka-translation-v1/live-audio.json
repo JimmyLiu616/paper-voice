@@ -1,0 +1,62 @@
+[
+  {
+    "case": "free",
+    "dialect": "sixian",
+    "source": "本活動免費，不必繳費。",
+    "translation": "這隻活動免費，毋使繳費。",
+    "reading": "這隻活動免費，毋使繳費。",
+    "translation_seconds": 0.047,
+    "speech_seconds": 21.09,
+    "rate": 22050,
+    "duration": 3.669,
+    "filename": "free-sixian.wav",
+    "sha256": "3a90c68a1151ea92fc24f85d4c27fa9bd7ab3d91f595f62b0955b11de949f936",
+    "native_speaker_reviewed": false,
+    "human_confirmation_submitted": false
+  },
+  {
+    "case": "free",
+    "dialect": "hailu",
+    "source": "本活動免費，不必繳費。",
+    "translation": "這隻活動免費，毋使繳費。",
+    "reading": "這隻活動免費，毋使繳費。",
+    "translation_seconds": 0.004,
+    "speech_seconds": 21.493,
+    "rate": 22050,
+    "duration": 3.902,
+    "filename": "free-hailu.wav",
+    "sha256": "df928db129f2b0718cfa14a6420d6a8040ad58fc69a9927dfca38db10b345e8d",
+    "native_speaker_reviewed": false,
+    "human_confirmation_submitted": false
+  },
+  {
+    "case": "deadline",
+    "dialect": "sixian",
+    "source": "請於115年10月20日下午5時前提出申請。",
+    "translation": "請在115年10月20日下晝5時前提出申請。",
+    "reading": "請在一百一十五年十月二十日下晝五時前提出申請。",
+    "translation_seconds": 0.02,
+    "speech_seconds": 20.653,
+    "rate": 22050,
+    "duration": 6.421,
+    "filename": "deadline-sixian.wav",
+    "sha256": "70fe85841ba9963670fa48639d75d90078a85b838aad7d2dbb70b90a7c437846",
+    "native_speaker_reviewed": false,
+    "human_confirmation_submitted": false
+  },
+  {
+    "case": "deadline",
+    "dialect": "hailu",
+    "source": "請於115年10月20日下午5時前提出申請。",
+    "translation": "請在115年10月20日下晝5時前提出申請。",
+    "reading": "請在一百一十五年十月二十日下晝五時前提出申請。",
+    "translation_seconds": 0.004,
+    "speech_seconds": 20.608,
+    "rate": 22050,
+    "duration": 6.491,
+    "filename": "deadline-hailu.wav",
+    "sha256": "a812f4b2095b213faf2238b40ac3cf02bf3917ff3bf9999033dc105614b7f4e0",
+    "native_speaker_reviewed": false,
+    "human_confirmation_submitted": false
+  }
+]

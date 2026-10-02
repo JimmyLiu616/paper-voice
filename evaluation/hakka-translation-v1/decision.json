@@ -1,0 +1,10 @@
+{
+  "status": "deployed: limited notice phrase conversion, not general translation",
+  "python_tests": 278,
+  "javascript_tests": 41,
+  "g2p_cases": 16,
+  "actual_wavs": 4,
+  "native_speaker_reviewed": false,
+  "first_synthesis_failure": "Unsupported full-stop token caused HTTP 422; fixed with explicit pause mapping; no speech text dropped.",
+  "app_sha256": "9378cf8fd267b486983986f6ec3d373755d22c531c4384238362fa8456ba1bd8"
+}

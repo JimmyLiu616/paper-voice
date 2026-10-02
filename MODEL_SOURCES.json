@@ -194,5 +194,17 @@
       "source": "https://github.com/pywinrt/pywinrt",
       "role": "Direct binding for the existing Windows OCR engine; PowerShell fallback retained"
     }
-  ]
+  ],
+  "hakka_text_frontend": {
+    "method": "local_notice_rules_v1",
+    "source_file": "scripts/hakka_translation.py",
+    "general_translation": false,
+    "dialects_share_text": true,
+    "native_speaker_evaluated": false,
+    "cloud_api_used": false,
+    "llm_candidates_rejected": [
+      "gemma3:4b",
+      "SARC-Taigi-LLM-12b-GGUF:Q3_K_L"
+    ]
+  }
 }
