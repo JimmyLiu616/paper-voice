@@ -13,6 +13,8 @@ def test_preparation_has_no_document_and_preserves_context(monkeypatch, failure)
     client_type = httpx.AsyncClient
     async def transport(request):
         import json
+        if request.url.path == '/api/tags':
+            return httpx.Response(200, json={'models':[{'name':app.MODEL,'digest':app.approved(app.MODEL)['ollama_digest']}]})
         requests.append(json.loads(request.content))
         if failure == 'timeout':
             raise httpx.ReadTimeout('timeout', request=request)

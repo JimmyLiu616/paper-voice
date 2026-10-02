@@ -20,13 +20,14 @@ from contextlib import asynccontextmanager
 
 import httpx
 from fastapi import FastAPI, File, HTTPException, Request, UploadFile
-from fastapi.responses import FileResponse, Response
+from fastapi.responses import FileResponse, Response, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 from typing import Literal
 from corpus import redact_pair, correction_metric
 from PIL import Image, ImageOps, UnidentifiedImageError
 from starlette.middleware.trustedhost import TrustedHostMiddleware
+from scripts.model_policy import ModelPolicyError, approved, files_available, verify_files, verify_ollama, policy
 
 ROOT = Path(__file__).resolve().parent
 APP_REVISION = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()
@@ -74,6 +75,11 @@ async def lifespan(app):
 
 app = FastAPI(title='紙聲通 Paper Voice', lifespan=lifespan, docs_url='/api/docs')
 app.add_middleware(TrustedHostMiddleware, allowed_hosts=['127.0.0.1', 'localhost', 'testserver'])
+
+
+@app.exception_handler(ModelPolicyError)
+async def model_policy_error(request, exc):
+    return JSONResponse(status_code=503, content={'detail': str(exc)})
 
 
 @app.middleware('http')
@@ -446,6 +452,7 @@ async def generate(prompt: str, *, image: str | None = None, schema=None, tokens
         body['format'] = schema
     try:
         async with httpx.AsyncClient(timeout=httpx.Timeout(240, connect=5)) as client:
+            await verify_ollama(client, MODEL)
             response = await client.post(f'{OLLAMA}/api/chat', json=body)
             response.raise_for_status()
             result = response.json()
@@ -539,22 +546,33 @@ def new_job(source: str):
 @app.get('/api/health')
 async def health():
     model_ready, ollama_ready, digest = False, False, ''
+    installed = {}
     try:
         async with httpx.AsyncClient(timeout=3) as client:
             r = await client.get(f'{OLLAMA}/api/tags')
             r.raise_for_status()
             ollama_ready = True
             for model in r.json().get('models', []):
+                installed[model['name']] = model.get('digest', '')
                 if model['name'] == MODEL:
-                    model_ready, digest = True, model.get('digest', '')
+                    digest = model.get('digest', '')
+                    model_ready = digest == approved(MODEL)['ollama_digest']
     except (httpx.HTTPError, ValueError):
         pass
+    from scripts.taigi_translation import MODEL as TAIGI_MODEL
+    taigi_speech_ready = files_available('facebook/mms-tts-nan')
+    taigi_translation_ready = installed.get(TAIGI_MODEL) == approved(TAIGI_MODEL)['ollama_digest']
+    narration_ready = {'zh-TW': True, 'nan': taigi_speech_ready and taigi_translation_ready,
+                       'hakka': hakka_ready(), 'ami': amis_ready()}
     return {'ollama': ollama_ready, 'model_ready': model_ready, 'model': MODEL, 'digest': digest, 'app_sha256': APP_REVISION,
-            'asr_ready': all((RUNTIME / 'taiwan-tongues-asr' / name).exists() for name in ('model.bin', 'config.json', 'tokenizer.json')) and (RUNTIME / 'asr-revision.json').exists(),
+            'asr_ready': files_available('adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0') and files_available('snakers4/silero-vad'),
             'asr_model': 'Taiwan Tongues ASR CE v1.0',
-            'taigi_ready': (RUNTIME / 'mms-tts-nan' / 'model.safetensors').exists(),
-            'hakka_ready': hakka_ready(),
-            'amis_ready': amis_ready(),
+            'taigi_ready': taigi_speech_ready,
+            'taigi_translation_ready': taigi_translation_ready,
+            'hakka_ready': narration_ready['hakka'],
+            'amis_ready': narration_ready['ami'],
+            'narration_ready': narration_ready,
+            'model_policy': {'version': policy()['version'], 'enforced': True, 'unknown_models': 'denied'},
             'privacy': '本機辨識暫存圖片與語音在處理後刪除；結果僅存記憶體最多30分鐘，頁面關閉時嘗試清除。'}
 
 
@@ -591,12 +609,15 @@ async def warmup():
         started = time.monotonic()
         try:
             async with httpx.AsyncClient(timeout=httpx.Timeout(120, connect=5)) as client:
+                await verify_ollama(client, MODEL)
                 response = await client.post(f'{OLLAMA}/api/generate', json={
                     'model': MODEL, 'prompt': '', 'stream': False, 'keep_alive': '5m',
                     'options': {'num_ctx': 8192}})
                 response.raise_for_status()
                 if response.json().get('done') is not True:
                     raise HTTPException(503, '模型尚未完成準備，可稍後直接送出文件。')
+        except ModelPolicyError:
+            raise
         except (httpx.HTTPError, ValueError):
             raise HTTPException(503, '暫時無法預先準備模型，可稍後直接送出文件。')
         return {'status': 'ready', 'seconds': round(time.monotonic() - started, 3)}
@@ -907,7 +928,7 @@ class TaigiTranslationRequest(BaseModel):
 async def restore_document_model():
     try:
         await warmup()
-    except HTTPException:
+    except (HTTPException, ModelPolicyError):
         pass  # Next document request can load the normal model itself.
 
 
@@ -916,6 +937,7 @@ async def generate_taigi_draft(masked, restore=True):
     switched = False
     try:
         async with httpx.AsyncClient(timeout=httpx.Timeout(180, connect=5)) as client:
+            await verify_ollama(client, TAIGI_MODEL)
             show = await client.post(f'{OLLAMA}/api/show', json={'model':TAIGI_MODEL})
             show.raise_for_status()
             # Ollama stores verified blobs by content hash; don't silently use
@@ -938,6 +960,8 @@ async def generate_taigi_draft(masked, restore=True):
             if not isinstance(translation, str):
                 raise ValueError('Invalid translation type')
             return translation
+    except ModelPolicyError:
+        raise
     except (httpx.HTTPError, ValueError, KeyError, TypeError) as exc:
         raise HTTPException(503, '台語翻譯暫時無法使用，請確認模型已安裝，或縮短原文後重試。') from exc
     finally:
@@ -1001,15 +1025,11 @@ async def taigi_pronunciation(body: TaigiPronunciationRequest):
 
 def hakka_ready():
     return ((ROOT / '.venv-local-tts/Scripts/python.exe').is_file()
-            and all((RUNTIME / 'voxhakka' / name).is_file() for name in
-                    ['model.pth', 'config.json', 'speakers.pth', 'speaker_embs.pth', 'language_ids.json']))
+            and files_available('formospeech/yourtts-htia-240704'))
 
 
 def amis_ready():
-    return all((RUNTIME/folder/file).is_file()
-               for folder,files in [('nllb-formosan',['model.safetensors','config.json','tokenizer.json','tokenizer_config.json']),
-                                    ('mms-tts-ami',['model.safetensors','config.json','vocab.json','tokenizer_config.json'])]
-               for file in files)
+    return files_available('ILRDF/nllb-600m-formosan-all-finetune-v2') and files_available('facebook/mms-tts-ami')
 
 
 class AmisRequest(BaseModel):
@@ -1113,12 +1133,13 @@ def mandarin_wav(text: str, rate: int) -> bytes:
 def taigi_wav(text: str) -> bytes:
     global taigi_engine
     if re.search(r'[\u3400-\u9fff0-9]', text):
-        raise HTTPException(422, '實驗台語聲音使用白話字（POJ）。請輸入經核對的羅馬字，數字也需寫成讀法；不可直接輸入華語漢字。')
+        raise HTTPException(422, '台語聲音使用白話字（POJ）。中文請使用「多語翻譯與朗讀」，由系統翻譯後產生語音。')
     if len(text) > 500:
         raise HTTPException(422, '台語試聽每次最多 500 字元，請分句。')
     path = RUNTIME / 'mms-tts-nan'
     if not (path / 'model.safetensors').exists():
         raise HTTPException(503, '台語模型尚未下載，請執行 scripts/download_taigi.py。')
+    verify_files('facebook/mms-tts-nan', path)
     import torch
     import numpy as np
     from transformers import AutoTokenizer, VitsModel
@@ -1168,6 +1189,8 @@ async def explain_hakka_notice(source):
                     check_extraction(plan, proposal)
                     result['extraction_status'] = 'local_model_source_checked'
                     result['model_check'] = 'matched'
+                except ModelPolicyError:
+                    raise
                 except (ValueError, HTTPException, TimeoutError):
                     result['model_check'] = 'rejected_source_fallback'
     return result

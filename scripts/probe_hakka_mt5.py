@@ -2,6 +2,13 @@ import os
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['TRANSFORMERS_OFFLINE'] = '1'
 from pathlib import Path
+try:
+ from scripts.model_policy import approved
+except ModuleNotFoundError:
+ from model_policy import approved
+# Historical probe retained for audit; publisher provenance/license has not
+# been approved under the current policy, so it must not load weights again.
+approved('qavit/mt5-small-hak', serving=False)
 import argparse, json, time, traceback
 import torch, transformers
 from transformers import MT5ForConditionalGeneration, T5Tokenizer

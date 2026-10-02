@@ -7,6 +7,13 @@ import faster_whisper.vad
 from scripts import asr_worker
 
 
+@pytest.fixture(autouse=True)
+def fake_pinned_files(monkeypatch):
+    # These are decoder tests with synthetic paths. Integrity is covered by
+    # test_model_policy; no real model or speech detector is loaded here.
+    monkeypatch.setattr(asr_worker, 'verify_files', lambda *a: None)
+
+
 def forbid_model(*args, **kwargs):
     raise AssertionError('ASR model must not load for rejected input')
 

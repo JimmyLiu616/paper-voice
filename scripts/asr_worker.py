@@ -4,6 +4,10 @@ import json
 import os
 from pathlib import Path
 import time
+try:
+    from scripts.model_policy import verify_files
+except ModuleNotFoundError:
+    from model_policy import verify_files
 
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
@@ -43,10 +47,13 @@ def recognize(path, model_dir, language='zh', beam=1):
     if np.max(np.abs(audio)) < 0.003:
         raise ValueError('沒有偵測到清楚的聲音，請靠近麥克風重錄。')
     vad_parameters = {'min_silence_duration_ms': 500}
+    from faster_whisper.utils import get_assets_path
+    verify_files('snakers4/silero-vad', Path(get_assets_path()))
     # Use the existing detector/settings before allocating the full ASR model.
     # Speech still follows the unchanged transcribe/VAD path on the original audio.
     if not get_speech_timestamps(audio, VadOptions(**vad_parameters)):
         raise ValueError('未辨識到問題，請放慢速度重錄或改用文字。')
+    verify_files('adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0', model_dir)
     model = WhisperModel(str(model_dir), device='cpu', compute_type='int8',
                          cpu_threads=4, num_workers=1, local_files_only=True)
     loaded = time.monotonic()

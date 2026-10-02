@@ -1,0 +1,1 @@
+{"text": "我需要準備什麼文件", "raw_text": "我需要準備什麼文件", "language": "zh", "duration": 3.11, "seconds": 17.5, "load_seconds": 10.34, "beam_size": 1, "device": "cpu", "compute_type": "int8", "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0", "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086"}

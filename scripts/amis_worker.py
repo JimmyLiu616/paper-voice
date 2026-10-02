@@ -8,6 +8,10 @@ from pathlib import Path
 import re
 import time
 import unicodedata
+try:
+    from scripts.model_policy import verify_files
+except ModuleNotFoundError:
+    from model_policy import verify_files
 
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
@@ -44,6 +48,7 @@ class Translator:
         from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
         torch.set_num_threads(4)
         folder=ROOT/'.runtime/nllb-formosan'
+        verify_files('ILRDF/nllb-600m-formosan-all-finetune-v2', folder)
         self.tokenizer=AutoTokenizer.from_pretrained(folder,local_files_only=True,src_lang='zho_Hant')
         self.model=AutoModelForSeq2SeqLM.from_pretrained(folder,local_files_only=True).eval()
 
@@ -72,6 +77,7 @@ class Speaker:
         from transformers import VitsModel, AutoTokenizer
         torch.set_num_threads(4)
         folder=ROOT/'.runtime/mms-tts-ami'
+        verify_files('facebook/mms-tts-ami', folder)
         self.tokenizer=AutoTokenizer.from_pretrained(folder,local_files_only=True)
         self.model=VitsModel.from_pretrained(folder,local_files_only=True).eval()
 

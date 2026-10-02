@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-03",
+  "installed_ollama": [
+    {
+      "name": "paper-voice-omnitranslate-test:latest",
+      "digest": "11d6ab9e17eaf7018180507d60e3cbe63dbe40b625992492ee2ae59c56198a36"
+    },
+    {
+      "name": "hf.co/Speech-AI-Research-Center/SARC-Taigi-LLM-12b-GGUF:Q3_K_L",
+      "digest": "ab38ea7d3650a203e58d8d5629dbfeff2297d8cd7a911db759133d9a03bca08f"
+    },
+    {
+      "name": "ministral-3:3b-instruct-2512-q4_K_M",
+      "digest": "f04aa1c738f64e13c625b82ae92504fc0260fa6723b509ed1ece0fa188179b1d"
+    },
+    {
+      "name": "gemma3:4b",
+      "digest": "a2af6cc3eb7fa8be8504abaf9b04e88f17a119ec3f04a3addf55f92841195f5a"
+    },
+    {
+      "name": "qwen3-embedding:0.6b",
+      "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d"
+    },
+    {
+      "name": "qwen3:8b",
+      "digest": "500a1f067a9f782620b40bee6f7b0c89e17ae61f686b92c24933e4ca4b2b8b41"
+    }
+  ],
+  "loaded_at_audit": [],
+  "upstream_files_verified": true,
+  "pc_model_deletion_performed": false
+}

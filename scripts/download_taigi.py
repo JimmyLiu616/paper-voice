@@ -2,6 +2,10 @@
 import json
 import os
 from pathlib import Path
+try:
+    from scripts.model_policy import approved
+except ModuleNotFoundError:
+    from model_policy import approved
 
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'facebook/mms-tts-nan'
@@ -9,6 +13,7 @@ REVISION = 'f28526a6caaf9dc55e030da83008c933f6a1978b'
 
 
 def main():
+    approved(REPO, revision=REVISION)
     os.environ['HF_HOME'] = str(ROOT / '.runtime' / 'hf-cache')
     os.environ['HF_HUB_OFFLINE'] = '0'
     os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'

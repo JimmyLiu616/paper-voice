@@ -2,6 +2,10 @@
 import json
 import os
 from pathlib import Path
+try:
+    from scripts.model_policy import approved
+except ModuleNotFoundError:
+    from model_policy import approved
 
 ROOT = Path(__file__).resolve().parents[1]
 os.environ['HF_HOME'] = str(ROOT / '.runtime' / 'hf-cache')
@@ -12,6 +16,7 @@ from huggingface_hub import snapshot_download
 REPO = 'adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0'
 REVISION = '46b5eb7ee167ac2fd06cfe02f40e8fac416e5086'
 if __name__ == '__main__':
+    approved(REPO, revision=REVISION)
     path = snapshot_download(REPO, revision=REVISION,
         local_dir=ROOT / '.runtime' / 'taiwan-tongues-asr',
         allow_patterns=['*.json', 'model.bin', 'README.md', 'LICENSE'])

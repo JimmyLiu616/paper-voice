@@ -1,5 +1,9 @@
 'use strict';
 (function(root){
+  function languageReady(health,language){
+    if(health.narration_ready)return health.narration_ready[language]===true;
+    return language==='zh-TW'||!!health[{nan:'taigi_ready',hakka:'hakka_ready',ami:'amis_ready'}[language]];
+  }
   function narrationInput(text,language,context={}){
     if(language==='hakka'&&context.found===true&&Object.hasOwn(context,'narration_evidence')){
       return typeof context.narration_evidence==='string'&&context.narration_evidence.trim()
@@ -21,19 +25,19 @@
     }
     return {run,stop,get epoch(){return epoch;}};
   }
-  if(typeof module==='object'&&module.exports){module.exports={create,narrationInput};return;}
+  if(typeof module==='object'&&module.exports){module.exports={create,narrationInput,languageReady};return;}
   const el=id=>document.getElementById(id),player=el('audio');
   let url=null,lastText='',lastLabel='',lastContext={},running=false,health={};
   const names={'zh-TW':'華語',nan:'台語',hakka:'客語',ami:'阿美語'};
   const info={
     'zh-TW':'以台灣華語朗讀中文回答。',
-    nan:'中文回答將翻譯成台語草稿並朗讀；首次切換模型需要較久。',
+    nan:'台語翻譯朗讀：中文回答 → 台語譯文 → 自動朗讀。首次切換模型需要較久；保留中文對照。',
     hakka:'客語重點解說：有原文依據時，直接依據原文整理期限、文件、費用與例外後朗讀；無法完整處理時保留中文。',
-    ami:'中文回答將翻譯成阿美語草稿並朗讀；五種譯文語別共用同一阿美語聲音。'
+    ami:'阿美語翻譯朗讀：中文回答 → 阿美語譯文 → 自動朗讀。五種譯文語別共用同一阿美語聲音。'
   };
   const status=t=>{el('narration-status').textContent=t;};
   function selection(){return {language:el('output-language').value,dialect:el('output-dialect').value};}
-  function enabled(){const l=selection().language;return l==='zh-TW'||!!health[{nan:'taigi_ready',hakka:'hakka_ready',ami:'amis_ready'}[l]];}
+  function enabled(){return languageReady(health,selection().language);}
   function updateButtons(){el('replay-answer').disabled=running||!lastText||!enabled();}
   function clearAudio(){player.pause();player.hidden=true;player.removeAttribute('src');if(url)URL.revokeObjectURL(url);url=null;}
   function clearOutput(){clearAudio();el('narration-source').textContent='';el('narration-translation').textContent='';el('narration-warning').hidden=true;el('narration-facts').replaceChildren();el('narration-facts-panel').hidden=true;}
@@ -68,6 +72,7 @@
   }
   function changed(){
     flow.stop();clearOutput();el('language-hint').textContent=info[selection().language];
+    el('translation-label').textContent=selection().language==='zh-TW'?'華語朗讀內容':selection().language==='hakka'?'客語重點解說（AI 輔助，未經母語者驗證）':names[selection().language]+'譯文（AI 翻譯，未經母語者驗證）';
     el('narration-language').textContent=names[selection().language];
     status(lastText?'已切換語言，按「用此語言重讀」聽同一份內容。':'先讀取文件，再提問；回答會自動翻譯朗讀。');updateButtons();
   }

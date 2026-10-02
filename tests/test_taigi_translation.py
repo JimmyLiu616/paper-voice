@@ -79,6 +79,9 @@ def test_source_bound_translation_never_confirms_or_plays(monkeypatch):
 def test_model_verification_and_document_model_restore(monkeypatch,outcome):
     calls=[];restored=[];original=httpx.AsyncClient
     def handler(request):
+        if request.url.path=='/api/tags':
+            from scripts.taigi_translation import MODEL
+            return httpx.Response(200,json={'models':[{'name':MODEL,'digest':app.approved(MODEL)['ollama_digest']}]})
         body=json.loads(request.content);calls.append((request.url.path,body))
         if request.url.path=='/api/show':
             return httpx.Response(200,json={'modelfile':'FROM sha256-'+(WEIGHT_SHA256 if outcome!='wrong_weight' else 'wrong')})

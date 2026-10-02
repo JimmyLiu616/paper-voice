@@ -2,6 +2,10 @@ import hashlib
 import json
 import os
 from pathlib import Path
+try:
+    from scripts.model_policy import approved
+except ModuleNotFoundError:
+    from model_policy import approved
 os.environ['HF_HUB_OFFLINE'] = '0'
 os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
 from huggingface_hub import HfApi, snapshot_download
@@ -9,6 +13,7 @@ from huggingface_hub import HfApi, snapshot_download
 ROOT = Path(__file__).resolve().parents[1]
 REPO = 'formospeech/yourtts-htia-240704'
 REV = 'e61e1026d1fe5edb29f35ad025c090526a7e4fe7'
+approved(REPO, revision=REV)
 FILES = ['README.md', 'config.json', 'language_ids.json', 'model.pth', 'speaker_embs.pth', 'speakers.pth']
 info = HfApi(token=False).model_info(REPO, revision=REV, files_metadata=True)
 selected = [f for f in info.siblings if f.rfilename in FILES]

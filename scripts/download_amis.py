@@ -4,6 +4,10 @@ import json
 import os
 from pathlib import Path
 import shutil
+try:
+    from scripts.model_policy import approved
+except ModuleNotFoundError:
+    from model_policy import approved
 
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = [
@@ -25,6 +29,7 @@ def main():
         raise SystemExit('Insufficient free disk space for models plus 1 GB reserve.')
     report=[]
     for repo,revision,folder,expected in MODELS:
+        approved(repo, revision=revision)
         target=ROOT/'.runtime'/folder
         snapshot_download(repo,revision=revision,token=False,local_dir=target,max_workers=2,
             allow_patterns=['*.json','*.safetensors','*.model','README.md','LICENSE*'])

@@ -1,6 +1,6 @@
 {
   "project": "Paper Voice 紙聲通",
-  "recorded_date": "2026-10-01",
+  "recorded_date": "2026-10-03",
   "models": [
     {
       "role": "core vision-language model, extraction, document Q&A",
@@ -13,11 +13,15 @@
       "source": "https://huggingface.co/google/gemma-3-4b-it",
       "distribution": "https://ollama.com/library/gemma3:4b",
       "license_url": "https://ai.google.dev/gemma/terms",
-      "fine_tuned_by_this_project": false
+      "fine_tuned_by_this_project": false,
+      "origin": "United States",
+      "base_model": "google/gemma-3-4b-pt",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
-      "role": "experimental Min Nan / Hokkien POJ text-to-speech",
-      "developer": "Meta AI",
+      "role": "Integrated Taiwanese POJ speech synthesis after SARC translation and Taibun conversion",
+      "developer": "Meta",
       "model": "facebook/mms-tts-nan",
       "revision": "f28526a6caaf9dc55e030da83008c933f6a1978b",
       "license": "CC BY-NC 4.0",
@@ -25,15 +29,19 @@
       "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
       "commercial_use": "Not authorized under the NC license",
       "taiwanese_pronunciation_evaluated": false,
-      "automatic_mandarin_to_hokkien_translation": false,
-      "fine_tuned_by_this_project": false
+      "automatic_mandarin_to_hokkien_translation": true,
+      "fine_tuned_by_this_project": false,
+      "origin": "United States",
+      "base_model": "Meta MMS / VITS",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
       "role": "core spoken document question input; local ASR",
-      "developer": "Taiwan Mobile; published by adi-gov-tw",
+      "developer": "Taiwan Mobile / adi-gov-tw",
       "model": "adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
       "revision": "46b5eb7ee167ac2fd06cfe02f40e8fac416e5086",
-      "base_model": "openai/whisper-large-v2",
+      "base_model": "openai/whisper-large-v2 (United States)",
       "format": "CTranslate2; CPU int8 at load time; four threads",
       "source": "https://huggingface.co/adi-gov-tw/Taiwan-Tongues-ASR-CE-v1.0",
       "project": "https://github.com/adi-gov-tw/Taiwan-Tongues-ASR-CE",
@@ -42,10 +50,13 @@
       "license_copy": "third_party/Taiwan-Tongues-ASR-CE-LICENSE.txt",
       "fine_tuned_by_this_project": false,
       "optimization": "CPU int8; VAD; beam 1; short questions; source-preserving s2tw conversion; process RAM released after request",
-      "validation": "asr-validation.json; two synthetic Mandarin questions only; real microphone/Taiwanese/Hakka not validated"
+      "validation": "asr-validation.json; two synthetic Mandarin questions only; real microphone/Taiwanese/Hakka not validated",
+      "origin": "Taiwan",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
-      "role": "optional local Taiwanese Hakka text-to-speech experiment",
+      "role": "Integrated local Hakka notice explanation speech; Sixian and Hailu",
       "developer": "FormoSpeech / VoxHakka",
       "model": "formospeech/yourtts-htia-240704",
       "revision": "e61e1026d1fe5edb29f35ad025c090526a7e4fe7",
@@ -58,13 +69,17 @@
       ],
       "fixed_speaker": "XF",
       "runtime": "coqui-tts 0.27.5; CPU torch 2.6.0; formog2p 0.1.3",
-      "automatic_mandarin_translation": false,
+      "automatic_mandarin_translation": "Bounded source-checked notice templates, not general translation",
       "native_speaker_evaluated": false,
-      "fine_tuned_by_this_project": false
+      "fine_tuned_by_this_project": false,
+      "origin": "Taiwan",
+      "base_model": "YourTTS / VITS; released speaker embeddings, no separate encoder loaded",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
-      "role": "Local Mandarin-to-Taiwanese draft translation with manual review before document speech",
-      "developer": "Speech AI Research Center (SARC), based on Google Gemma 3",
+      "role": "Integrated local Mandarin-to-Taiwanese automatic translation and narration",
+      "developer": "Speech AI Research Center",
       "model": "Speech-AI-Research-Center/SARC-Taigi-LLM-12b-GGUF",
       "revision": "aefda61b35defdb81c3ccaea2cab086b4e2325bd",
       "quantization": "Q3_K_L",
@@ -72,8 +87,12 @@
       "license": "Gemma Terms of Use",
       "source": "https://huggingface.co/Speech-AI-Research-Center/SARC-Taigi-LLM-12b-GGUF",
       "fine_tuned_by_this_project": false,
-      "status": "Experimental draft; source/numbers checked mechanically; semantics and pronunciation require human review",
-      "report": "evaluation/taigi-translation-v2/README.md"
+      "status": "Integrated feature; translation and pronunciation remain unvalidated AI drafts",
+      "report": "evaluation/taigi-translation-v2/README.md",
+      "origin": "Taiwan",
+      "base_model": "google/gemma-3-12b-it (United States)",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
       "model": "ILRDF/nllb-600m-formosan-all-finetune-v2",
@@ -84,7 +103,12 @@
       "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
       "weights_redistributed": false,
       "native_speaker_evaluated": false,
-      "download_script": "scripts/download_amis.py"
+      "download_script": "scripts/download_amis.py",
+      "developer": "Indigenous Languages Research and Development Foundation",
+      "origin": "Taiwan",
+      "base_model": "facebook/nllb-200-distilled-600M (United States)",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     },
     {
       "model": "facebook/mms-tts-ami",
@@ -95,7 +119,12 @@
       "license_url": "https://creativecommons.org/licenses/by-nc/4.0/",
       "weights_redistributed": false,
       "native_speaker_evaluated": false,
-      "download_script": "scripts/download_amis.py"
+      "download_script": "scripts/download_amis.py",
+      "developer": "Meta",
+      "origin": "United States",
+      "base_model": "Meta MMS / VITS",
+      "deployment_status": "active_integrated_feature",
+      "origin_audit_date": "2026-10-03"
     }
   ],
   "system_components": [
@@ -116,8 +145,9 @@
     },
     {
       "name": "Browser SpeechSynthesis",
-      "role": "optional user-selected fallback",
-      "offline": "depends on installed browser voices"
+      "role": "Legacy documentation only; not enabled in the unified narration interface",
+      "offline": "depends on installed browser voices",
+      "enabled": false
     },
     {
       "name": "Taibun",
@@ -218,8 +248,8 @@
     }
   ],
   "hakka_text_frontend": {
-    "method": "local_notice_rules_v1",
-    "source_file": "scripts/hakka_translation.py",
+    "method": "source_checked_notice_v2",
+    "source_file": "scripts/hakka_notice.py",
     "general_translation": false,
     "dialects_share_text": true,
     "native_speaker_evaluated": false,
@@ -227,6 +257,47 @@
     "llm_candidates_rejected": [
       "gemma3:4b",
       "SARC-Taigi-LLM-12b-GGUF:Q3_K_L"
-    ]
-  }
+    ],
+    "feature_status": "integrated",
+    "report": "evaluation/hakka-notice-v2/README.md"
+  },
+  "model_policy": "MODEL_POLICY.json",
+  "auxiliary_models": [
+    {
+      "id": "snakers4/silero-vad",
+      "developer": "Silero Team",
+      "origin": "Russia",
+      "base_model": "Silero VAD v6",
+      "serving": true,
+      "source": "https://github.com/snakers4/silero-vad",
+      "license": "MIT",
+      "directory": ".venv/Lib/site-packages/faster_whisper/assets",
+      "files": {
+        "silero_vad_v6.onnx": {
+          "bytes": 1245151,
+          "sha256": "4cbf549b8326f60f80f2536d9eefeb450a9abe83365a098031c89719f1be17d2"
+        }
+      },
+      "organization_source": "https://silero.ai/about/",
+      "distribution": "faster-whisper 1.2.1; bundled silero_vad_v6.onnx"
+    }
+  ],
+  "blocked_historical_models": [
+    {
+      "model": "qwen3:8b",
+      "reason": "Alibaba Qwen, China",
+      "history": "Tested for Hakka; rejected, not serving"
+    },
+    {
+      "model": "qwen3-embedding:0.6b",
+      "reason": "Alibaba Qwen, China",
+      "history": "Installed globally; no Paper Voice call found"
+    },
+    {
+      "model": "paper-voice-omnitranslate-test:latest",
+      "reason": "OmniTranslate 1.1 derives from Qwen3-0.6B",
+      "source": "https://huggingface.co/MihaiPopa-1/OmniTranslate-1.1",
+      "history": "Hakka test rejected, not serving"
+    }
+  ]
 }

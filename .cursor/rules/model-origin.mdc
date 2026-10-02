@@ -1,0 +1,10 @@
+---
+description: 紙聲通禁止中國來源模型及其衍生權重
+alwaysApply: true
+---
+
+- 遵循根目錄 AGENTS.md 與 MODEL_POLICY.json，涵蓋正式功能及新研究、下載、微調。
+- 禁止中國機構模型及其微調、蒸餾、合併、量化衍生權重；例如 Qwen、DeepSeek、基於 Qwen 的 OmniTranslate。
+- 啟用前查核發布者及底模，固定版本與雜湊；來源不明預設拒絕。不能因更名或海外上傳者而放行。
+- 不可繞過 scripts/model_policy.py；不可使用未核准的備援或雲端模型。
+- 保留舊評測的歷史證據並註記已禁用；未獲刪除指示不得清除其他專案共用模型。

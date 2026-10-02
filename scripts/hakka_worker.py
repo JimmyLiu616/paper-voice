@@ -7,6 +7,10 @@ from pathlib import Path
 import re
 import tempfile
 from typing import List
+try:
+    from scripts.model_policy import verify_files
+except ModuleNotFoundError:
+    from model_policy import verify_files
 
 os.environ['HF_HUB_OFFLINE'] = '1'
 os.environ['HF_HUB_DISABLE_TELEMETRY'] = '1'
@@ -45,6 +49,7 @@ def synthesize(text, dialect, output):
     text = validate_text(text)
     if dialect not in DIALECTS:
         raise ValueError('目前支援四縣腔與海陸腔。')
+    verify_files('formospeech/yourtts-htia-240704', ROOT / '.runtime/voxhakka')
     import numpy as np
     import torch
     import soundfile as sf

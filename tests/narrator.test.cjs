@@ -1,6 +1,12 @@
 const {test}=require('node:test');const assert=require('node:assert/strict');
 const {create}=require('../static/narrator.js');
 const {narrationInput}=require('../static/narrator.js');
+const {languageReady}=require('../static/narrator.js');
+test('Taiwanese narration needs translation and speech, not only a TTS download',()=>{
+  assert.equal(languageReady({taigi_ready:true,narration_ready:{nan:false}},'nan'),false);
+  assert.equal(languageReady({narration_ready:{nan:true,hakka:true,ami:true}},'nan'),true);
+  assert.equal(languageReady({narration_ready:{nan:true}},'ami'),false);
+});
 function setup(request){const applied=[],errors=[];const flow=create({request,apply:r=>applied.push(r),fail:e=>errors.push(e.message),busy:()=>{},halt:()=>{}});return {flow,applied,errors};}
 test('language switch / stop cancels late audio and changes Q&A epoch',async()=>{
   let finish;const s=setup(()=>new Promise(r=>finish=r));const p=s.flow.run({language:'nan'});const epoch=s.flow.epoch;s.flow.stop();finish({audio:'old'});await p;assert.deepEqual(s.applied,[]);assert.notEqual(s.flow.epoch,epoch);

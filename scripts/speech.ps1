@@ -11,7 +11,7 @@ try {
         ConvertTo-Json -InputObject $voices -Compress
     } else {
         $request = Get-Content -LiteralPath $InputFile -Raw -Encoding UTF8 | ConvertFrom-Json
-        $voice = $speaker.GetInstalledVoices() | Where-Object { $_.Enabled -and $_.VoiceInfo.Culture.Name -eq 'zh-TW' } | Select-Object -First 1
+        $voice = $speaker.GetInstalledVoices() | Where-Object { $_.Enabled -and $_.VoiceInfo.Culture.Name -eq 'zh-TW' -and $_.VoiceInfo.Name -eq 'Microsoft Hanhan Desktop' } | Select-Object -First 1
         if (-not $voice) { throw 'No installed zh-TW desktop voice. Install a Traditional Chinese Windows voice.' }
         $speaker.SelectVoice($voice.VoiceInfo.Name)
         $speaker.Rate = [int]$request.rate

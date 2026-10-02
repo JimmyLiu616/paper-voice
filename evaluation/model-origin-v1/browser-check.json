@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-03",
+  "rows": [
+    {
+      "duration": 1.648,
+      "ended": true,
+      "language": "nan",
+      "readyState": 4,
+      "source": "不需要繳費。",
+      "status": "朗讀完成，可按播放器重播，或切換語言重讀。",
+      "translation": "無需要繳費。"
+    },
+    {
+      "audioHidden": true,
+      "language": "hakka",
+      "source": "社區活動通知（自製測試）\n\n本活動免費，不必繳費。",
+      "status": "未播放：第1段含尚未支援或無法完整核對的條件，整份客語未播放。請保留中文或切換華語。 已保留中文；如有部分譯文，僅供參考。",
+      "translation": "尚未產生譯文。"
+    },
+    {
+      "duration": 3.669478,
+      "ended": true,
+      "language": "hakka",
+      "readyState": 4,
+      "source": "本活動免費，不必繳費。",
+      "status": "朗讀完成，可按播放器重播，或切換語言重讀。",
+      "translation": "這隻活動免費，毋使繳費。"
+    },
+    {
+      "duration": 1.344,
+      "ended": true,
+      "language": "ami",
+      "readyState": 4,
+      "source": "不需要繳費。",
+      "status": "朗讀完成，可按播放器重播，或切換語言重讀。",
+      "translation": "caay pilaliw."
+    }
+  ],
+  "errors": [],
+  "native_speaker_validated": false
+}

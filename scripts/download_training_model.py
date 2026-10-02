@@ -4,6 +4,10 @@ import json
 import os
 from pathlib import Path
 import shutil
+try:
+    from scripts.model_policy import approved
+except ModuleNotFoundError:
+    from model_policy import approved
 
 ROOT=Path(__file__).resolve().parents[1]
 os.environ['HF_HOME']=str(ROOT/'.runtime/hf-train-cache')
@@ -15,6 +19,7 @@ os.environ['HF_HUB_DOWNLOAD_TIMEOUT']='120'
 def main():
     from huggingface_hub import hf_hub_download
     manifest=json.loads((ROOT/'training/native-model-manifest.json').read_text(encoding='utf-8'))
+    approved(manifest['model'], revision=manifest['revision'], serving=False)
     if manifest['gated'] or manifest['license']!='apache-2.0':
         raise ValueError('Expected the ungated Apache-2.0 checkpoint recorded in the manifest')
     names={'README.md','config.json','generation_config.json','model.safetensors.index.json',

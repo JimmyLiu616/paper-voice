@@ -14,7 +14,7 @@
   <aside class="sidebar">
     <a class="brand" href="/" aria-label="紙聲通首頁"><span class="brand-mark">紙</span><span>紙聲通<small>PAPER VOICE</small></span></a>
     <div class="sidebar-caption">生活文書，陪你讀懂</div>
-    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace">文件識讀</a><a class="nav-item" href="#conversation">提問與朗讀</a><button class="nav-item" id="about-btn">關於這個作品</button></nav>
+    <nav aria-label="主要功能"><a class="nav-item active" href="#workspace">文件識讀</a><a class="nav-item" href="#conversation">多語翻譯與朗讀</a><button class="nav-item" id="about-btn">關於這個作品</button></nav>
     <div class="sidebar-bottom"><span class="local-label">本機運行</span><p>讓文字變成聲音，<br>讓資訊變成下一步。</p><small>InnoServe 2026<br>開源 AI 模型應用提案</small></div>
   </aside>
   <main id="workspace">
@@ -54,7 +54,7 @@
       </section>
     </div>
     <section id="conversation" class="panel conversation-panel" aria-labelledby="conversation-heading">
-      <div class="panel-heading"><h2 id="conversation-heading">選好語言，問你想知道的事。 <span class="section-no">03</span></h2><span class="local-label">本機翻譯與朗讀</span></div>
+      <div class="panel-heading"><h2 id="conversation-heading">多語翻譯與朗讀 <span class="section-no">03</span></h2><span class="local-label">本機翻譯與朗讀</span></div>
       <div class="language-toolbar"><label for="output-language">回答朗讀語言<select id="output-language"><option value="zh-TW">華語（中文）</option><option value="nan">台語</option><option value="hakka">客語</option><option value="ami">阿美語</option></select></label><label id="dialect-control" for="output-dialect" hidden><span id="dialect-label">語別</span><select id="output-dialect"><option value="">預設</option></select></label><label for="speed">語速<select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div>
       <p id="language-hint" class="hint"></p>
       <div class="conversation-grid"><div class="qa-panel">
@@ -67,7 +67,7 @@
         <p id="narration-context" class="hint">尚未開始</p>
         <p class="field-label">中文內容</p><p id="narration-source" class="narration-text"></p>
         <details id="narration-facts-panel" hidden><summary>查看本次解說依據</summary><ul id="narration-facts"></ul></details>
-        <p class="field-label">朗讀內容／翻譯草稿</p><p id="narration-translation" class="narration-text"></p>
+        <p id="translation-label" class="field-label">華語朗讀內容</p><p id="narration-translation" class="narration-text"></p>
         <p id="narration-status" class="hint" role="status">先讀取文件，再提問；回答會自動翻譯朗讀。</p>
         <div class="play-row"><button id="replay-answer" class="secondary-button" disabled>用此語言重讀</button><button id="stop-btn" class="stop-button">停止</button></div>
         <audio id="audio" controls hidden></audio><p id="narration-warning" class="warning" hidden></p>
@@ -77,7 +77,7 @@
     <footer><span>紙聲通 Paper Voice · 2026</span><span>Gemma 3 · Taiwan Tongues ASR CE · Windows 華語／Meta 閩南語合成</span></footer>
   </main>
 </div>
-<dialog id="about-dialog"><button id="close-about" class="dialog-close" aria-label="關閉說明">×</button><span class="eyebrow">ABOUT PAPER VOICE</span><h2>讓資訊，走到需要的人身邊。</h2><p>紙聲通協助使用者整理生活通知中的行動、期限與應備文件，並提供朗讀與有原文依據的問答。</p><h3>這個版本的能力</h3><p>Google Gemma 3 4B 本機讀圖、Taiwan Tongues ASR CE 語音提問、文件問答與中文朗讀、統一語言選單、文件回答自動翻譯與華語／台語／客語／阿美語朗讀、自願修正語料匯出。</p><h3>資料與模型</h3><p>上傳圖片與結果不寫入資料庫。完成工作最多在記憶體保留 30 分鐘，可隨時清除。中文合成使用短暫檔案，完成後刪除。模型首次下載需要網路；此版本推論只呼叫本機服務。</p><p>Gemma 採自訂開放權重授權；Taiwan Tongues 採 TRAIL 授權；Windows 語音不是開源模型；MMS 採 CC BY-NC 4.0。未宣稱已取得主辦資格認定或模型加分。</p><h3>展示時請誠實說明</h3><p>翻譯與發音均為草稿；客語以支援的公文重點句型解說，無法完整處理時保留中文；阿美語共用一個聲音。尚未包含手寫專門微調、逐字影像框選或實際使用者成效驗證。語音辨識已用自製合成華語測試，真人麥克風與台客語辨識仍待驗證。範例通知是自製測試資料，不是真實公文。</p></dialog>
+<dialog id="about-dialog"><button id="close-about" class="dialog-close" aria-label="關閉說明">×</button><span class="eyebrow">ABOUT PAPER VOICE</span><h2>讓資訊，走到需要的人身邊。</h2><p>紙聲通協助使用者整理生活通知中的行動、期限與應備文件，並提供朗讀與有原文依據的問答。</p><h3>這個版本的能力</h3><p>Google Gemma 3 4B 本機讀圖、Taiwan Tongues ASR CE 語音提問、文件問答與中文朗讀、正式多語功能：台語翻譯朗讀、客語生活通知重點解說、阿美語翻譯朗讀，以及華語朗讀與中文對照、自願修正語料匯出。</p><h3>模型來源規則</h3><p>本專案禁止中國來源模型及其衍生權重，只載入已核准的固定版本。文件與問答採 Google；台語翻譯採 SARC／Google；客語語音採 FormoSpeech；阿美語翻譯採 ILRDF／Meta，台語及阿美語語音採 Meta。</p><h3>資料與模型</h3><p>上傳圖片與結果不寫入資料庫。完成工作最多在記憶體保留 30 分鐘，可隨時清除。中文合成使用短暫檔案，完成後刪除。模型首次下載需要網路；此版本推論只呼叫本機服務。</p><p>Gemma 採自訂開放權重授權；Taiwan Tongues 採 TRAIL 授權；Windows 語音不是開源模型；MMS 採 CC BY-NC 4.0。未宣稱已取得主辦資格認定或模型加分。</p><h3>翻譯範圍與品質</h3><p>翻譯與發音均為草稿；客語以支援的公文重點句型解說，無法完整處理時保留中文；阿美語共用一個聲音。尚未包含手寫專門微調、逐字影像框選或實際使用者成效驗證。語音辨識已用自製合成華語測試，真人麥克風與台客語辨識仍待驗證。範例通知是自製測試資料，不是真實公文。</p></dialog>
 <dialog id="camera-dialog" aria-labelledby="camera-title">
   <div class="panel-heading"><h2 id="camera-title">拍下這份文件</h2><button id="camera-close" type="button" class="text-button">關閉攝影機</button></div>
   <p class="hint">把文件完整放進畫面，避開反光。確認使用前，照片只留在瀏覽器。</p>
