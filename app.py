@@ -189,6 +189,27 @@ def deadline_paragraph(raw: str, value: str):
     return '\n'.join(lines)
 
 
+def narration_context(raw: str, value: str):
+    """Recover the whole paragraph and adjacent explicitly linked qualifications.
+
+    This is conservative context recovery, not a proof that every relevant
+    exception anywhere in a document has been found.
+    """
+    context=paragraph_context(raw,value)
+    if not context or raw.count(context)!=1:return ''
+    end=raw.index(context)+len(context)
+    tail=raw[end:]
+    while tail.strip():
+        following=tail.lstrip()
+        if not re.match(r'^(?:但|惟|不過|然而|另|除|若|如|已|未|僅|只有)',following):break
+        line=following.splitlines()[0].strip()
+        extra=paragraph_context(raw,line)
+        if not extra or not following.startswith(extra):return ''
+        context+='\n'+extra
+        tail=following[len(extra):]
+    return context
+
+
 def invalid_field_format(key: str, value: str) -> bool:
     """Reject narrow, observed non-facts; a source match alone is insufficient."""
     text = unicodedata.normalize('NFKC', value).strip()
@@ -759,7 +780,8 @@ async def ask(body: Question):
         return {'answer': '文件沒有提供可核對的答案，請洽原發文單位確認。', 'evidence': '', 'found': False}
     if conflicting_service_topic(body.question,answer.answer,answer.evidence):
         return {'answer':'找到的段落談的是另一項服務，無法據此確認這個問題。請核對原文或洽原發文單位。','evidence':'','found':False}
-    return {'answer':answer.answer,'evidence':answer.evidence,'found':True}
+    return {'answer':answer.answer,'evidence':answer.evidence,'found':True,
+            'narration_evidence':narration_context(raw,answer.evidence)}
 
 
 def windows_voices():
@@ -1128,6 +1150,42 @@ class NarrationRequest(BaseModel):
     dialect: str = ''
 
 
+async def explain_hakka_notice(source):
+    from scripts.hakka_notice import source_plan, extraction_prompt, NoticeExtraction, check_extraction, render_plan
+    plan = source_plan(source)
+    # Source coverage is checked before the LLM or TTS. The LLM cannot authorize
+    # dropping an unsupported sentence, altering a threshold, or adding a fact.
+    result = render_plan(plan)
+    result['extraction_status'] = 'source_rules'
+    result['model_check'] = 'not_needed'
+    if any(f['kind'] != 'legacy' for f in plan['frames']):
+        if model_lock.locked():
+            result['model_check'] = 'busy_source_fallback'
+        else:
+            async with model_lock:
+                try:
+                    proposal = await asyncio.wait_for(generate(extraction_prompt(plan), schema=NoticeExtraction.model_json_schema(), tokens=1800), timeout=60)
+                    check_extraction(plan, proposal)
+                    result['extraction_status'] = 'local_model_source_checked'
+                    result['model_check'] = 'matched'
+                except (ValueError, HTTPException, TimeoutError):
+                    result['model_check'] = 'rejected_source_fallback'
+    return result
+
+
+class HakkaNoticeRequest(BaseModel):
+    text: str = Field(min_length=1, max_length=1800)
+
+
+@app.post('/api/hakka-notice-plan')
+async def hakka_notice_plan(body: HakkaNoticeRequest):
+    """Inspect the same source-checked plan used by automatic narration."""
+    try:
+        return await explain_hakka_notice(body.text)
+    except ValueError as exc:
+        raise HTTPException(422, str(exc)) from exc
+
+
 @app.post('/api/narrate')
 async def narrate(body: NarrationRequest):
     """Translate the supplied Chinese answer/text and immediately synthesize it.
@@ -1151,6 +1209,13 @@ async def narrate(body: NarrationRequest):
             if body.language=='zh-TW':
                 result['translation']=source
                 audio=await asyncio.to_thread(mandarin_wav,source,-1)
+            elif body.language=='hakka':
+                item=await explain_hakka_notice(source)
+                result.update({k:v for k,v in item.items() if k!='readings'})
+                clips=[]
+                for reading in item['readings']:
+                    clips.append(await asyncio.to_thread(hakka_wav,reading,dialect))
+                audio=await asyncio.to_thread(join_wav,clips)
             else:
                 parts=sentences(source);drafts=[];clips=[]
                 for part in parts:
@@ -1161,12 +1226,6 @@ async def narrate(body: NarrationRequest):
                             raise ValueError(item.get('speech_error') or '阿美語音檔未完成。')
                         clips.append(base64.b64decode(item['audio_base64']))
                         result['warning']='阿美語為 AI 草稿；譯文語別共用同一聲音，語意與各語別發音尚未驗證。'
-                    elif body.language=='hakka':
-                        from scripts.hakka_translation import translate_notice
-                        item=translate_notice(part)
-                        drafts.append(item['translation']);result['translation']='\n'.join(drafts)
-                        clips.append(await asyncio.to_thread(hakka_wav,item['reading'],dialect))
-                        result['warning']='客語限生活通知支援句型，並非通用翻譯；四縣／海陸共用譯文，切換語音腔調。'
                     else:
                         item=await translate_taigi_text(part,restore=False)
                         drafts.append(item['translation']);result['translation']='\n'.join(drafts)
@@ -1176,8 +1235,6 @@ async def narrate(body: NarrationRequest):
             result['audio_base64']=base64.b64encode(audio).decode('ascii')
         except (ValueError,HTTPException) as exc:
             detail=str(exc.detail) if isinstance(exc,HTTPException) else str(exc)
-            if body.language=='hakka' and '句型' in detail:
-                detail='這份回答超出目前客語支援句型，未播放；可切換華語聽取完整回答。'
             result['speech_error']=detail
             # No partial speech: all sentences must finish before returning audio.
         finally:

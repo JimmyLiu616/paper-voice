@@ -128,11 +128,11 @@ $('question-form').addEventListener('submit',async e=>{
     const item=textNode('article','','answer-item');item.append(textNode('strong',question),textNode('p',answer.answer));
     if(answer.evidence)item.append(textNode('blockquote','原文依據：'+answer.evidence));
     const listen=textNode('button','用所選語言聽這個回答','secondary-button');listen.type='button';
-    listen.onclick=()=>PaperVoiceNarrator.speak(answer.answer,'回答：'+question);
+    listen.onclick=()=>PaperVoiceNarrator.speak(answer.answer,'回答：'+question,answer);
     item.append(listen);$('answers').querySelectorAll(':scope > p.hint').forEach(node=>node.remove());$('answers').prepend(item);
     if($('question').value.trim()===question)$('question').value='';
-    PaperVoiceNarrator.remember(answer.answer,'回答：'+question);
-    if(PaperVoiceNarrator.epoch===epoch)PaperVoiceNarrator.speak(answer.answer,'回答：'+question);
+    PaperVoiceNarrator.remember(answer.answer,'回答：'+question,answer);
+    if(PaperVoiceNarrator.epoch===epoch)PaperVoiceNarrator.speak(answer.answer,'回答：'+question,answer);
   }catch(e){if(state.job===job)message(e.message);}
   finally{qaBusy=false;waiting.remove();buttons();}
 });

@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-02T14:19:05.532886+00:00",
+  "app_sha256": "d6256c1970f171ad09859c62250a2db810db4be2e2cfe8a80d9ec1457c353f1d",
+  "python_tests": 333,
+  "javascript_tests": 48,
+  "browser": "Codex in-app browser",
+  "question": "需要繳費嗎？",
+  "short_answer": "其他人須繳500元。",
+  "recovered_source": "只有65歲以上才免費，其他人須繳500元。\n已經完成登記的人，不必再提出申請。\n若由他人代辦，請另附委託書。",
+  "translation": "65歲以上个人免費，其他人愛繳500元。\n已經完成登記个人，毋使再提出申請。\n係講委託別人辦理，還愛附委託書。",
+  "dialect": "sixian",
+  "audio_duration_seconds": 14.745397,
+  "audio_ended": true,
+  "audio_ready_state": 4,
+  "browser_errors": [],
+  "native_reviewed": false,
+  "screenshot": "browser-demo.jpg"
+}

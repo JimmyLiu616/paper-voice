@@ -48,7 +48,7 @@ RULES = [
 def reading_draft(translation):
     def replace(match):
         following = translation[match.end():].lstrip()
-        if not re.fullmatch('[0-9]+', match.group()) or not following or following[0] not in '年月日號時點元歲份':
+        if not re.fullmatch('[0-9]+', match.group()) or not following or following[0] not in '年月日號時點分元歲份':
             raise ValueError('電話、編號或特殊數字請先人工寫成客語讀法。')
         return integer_hanji(match.group())
     return validate_text(NUMBER.sub(replace, translation))

@@ -1,0 +1,258 @@
+{
+  "status": "complete",
+  "model": "gemma3:4b",
+  "app_sha256": "d1e854d2d3fb99e38a8a339539def965ba493226228bc9d512ed7d44db229ba9",
+  "native_reviewed": false,
+  "cases": [
+    {
+      "id": "deadline",
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。",
+      "expected_supported": true,
+      "result": {
+        "translation": "請在10月15日下晝5點以前申請。過期毋受理。",
+        "readings": [
+          "請在十月十五日下晝五點以前申請。過期毋受理。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "deadline",
+            "slots": {
+              "date": "10月15日下午5點",
+              "boundary": "以前",
+              "action": "申請",
+              "late": "reject"
+            },
+            "evidence": "請在10月15日下午5點以前提出申請，逾期不受理。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 20.473
+    },
+    {
+      "id": "documents",
+      "source": "需要備妥身分證影本和報名表。",
+      "expected_supported": true,
+      "result": {
+        "translation": "愛準備个文件係身分證影本摎報名表。",
+        "readings": [
+          "愛準備个文件係身分證影本摎報名表。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "documents",
+            "slots": {
+              "documents": "身分證影本、報名表",
+              "relation": "all"
+            },
+            "evidence": "需要備妥身分證影本和報名表。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 0.816
+    },
+    {
+      "id": "age_fee",
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "expected_supported": true,
+      "result": {
+        "translation": "65歲以上个人免費，其他人愛繳500元。",
+        "readings": [
+          "六十五歲以上个人免費，其他人愛繳五百元。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "age_fee",
+            "slots": {
+              "age": "65",
+              "operator": "gte",
+              "amount": "500"
+            },
+            "evidence": "只有65歲以上才免費，其他人須繳500元。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "local_model_source_checked",
+        "model_check": "matched"
+      },
+      "supported": true,
+      "seconds": 0.832
+    },
+    {
+      "id": "age_lt",
+      "source": "未滿18歲者免費，其餘每人須繳300元。",
+      "expected_supported": true,
+      "result": {
+        "translation": "未滿18歲个人免費，其他人愛繳300元。",
+        "readings": [
+          "未滿十八歲个人免費，其他人愛繳三百元。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "age_fee",
+            "slots": {
+              "age": "18",
+              "operator": "lt",
+              "amount": "300"
+            },
+            "evidence": "未滿18歲者免費，其餘每人須繳300元。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 1.262
+    },
+    {
+      "id": "registration",
+      "source": "已經完成登記的人，不必再提出申請。",
+      "expected_supported": true,
+      "result": {
+        "translation": "已經完成登記个人，毋使再提出申請。",
+        "readings": [
+          "已經完成登記个人，毋使再提出申請。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "completed_registration",
+            "slots": {
+              "completed": "登記",
+              "exempt": "申請"
+            },
+            "evidence": "已經完成登記的人，不必再提出申請。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 0.789
+    },
+    {
+      "id": "delegation",
+      "source": "若由他人代辦，請另附委託書。",
+      "expected_supported": true,
+      "result": {
+        "translation": "係講委託別人辦理，還愛附委託書。",
+        "readings": [
+          "係講委託別人辦理，還愛附委託書。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "delegation",
+            "slots": {
+              "documents": "委託書"
+            },
+            "evidence": "若由他人代辦，請另附委託書。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 1.026
+    },
+    {
+      "id": "holiday",
+      "source": "如果截止日遇到假日，期限延到下一個上班日。",
+      "expected_supported": true,
+      "result": {
+        "translation": "係講截止日遇到假日，期限順延到下一個上班日。",
+        "readings": [
+          "係講截止日遇到假日，期限順延到下一個上班日。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "holiday",
+            "slots": {},
+            "evidence": "如果截止日遇到假日，期限延到下一個上班日。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "local_model_source_checked",
+        "model_check": "matched"
+      },
+      "supported": true,
+      "seconds": 0.65
+    },
+    {
+      "id": "refund",
+      "source": "報名費300元，取消報名不退費。",
+      "expected_supported": true,
+      "result": {
+        "translation": "報名費係300元。取消報名毋退費。",
+        "readings": [
+          "報名費係三百元。取消報名毋退費。"
+        ],
+        "frames": [
+          {
+            "unit": 0,
+            "kind": "fee",
+            "slots": {
+              "label": "報名費",
+              "amount": "300",
+              "refund": "no",
+              "cancellation": "報名"
+            },
+            "evidence": "報名費300元，取消報名不退費。"
+          }
+        ],
+        "method": "local_notice_frames_v2",
+        "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+        "extraction_status": "source_rules",
+        "model_check": "rejected_source_fallback"
+      },
+      "supported": true,
+      "seconds": 0.861
+    },
+    {
+      "id": "unknown_exception",
+      "source": "本活動免費，但材料費另收。",
+      "expected_supported": false,
+      "error": "第1段含尚未支援或無法完整核對的條件，整份客語未播放。請保留中文或切換華語。",
+      "supported": false,
+      "seconds": 0.002
+    },
+    {
+      "id": "unknown_combined",
+      "source": "只有65歲以上才免費，其他人須繳500元。惟材料費另收。",
+      "expected_supported": false,
+      "error": "第2段含尚未支援或無法完整核對的條件，整份客語未播放。請保留中文或切換華語。",
+      "supported": false,
+      "seconds": 0.0
+    },
+    {
+      "id": "opposite_deadline",
+      "source": "請在10月15日下午5點以後提出申請。",
+      "expected_supported": false,
+      "error": "第1段含尚未支援或無法完整核對的條件，整份客語未播放。請保留中文或切換華語。",
+      "supported": false,
+      "seconds": 0.0
+    }
+  ]
+}

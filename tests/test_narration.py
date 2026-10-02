@@ -46,12 +46,12 @@ def test_language_routing_automatically_translates_and_synthesizes(monkeypatch,l
     if language=='nan':assert calls[0][2] is False
 
 def test_unsupported_hakka_preserves_chinese_and_never_plays_partial_audio(monkeypatch):
-    monkeypatch.setattr(app,'hakka_wav',lambda *a:wav())
+    monkeypatch.setattr(app,'hakka_wav',lambda *a:pytest.fail('No speech before whole-answer validation'))
     with TestClient(app.app) as c:
         result=c.post('/api/narrate',headers={'X-PaperVoice':'local-ui'},json={'text':'本活動免費。不過材料費另收。','language':'hakka'}).json()
     assert result['audio_base64'] is None
     assert result['source']=='本活動免費。不過材料費另收。'
-    assert result['speech_error'] and result['translation']
+    assert result['speech_error'] and not result['translation']
 
 def test_language_dialect_mismatch_rejected():
     with TestClient(app.app) as c:

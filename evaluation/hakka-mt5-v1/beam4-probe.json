@@ -1,0 +1,261 @@
+{
+  "status": "complete",
+  "model": "qavit/mt5-small-hak",
+  "revision": "231a3eefac886c436da8301e57f056cac7ff04ba",
+  "deployed": false,
+  "native_reviewed": false,
+  "prompt_format": "Undocumented by author; six exploratory prefixes, not claimed to be official.",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.18.0",
+  "results": [
+    {
+      "id": "greeting",
+      "source": "你好，謝謝你的幫忙。",
+      "prefix": "",
+      "output": "你好,謝謝你幫忙。",
+      "raw_output": "<pad> 你好,謝謝你幫忙。</s>",
+      "seconds": 1.422,
+      "new_tokens": 11,
+      "hit_length_limit": false
+    },
+    {
+      "id": "free",
+      "source": "本活動免費，不必繳費。",
+      "prefix": "",
+      "output": "本活動免費,毋得繳費。",
+      "raw_output": "<pad> 本活動免費,毋得繳費。</s>",
+      "seconds": 0.219,
+      "new_tokens": 11,
+      "hit_length_limit": false
+    },
+    {
+      "id": "documents",
+      "source": "請攜帶身分證影本及報名表。",
+      "prefix": "",
+      "output": "請攜帶身分證影本及報名表。",
+      "raw_output": "<pad> 請攜帶身分證影本及報名表。</s>",
+      "seconds": 0.266,
+      "new_tokens": 14,
+      "hit_length_limit": false
+    },
+    {
+      "id": "deadline",
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。",
+      "prefix": "",
+      "output": "請在十月日逐日逐日提出申請,逾期毋受理。",
+      "raw_output": "<pad> 請在十月日逐日逐日提出申請,逾期毋受理。</s>",
+      "seconds": 0.437,
+      "new_tokens": 19,
+      "hit_length_limit": false
+    },
+    {
+      "id": "conditional_fee",
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "prefix": "",
+      "output": "只有65歲下正免費,其他人須繳500元。",
+      "raw_output": "<pad> 只有65歲下正免費,其他人須繳500元。</s>",
+      "seconds": 0.344,
+      "new_tokens": 16,
+      "hit_length_limit": false
+    },
+    {
+      "id": "done_exception",
+      "source": "已經完成登記的人，不必再提出申請。",
+      "prefix": "",
+      "output": "這下完成登記个人,毋知再提出申請。",
+      "raw_output": "<pad> 這下完成登記个人,毋知再提出申請。</s>",
+      "seconds": 0.297,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    },
+    {
+      "id": "paper_only",
+      "source": "本次僅接受紙本申請，不接受線上申請。",
+      "prefix": "",
+      "output": "這下僅接受紙本申請,毋接受線上申請。",
+      "raw_output": "<pad> 這下僅接受紙本申請,毋接受線上申請。</s>",
+      "seconds": 0.282,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    },
+    {
+      "id": "conditional_docs",
+      "source": "如果委託別人辦理，還需要附上委託書。",
+      "prefix": "",
+      "output": "該委託別人辦理,還需要附上委託書。",
+      "raw_output": "<pad> 該委託別人辦理,還需要附上委託書。</s>",
+      "seconds": 0.296,
+      "new_tokens": 16,
+      "hit_length_limit": false
+    },
+    {
+      "id": "deadline_extension",
+      "source": "如果截止日遇到假日，期限延到下一個上班日。",
+      "prefix": "",
+      "output": "這下截止日係假日,期限延到下一個上班日。",
+      "raw_output": "<pad> 這下截止日係假日,期限延到下一個上班日。</s>",
+      "seconds": 0.329,
+      "new_tokens": 17,
+      "hit_length_limit": false
+    },
+    {
+      "id": "fee_refund",
+      "source": "報名費300元，取消報名不退費。",
+      "prefix": "",
+      "output": "報名費300元,取消報名毋退費。",
+      "raw_output": "<pad> 報名費300元,取消報名毋退費。</s>",
+      "seconds": 0.484,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    },
+    {
+      "id": "greeting",
+      "source": "你好，謝謝你的幫忙。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "你好,謝謝你幫忙。",
+      "raw_output": "<pad> 你好,謝謝你幫忙。</s>",
+      "seconds": 0.344,
+      "new_tokens": 11,
+      "hit_length_limit": false
+    },
+    {
+      "id": "free",
+      "source": "本活動免費，不必繳費。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "本活動免費,毋得繳費。",
+      "raw_output": "<pad> 本活動免費,毋得繳費。</s>",
+      "seconds": 0.203,
+      "new_tokens": 11,
+      "hit_length_limit": false
+    },
+    {
+      "id": "documents",
+      "source": "請攜帶身分證影本及報名表。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "請攜帶身分證影本及報名表。",
+      "raw_output": "<pad> 請攜帶身分證影本及報名表。</s>",
+      "seconds": 0.25,
+      "new_tokens": 14,
+      "hit_length_limit": false
+    },
+    {
+      "id": "deadline",
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "請在十月15日前提出申請,逾期毋受理。",
+      "raw_output": "<pad> 請在十月15日前提出申請,逾期毋受理。</s>",
+      "seconds": 0.297,
+      "new_tokens": 17,
+      "hit_length_limit": false
+    },
+    {
+      "id": "conditional_fee",
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "佢有65歲下正免費,其他人須繳500元。",
+      "raw_output": "<pad> 佢有65歲下正免費,其他人須繳500元。</s>",
+      "seconds": 0.406,
+      "new_tokens": 17,
+      "hit_length_limit": false
+    },
+    {
+      "id": "done_exception",
+      "source": "已經完成登記的人，不必再提出申請。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "佢已經完成登記个人,毋知再提出申請。",
+      "raw_output": "<pad> 佢已經完成登記个人,毋知再提出申請。</s>",
+      "seconds": 0.281,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    },
+    {
+      "id": "paper_only",
+      "source": "本次僅接受紙本申請，不接受線上申請。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "這下僅接受紙本申請,毋接受線上申請。",
+      "raw_output": "<pad> 這下僅接受紙本申請,毋接受線上申請。</s>",
+      "seconds": 0.281,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    },
+    {
+      "id": "conditional_docs",
+      "source": "如果委託別人辦理，還需要附上委託書。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": " 阿公別人辦理,還需要附上委託書。",
+      "raw_output": "<pad>  阿公別人辦理,還需要附上委託書。</s>",
+      "seconds": 0.329,
+      "new_tokens": 16,
+      "hit_length_limit": false
+    },
+    {
+      "id": "deadline_extension",
+      "source": "如果截止日遇到假日，期限延到下一個上班日。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "這下截止日當日,期限延到下一個上班日。",
+      "raw_output": "<pad> 這下截止日當日,期限延到下一個上班日。</s>",
+      "seconds": 0.39,
+      "new_tokens": 17,
+      "hit_length_limit": false
+    },
+    {
+      "id": "fee_refund",
+      "source": "報名費300元，取消報名不退費。",
+      "prefix": "translate Chinese to Hakka: ",
+      "output": "報名費300元,取消報名毋退費。",
+      "raw_output": "<pad> 報名費300元,取消報名毋退費。</s>",
+      "seconds": 0.375,
+      "new_tokens": 15,
+      "hit_length_limit": false
+    }
+  ],
+  "device": "cuda",
+  "tokenizer_checks": [
+    {
+      "source": "你好，謝謝你的幫忙。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "本活動免費，不必繳費。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "請攜帶身分證影本及報名表。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "只有65歲以上才免費，其他人須繳500元。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "已經完成登記的人，不必再提出申請。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "本次僅接受紙本申請，不接受線上申請。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "如果委託別人辦理，還需要附上委託書。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "如果截止日遇到假日，期限延到下一個上班日。",
+      "matches_native_sentencepiece": true
+    },
+    {
+      "source": "報名費300元，取消報名不退費。",
+      "matches_native_sentencepiece": true
+    }
+  ],
+  "decoding": {
+    "do_sample": false,
+    "num_beams": 4,
+    "max_new_tokens": 96,
+    "dtype": "float32"
+  }
+}

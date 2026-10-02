@@ -1,0 +1,84 @@
+[
+  {
+    "dialect": "sixian",
+    "seconds": 48.76,
+    "result": {
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。只有65歲以上才免費，其他人須繳500元。",
+      "language": "hakka",
+      "dialect": "sixian",
+      "translation": "請在10月15日下晝5點以前申請。過期毋受理。\n65歲以上个人免費，其他人愛繳500元。",
+      "speech_error": "",
+      "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+      "frames": [
+        {
+          "unit": 0,
+          "kind": "deadline",
+          "slots": {
+            "date": "10月15日下午5點",
+            "boundary": "以前",
+            "action": "申請",
+            "late": "reject"
+          },
+          "evidence": "請在10月15日下午5點以前提出申請，逾期不受理。"
+        },
+        {
+          "unit": 1,
+          "kind": "age_fee",
+          "slots": {
+            "age": "65",
+            "operator": "gte",
+            "amount": "500"
+          },
+          "evidence": "只有65歲以上才免費，其他人須繳500元。"
+        }
+      ],
+      "method": "local_notice_frames_v2",
+      "extraction_status": "source_rules",
+      "model_check": "rejected_source_fallback"
+    },
+    "duration": 11.610702947845805,
+    "sample_rate": 22050,
+    "sha256": "6ac7d50b0c00c9bda6163caa6656efb8d290c7db60c24b7e77430d090679525b"
+  },
+  {
+    "dialect": "hailu",
+    "seconds": 41.116,
+    "result": {
+      "source": "請在10月15日下午5點以前提出申請，逾期不受理。只有65歲以上才免費，其他人須繳500元。",
+      "language": "hakka",
+      "dialect": "hailu",
+      "translation": "請在10月15日下晝5點以前申請。過期毋受理。\n65歲以上个人免費，其他人愛繳500元。",
+      "speech_error": "",
+      "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+      "frames": [
+        {
+          "unit": 0,
+          "kind": "deadline",
+          "slots": {
+            "date": "10月15日下午5點",
+            "boundary": "以前",
+            "action": "申請",
+            "late": "reject"
+          },
+          "evidence": "請在10月15日下午5點以前提出申請，逾期不受理。"
+        },
+        {
+          "unit": 1,
+          "kind": "age_fee",
+          "slots": {
+            "age": "65",
+            "operator": "gte",
+            "amount": "500"
+          },
+          "evidence": "只有65歲以上才免費，其他人須繳500元。"
+        }
+      ],
+      "method": "local_notice_frames_v2",
+      "extraction_status": "source_rules",
+      "model_check": "rejected_source_fallback"
+    },
+    "duration": 12.017052154195012,
+    "sample_rate": 22050,
+    "sha256": "4773f88b69eeeac1b7ac74a110da76cd58a96d847a24f7a31077c33c82ccc92e"
+  }
+]

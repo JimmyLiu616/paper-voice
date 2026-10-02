@@ -1,0 +1,114 @@
+[
+  {
+    "id": "deadline",
+    "dialect": "hak_sx",
+    "reading": "請在十月十五日下晝五點以前申請。過期毋受理。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "deadline",
+    "dialect": "hak_hl",
+    "reading": "請在十月十五日下晝五點以前申請。過期毋受理。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "documents",
+    "dialect": "hak_sx",
+    "reading": "愛準備个文件係身分證影本摎報名表。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "documents",
+    "dialect": "hak_hl",
+    "reading": "愛準備个文件係身分證影本摎報名表。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "age_fee",
+    "dialect": "hak_sx",
+    "reading": "六十五歲以上个人免費，其他人愛繳五百元。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "age_fee",
+    "dialect": "hak_hl",
+    "reading": "六十五歲以上个人免費，其他人愛繳五百元。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "age_lt",
+    "dialect": "hak_sx",
+    "reading": "未滿十八歲个人免費，其他人愛繳三百元。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "age_lt",
+    "dialect": "hak_hl",
+    "reading": "未滿十八歲个人免費，其他人愛繳三百元。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "registration",
+    "dialect": "hak_sx",
+    "reading": "已經完成登記个人，毋使再提出申請。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "registration",
+    "dialect": "hak_hl",
+    "reading": "已經完成登記个人，毋使再提出申請。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "delegation",
+    "dialect": "hak_sx",
+    "reading": "係講委託別人辦理，還愛附委託書。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "delegation",
+    "dialect": "hak_hl",
+    "reading": "係講委託別人辦理，還愛附委託書。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "holiday",
+    "dialect": "hak_sx",
+    "reading": "係講截止日遇到假日，期限順延到下一個上班日。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "holiday",
+    "dialect": "hak_hl",
+    "reading": "係講截止日遇到假日，期限順延到下一個上班日。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "refund",
+    "dialect": "hak_sx",
+    "reading": "報名費係三百元。取消報名毋退費。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  },
+  {
+    "id": "refund",
+    "dialect": "hak_hl",
+    "reading": "報名費係三百元。取消報名毋退費。",
+    "unknown_words": [],
+    "unknown_tokens": []
+  }
+]

@@ -4,7 +4,11 @@
 
 後續補查找到前次遺漏的 OmniTranslate 1.1 公開多語翻譯權重，包含 `hak` 標籤與 GGUF 版本。已下載 Q8_0 並完成本機診斷；正確 `hak_Hani` 代碼的中文／英文輸入仍出現錯誤字串、重複及生成中止，未部署。詳見[實測紀錄](../hakka-omnitranslate-v1/README.md)。不應將本報告解讀成「完全沒有公開客語翻譯候選」。
 
+新版已改用原文框架核對與句型組合完成限定範圍的全本機解說，沒有部署上述失敗的翻譯模型；見 [客語公文重點解說 v2](../hakka-notice-v2/README.md)。
+
 ## 可行的下一步
+
+補查亦找到公開可下載的 [qavit/mt5-small-hak](https://huggingface.co/qavit/mt5-small-hak)。已完成 10 句、6 種輸入格式的 60 次測試及 20 次 beam search 補測；能生成部分客語用字，但日期、時間、年齡門檻及條件仍有明確錯誤，未部署。作者尚未填寫模型授權與正式用法，詳見 [mT5 本機實測](../hakka-mt5-v1/README.md)。
 
 [臺灣主權 AI 訓練語料庫：客語能力認證初級詞彙](https://taic.moda.gov.tw/datasets/3c152762-101f-4a52-be38-d2094b9efd8f)由客家委員會提供，標示僅授權 AI 訓練使用，適用[臺灣主權 AI 訓練語料授權條款第 1 版](https://taic.moda.gov.tw/content/license)。[申請頁](https://taic.moda.gov.tw/member)要求基本資料、申請用途、預期效益及 PDF 佐證文件；使用者目前沒有通過審核的帳號。
 
