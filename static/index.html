@@ -5,6 +5,7 @@
   <meta name="theme-color" content="#143b40"><title>紙聲通 · 讓每張紙，都聽得懂</title>
   <link rel="icon" href="/static/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/static/style.css">
   <script src="/static/model-warmup.js" defer></script>
+  <script src="/static/document-result.js" defer></script>
   <script src="/static/narrator.js" defer></script>
   <script src="/static/app.js" defer></script>
   <script src="/static/camera.js" defer></script>
@@ -40,22 +41,24 @@
       </section>
       <section class="panel result-panel" aria-labelledby="result-heading">
         <div class="panel-heading"><h2 id="result-heading">幫你整理好了 <span class="section-no">02</span></h2><span id="result-meta" class="muted">等待放入文件</span></div>
-        <div id="empty-state" class="empty-state"><div class="empty-glyph" aria-hidden="true">Aa</div><h3>重要的事，一眼看見。</h3><p>放入文件後，這裡會整理<br>要做什麼、辦理期限，以及需要準備的資料。</p><div class="ghost-tags"><span>要做什麼</span><span>何時以前</span><span>需要準備</span></div><small>每一項重點，都能對照辨識原文。</small></div>
+        <div id="empty-state" class="empty-state"><div class="empty-glyph" aria-hidden="true">Aa</div><h3>重要的事，一眼看見。</h3><p>放入文件後，這裡會整理<br>適合這份文件的重點與原文依據。</p><div class="ghost-tags"><span>動態重點</span><span>原文對照</span><span>語音匯出</span></div><small>每一項重點，都能對照辨識原文。</small></div>
         <div id="result-content" hidden>
-          <div class="result-title-row"><span class="document-type" id="document-type"></span><button id="export-btn" class="text-button">匯出結果</button></div><h3 id="document-title" class="document-title"></h3>
+          <div class="result-title-row"><span class="document-type" id="document-type"></span><div class="export-actions"><button id="export-text-btn" class="text-button">下載重點 TXT</button><button id="export-btn" class="text-button">下載依據 JSON</button></div></div><h3 id="document-title" class="document-title"></h3>
           <div id="result-warnings"></div><div id="fact-grid" class="fact-grid"></div><div id="condition-list"></div>
-          <p class="verification-note">「原文已對應」表示欄位與辨識文字相符，仍請對照圖片確認。辨識與解釋皆可能出錯。</p>
+          <p class="verification-note">重點依文件內容產生。AI 比對不代表內容完全正確；日期、數字與例外仍請對照原圖。</p>
+          <details id="remaining-details" class="raw-details" hidden><summary>未列入重點的原文</summary><div id="remaining-source"></div></details>
+          <details class="raw-details"><summary>預覽重點朗讀稿</summary><div id="narration-preview" class="narration-text"></div></details>
           <details id="raw-details" class="raw-details"><summary>查看／修正辨識原文 <span>核對日期與數字</span></summary><textarea id="raw-text" rows="9" maxlength="6500" aria-label="辨識原文，可修正"></textarea><button id="reanalyze-btn" class="secondary-button">用修正文字重新整理</button><small>重新整理後，問答與朗讀會使用修正內容。</small><details id="ocr-details"><summary>查看 Windows OCR 初讀文字</summary><pre id="ocr-reference"></pre></details></details>
         </div>
         <section id="speech-panel" class="speech-panel" aria-label="朗讀文件">
-          <h3>也可以直接聽文件</h3><div class="document-listen"><label for="read-target">朗讀內容</label><select id="read-target"><option value="summary">重要資訊</option><option value="raw">整份辨識原文</option></select><button id="speak-btn" class="play-button" disabled>用所選語言朗讀</button></div>
-          <p class="hint">使用下方「提問與朗讀」所選的語言。翻譯以完整短句處理，超出支援範圍時會說明原因。</p>
+          <h3>也可以直接聽文件</h3><div class="document-listen"><label for="read-target">朗讀內容</label><select id="read-target"><option value="summary">重點朗讀稿</option><option value="raw">整份辨識原文</option></select><button id="speak-btn" class="play-button" disabled>用所選語言朗讀</button></div>
+          <p class="hint">使用下方所選語言，也可逐項點「聽這個重點」。完成後可下載 WAV。台語／阿美語需完整短句，客語限支援句型；不支援時保留中文並說明原因。</p>
         </section>
       </section>
     </div>
     <section id="conversation" class="panel conversation-panel" aria-labelledby="conversation-heading">
       <div class="panel-heading"><h2 id="conversation-heading">多語翻譯與朗讀 <span class="section-no">03</span></h2><span class="local-label">本機翻譯與朗讀</span></div>
-      <div class="language-toolbar"><label for="output-language">回答朗讀語言<select id="output-language"><option value="zh-TW">華語（中文）</option><option value="nan">台語</option><option value="hakka">客語</option><option value="ami">阿美語</option></select></label><label id="dialect-control" for="output-dialect" hidden><span id="dialect-label">語別</span><select id="output-dialect"><option value="">預設</option></select></label><label for="speed">語速<select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div>
+      <div class="language-toolbar"><label for="output-language">翻譯朗讀語言<select id="output-language"><option value="zh-TW">華語（中文）</option><option value="nan">台語</option><option value="hakka">客語</option><option value="ami">阿美語</option></select></label><label id="dialect-control" for="output-dialect" hidden><span id="dialect-label">語別</span><select id="output-dialect"><option value="">預設</option></select></label><label for="speed">語速<select id="speed"><option value="0.8">慢一點</option><option value="1" selected>正常</option><option value="1.2">快一點</option></select></label></div>
       <p id="language-hint" class="hint"></p>
       <div class="conversation-grid"><div class="qa-panel">
         <p class="hint">用中文輸入或錄音提問。系統根據這份文件回答，保留中文與原文依據，再自動翻譯朗讀。</p>
@@ -70,7 +73,7 @@
         <p id="translation-label" class="field-label">華語朗讀內容</p><p id="narration-translation" class="narration-text"></p>
         <p id="narration-status" class="hint" role="status">先讀取文件，再提問；回答會自動翻譯朗讀。</p>
         <div class="play-row"><button id="replay-answer" class="secondary-button" disabled>用此語言重讀</button><button id="stop-btn" class="stop-button">停止</button></div>
-        <audio id="audio" controls hidden></audio><p id="narration-warning" class="warning" hidden></p>
+        <audio id="audio" controls hidden></audio><div class="export-actions"><button id="download-audio" type="button" class="text-button" disabled>下載語音 WAV</button><button id="download-narration" type="button" class="text-button" disabled>下載中譯對照 TXT</button></div><p id="narration-warning" class="warning" hidden></p>
       </section></div>
     </section>
     <section class="panel corpus-panel"><div class="panel-heading"><h2>把修正變成下一次的進步</h2><span class="experimental">自願貢獻</span></div><p class="hint">先在「查看／修正辨識原文」改好錯字，再按預覽。原圖、錄音及文件檔名不會加入貢獻檔；這裡只下載到本機，不會自動上傳。</p><button id="corpus-preview-btn" class="secondary-button">預覽這次辨識修正</button><div id="corpus-preview" hidden><p id="corpus-status" class="hint" role="status"></p><div class="corpus-pair"><label>遮蔽後的辨識原文<textarea id="corpus-original" rows="5" maxlength="6500"></textarea></label><label>遮蔽後的人工修正<textarea id="corpus-corrected" rows="5" maxlength="6500"></textarea></label></div><p class="warning">自動遮蔽可能漏掉姓名、地址、病情等資訊。請逐行檢查並手動刪除；不要公開他人的私密文件。</p><label class="field-label">資料來源 <select id="corpus-provenance"><option value="synthetic">自製虛構範例</option><option value="authorized">已獲權利人授權的資料</option></select></label><label class="check-label"><input id="corpus-reviewed" type="checkbox">我已逐行核對內容正確，並移除可識別個人的資訊</label><label class="check-label"><input id="corpus-rights" type="checkbox">我有權公開此文字，並同意以 CC BY 4.0 授權；以 Paper Voice 自願貢獻者署名</label><button id="corpus-export-btn" class="secondary-button">下載待審核語料 JSONL</button></div></section>

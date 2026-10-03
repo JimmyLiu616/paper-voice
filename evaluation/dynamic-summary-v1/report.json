@@ -1,0 +1,103 @@
+{
+  "date": "2026-10-03",
+  "app_sha256": "a51c3b4aa4cf9a5195d8920f6f564b33241d4f7fd17d18c122d0e98a5f3b1842",
+  "summary_module_sha256": "21ef27d9eff3f0ef7546e033939a526bb2972e1ae660b84abf4bbecaf23011ff",
+  "scope": "Development checks, not a held-out summary or native-language quality score.",
+  "photo": {
+    "source": "https://innoserve.tca.org.tw/News/Details/27",
+    "source_pdf": "https://drive.google.com/file/d/1mBKAn7w_AFv-RIyPtXmR4JV_hzaI1l0S/view",
+    "capture": "Official PDF page 1 rasterized at 150 DPI, not the user screenshot or a camera photo.",
+    "seconds": 36.7,
+    "points": 4,
+    "ai_reviewed": 2,
+    "source_excerpt": 2,
+    "checks": {
+      "50_places": true,
+      "100_points": true,
+      "deadline_time": true,
+      "all_citations_exact": true
+    },
+    "speech_seconds": 189.17102040816326,
+    "speech_matches_saved_narration": true,
+    "limitations": [
+      "OCR still misreads some AI lettering and table reading order.",
+      "Two blocks retained as original text after rewrite checks.",
+      "AI semantic review is fallible; literal checks supplement it."
+    ]
+  },
+  "browser": {
+    "input": "Original synthetic water outage notice",
+    "summary_points": 2,
+    "seconds": 6.3,
+    "wave_seconds": 23.324489795918367,
+    "downloads": {
+      "txt_matches": true,
+      "json_matches": true,
+      "wav_downloaded": true,
+      "bilingual_matches": true
+    },
+    "language_switch_clears_old_audio": true,
+    "console_errors": 0,
+    "download_event_observer": "Browser tool event timed out; confirmed actual local downloads and inspected content instead."
+  },
+  "languages": [
+    {
+      "source": "本活動免費，不必繳費。",
+      "language": "hakka",
+      "dialect": "sixian",
+      "translation": "這隻活動免費，毋使繳費。",
+      "speech_error": "",
+      "warning": "客語公文重點解說草稿；已檢查支援範圍內的數字與條件，句型自然度及發音尚未經母語者驗證。四縣／海陸共用文字，切換語音腔調。",
+      "segments": [
+        {
+          "source": "本活動免費，不必繳費。",
+          "translation": "這隻活動免費，毋使繳費。",
+          "start": 0.0,
+          "end": 3.669
+        }
+      ],
+      "seconds": 37.68,
+      "duration": 3.6694784580498867
+    },
+    {
+      "source": "本活動免費，不必繳費。",
+      "language": "ami",
+      "dialect": "ami_Xiug",
+      "translation": "awaay ko payso, awaay ko ʼaca.",
+      "speech_error": "",
+      "warning": "阿美語為 AI 草稿；譯文語別共用同一聲音，語意與各語別發音尚未驗證。",
+      "segments": [
+        {
+          "source": "本活動免費，不必繳費。",
+          "translation": "awaay ko payso, awaay ko ʼaca.",
+          "start": 0.0,
+          "end": 3.008
+        }
+      ],
+      "seconds": 25.21,
+      "duration": 3.008
+    },
+    {
+      "source": "本活動免費，不必繳費。",
+      "language": "nan",
+      "dialect": "",
+      "translation": "本活動免費，無需要繳費。",
+      "speech_error": "",
+      "warning": "AI／句型翻譯及語音皆為草稿，日期、費用與例外請對照中文。",
+      "segments": [
+        {
+          "source": "本活動免費，不必繳費。",
+          "translation": "本活動免費，無需要繳費。",
+          "start": 0.0,
+          "end": 3.536
+        }
+      ],
+      "seconds": 19.85,
+      "duration": 3.536
+    }
+  ],
+  "tests": {
+    "python_passed": 368,
+    "javascript_passed": 50
+  }
+}

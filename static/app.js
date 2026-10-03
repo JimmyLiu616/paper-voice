@@ -79,12 +79,18 @@ function render(result) {
   $('document-title').textContent=result.title; $('document-type').textContent=result.document_type;
   $('result-meta').textContent=`${result.seconds} 秒 · ${result.input_source==='image'?'圖片辨識':'文字整理'}`;
   $('fact-grid').replaceChildren();
-  for(const fact of result.fields) {
-    const card=textNode('article','','fact-card'); card.append(textNode('div',fact.label,'fact-label'));
-    card.append(textNode('p',fact.value || (fact.state==='needs_review'?'需要人工確認':'未找到明確資訊'),fact.value?'':'not-found'));
-    if(fact.evidence) { const detail=document.createElement('details');detail.append(textNode('summary','原文已對應 · 查看依據'),textNode('blockquote',fact.evidence));card.append(detail); }
+  for(const point of result.highlights||[]) {
+    const card=textNode('article','','fact-card highlight-card');card.id='highlight-'+point.id;
+    card.append(textNode('h4',point.heading,'fact-label'),textNode('p',point.text));
+    card.append(textNode('small',point.note,'hint'));
+    const detail=document.createElement('details');detail.append(textNode('summary',`查看原文依據 · 第 ${point.source_start}–${point.source_end} 行`),textNode('blockquote',point.evidence));card.append(detail);
+    const listen=textNode('button','聽這個重點','text-button');listen.type='button';
+    listen.onclick=()=>listenDocument('summary',point.id,point.text,point.heading);card.append(listen);
     $('fact-grid').append(card);
   }
+  $('narration-preview').textContent=result.narration_text||'';
+  $('remaining-source').replaceChildren(...(result.unselected_source_lines||[]).map(line=>textNode('p',`${line.id}　${line.text}`)));
+  $('remaining-details').hidden=!(result.unselected_source_lines||[]).length;
   $('raw-text').value=result.raw_text;
   $('condition-list').replaceChildren(...(result.conditions_raw||[]).map(t=>textNode('p','文件提醒：'+t,'hint')));
   $('ocr-reference').textContent=result.ocr_reference||'本次未使用 Windows OCR（文字模式或系統未提供）。';
@@ -115,8 +121,13 @@ async function analyze(confirmedText) {
 }
 $('analyze-btn').onclick=()=>analyze();
 $('reanalyze-btn').onclick=()=>{if($('raw-text').value.trim().length<4){message('請輸入至少四個字。');return;}analyze($('raw-text').value);};
-function readText(){if(!state.result)return '';return $('read-target').value==='raw'?state.result.raw_text:(state.result.summary.join('。\n')||'這份文件未找到可核對的重點，請查看原圖與辨識原文。');}
-$('speak-btn').onclick=()=>{const text=readText();if(!text)return;window.PaperVoiceNarrator.speak(text,'文件：'+($('read-target').value==='raw'?'辨識原文':'重要資訊'));$('conversation').scrollIntoView({behavior:'smooth',block:'start'});};
+function listenDocument(target,pointId,text,label){
+  if(!state.result||state.busy)return;
+  PaperVoiceNarrator.speak(text,label,{document:{job_id:state.job,target,point_id:pointId||null}});
+  $('conversation').scrollIntoView({behavior:'smooth',block:'start'});
+}
+$('speak-btn').onclick=()=>{if(!state.result)return;const target=$('read-target').value;
+  listenDocument(target,null,PaperVoiceDocument.narration(state.result,target),target==='raw'?'整份辨識原文':'文件重點朗讀稿');};
 $('question-form').addEventListener('submit',async e=>{
   e.preventDefault();if(!state.result||state.busy||qaBusy)return;
   const question=$('question').value.trim();if(!question)return;
@@ -137,7 +148,9 @@ $('question-form').addEventListener('submit',async e=>{
   finally{qaBusy=false;waiting.remove();buttons();}
 });
 document.querySelectorAll('[data-question]').forEach(button=>button.onclick=()=>{$('question').value=button.dataset.question;if(!state.result){message('請先放入文件並完成辨識。');return;}$('question-form').requestSubmit();});
-$('export-btn').onclick=()=>{if(!state.result)return;const blob=new Blob([JSON.stringify({...state.result,notice:'AI 輔助結果，請對照原文件確認；原文對應不代表影像辨識正確。'},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='紙聲通-識讀結果.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+function downloadResult(content,type,name){const url=URL.createObjectURL(new Blob([content],{type}));const link=document.createElement('a');link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('export-btn').onclick=()=>{if(state.result)downloadResult(JSON.stringify(state.result,null,2),'application/json','紙聲通-重點與依據.json');};
+$('export-text-btn').onclick=()=>{if(state.result)downloadResult(PaperVoiceDocument.exportText(state.result),'text/plain;charset=utf-8','紙聲通-文件重點.txt');};
 $('font-btn').onclick=()=>{const on=document.documentElement.classList.toggle('large-text');$('font-btn').setAttribute('aria-pressed',String(on));};
 $('about-btn').onclick=()=>$('about-dialog').showModal();$('close-about').onclick=()=>$('about-dialog').close();
 $('about-dialog').addEventListener('click',e=>{if(e.target===$('about-dialog'))$('about-dialog').close();});
