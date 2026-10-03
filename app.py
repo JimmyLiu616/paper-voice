@@ -971,8 +971,15 @@ async def taigi_translation(body: TaigiTranslationRequest):
 async def translate_taigi_text(source, restore=True):
     from scripts.taigi_translation import mask_numbers, restore_numbers, reading_draft
     from scripts.taigi_text import pronunciation_draft
+    # Keep a visible RQ label out of the language model, then restore it exactly.
+    # This avoids losing/mutating the identifier while translating the question.
+    label_match = re.match(r'^(RQ[1-9][0-9]{0,2}\s*[:：])\s*(.+)$', source, re.S)
+    label = label_match[1] if label_match else ''
+    translation_source = label_match[2] if label_match else source
     try:
-        masked, numbers = mask_numbers(source)
+        if not 1 <= len(source.strip()) <= 80:
+            raise ValueError('請選取 1–80 字的原文短句。')
+        masked, numbers = mask_numbers(translation_source)
     except ValueError as exc:
         raise HTTPException(422, str(exc)) from exc
     if model_lock.locked():
@@ -980,10 +987,10 @@ async def translate_taigi_text(source, restore=True):
     async with model_lock:
         candidate = await generate_taigi_draft(masked) if restore else await generate_taigi_draft(masked,restore=False)
     try:
-        translation = restore_numbers(masked, numbers, candidate)
+        translation = label + restore_numbers(masked, numbers, candidate)
     except ValueError as exc:
         raise HTTPException(502, str(exc)) from exc
-    result = {'source':source, 'translation':translation, 'reading':'', 'poj':'',
+    result = {'source':source, 'translation':translation, 'reading':'', 'poj':'', 'pronunciation_error':'',
               'warning':'AI 翻譯及讀音皆為草稿。阿拉伯數字與單位檢查不能驗證否定、條件或整句意思，請逐句對照原文後再朗讀。'}
     try:
         reading = reading_draft(translation)
@@ -991,9 +998,12 @@ async def translate_taigi_text(source, restore=True):
         result.update(reading=reading, poj=pronunciation['poj'])
         if numbers:
             result['warning'] += '日期、金額與數量已轉為漢字數詞讀音草稿，請核對讀法。'
+        if label:
+            result['warning'] += 'RQ 編號在語音中展開為「研究問題」加數字；譯文保留原編號。'
         if '逾期不受理' in translation or '仍須繳費' in translation:
             result['warning'] += '讀音草稿以「過期不受理／猶原愛繳費」代替對應的「逾期不受理／仍須繳費」，請核對；上方譯文仍保留模型原詞。'
     except (ValueError, ImportError, FileNotFoundError) as exc:
+        result['pronunciation_error'] = str(exc)
         result['warning'] += ' 尚未產生完整讀音：' + str(exc)
     return result
 
@@ -1237,7 +1247,8 @@ async def synthesize_narration(body: NarrationRequest, *, restore=True):
                     else:
                         item=await translate_taigi_text(part,restore=False)
                         drafts.append(item['translation']);result['translation']='\n'.join(drafts)
-                        if not item.get('poj'):raise ValueError('台語譯文已產生，但尚無完整讀音，無法朗讀此回答。')
+                        if not item.get('poj'):
+                            raise ValueError('台語讀音未完成：' + (item.get('pronunciation_error') or '無法取得完整白話字讀音。'))
                         clips.append(await asyncio.to_thread(taigi_wav,item['poj']))
                 audio=await asyncio.to_thread(join_wav,clips)
             result['audio_base64']=base64.b64encode(audio).decode('ascii')
@@ -1295,12 +1306,16 @@ async def narrate_document(body: DocumentNarrationRequest):
     async with document_speech_lock:
         clips, segments, elapsed = [], [], 0.0
         try:
-            for text in units:
+            for unit_index, text in enumerate(units, 1):
                 item = await synthesize_narration(NarrationRequest(
                     text=text, language=body.language, dialect=body.dialect), restore=False)
                 response['warning'] = item.get('warning', '')
                 if item.get('speech_error') or not item.get('audio_base64'):
-                    response['speech_error'] = item.get('speech_error') or '文件語音未完成。'
+                    response['translation'] = '\n\n'.join(
+                        [s['translation'] for s in segments] + ([item['translation']] if item.get('translation') else []))
+                    response['translation_complete'] = False
+                    response['failed_segment'] = {'index':unit_index, 'total':len(units), 'source':text}
+                    response['speech_error'] = f'第 {unit_index}/{len(units)} 段未完成：' + (item.get('speech_error') or '文件語音未完成。')
                     return response  # Never expose a partially completed document recording.
                 audio = base64.b64decode(item['audio_base64'])
                 with wave.open(io.BytesIO(audio), 'rb') as wav:
@@ -1310,7 +1325,7 @@ async def narrate_document(body: DocumentNarrationRequest):
                 elapsed += duration + .25
                 clips.append(audio)
             response.update(translation='\n\n'.join(s['translation'] for s in segments),
-                            segments=segments, audio_base64=base64.b64encode(join_wav(clips)).decode('ascii'))
+                            translation_complete=True, segments=segments, audio_base64=base64.b64encode(join_wav(clips)).decode('ascii'))
         finally:
             if body.language == 'nan':
                 asyncio.create_task(restore_document_model())

@@ -106,7 +106,9 @@ def test_document_audio_aligns_text_and_never_returns_partial_wav(monkeypatch,fa
     assert calls==['第一項。','第二項。']
     assert r['source']=='第一項。\n\n第二項。'
     if fail_second:
-        assert r['audio_base64'] is None and r['segments']==[] and r['translation']==''
+        assert r['audio_base64'] is None and r['segments']==[]
+        assert r['translation']=='第一項。\n\n第二項。'
+        assert r['translation_complete'] is False and r['failed_segment']=={'index':2,'total':2,'source':'第二項。'}
     else:
         assert r['segments'][1]['start']==.35 and r['segments'][1]['end']==.45
         with wave.open(io.BytesIO(base64.b64decode(r['audio_base64'])),'rb') as w:assert w.getnframes()==7200

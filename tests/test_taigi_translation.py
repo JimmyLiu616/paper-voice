@@ -40,6 +40,35 @@ def test_fee_unit_synonyms_keep_exact_source_number():
     assert restore_numbers(masked,numbers,'費用[NUM_A]箍')=='費用300箍'
 
 
+def test_research_and_table_labels_have_explicit_readings():
+    assert reading_draft('RQ2:資料分析。')=='研究問題二：資料分析。'
+    assert reading_draft('表1系統模組與資料流')=='表一系統模組與資料流'
+    assert reading_draft('圖12系統架構')=='圖十二系統架構'
+    assert reading_draft('RQI:資料分析。')=='RQI:資料分析。'  # No OCR digit guessing.
+    with pytest.raises(ValueError):reading_draft('ABC123')
+
+
+def test_rq_number_never_enters_or_depends_on_model_translation(monkeypatch):
+    from scripts import taigi_text
+    calls=[]
+    async def generate(text,**kw):calls.append(text);return '資料分析。'
+    monkeypatch.setattr(app,'generate_taigi_draft',generate)
+    monkeypatch.setattr(taigi_text,'pronunciation_draft',lambda t:{'poj':'chu liau'})
+    r=asyncio.run(app.translate_taigi_text('RQ2:資料分析。',restore=False))
+    assert calls==['資料分析。'] and r['translation']=='RQ2:資料分析。'
+    assert r['reading']=='研究問題二：資料分析。'
+
+
+def test_pronunciation_failure_keeps_specific_reason_and_translation(monkeypatch):
+    from scripts import taigi_text
+    async def generate(text,**kw):return '測試資料。'
+    def fail(text):raise ValueError('字典未收錄：測')
+    monkeypatch.setattr(app,'generate_taigi_draft',generate)
+    monkeypatch.setattr(taigi_text,'pronunciation_draft',fail)
+    r=asyncio.run(app.translate_taigi_text('測試資料。',restore=False))
+    assert r['translation']=='測試資料。' and r['pronunciation_error']=='字典未收錄：測' and not r['poj']
+
+
 def test_reading_substitutions_preserve_negative_and_payment_condition():
     assert reading_draft('逾期不受理。')=='過期不受理。'
     assert reading_draft('未滿65歲仍須繳費。')=='未滿六十五歲猶原愛繳費。'

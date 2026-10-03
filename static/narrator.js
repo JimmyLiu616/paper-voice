@@ -46,12 +46,15 @@
     busy:b=>{running=b;updateButtons();},halt:()=>player.pause(),fail:e=>status(e.message),
     apply:async(r,current)=>{
       el('narration-source').textContent=r.source;
-      el('narration-translation').textContent=r.translation||'尚未產生譯文。';
+      el('narration-translation').textContent=r.translation?
+        (r.translation_complete===false?'已產生的部分譯文（尚未完成整份文件）：\n':'')+r.translation:'尚未產生譯文。';
       el('narration-warning').textContent=r.warning;el('narration-warning').hidden=!r.warning;
       const labels={deadline:'截止時間',documents:'應備文件',age_fee:'年齡與費用',completed:'已完成事項的例外',completed_registration:'已登記者免重複申請',delegation:'委託辦理文件',paper_only:'申請方式',holiday:'假日順延',fee:'費用與退費',legacy:'通知事項'};
       el('narration-facts').replaceChildren(...(r.frames||[]).map(frame=>{const li=document.createElement('li');li.textContent=(labels[frame.kind]||'通知事項')+'：'+frame.evidence;return li;}));
       el('narration-facts-panel').hidden=!(r.frames||[]).length;
-      if(r.speech_error||!r.audio_base64){status('未播放：'+(r.speech_error||'未收到音檔。')+' 已保留中文；如有部分譯文，僅供參考。');return;}
+      if(r.speech_error||!r.audio_base64){status('未播放：'+(r.speech_error||'未收到音檔。')+
+        (r.failed_segment?' 卡住的原文：「'+r.failed_segment.source+'」。':'')+
+        ' 已保留中文與已完成譯文。可切換華語後按「用此語言重讀」，或選單項重點。');return;}
       const bytes=Uint8Array.from(atob(r.audio_base64),c=>c.charCodeAt(0));
       url=URL.createObjectURL(new Blob([bytes],{type:'audio/wav'}));player.src=url;player.hidden=false;player.playbackRate=Number(el('speed').value);
       completed=r;completedLabel=lastLabel;segments=r.segments||[];

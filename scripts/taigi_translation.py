@@ -71,10 +71,16 @@ def integer_hanji(number):
 def reading_draft(translation):
     # Dates/amounts/counts only. Phones, identifiers, decimals, ranges without a
     # unit and leading-zero strings require manual review; never partially read.
+    # Research-question labels are not words in the Hanji pronunciation lexicon.
+    # Expand only an explicit leading RQ + positive integer + colon; do not guess
+    # that OCR's RQI means RQ1, or alter arbitrary Latin identifiers.
+    translation = re.sub(r'^RQ([1-9][0-9]{0,2})\s*[:：]',
+        lambda m: '研究問題' + integer_hanji(m[1]) + '：', translation)
     def replace(match):
         number = match.group()
         following = translation[match.end():].lstrip()
-        if not re.fullmatch('[0-9]+', number) or not following or following[0] not in '年月日號時點元箍塊歲份':
+        ordinal = bool(re.search(r'(?:^|[\n。！？:：])\s*(?:表|圖|第)$', translation[:match.start()]))
+        if not re.fullmatch('[0-9]+', number) or (not ordinal and (not following or following[0] not in '年月日號時點元箍塊歲份')):
             raise ValueError('含電話、編號或特殊數字，請先人工寫出台語讀法。')
         return integer_hanji(number)
     reading = NUMBER.sub(replace, translation)

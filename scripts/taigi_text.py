@@ -52,7 +52,8 @@ def pronunciation_draft(text):
     if not 1 <= len(text) <= 80 or not any(is_han(c) for c in text):
         raise ValueError('請輸入 1–80 字的台語漢字短句。')
     if any(not (is_han(c) or c.isspace() or c in PUNCTUATION) for c in text):
-        raise ValueError('請使用台語漢字；數字請寫成讀法，外文與符號請先移除。')
+        unsupported = ''.join(dict.fromkeys(c for c in text if not (is_han(c) or c.isspace() or c in PUNCTUATION)))
+        raise ValueError('台語讀音目前不支援這些字元：' + unsupported + '。請核對原文或改用華語，不要刪掉文件內容。')
     poj = unicodedata.normalize('NFC', converter().get(text))
     unknown = ''.join(dict.fromkeys(c for c in poj if is_han(c)))
     if unknown:
